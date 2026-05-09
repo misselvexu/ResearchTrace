@@ -1,0 +1,31 @@
+{
+  "name": "researchtrace",
+  "version": "0.4.0",
+  "private": true,
+  "description": "ResearchTrace 研迹 — A Paper for One Reader. You. (Next.js production build)",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "legacy": "python3 -m http.server 8081 --directory legacy/prototype-v0.3"
+  },
+  "dependencies": {
+    "next": "16.2.6",
+    "next-intl": "^4.3.13",
+    "next-themes": "^0.4.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.6",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
