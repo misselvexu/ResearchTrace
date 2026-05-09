@@ -19,69 +19,81 @@
 RT.mountShell({ activeId: "pricing", crumbKey: "pricing.crumb", crumb: RTI18n.t("pricing.crumb") });
 RT.autoApplyI18n();
 
+const tk = window.tk;
+
 const PLANS = [
-  { tier:"01", name:"Free", zh:"免费", price:"$0", period:"永久", color:"var(--ink-primary)",
-    pitch:"开始体验主动研究 · 限制额度", current:false,
+  { tier:"01", nameK:"pricing.p1.name", zhK:"pricing.p1.zh", price:"$0",   periodK:"pricing.p1.period", color:"var(--ink-primary)",
+    pitchK:"pricing.p1.pitch", current:false,
     features:[
-      ["主题","1 个"],
-      ["Vault 容量","100 项"],
-      ["每日 Agent 调用","20 次"],
-      ["每月简报","2 份"],
-      ["渠道","仅应用内"],
-      ["模型路由","固定 GPT-4o-mini"],
-      ["证据引用","✓"],
-      ["导出数据","Markdown / JSON"],
+      ["pricing.feat.topics",   "pricing.v.p1.topics"],
+      ["pricing.feat.vault",    "pricing.v.p1.vault"],
+      ["pricing.feat.calls",    "pricing.v.p1.calls"],
+      ["pricing.feat.briefs",   "pricing.v.p1.briefs"],
+      ["pricing.feat.channel",  "pricing.v.p1.channel"],
+      ["pricing.feat.routing",  "pricing.v.p1.routing"],
+      ["pricing.feat.evidence", "pricing.v.p1.evidence"],
+      ["pricing.feat.export",   "pricing.v.p1.export"],
     ]},
-  { tier:"02", name:"Pro", zh:"个人", price:"$15", period:"/ 月", color:"var(--ink-primary)",
-    pitch:"个人研究者的标配 · 取消随时", current:false,
+  { tier:"02", nameK:"pricing.p2.name", zhK:"pricing.p2.zh", price:"$15",  periodK:"pricing.p2.period", color:"var(--ink-primary)",
+    pitchK:"pricing.p2.pitch", current:false,
     features:[
-      ["主题","8 个"],
-      ["Vault 容量","2,000 项"],
-      ["每日 Agent 调用","500 次"],
-      ["每月简报","20 份 + Deep Dive 5 次"],
-      ["渠道","应用内 / 邮件 / RSS"],
-      ["模型路由","Claude / GPT / Gemini 自动"],
-      ["Chrome / Notion 同步","✓"],
-      ["邮件转发","✓ 专属邮箱"],
+      ["pricing.feat.topics",   "pricing.v.p2.topics"],
+      ["pricing.feat.vault",    "pricing.v.p2.vault"],
+      ["pricing.feat.calls",    "pricing.v.p2.calls"],
+      ["pricing.feat.briefs",   "pricing.v.p2.briefs"],
+      ["pricing.feat.channel",  "pricing.v.p2.channel"],
+      ["pricing.feat.routing",  "pricing.v.p2.routing"],
+      ["pricing.feat.sync",     "pricing.v.p2.sync"],
+      ["pricing.feat.fwd",      "pricing.v.p2.fwd"],
     ]},
-  { tier:"03", name:"Research Pro", zh:"研究专业", price:"$29", period:"/ 月", color:"var(--accent-red)", current:true, highlight:true,
-    pitch:"独立研究者 / 创业者的核心生产工具",
+  { tier:"03", nameK:"pricing.p3.name", zhK:"pricing.p3.zh", price:"$29",  periodK:"pricing.p3.period", color:"var(--accent-red)", current:true, highlight:true,
+    pitchK:"pricing.p3.pitch",
     features:[
-      ["主题","无限"],
-      ["Vault 容量","无限"],
-      ["每日 Agent 调用","5,000 次"],
-      ["每月简报","无限 + Deep Dive 20 次"],
-      ["渠道","全渠道 + 微信 / Slack / TG"],
-      ["模型路由","顶级模型优先 (Sonnet / Opus / GPT-4)"],
-      ["E2EE 加密笔记","✓"],
-      ["优先响应 + 抢先体验","✓"],
+      ["pricing.feat.topics",   "pricing.v.p3.topics"],
+      ["pricing.feat.vault",    "pricing.v.p3.vault"],
+      ["pricing.feat.calls",    "pricing.v.p3.calls"],
+      ["pricing.feat.briefs",   "pricing.v.p3.briefs"],
+      ["pricing.feat.channel",  "pricing.v.p3.channel"],
+      ["pricing.feat.routing",  "pricing.v.p3.routing"],
+      ["pricing.feat.e2ee",     "pricing.v.p3.e2ee"],
+      ["pricing.feat.priority", "pricing.v.p3.priority"],
     ]},
-  { tier:"04", name:"Team", zh:"小组", price:"$99", period:"/ 月 / 5 席", color:"var(--ink-primary)", current:false,
-    pitch:"研究小组共享主题与简报",
+  { tier:"04", nameK:"pricing.p4.name", zhK:"pricing.p4.zh", price:"$99",  periodK:"pricing.p4.period", color:"var(--ink-primary)", current:false,
+    pitchK:"pricing.p4.pitch",
     features:[
-      ["席位","5 (可加购 +$15/席)"],
-      ["共享 Vault","全员可读 + 权限控制"],
-      ["共享主题","✓ 协作策展"],
-      ["共享简报","✓ 含评论"],
-      ["管理后台","审计日志 + SSO"],
-      ["模型路由","顶级模型 + 自带 API key"],
-      ["私有部署选项","加价模块"],
-      ["专属客户成功","✓"],
+      ["pricing.feat.seats",    "pricing.v.p4.seats"],
+      ["pricing.feat.shared",   "pricing.v.p4.shared"],
+      ["pricing.feat.sharedT",  "pricing.v.p4.sharedT"],
+      ["pricing.feat.sharedB",  "pricing.v.p4.sharedB"],
+      ["pricing.feat.admin",    "pricing.v.p4.admin"],
+      ["pricing.feat.routing",  "pricing.v.p4.routing"],
+      ["pricing.feat.private",  "pricing.v.p4.private"],
+      ["pricing.feat.cs",       "pricing.v.p4.cs"],
     ]},
 ];
 
-document.getElementById("main").innerHTML = `
+const FAQS = [
+  ["pricing.faq.q1","pricing.faq.a1"],
+  ["pricing.faq.q2","pricing.faq.a2"],
+  ["pricing.faq.q3","pricing.faq.a3"],
+  ["pricing.faq.q4","pricing.faq.a4"],
+  ["pricing.faq.q5","pricing.faq.a5"],
+  ["pricing.faq.q6","pricing.faq.a6"],
+];
+
+function render() {
+  document.getElementById("main").innerHTML = `
 <section style="border-bottom:1px solid var(--divider);">
   <div style="max-width:1280px;margin:0 auto;padding:48px 48px 28px;text-align:center;position:relative;">
-    <div class="kicker-red" style="margin-bottom:14px;">VOL. III · PRICING</div>
-    <h1 class="headline" style="font-size:54px;margin:0 0 12px;">为认真做研究的人而生。</h1>
+    <div class="kicker-red" style="margin-bottom:14px;">${tk("pricing.kicker")}</div>
+    <h1 class="headline" style="font-size:54px;margin:0 0 12px;">${tk("pricing.title")}</h1>
     <p class="font-serif" style="font-style:italic;font-size:18px;color:var(--ink-secondary);max-width:680px;margin:0 auto;">
-      不是另一个 ChatGPT 包装层。是一份只为您一人编辑的研究报。下方四档，覆盖从尝试到团队协作。
+      ${tk("pricing.lede")}
     </p>
 
     <div style="display:flex;justify-content:center;gap:8px;margin-top:24px;">
-      <button class="pill is-active">月付</button>
-      <button class="pill" onclick="alert('已切换至年付 · 整体优惠约 17%')">年付 · 省 17%</button>
+      <button class="pill is-active">${tk("pricing.monthly")}</button>
+      <button class="pill" onclick="alert(window.tk('pricing.yearly.alert'))">${tk("pricing.yearly")}</button>
     </div>
   </div>
 </section>
@@ -91,31 +103,31 @@ document.getElementById("main").innerHTML = `
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-items:stretch;">
       ${PLANS.map(p=>`
         <article class="paper-card ${p.highlight?'is-feature':''}" style="padding:28px 24px;display:flex;flex-direction:column;position:relative;${p.highlight?'border:1.5px solid var(--accent-red);box-shadow:var(--shadow-lift);transform:translateY(-6px);':''}">
-          ${p.highlight?'<span class="pill pill-red" style="position:absolute;top:-13px;left:50%;transform:translateX(-50%);font-size:10px;background:var(--accent-red);color:#fff;border-color:var(--accent-red);">★ MOST POPULAR</span>':''}
-          ${p.current?'<span class="pill pill-solid" style="position:absolute;top:-13px;right:14px;font-size:9px;">YOUR PLAN</span>':''}
+          ${p.highlight?`<span class="pill pill-red" style="position:absolute;top:-13px;left:50%;transform:translateX(-50%);font-size:10px;background:var(--accent-red);color:#fff;border-color:var(--accent-red);">${tk("pricing.popular")}</span>`:''}
+          ${p.current?`<span class="pill pill-solid" style="position:absolute;top:-13px;right:14px;font-size:9px;">${tk("pricing.your")}</span>`:''}
           <div class="watermark-number" style="font-size:48px;color:${p.color};opacity:.85;margin-bottom:8px;">${p.tier}</div>
-          <div class="font-serif" style="font-size:24px;font-weight:600;">${p.name}</div>
-          <div class="kicker" style="font-style:italic;font-family:var(--font-serif);font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-secondary);margin-bottom:14px;">${p.zh}</div>
+          <div class="font-serif" style="font-size:24px;font-weight:600;">${tk(p.nameK)}</div>
+          <div class="kicker" style="font-style:italic;font-family:var(--font-serif);font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-secondary);margin-bottom:14px;">${tk(p.zhK)}</div>
 
           <div style="display:flex;align-items:baseline;gap:6px;border-top:1px solid var(--divider);border-bottom:1px solid var(--divider);padding:14px 0;margin-bottom:16px;">
             <span class="font-serif" style="font-size:38px;font-weight:700;color:${p.color};letter-spacing:-.02em;">${p.price}</span>
-            <span class="kicker" style="font-size:11px;">${p.period}</span>
+            <span class="kicker" style="font-size:11px;">${tk(p.periodK)}</span>
           </div>
 
-          <p class="font-serif" style="font-size:14px;font-style:italic;color:var(--ink-secondary);margin:0 0 18px;line-height:1.5;">${p.pitch}</p>
+          <p class="font-serif" style="font-size:14px;font-style:italic;color:var(--ink-secondary);margin:0 0 18px;line-height:1.5;">${tk(p.pitchK)}</p>
 
           <div style="flex:1;margin-bottom:18px;">
-            ${p.features.map(([k,v])=>`
+            ${p.features.map(([kK,vK])=>`
               <div class="leader" style="padding:6px 0;">
-                <span class="font-serif" style="font-size:13px;color:var(--ink-secondary);">${k}</span>
+                <span class="font-serif" style="font-size:13px;color:var(--ink-secondary);">${tk(kK)}</span>
                 <span class="dots"></span>
-                <span class="font-mono" style="font-size:11px;color:var(--ink-primary);font-weight:500;">${v}</span>
+                <span class="font-mono" style="font-size:11px;color:var(--ink-primary);font-weight:500;">${tk(vK)}</span>
               </div>
             `).join("")}
           </div>
 
-          <button class="${p.current?'btn btn-ghost':'btn btn-red'}" onclick="${p.current?"alert('您当前正在使用此方案')":"alert('开始 14 天免费试用 · 无需信用卡')"}" style="width:100%;justify-content:center;">
-            ${p.current?'CURRENT PLAN':p.tier==='01'?'START FREE →':p.tier==='04'?'CONTACT SALES →':'START 14-DAY TRIAL →'}
+          <button class="${p.current?'btn btn-ghost':'btn btn-red'}" onclick="${p.current?"alert(window.tk('pricing.alert.current'))":"alert(window.tk('pricing.alert.trial'))"}" style="width:100%;justify-content:center;">
+            ${p.current?tk("pricing.btn.current"):p.tier==='01'?tk("pricing.btn.free"):p.tier==='04'?tk("pricing.btn.contact"):tk("pricing.btn.trial")}
           </button>
         </article>
       `).join("")}
@@ -123,28 +135,21 @@ document.getElementById("main").innerHTML = `
 
     <div style="margin-top:48px;padding:24px 28px;background:var(--bg-paper-warm);border:1px solid var(--divider);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;">
       <div>
-        <div class="kicker-red" style="margin-bottom:8px;">EDU / NON-PROFIT · 教育与公益折扣</div>
-        <div class="font-serif" style="font-size:18px;font-weight:600;margin-bottom:4px;">学生、教师、研究机构、公益组织 · 50% off</div>
-        <div class="font-serif" style="font-style:italic;font-size:13.5px;color:var(--ink-secondary);">使用 .edu / 机构邮箱注册自动获得 · 不限方案档位</div>
+        <div class="kicker-red" style="margin-bottom:8px;">${tk("pricing.eduTitle")}</div>
+        <div class="font-serif" style="font-size:18px;font-weight:600;margin-bottom:4px;">${tk("pricing.eduBody")}</div>
+        <div class="font-serif" style="font-style:italic;font-size:13.5px;color:var(--ink-secondary);">${tk("pricing.eduSub")}</div>
       </div>
-      <button class="btn btn-ghost" onclick="alert('打开教育认证流程')">APPLY NOW →</button>
+      <button class="btn btn-ghost" onclick="alert(window.tk('pricing.eduCta.alert'))">${tk("pricing.eduCta")}</button>
     </div>
 
     <!-- FAQ -->
     <div style="margin-top:60px;">
-      <div class="rule-kicker"><span class="kicker-red">FREQUENTLY ASKED</span></div>
+      <div class="rule-kicker"><span class="kicker-red">${tk("pricing.faq")}</span></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px 36px;">
-        ${[
-          ["与 ChatGPT / Perplexity 有什么不同？","它们答任何问题；研迹只答您的问题，且基于您的资料库。每次回答都附可点击的引用。"],
-          ["数据会被用于训练吗？","不会。我们的合同条款包含 \"opt-out by default\"，您的资料库不进入任何公共训练集。"],
-          ["可以离线 / 私有部署吗？","Team 方案以上支持自带 API key 与 VPC 部署，企业版支持 fully on-prem。"],
-          ["我可以随时取消吗？","随时。取消后保留只读访问 14 天，可随时导出全部数据。"],
-          ["我现有的 Notion / Obsidian 笔记呢？","支持双向同步。您不需要「迁移」，研迹与您现有工具共存。"],
-          ["支持中文吗？","原生支持。中英双语 UI、双语简报、混合语料检索均经过专门优化。"],
-        ].map(([q,a])=>`
+        ${FAQS.map(([qK,aK])=>`
           <article>
-            <div class="font-serif" style="font-size:16px;font-weight:600;margin-bottom:6px;">${q}</div>
-            <div class="font-serif" style="font-size:14.5px;line-height:1.65;color:var(--ink-secondary);">${a}</div>
+            <div class="font-serif" style="font-size:16px;font-weight:600;margin-bottom:6px;">${tk(qK)}</div>
+            <div class="font-serif" style="font-size:14.5px;line-height:1.65;color:var(--ink-secondary);">${tk(aK)}</div>
           </article>
         `).join("")}
       </div>
@@ -152,6 +157,10 @@ document.getElementById("main").innerHTML = `
   </div>
 </section>
 `;
+}
+
+render();
+document.addEventListener('rt:langchange', render);
 </script>
 </body>
 </html>

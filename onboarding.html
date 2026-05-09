@@ -14,138 +14,139 @@
 <body data-page="onboarding">
 
 <!-- Header (no sidebar — onboarding is full-screen) -->
-<header style="border-bottom:1px solid var(--divider);background:var(--bg-paper);">
-  <div style="max-width:1100px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;">
-    <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink-primary);">
-      <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border:1.5px solid var(--accent-red);color:var(--accent-red);font-family:var(--font-serif);font-weight:700;font-size:15px;">研</span>
-      <span style="font-family:var(--font-serif);font-size:18px;font-weight:600;">研迹 ResearchTrace</span>
-    </a>
-    <div style="display:flex;align-items:center;gap:14px;">
-      <span class="kicker">SETUP · STEP <span id="curStep">1</span> / 4</span>
-      <a href="today.html" class="pill" onclick="if(!confirm('跳过设置？')) return false;">SKIP →</a>
-    </div>
-  </div>
-  <!-- Progress bar -->
-  <div style="height:3px;background:var(--divider);">
-    <div id="progressBar" style="height:100%;background:var(--accent-red);width:25%;transition:width .3s;"></div>
-  </div>
-</header>
+<header id="ob-header" style="border-bottom:1px solid var(--divider);background:var(--bg-paper);"></header>
 
 <main id="main"></main>
 
+<script src="js/i18n.js"></script>
 <script>
+const tk = window.tk;
+
 const STEPS = [
   // Step 1 — role
   {
-    id: 1, title: "Step I · 您主要做什么？", subtitle: "我们会按角色优化默认主题与 Brief 节奏 —— 您随时可改。",
+    id: 1, titleK: "onboarding.s1.title", subtitleK: "onboarding.s1.subtitle",
     body: () => `
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;">
         ${[
-          {id:"pm", icon:"♟", t:"AI 产品经理", d:"追踪市场结构、产品案例、定价策略", topics:"AI Product Strategy / Agentic / Eval"},
-          {id:"founder", icon:"✦", t:"创业者 / 投资人", d:"关注趋势报告、商业指标、典型案例", topics:"Product Strategy / Open Source / Infra"},
-          {id:"researcher", icon:"⌬", t:"独立研究者", d:"深读论文、追踪一线进展、构建论断图谱", topics:"Long Context / RAG / Reasoning"},
-          {id:"engineer", icon:"⚙", t:"AI 工程师", d:"关注实现细节、benchmark、infra 选型", topics:"Infra / Fine-tuning / Open Source"},
-          {id:"writer", icon:"✎", t:"内容创作者", d:"周更深度内容、追踪潮流话题", topics:"Product Strategy / Multimodal"},
-          {id:"other", icon:"…", t:"其他 / 多重角色", d:"自由组合默认主题包", topics:"Custom"},
+          {id:"pm",        icon:"♟", tK:"onboarding.s1.r1.t", dK:"onboarding.s1.r1.d", topics:"AI Product Strategy / Agentic / Eval"},
+          {id:"founder",   icon:"✦", tK:"onboarding.s1.r2.t", dK:"onboarding.s1.r2.d", topics:"Product Strategy / Open Source / Infra"},
+          {id:"researcher",icon:"⌬", tK:"onboarding.s1.r3.t", dK:"onboarding.s1.r3.d", topics:"Long Context / RAG / Reasoning"},
+          {id:"engineer",  icon:"⚙", tK:"onboarding.s1.r4.t", dK:"onboarding.s1.r4.d", topics:"Infra / Fine-tuning / Open Source"},
+          {id:"writer",    icon:"✎", tK:"onboarding.s1.r5.t", dK:"onboarding.s1.r5.d", topics:"Product Strategy / Multimodal"},
+          {id:"other",     icon:"…", tK:"onboarding.s1.r6.t", dK:"onboarding.s1.r6.d", topics:"Custom"},
         ].map(r=>`
           <button class="paper-card clickable" onclick="selectRole('${r.id}', this)" data-role="${r.id}" style="padding:22px 20px;text-align:left;border:1px solid var(--divider);background:var(--bg-card);font-family:inherit;cursor:pointer;">
             <div style="font-size:36px;color:var(--accent-red);font-family:var(--font-serif);line-height:1;margin-bottom:10px;">${r.icon}</div>
-            <div class="font-serif" style="font-size:18px;font-weight:600;margin-bottom:4px;">${r.t}</div>
-            <div class="font-serif" style="font-size:13px;font-style:italic;color:var(--ink-secondary);margin-bottom:12px;">${r.d}</div>
-            <div class="kicker" style="font-size:9px;">DEFAULT TOPICS</div>
+            <div class="font-serif" style="font-size:18px;font-weight:600;margin-bottom:4px;">${tk(r.tK)}</div>
+            <div class="font-serif" style="font-size:13px;font-style:italic;color:var(--ink-secondary);margin-bottom:12px;">${tk(r.dK)}</div>
+            <div class="kicker" style="font-size:9px;">${tk("onboarding.s1.defaults")}</div>
             <div class="font-mono" style="font-size:11px;color:var(--ink-primary);margin-top:2px;">${r.topics}</div>
           </button>`).join("")}
       </div>`
   },
   // Step 2 — topics
   {
-    id: 2, title: "Step II · 选择您要追踪的主题", subtitle: "勾选 3 ~ 8 个 —— Radar Agent 将为这些主题每日扫描。",
+    id: 2, titleK: "onboarding.s2.title", subtitleK: "onboarding.s2.subtitle",
     body: () => {
       const TS = [
-        ["LLM Long Context","长上下文",1],["Agentic Workflows","自主智能体",1],["AI Evaluation","模型评测",1],
-        ["RAG & Memory","检索增强",1],["AI Product Strategy","产品策略",1],["Alignment & Safety","对齐与安全",0],
-        ["Multimodal & Vision","多模态",0],["Reasoning & Math","推理数学",0],["Open Source Models","开源模型",0],
-        ["AI Infrastructure","基础设施",0],["Fine-tuning","微调",0],["Voice & Real-time","语音实时",0],
+        ["LLM Long Context",     "onboarding.s2.t1.zh", 1],
+        ["Agentic Workflows",    "onboarding.s2.t2.zh", 1],
+        ["AI Evaluation",        "onboarding.s2.t3.zh", 1],
+        ["RAG & Memory",         "onboarding.s2.t4.zh", 1],
+        ["AI Product Strategy",  "onboarding.s2.t5.zh", 1],
+        ["Alignment & Safety",   "onboarding.s2.t6.zh", 0],
+        ["Multimodal & Vision",  "onboarding.s2.t7.zh", 0],
+        ["Reasoning & Math",     "onboarding.s2.t8.zh", 0],
+        ["Open Source Models",   "onboarding.s2.t9.zh", 0],
+        ["AI Infrastructure",    "onboarding.s2.t10.zh",0],
+        ["Fine-tuning",          "onboarding.s2.t11.zh",0],
+        ["Voice & Real-time",    "onboarding.s2.t12.zh",0],
       ];
       return `<div id="topicGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
-        ${TS.map(([n,zh,sel])=>`
+        ${TS.map(([n,zhK,sel])=>`
           <button class="paper-card clickable" onclick="toggleTopic(this)" data-selected="${sel}" style="padding:16px 18px;text-align:left;border:1.5px solid ${sel?'var(--accent-red)':'var(--divider)'};background:${sel?'var(--bg-callout)':'var(--bg-card)'};font-family:inherit;cursor:pointer;">
             <div style="display:flex;justify-content:space-between;align-items:flex-start;">
               <div>
                 <div class="font-serif" style="font-size:15.5px;font-weight:600;">${n}</div>
-                <div class="font-serif" style="font-size:12.5px;font-style:italic;color:var(--ink-secondary);">${zh}</div>
+                <div class="font-serif" style="font-size:12.5px;font-style:italic;color:var(--ink-secondary);">${tk(zhK)}</div>
               </div>
               <span style="display:inline-flex;width:18px;height:18px;align-items:center;justify-content:center;border:1.5px solid ${sel?'var(--accent-red)':'var(--divider-strong)'};background:${sel?'var(--accent-red)':'transparent'};color:#fff;font-size:11px;">${sel?'✓':''}</span>
             </div>
           </button>`).join("")}
       </div>
       <div style="margin-top:24px;padding:14px 18px;background:var(--bg-paper-warm);display:flex;align-items:center;gap:10px;">
-        <span class="kicker-red">CUSTOM TOPIC ·</span>
-        <input type="text" placeholder="例如：AI in Education / Robotics" style="flex:1;padding:8px 12px;border:1px solid var(--divider);background:var(--bg-card);font-family:var(--font-serif);font-size:14px;"/>
-        <button class="pill pill-red" onclick="alert('已添加自定义主题')">+ ADD</button>
+        <span class="kicker-red">${tk("onboarding.s2.custom")}</span>
+        <input type="text" placeholder="${tk("onboarding.s2.custom.placeholder")}" style="flex:1;padding:8px 12px;border:1px solid var(--divider);background:var(--bg-card);font-family:var(--font-serif);font-size:14px;"/>
+        <button class="pill pill-red" onclick="alert(window.tk('onboarding.s2.add.alert'))">${tk("onboarding.s2.add")}</button>
       </div>`;
     }
   },
   // Step 3 — connect sources
   {
-    id: 3, title: "Step III · 连接您的资料源", subtitle: "至少连接一个 —— 否则 Inbox 将是空的。可选多种。",
+    id: 3, titleK: "onboarding.s3.title", subtitleK: "onboarding.s3.subtitle",
     body: () => `
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:22px;">
         ${[
-          {n:"01",t:"📧 邮件转发",d:"使用您的专属邮箱：forward@mail.researchtrace.app",cta:"复制邮箱地址",done:false},
-          {n:"02",t:"🌐 Chrome / Edge 扩展",d:"一键保存任何网页 + Twitter 主串 + Reddit",cta:"安装扩展",done:false},
-          {n:"03",t:"📁 拖放 / 上传 PDF",d:"支持 PDF、Word、TXT、Markdown，单次最多 50 项",cta:"打开文件选择器",done:true},
-          {n:"04",t:"📒 Notion / Obsidian / Readwise 同步",d:"双向同步您的现有笔记库 (oauth)",cta:"开始连接",done:false},
-          {n:"05",t:"📺 YouTube / Podcast 订阅",d:"自动转录 + 章节切分 + 关键论断抽取",cta:"添加频道",done:false},
-          {n:"06",t:"🐦 X / Twitter 列表",d:"订阅信息节点账号，长串自动整理",cta:"绑定账号",done:false},
+          {n:"01",tK:"onboarding.s3.s1.t",dK:"onboarding.s3.s1.d",ctaK:"onboarding.s3.s1.cta",done:false},
+          {n:"02",tK:"onboarding.s3.s2.t",dK:"onboarding.s3.s2.d",ctaK:"onboarding.s3.s2.cta",done:false},
+          {n:"03",tK:"onboarding.s3.s3.t",dK:"onboarding.s3.s3.d",ctaK:"onboarding.s3.s3.cta",done:true },
+          {n:"04",tK:"onboarding.s3.s4.t",dK:"onboarding.s3.s4.d",ctaK:"onboarding.s3.s4.cta",done:false},
+          {n:"05",tK:"onboarding.s3.s5.t",dK:"onboarding.s3.s5.d",ctaK:"onboarding.s3.s5.cta",done:false},
+          {n:"06",tK:"onboarding.s3.s6.t",dK:"onboarding.s3.s6.d",ctaK:"onboarding.s3.s6.cta",done:false},
         ].map(s=>`
           <article class="paper-card" style="padding:18px 20px;display:grid;grid-template-columns:54px 1fr 130px;gap:14px;align-items:center;${s.done?'background:var(--bg-paper-warm);':''}">
             <div class="font-serif" style="font-size:28px;font-weight:700;color:var(--accent-red);line-height:1;">${s.n}</div>
             <div>
-              <div class="font-serif" style="font-size:16px;font-weight:600;margin-bottom:2px;">${s.t}</div>
-              <div class="font-serif" style="font-size:13px;font-style:italic;color:var(--ink-secondary);">${s.d}</div>
+              <div class="font-serif" style="font-size:16px;font-weight:600;margin-bottom:2px;">${tk(s.tK)}</div>
+              <div class="font-serif" style="font-size:13px;font-style:italic;color:var(--ink-secondary);">${tk(s.dK)}</div>
             </div>
-            <button class="${s.done?'pill is-active':'btn btn-ghost'}" style="${s.done?'':'font-size:10px;'}" onclick="alert('${s.cta}')">${s.done?'✓ CONNECTED':s.cta}</button>
+            <button class="${s.done?'pill is-active':'btn btn-ghost'}" style="${s.done?'':'font-size:10px;'}" onclick="alert(window.tk('${s.ctaK}'))">${s.done?tk("onboarding.s3.connected"):tk(s.ctaK)}</button>
           </article>`).join("")}
       </div>
       <div style="text-align:center;font-style:italic;font-family:var(--font-serif);font-size:14px;color:var(--ink-secondary);">
-        💡 我们建议至少连接 <strong>邮件转发</strong> + <strong>Chrome 扩展</strong>，这是最高频的两个入口。
+        ${tk("onboarding.s3.tip.html")}
       </div>`
   },
   // Step 4 — first brief
   {
-    id: 4, title: "Step IV · 您的第一份简报", subtitle: "Reporter Agent 将基于您的选择，于 24 小时内交付您的初始简报。",
+    id: 4, titleK: "onboarding.s4.title", subtitleK: "onboarding.s4.subtitle",
     body: () => `
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
         <div>
-          <div class="kicker-red" style="margin-bottom:14px;">DELIVERY SCHEDULE</div>
+          <div class="kicker-red" style="margin-bottom:14px;">${tk("onboarding.s4.delivery")}</div>
           <div style="border:1px solid var(--divider);background:var(--bg-card);padding:18px 20px;">
-            ${[["首次扫描","今天 23:00 自动启动","var(--warning-amber)"],["首份简报","明日 08:00 投递","var(--accent-red)"],["每周回顾","每周一 08:00","var(--ink-primary)"],["每月长读","每月 1 日 08:00","var(--ink-primary)"]].map(([k,v,c])=>`
+            ${[
+              ["onboarding.s4.d1.k","onboarding.s4.d1.v","var(--warning-amber)"],
+              ["onboarding.s4.d2.k","onboarding.s4.d2.v","var(--accent-red)"],
+              ["onboarding.s4.d3.k","onboarding.s4.d3.v","var(--ink-primary)"],
+              ["onboarding.s4.d4.k","onboarding.s4.d4.v","var(--ink-primary)"],
+            ].map(([kK,vK,c])=>`
               <div class="leader" style="margin-bottom:12px;">
-                <span class="kicker" style="font-size:10px;">${k}</span>
+                <span class="kicker" style="font-size:10px;">${tk(kK)}</span>
                 <span class="dots"></span>
-                <span class="font-mono" style="font-size:12px;color:${c};">${v}</span>
+                <span class="font-mono" style="font-size:12px;color:${c};">${tk(vK)}</span>
               </div>`).join("")}
           </div>
 
-          <div class="kicker-red" style="margin:22px 0 12px;">PREFERRED CHANNEL</div>
+          <div class="kicker-red" style="margin:22px 0 12px;">${tk("onboarding.s4.channel")}</div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <button class="pill is-active">应用内</button>
-            <button class="pill">邮件</button>
-            <button class="pill">RSS</button>
-            <button class="pill">微信小程序</button>
+            <button class="pill is-active">${tk("onboarding.s4.ch.app")}</button>
+            <button class="pill">${tk("onboarding.s4.ch.email")}</button>
+            <button class="pill">${tk("onboarding.s4.ch.rss")}</button>
+            <button class="pill">${tk("onboarding.s4.ch.wechat")}</button>
           </div>
 
-          <div class="kicker-red" style="margin:22px 0 12px;">DEPTH PREFERENCE</div>
+          <div class="kicker-red" style="margin:22px 0 12px;">${tk("onboarding.s4.depth")}</div>
           <div style="display:flex;gap:8px;">
-            <button class="pill">SHORT · 5 min</button>
-            <button class="pill is-active">STANDARD · 10 min</button>
-            <button class="pill">DEEP · 20 min</button>
+            <button class="pill">${tk("onboarding.s4.depth.short")}</button>
+            <button class="pill is-active">${tk("onboarding.s4.depth.std")}</button>
+            <button class="pill">${tk("onboarding.s4.depth.deep")}</button>
           </div>
         </div>
 
         <div>
-          <div class="kicker-red" style="margin-bottom:14px;">PREVIEW · 您的首份简报会长这样</div>
+          <div class="kicker-red" style="margin-bottom:14px;">${tk("onboarding.s4.preview")}</div>
           <a href="brief.html?id=preview" class="paper-card" style="display:block;text-decoration:none;color:inherit;overflow:hidden;border:1px solid var(--divider);">
             <div style="position:relative;aspect-ratio:16/9;border-bottom:1px solid var(--divider);">
               <img src="assets/img/thumb-longctx.png" alt="" style="width:100%;height:100%;object-fit:cover;"/>
@@ -153,10 +154,10 @@ const STEPS = [
               <span class="pill pill-red" style="position:absolute;top:14px;left:14px;font-size:9px;">PREVIEW</span>
             </div>
             <div style="padding:18px 20px;">
-              <div class="kicker-red" style="margin-bottom:6px;">YOUR FIRST DIGEST · No.001</div>
-              <div class="font-serif" style="font-size:18px;font-weight:600;line-height:1.3;margin-bottom:8px;">本周 5 个主题的初始扫描总览</div>
-              <div class="font-serif" style="font-style:italic;font-size:13px;color:var(--ink-secondary);">由 Reporter Agent 综合 ~120 项初始证据 · 阅读 9 分钟</div>
-              <div style="margin-top:12px;font-mono;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;color:var(--accent-red);">CLICK TO PREVIEW →</div>
+              <div class="kicker-red" style="margin-bottom:6px;">${tk("onboarding.s4.preview.kicker")}</div>
+              <div class="font-serif" style="font-size:18px;font-weight:600;line-height:1.3;margin-bottom:8px;">${tk("onboarding.s4.preview.title")}</div>
+              <div class="font-serif" style="font-style:italic;font-size:13px;color:var(--ink-secondary);">${tk("onboarding.s4.preview.sub")}</div>
+              <div style="margin-top:12px;font-mono;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;color:var(--accent-red);">${tk("onboarding.s4.preview.cta")}</div>
             </div>
           </a>
         </div>
@@ -165,27 +166,45 @@ const STEPS = [
 ];
 
 let curStep = 1;
+
+function renderHeader() {
+  document.getElementById("ob-header").innerHTML = `
+    <div style="max-width:1100px;margin:0 auto;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;">
+      <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink-primary);">
+        <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border:1.5px solid var(--accent-red);color:var(--accent-red);font-family:var(--font-serif);font-weight:700;font-size:15px;">研</span>
+        <span style="font-family:var(--font-serif);font-size:18px;font-weight:600;">${tk("onboarding.brand")}</span>
+      </a>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <span class="kicker">${tk("onboarding.step")} <span id="curStep">${curStep}</span> / 4</span>
+        <a href="today.html" class="pill" onclick="if(!confirm(window.tk('common.confirmSkip'))) return false;">${tk("onboarding.skip")}</a>
+      </div>
+    </div>
+    <div style="height:3px;background:var(--divider);">
+      <div id="progressBar" style="height:100%;background:var(--accent-red);width:${curStep*25}%;transition:width .3s;"></div>
+    </div>
+  `;
+}
+
 function render() {
+  renderHeader();
   const s = STEPS[curStep-1];
-  document.getElementById("curStep").textContent = s.id;
-  document.getElementById("progressBar").style.width = (s.id*25) + "%";
   document.getElementById("main").innerHTML = `
     <div style="max-width:1100px;margin:0 auto;padding:48px 32px 32px;">
       <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:32px;">
         <div>
-          <div class="kicker-red" style="margin-bottom:10px;">VOL. III · ONBOARDING</div>
-          <h1 class="headline" style="font-size:38px;margin:0 0 8px;">${s.title}</h1>
-          <p class="font-serif" style="font-style:italic;font-size:16px;color:var(--ink-secondary);margin:0;">${s.subtitle}</p>
+          <div class="kicker-red" style="margin-bottom:10px;">${tk("onboarding.kicker")}</div>
+          <h1 class="headline" style="font-size:38px;margin:0 0 8px;">${tk(s.titleK)}</h1>
+          <p class="font-serif" style="font-style:italic;font-size:16px;color:var(--ink-secondary);margin:0;">${tk(s.subtitleK)}</p>
         </div>
         <div class="watermark-number" style="font-size:90px;opacity:.85;">0${s.id}</div>
       </div>
       <div>${s.body()}</div>
       <div style="display:flex;justify-content:space-between;align-items:center;margin-top:36px;padding-top:18px;border-top:1px solid var(--divider);">
-        <button class="btn btn-ghost" ${curStep===1?'style="visibility:hidden;"':''} onclick="prevStep()">← BACK</button>
-        <div class="kicker">STEP ${s.id} OF 4</div>
+        <button class="btn btn-ghost" ${curStep===1?'style="visibility:hidden;"':''} onclick="prevStep()">${tk("onboarding.btn.back")}</button>
+        <div class="kicker">${tk("onboarding.stepLabel")} ${s.id} ${tk("onboarding.stepOf")}</div>
         ${curStep===4
-          ? `<button class="btn btn-red" onclick="finish()">DELIVER MY FIRST DIGEST →</button>`
-          : `<button class="btn btn-red" onclick="nextStep()">CONTINUE →</button>`
+          ? `<button class="btn btn-red" onclick="finish()">${tk("onboarding.btn.deliver")}</button>`
+          : `<button class="btn btn-red" onclick="nextStep()">${tk("onboarding.btn.continue")}</button>`
         }
       </div>
     </div>
@@ -193,7 +212,7 @@ function render() {
 }
 function nextStep(){ if(curStep<4){curStep++;render();} }
 function prevStep(){ if(curStep>1){curStep--;render();} }
-function finish(){ alert('🎉 设置完成。Reporter Agent 已启动首次扫描。\\n\\n您的首份简报将在 24 小时内投递。'); window.location.href='today.html'; }
+function finish(){ alert(tk('onboarding.finish.alert')); window.location.href='today.html'; }
 function selectRole(id, btn){
   document.querySelectorAll('[data-role]').forEach(b=>{
     b.style.borderColor='var(--divider)';b.style.background='var(--bg-card)';
@@ -212,6 +231,7 @@ function toggleTopic(btn){
   span.textContent = cur ? '' : '✓';
 }
 render();
+document.addEventListener('rt:langchange', render);
 </script>
 </body>
 </html>

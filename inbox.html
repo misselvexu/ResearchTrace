@@ -20,109 +20,122 @@ RT.mountShell({ activeId: "inbox", crumbKey: "inbox.crumb", crumb: RTI18n.t("inb
 RT.autoApplyI18n();
 
 const ITEMS = [
-  {n:"47", type:"PDF",  title:"Recurrent Memory Transformer v3", source:"Drag-dropped · 09:11", status:"PARSING", topic:"LLM Long Context", size:"2.4 MB", pages:"24p", new:true},
-  {n:"46", type:"URL",  title:"Anthropic — Long Context Capabilities of Claude 3.5", source:"Chrome ext · 09:08", status:"INDEXED", topic:"LLM Long Context", size:"—", pages:"web", new:true},
-  {n:"45", type:"TWITTER",title:"@karpathy: long context vs RAG thread (12 tweets)", source:"X / Karpathy · 08:52", status:"INDEXED", topic:"LLM Long Context", size:"—", pages:"thread", new:true},
-  {n:"44", type:"YOUTUBE",title:"Andrej Karpathy on Memory in LLMs", source:"YouTube · 08:30", status:"TRANSCRIBING", topic:"LLM Long Context", size:"92 min", pages:"video"},
-  {n:"43", type:"EMAIL", title:"Substack — Latent Space: This Week in Long Context", source:"forward@mail.researchtrace.app · 08:14", status:"INDEXED", topic:"LLM Long Context", size:"—", pages:"newsletter"},
-  {n:"42", type:"PDF",  title:"GraphRAG: Local-Global Reasoning for QA", source:"Email forward · 昨日 22:14", status:"INDEXED", topic:"RAG & Memory", size:"3.1 MB", pages:"31p"},
-  {n:"41", type:"URL",  title:"a16z — State of Generative AI 2025", source:"Chrome ext · 昨日 19:02", status:"INDEXED", topic:"AI Product Strategy", size:"—", pages:"longread"},
-  {n:"40", type:"NOTION",title:"My research-quick-notes / Long Context", source:"Notion sync · 昨日 14:00", status:"INDEXED", topic:"LLM Long Context", size:"—", pages:"6 notes"},
-  {n:"39", type:"PDF",  title:"HELM v3 Holistic Evaluation Slice", source:"Drag-dropped · 5月7日", status:"INDEXED", topic:"AI Evaluation", size:"5.8 MB", pages:"54p"},
-  {n:"38", type:"URL",  title:"Latent Space — Reflexion deep dive", source:"Chrome ext · 5月7日", status:"INDEXED", topic:"Agentic Workflows", size:"—", pages:"web"},
+  {n:"47", k:"1",  type:"PDF",     srcK:"inbox.src.dragged",   timeK:"inbox.t.0911", status:"PARSING",      topicK:"inbox.topic.long",    size:"2.4 MB", pages:"24p",    new:true,  topicId:"llm-longctx"},
+  {n:"46", k:"2",  type:"URL",     srcK:"inbox.src.chromeExt", timeK:"inbox.t.0908", status:"INDEXED",      topicK:"inbox.topic.long",    size:"—",      pagesK:"inbox.size.web",        new:true,  topicId:"llm-longctx"},
+  {n:"45", k:"3",  type:"TWITTER", srcK:"inbox.src.x",         timeK:"inbox.t.0852", status:"INDEXED",      topicK:"inbox.topic.long",    size:"—",      pagesK:"inbox.size.thread",     new:true,  topicId:"llm-longctx"},
+  {n:"44", k:"4",  type:"YOUTUBE", srcK:"inbox.src.youtube",   timeK:"inbox.t.0830", status:"TRANSCRIBING", topicK:"inbox.topic.long",    size:"92 min", pagesK:"inbox.size.video",                topicId:"llm-longctx"},
+  {n:"43", k:"5",  type:"EMAIL",   srcK:"inbox.src.fwdEmail",  timeK:"inbox.t.0814", status:"INDEXED",      topicK:"inbox.topic.long",    size:"—",      pagesK:"inbox.size.newsletter",            topicId:"llm-longctx"},
+  {n:"42", k:"6",  type:"PDF",     srcK:"inbox.src.emailFwd",  timeK:"inbox.t.yesterday2214", status:"INDEXED", topicK:"inbox.topic.rag",  size:"3.1 MB", pages:"31p",                              topicId:"rag"},
+  {n:"41", k:"7",  type:"URL",     srcK:"inbox.src.chromeExt", timeK:"inbox.t.yesterday1902", status:"INDEXED", topicK:"inbox.topic.pm",   size:"—",      pagesK:"inbox.size.longread",              topicId:"pm"},
+  {n:"40", k:"8",  type:"NOTION",  srcK:"inbox.src.notion",    timeK:"inbox.t.yesterday1400", status:"INDEXED", topicK:"inbox.topic.long", size:"—",      pages:"6", pagesSuffixK:"inbox.size.notes", topicId:"llm-longctx"},
+  {n:"39", k:"9",  type:"PDF",     srcK:"inbox.src.dragged",   timeK:"inbox.t.may7",          status:"INDEXED", topicK:"inbox.topic.eval", size:"5.8 MB", pages:"54p",                              topicId:"eval"},
+  {n:"38", k:"10", type:"URL",     srcK:"inbox.src.chromeExt", timeK:"inbox.t.may7",          status:"INDEXED", topicK:"inbox.topic.agentic", size:"—",   pagesK:"inbox.size.web",                  topicId:"agentic"},
 ];
 
 const TYPE_COLOR = { PDF:"var(--accent-red)", URL:"var(--info-blue)", TWITTER:"var(--ink-primary)", YOUTUBE:"var(--accent-red-deep)", EMAIL:"var(--warning-amber)", NOTION:"var(--success-green)" };
 
-document.getElementById("main").innerHTML = `
+function render(){
+  document.getElementById("main").innerHTML = `
 <section style="border-bottom:1px solid var(--divider);">
   <div style="max-width:1280px;margin:0 auto;padding:32px 48px 22px;">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;">
       <div>
-        <div class="kicker-red" style="margin-bottom:10px;">VOL. III · INBOX · 待处理资料流</div>
-        <h1 class="headline" style="font-size:44px;margin:0;">Inbox</h1>
-        <p class="font-serif" style="font-style:italic;color:var(--ink-secondary);margin:6px 0 0;">47 项资料正在流入您的研究库 —— 由 <span style="color:var(--accent-red);">Ingestor</span> 解析、<span style="color:var(--accent-red);">Curator</span> 归档。</p>
+        <div class="kicker-red" style="margin-bottom:10px;">${tk('inbox.kicker')}</div>
+        <h1 class="headline" style="font-size:44px;margin:0;">${tk('inbox.title')}</h1>
+        <p class="font-serif" style="font-style:italic;color:var(--ink-secondary);margin:6px 0 0;">${tk('inbox.lede.html')}</p>
       </div>
       <div style="text-align:right;">
         <div class="watermark-number" style="font-size:96px;">47</div>
       </div>
     </div>
 
-    <!-- Drop zone -->
-    <div onclick="alert('打开文件选择器 · 也支持拖放')" class="clickable" style="margin-top:24px;border:2px dashed var(--divider-strong);background:var(--bg-paper-warm);padding:24px;display:flex;align-items:center;gap:24px;">
+    <div onclick="alert(tk('inbox.alert.openPicker'))" class="clickable" style="margin-top:24px;border:2px dashed var(--divider-strong);background:var(--bg-paper-warm);padding:24px;display:flex;align-items:center;gap:24px;">
       <div style="font-family:var(--font-serif);font-size:42px;font-weight:700;color:var(--accent-red);">+</div>
       <div style="flex:1">
-        <div class="font-serif" style="font-size:18px;font-weight:600;">拖放 PDF / 贴入 URL / 转发邮件</div>
-        <div class="font-serif" style="font-style:italic;font-size:13.5px;color:var(--ink-secondary);margin-top:2px;">Ingestor 将在 ≤ 30 秒完成解析、抽取关键论断、对齐到主题。</div>
+        <div class="font-serif" style="font-size:18px;font-weight:600;">${tk('inbox.dropzone.title')}</div>
+        <div class="font-serif" style="font-style:italic;font-size:13.5px;color:var(--ink-secondary);margin-top:2px;">${tk('inbox.dropzone.sub')}</div>
       </div>
       <div style="display:flex;gap:8px;">
-        <button class="pill" onclick="event.stopPropagation();alert('复制您的专属转发邮箱：forward@mail.researchtrace.app')">📧 EMAIL FORWARD</button>
-        <button class="pill" onclick="event.stopPropagation();alert('Chrome 扩展安装链接')">🌐 INSTALL EXT</button>
+        <button class="pill" onclick="event.stopPropagation();alert(tk('inbox.alert.copyEmail'))">${tk('inbox.btn.emailFwd')}</button>
+        <button class="pill" onclick="event.stopPropagation();alert(tk('inbox.alert.installExt'))">${tk('inbox.btn.installExt')}</button>
       </div>
     </div>
 
-    <!-- Stats strip -->
     <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:18px;padding-top:14px;border-top:1px solid var(--divider);">
-      ${[["PARSING",1,"var(--warning-amber)"],["TRANSCRIBING",1,"var(--warning-amber)"],["INDEXED",45,"var(--success-green)"],["FAILED",0,"var(--ink-tertiary)"],["NEW SINCE LAST VISIT",3,"var(--accent-red)"]].map(([l,n,c])=>`
+      ${[
+        ["inbox.stat.parsing",1,"var(--warning-amber)"],
+        ["inbox.stat.transcribing",1,"var(--warning-amber)"],
+        ["inbox.stat.indexed",45,"var(--success-green)"],
+        ["inbox.stat.failed",0,"var(--ink-tertiary)"],
+        ["inbox.stat.newSince",3,"var(--accent-red)"],
+      ].map(([lk,n,c])=>`
         <div>
           <div class="font-serif" style="font-size:24px;font-weight:600;color:${c};line-height:1;">${n}</div>
-          <div class="kicker" style="font-size:10px;margin-top:2px;">${l}</div>
+          <div class="kicker" style="font-size:10px;margin-top:2px;">${tk(lk)}</div>
         </div>`).join("")}
     </div>
 
-    <!-- Filters -->
     <div style="display:flex;align-items:center;gap:6px;margin-top:18px;flex-wrap:wrap;">
-      <span class="kicker">FILTER ·</span>
-      <button class="pill is-active">ALL · 47</button>
-      <button class="pill">PDF · 12</button>
-      <button class="pill">URL · 18</button>
-      <button class="pill">TWITTER · 6</button>
-      <button class="pill">YOUTUBE · 3</button>
-      <button class="pill">EMAIL · 5</button>
-      <button class="pill">NOTION · 3</button>
+      <span class="kicker">${tk('inbox.filter')}</span>
+      <button class="pill is-active">${tk('inbox.f.all')}</button>
+      <button class="pill">${tk('inbox.f.pdf')}</button>
+      <button class="pill">${tk('inbox.f.url')}</button>
+      <button class="pill">${tk('inbox.f.twitter')}</button>
+      <button class="pill">${tk('inbox.f.youtube')}</button>
+      <button class="pill">${tk('inbox.f.email')}</button>
+      <button class="pill">${tk('inbox.f.notion')}</button>
       <span style="flex:1"></span>
-      <button class="btn btn-ghost" onclick="alert('批量分类至主题')">BULK CLASSIFY</button>
+      <button class="btn btn-ghost" onclick="alert(tk('inbox.alert.bulkClassify'))">${tk('inbox.btn.bulkClassify')}</button>
     </div>
   </div>
 </section>
 
 <section>
   <div style="max-width:1280px;margin:0 auto;padding:24px 48px 64px;">
-    ${ITEMS.map(it=>`
+    ${ITEMS.map(it=>{
+      const title  = tk('inbox.it.'+it.k+'.title');
+      const source = tk(it.srcK) + tk(it.timeK);
+      const topic  = tk(it.topicK);
+      const pages  = it.pagesK ? tk(it.pagesK) : (it.pagesSuffixK ? (it.pages + tk(it.pagesSuffixK)) : it.pages);
+      return `
       <article class="paper-card clickable" style="padding:16px 20px;margin-bottom:8px;display:grid;grid-template-columns:50px 70px 1fr 200px 110px 120px 80px;gap:16px;align-items:center;" onclick="openItem('${it.n}')">
         <div class="font-serif" style="font-size:24px;font-weight:700;color:var(--accent-red);line-height:1;">${it.n}</div>
         <span class="pill" style="background:${TYPE_COLOR[it.type]};color:#fff;border-color:${TYPE_COLOR[it.type]};font-size:9px;justify-self:start;">${it.type}</span>
         <div style="min-width:0;">
           <div style="display:flex;gap:8px;align-items:center;margin-bottom:2px;">
-            <div class="font-serif" style="font-size:15.5px;font-weight:600;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${it.title}</div>
+            <div class="font-serif" style="font-size:15.5px;font-weight:600;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${title}</div>
             ${it.new?'<span class="pill pill-red" style="font-size:8px;padding:1px 5px;">NEW</span>':''}
           </div>
-          <div class="kicker" style="font-style:italic;font-family:var(--font-serif);font-size:12px;text-transform:none;letter-spacing:0;">${it.source}</div>
+          <div class="kicker" style="font-style:italic;font-family:var(--font-serif);font-size:12px;text-transform:none;letter-spacing:0;">${source}</div>
         </div>
-        <a href="topic.html?t=${it.topic.toLowerCase().includes('long')?'llm-longctx':it.topic.toLowerCase().includes('rag')?'rag':it.topic.toLowerCase().includes('eval')?'eval':it.topic.toLowerCase().includes('agent')?'agentic':'pm'}" class="pill" style="justify-self:start;font-size:10px;" onclick="event.stopPropagation()">${it.topic}</a>
-        <div class="kicker">${it.size} · ${it.pages}</div>
+        <a href="topic.html?t=${it.topicId}" class="pill" style="justify-self:start;font-size:10px;" onclick="event.stopPropagation()">${topic}</a>
+        <div class="kicker">${it.size} · ${pages}</div>
         <div>
           <span class="pill" style="font-size:9px;color:${it.status==='INDEXED'?'var(--success-green)':it.status==='PARSING'||it.status==='TRANSCRIBING'?'var(--warning-amber)':'var(--ink-tertiary)'};border-color:currentColor;">
             ${it.status==='PARSING'||it.status==='TRANSCRIBING'?'⚙ ':''}${it.status}
           </span>
         </div>
         <div style="display:flex;gap:4px;">
-          <button class="pill" style="font-size:9px;padding:1px 6px;" onclick="event.stopPropagation();alert('打开知识卡片')">CARD</button>
-          <button class="pill" style="font-size:9px;padding:1px 6px;" onclick="event.stopPropagation();window.location.href='ask.html?q=${encodeURIComponent('总结 '+it.title)}'">ASK</button>
+          <button class="pill" style="font-size:9px;padding:1px 6px;" onclick="event.stopPropagation();alert(tk('inbox.alert.openCard'))">${tk('inbox.btn.card')}</button>
+          <button class="pill" style="font-size:9px;padding:1px 6px;" onclick="event.stopPropagation();window.location.href='ask.html?q=${encodeURIComponent(tk('inbox.askPrefix')+title)}'">${tk('inbox.btn.ask')}</button>
         </div>
-      </article>
-    `).join("")}
+      </article>`;
+    }).join("")}
 
     <div style="text-align:center;margin-top:22px;">
-      <button class="btn btn-ghost" onclick="alert('加载下一页 47 项')">LOAD 37 MORE</button>
+      <button class="btn btn-ghost" onclick="alert(tk('inbox.alert.loadMore'))">${tk('inbox.btn.loadMore')}</button>
     </div>
   </div>
 </section>
 `;
+}
 
 function openItem(n){
-  alert('打开知识卡片 #' + n + ' · 详情含原文、抽取的论断、证据、回链关系');
+  alert(tk('inbox.alert.openItem') + n + tk('inbox.alert.openItemTail'));
 }
+
+render();
+document.addEventListener('rt:langchange', render);
 </script>
 </body>
 </html>

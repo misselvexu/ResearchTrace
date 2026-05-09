@@ -23,82 +23,86 @@ const params = new URLSearchParams(location.search);
 const initialQ = params.get("q") || "";
 
 const HISTORY = [
-  {q:"RMT v3 与 MemGPT 的核心区别？为什么我应该关心？", t:"刚刚", active:true},
-  {q:"画一张长上下文路线之争的对比表", t:"5 分钟前"},
-  {q:"我收藏的 LongMem 与今天的头条有矛盾吗？", t:"今日 09:01"},
-  {q:"agent 自反思框架综述：CRITIC vs Reflexion 谁先？", t:"昨日"},
-  {q:"a16z 报告里 Top 50 AI 应用有多少做 vertical？", t:"5月7日"},
-  {q:"把过去 3 个月长上下文领域整理成一张时间线", t:"5月5日"},
-  {q:"GraphRAG 和 LightRAG 在 episodic memory 上有什么差异？", t:"5月3日"},
+  {qK:"ask.h1", tK:"ask.h.t.justNow",   active:true},
+  {qK:"ask.h2", tK:"ask.h.t.5min"},
+  {qK:"ask.h3", tK:"ask.h.t.today09"},
+  {qK:"ask.h4", tK:"ask.h.t.yesterday"},
+  {qK:"ask.h5", tK:"ask.h.t.may7"},
+  {qK:"ask.h6", tK:"ask.h.t.may5"},
+  {qK:"ask.h7", tK:"ask.h.t.may3"},
 ];
 
 const SOURCES = [
-  {n:"1", title:"Recurrent Memory Transformer v3", auth:"Bulatov et al., DeepMind 2025", venue:"arXiv 2505.04127 · §2.3", excerpt:"&hellip; we introduce a recurrent compression layer that summarizes past context into a fixed-length memory state, processed at <strong>linear complexity O(n)</strong> regardless of sequence length up to 2,097,152 tokens&hellip;", page:"p.4–7", thumb:"thumb-longctx.png"},
-  {n:"2", title:"MemGPT: LLMs as Operating Systems", auth:"Packer et al. 2023", venue:"arXiv 2310.08560 · §3.1", excerpt:"&hellip; MemGPT manages an explicit two-tier memory hierarchy (main context + recall storage) with <strong>self-directed swap operations</strong>, akin to OS virtual memory&hellip;", page:"p.5", thumb:"thumb-rag.png"},
-  {n:"3", title:"LongMem: Augmented Memory for Frozen LLMs", auth:"Wang et al. 2024", venue:"NeurIPS 2024 · §4", excerpt:"&hellip; the SideNet acts as an external memory module, retrieving from a 65K-token bank via cross-attention, leaving the base LLM weights frozen&hellip;", page:"p.8", thumb:"thumb-longctx.png", saved:true},
-  {n:"4", title:"Lilian Weng — Why 200K May Not Be the Answer", auth:"lilianweng.github.io", venue:"5月3日 blog", excerpt:"&hellip; even when the context fits, attention dilution causes accuracy drops on multi-hop tasks. The promise of long-context is overstated for production&hellip;", page:"§ "},
+  {n:"1", title:"Recurrent Memory Transformer v3",          auth:"Bulatov et al., DeepMind 2025", venue:"arXiv 2505.04127 · §2.3", excerpt:"&hellip; we introduce a recurrent compression layer that summarizes past context into a fixed-length memory state, processed at <strong>linear complexity O(n)</strong> regardless of sequence length up to 2,097,152 tokens&hellip;", page:"p.4–7", thumb:"thumb-longctx.png"},
+  {n:"2", title:"MemGPT: LLMs as Operating Systems",        auth:"Packer et al. 2023",            venue:"arXiv 2310.08560 · §3.1", excerpt:"&hellip; MemGPT manages an explicit two-tier memory hierarchy (main context + recall storage) with <strong>self-directed swap operations</strong>, akin to OS virtual memory&hellip;", page:"p.5",   thumb:"thumb-rag.png"},
+  {n:"3", title:"LongMem: Augmented Memory for Frozen LLMs",auth:"Wang et al. 2024",              venue:"NeurIPS 2024 · §4",       excerpt:"&hellip; the SideNet acts as an external memory module, retrieving from a 65K-token bank via cross-attention, leaving the base LLM weights frozen&hellip;", page:"p.8",   thumb:"thumb-longctx.png", saved:true},
+  {n:"4", title:"Lilian Weng — Why 200K May Not Be the Answer", auth:"lilianweng.github.io",      venueK:"ask.src.s4.venue",       excerpt:"&hellip; even when the context fits, attention dilution causes accuracy drops on multi-hop tasks. The promise of long-context is overstated for production&hellip;", page:"§ "},
 ];
 
-const ANSWER = `
+const RELATED = [
+  {tK:"ask.related.note"},
+  {tK:"ask.related.streaming"},
+  {tK:"ask.related.compare"},
+];
+
+function buildAnswer(){
+  return `
   <p class="font-serif" style="font-size:17px;line-height:1.85;">
-    您的两篇收藏（<em>RMT v3</em>、<em>MemGPT</em>）代表两种处理"超出训练长度上下文"的根本不同范式 —— 这一区别在生产系统中带来 <strong>数量级的成本差异</strong>，因此值得您关心。
+    ${tk('ask.answer.lede.html')}
   </p>
 
-  <h3 class="font-serif" style="font-size:20px;font-weight:600;margin:24px 0 10px;">核心区别 · 一句话版</h3>
+  <h3 class="font-serif" style="font-size:20px;font-weight:600;margin:24px 0 10px;">${tk('ask.answer.h1')}</h3>
   <p class="font-serif" style="font-size:17px;line-height:1.85;">
-    <strong>RMT v3</strong> 通过<em>循环压缩</em>把整段上下文塞进固定长度的隐状态，让模型在 2M token 上保持 O(n) 复杂度<a class="cite" data-src="1">1</a>；
-    <strong>MemGPT</strong> 则把模型本身当作"操作系统"，通过 <em>显式记忆调度</em>（main context ↔ recall storage）来按需调入信息<a class="cite" data-src="2">2</a>。
-    前者是"编译进权重的隐式压缩"；后者是"运行时显式的换页机制"。
+    ${tk('ask.answer.p1.html')}
   </p>
 
-  <h3 class="font-serif" style="font-size:20px;font-weight:600;margin:24px 0 10px;">三个您应该关心的实际差异</h3>
+  <h3 class="font-serif" style="font-size:20px;font-weight:600;margin:24px 0 10px;">${tk('ask.answer.h2')}</h3>
   <ol style="font-family:var(--font-serif);font-size:17px;line-height:1.85;padding-left:22px;">
-    <li><strong>训练 vs 推理时机会成本：</strong>RMT v3 需要重新训练或继续训练 base model<a class="cite" data-src="1">1</a>；MemGPT 可在<em>冻结权重</em>下使用，与您 4月17日收藏的 LongMem 同属此阵营<a class="cite" data-src="3">3</a>。</li>
-    <li><strong>显存占用：</strong>RMT v3 的隐状态显存恒定；MemGPT 的 main context 仍受标准 KV cache 限制 —— 在 200K 模式下 KV cache 占用可达 <strong>~125GB / 70B 模型</strong>（您 4月22日的笔记 #2204 中已有计算）。</li>
-    <li><strong>失败模式：</strong>RMT v3 在叙事文本上压缩损失 ≤ 2.3%，但代码与表格任务上被 Anthropic 测得 14.7%<a class="cite" data-src="1">1</a>；MemGPT 的失败模式是<em>调度策略</em>不当时的"换页抖动"，需要工程化调优。</li>
+    <li>${tk('ask.answer.li1.html')}</li>
+    <li>${tk('ask.answer.li2.html')}</li>
+    <li>${tk('ask.answer.li3.html')}</li>
   </ol>
 
-  <h3 class="font-serif" style="font-size:20px;font-weight:600;margin:24px 0 10px;">Lilian Weng 的反方意见</h3>
+  <h3 class="font-serif" style="font-size:20px;font-weight:600;margin:24px 0 10px;">${tk('ask.answer.h3')}</h3>
   <p class="font-serif" style="font-size:17px;line-height:1.85;">
-    值得注意的是 5月3日 Lilian Weng 在博客中指出：即便上下文塞得下，注意力稀释也会造成多跳任务准确率下降 —— 因此"长窗口的承诺在生产中被高估了"<a class="cite" data-src="4">4</a>。这间接支持 MemGPT 路线在工程上的合理性。
+    ${tk('ask.answer.p2.html')}
   </p>
 
   <div style="margin-top:30px;padding:18px 22px;background:var(--bg-paper-warm);border-left:3px solid var(--accent-red);">
-    <div class="kicker-red" style="margin-bottom:8px;">CURATOR&rsquo;S TAKE</div>
+    <div class="kicker-red" style="margin-bottom:8px;">${tk('ask.answer.curatorTake')}</div>
     <p class="font-serif" style="font-style:italic;font-size:15.5px;line-height:1.65;margin:0;">
-      如果您正在做 <em>会话型 agent</em>（多轮、长 horizon），MemGPT 范式的可控性更高；如果您在做 <em>批处理文档分析</em>（一次性长输入），RMT v3 的成本曲线更优。两者在 2026 H2 大概率会被某种<strong>双层混合架构</strong>统一。
+      ${tk('ask.answer.curator.html')}
     </p>
   </div>
-`;
+  `;
+}
 
-document.getElementById("main").innerHTML = `
+function render(){
+  document.getElementById("main").innerHTML = `
 <div style="display:grid;grid-template-columns:260px 1fr 380px;height:calc(100vh - 56px);">
 
-  <!-- LEFT: history -->
   <aside style="border-right:1px solid var(--divider);background:var(--bg-paper-warm);overflow-y:auto;">
     <div style="padding:18px 16px 12px;border-bottom:1px solid var(--divider);">
-      <div class="kicker-red" style="margin-bottom:10px;">ASK · HISTORY</div>
-      <button class="btn btn-red" style="width:100%;justify-content:center;font-size:11px;" onclick="newAsk()">+ NEW QUESTION</button>
+      <div class="kicker-red" style="margin-bottom:10px;">${tk('ask.history')}</div>
+      <button class="btn btn-red" style="width:100%;justify-content:center;font-size:11px;" onclick="newAsk()">${tk('ask.newQuestion')}</button>
     </div>
     <div style="padding:10px 8px;">
       ${HISTORY.map((h,i)=>`
         <a href="#" onclick="event.preventDefault();selectHistory(${i})" class="${h.active?'is-active':''}" style="display:block;padding:10px 12px;text-decoration:none;color:var(--ink-primary);border-left:2px solid ${h.active?'var(--accent-red)':'transparent'};background:${h.active?'var(--bg-card)':'transparent'};margin-bottom:2px;">
-          <div class="font-serif" style="font-size:13.5px;line-height:1.35;font-weight:${h.active?'600':'400'};">${h.q}</div>
-          <div class="kicker" style="font-size:9px;margin-top:4px;">${h.t}</div>
+          <div class="font-serif" style="font-size:13.5px;line-height:1.35;font-weight:${h.active?'600':'400'};">${tk(h.qK)}</div>
+          <div class="kicker" style="font-size:9px;margin-top:4px;">${tk(h.tK)}</div>
         </a>
       `).join("")}
     </div>
   </aside>
 
-  <!-- CENTER: answer column -->
   <section style="overflow-y:auto;padding:36px 44px 60px;background:var(--bg-paper);">
-    <div class="kicker-red" style="margin-bottom:8px;">ASKED · 09:14 · 6 SOURCES · 2.4s</div>
-    <h1 class="headline" style="font-size:30px;margin:0 0 24px;line-height:1.22;" id="qDisplay">RMT v3 与 MemGPT 的核心区别？为什么我应该关心？</h1>
+    <div class="kicker-red" style="margin-bottom:8px;">${tk('ask.meta')}</div>
+    <h1 class="headline" style="font-size:30px;margin:0 0 24px;line-height:1.22;" id="qDisplay">${tk('ask.q.display')}</h1>
 
-    <!-- Confidence + retrieval meta -->
     <div style="display:flex;gap:24px;align-items:center;padding:14px 18px;background:var(--bg-card);border:1px solid var(--divider);margin-bottom:28px;">
       <div>
-        <div class="kicker" style="font-size:9px;">ANSWER CONFIDENCE</div>
+        <div class="kicker" style="font-size:9px;">${tk('ask.confidence')}</div>
         <div style="display:flex;align-items:center;gap:8px;margin-top:2px;">
           <div class="confidence-track"><div class="confidence-fill" style="width:87%"></div></div>
           <span class="font-mono" style="font-size:13px;font-weight:600;">87%</span>
@@ -106,98 +110,98 @@ document.getElementById("main").innerHTML = `
       </div>
       <div style="height:32px;width:1px;background:var(--divider);"></div>
       <div>
-        <div class="kicker" style="font-size:9px;">RETRIEVAL · HYBRID</div>
+        <div class="kicker" style="font-size:9px;">${tk('ask.retrieval')}</div>
         <div class="font-mono" style="font-size:11px;">BM25 ⊕ pgvector → Cohere rerank</div>
       </div>
       <div style="height:32px;width:1px;background:var(--divider);"></div>
       <div>
-        <div class="kicker" style="font-size:9px;">MODEL</div>
+        <div class="kicker" style="font-size:9px;">${tk('ask.model')}</div>
         <div class="font-mono" style="font-size:11px;">Claude 3.5 Sonnet · via Portkey</div>
       </div>
       <div style="flex:1"></div>
-      <button class="pill" onclick="alert('查看检索全过程：5 个候选片段、rerank 分数、prompt 模板…')">SHOW TRACE</button>
+      <button class="pill" onclick="alert(tk('ask.alert.trace'))">${tk('ask.showTrace')}</button>
     </div>
 
-    <article id="answerBody">${ANSWER}</article>
+    <article id="answerBody">${buildAnswer()}</article>
 
-    <!-- Action pills -->
     <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:36px;padding-top:22px;border-top:1px solid var(--divider);">
-      <span class="kicker" style="margin-right:8px;align-self:center;">FOLLOW-UP ·</span>
-      <a href="ask.html?q=画 RMT v3 与 MemGPT 的对比图" class="pill pill-red">DIAGRAM IT</a>
-      <a href="ask.html?q=找出与本回答矛盾的证据" class="pill">FIND CONTRADICTIONS</a>
-      <a href="ask.html?q=如何在生产系统中复现 MemGPT 调度策略" class="pill">REPRODUCE</a>
-      <a href="ask.html?q=本话题中我尚未关注但应关注的工作" class="pill">WHAT&rsquo;S MISSING</a>
-      <button class="pill" onclick="alert('已保存为知识卡片 · 自动归类到 LLM Long Context 主题')">SAVE AS CARD</button>
-      <button class="pill pill-solid" onclick="alert('已分享当前问答给您的研究小组')">SHARE</button>
+      <span class="kicker" style="margin-right:8px;align-self:center;">${tk('ask.followup')}</span>
+      <a href="ask.html?q=${encodeURIComponent(tk('ask.fu.diagram'))}" class="pill pill-red">${tk('ask.diagramIt')}</a>
+      <a href="ask.html?q=${encodeURIComponent(tk('ask.fu.contradict'))}" class="pill">${tk('ask.contradictions')}</a>
+      <a href="ask.html?q=${encodeURIComponent(tk('ask.fu.reproduce'))}" class="pill">${tk('ask.reproduce')}</a>
+      <a href="ask.html?q=${encodeURIComponent(tk('ask.fu.missing'))}" class="pill">${tk('ask.missing')}</a>
+      <button class="pill" onclick="alert(tk('common.savedAsCard'))">${tk('ask.saveCard')}</button>
+      <button class="pill pill-solid" onclick="alert(tk('common.shareSuccess'))">${tk('ask.share')}</button>
     </div>
 
-    <!-- Question composer (sticky bottom) -->
     <div style="margin-top:48px;padding:20px 22px;background:var(--bg-paper-warm);border:1px solid var(--divider);">
-      <div class="kicker-red" style="margin-bottom:10px;">FOLLOW-UP QUESTION</div>
+      <div class="kicker-red" style="margin-bottom:10px;">${tk('ask.followBox')}</div>
       <div style="display:flex;gap:10px;align-items:flex-start;">
-        <input id="composer" type="text" placeholder="继续追问，或换一个问题…" style="flex:1;padding:12px 14px;border:1px solid var(--divider);background:var(--bg-card);font-family:var(--font-serif);font-size:15px;color:var(--ink-primary);"/>
-        <button class="btn btn-red" onclick="submitFollowup()">ASK ↵</button>
+        <input id="composer" type="text" placeholder="${tk('ask.composer')}" style="flex:1;padding:12px 14px;border:1px solid var(--divider);background:var(--bg-card);font-family:var(--font-serif);font-size:15px;color:var(--ink-primary);"/>
+        <button class="btn btn-red" onclick="submitFollowup()">${tk('ask.send')}</button>
       </div>
       <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;">
-        <span class="kicker" style="font-size:9px;align-self:center">SCOPE ·</span>
-        <button class="pill is-active">ALL TOPICS</button>
-        <button class="pill">LLM LONG CONTEXT ONLY</button>
-        <button class="pill">SAVED ITEMS</button>
-        <button class="pill">+ NARROW</button>
+        <span class="kicker" style="font-size:9px;align-self:center">${tk('ask.scope')}</span>
+        <button class="pill is-active">${tk('ask.allTopics')}</button>
+        <button class="pill">${tk('ask.thisTopic')}</button>
+        <button class="pill">${tk('ask.savedItems')}</button>
+        <button class="pill">${tk('ask.narrow')}</button>
       </div>
     </div>
   </section>
 
-  <!-- RIGHT: sources panel -->
   <aside style="border-left:1px solid var(--divider);background:var(--bg-card);overflow-y:auto;">
     <div style="padding:18px 18px 12px;border-bottom:1px solid var(--divider);">
-      <div class="kicker-red" style="margin-bottom:6px;">SOURCES · ${SOURCES.length}</div>
-      <p class="font-serif" style="font-style:italic;font-size:13px;color:var(--ink-secondary);margin:0;">每一处引用都来自您的资料库或您订阅的信源。点击数字 ① ② ③ ④ 跳转。</p>
+      <div class="kicker-red" style="margin-bottom:6px;">${tk('ask.sources')}${SOURCES.length}</div>
+      <p class="font-serif" style="font-style:italic;font-size:13px;color:var(--ink-secondary);margin:0;">${tk('ask.sources.lede')}</p>
     </div>
 
     <div id="sourceList" style="padding:12px 14px;">
-      ${SOURCES.map(s=>`
+      ${SOURCES.map(s=>{
+        const venue = s.venueK ? tk(s.venueK) : s.venue;
+        return `
         <article id="src-${s.n}" class="paper-card source-card" style="padding:14px 16px;margin-bottom:10px;cursor:pointer;" onclick="openSource('${s.n}')">
           <div style="display:flex;gap:10px;align-items:flex-start;">
             <span class="cite" style="position:relative;top:2px;min-width:22px;height:22px;font-size:11px;">${s.n}</span>
             <div style="flex:1;min-width:0;">
               <div class="font-serif" style="font-size:14px;font-weight:600;line-height:1.3;margin-bottom:4px;">${s.title}</div>
-              <div class="kicker" style="font-size:9px;margin-bottom:8px;">${s.auth} · ${s.venue}</div>
+              <div class="kicker" style="font-size:9px;margin-bottom:8px;">${s.auth} · ${venue}</div>
               <blockquote style="font-family:var(--font-serif);font-size:12.5px;font-style:italic;line-height:1.55;color:var(--ink-secondary);margin:0 0 8px;padding:6px 10px;border-left:2px solid var(--divider-strong);background:var(--bg-paper-warm);">${s.excerpt}</blockquote>
               <div style="display:flex;gap:5px;flex-wrap:wrap;">
-                ${s.saved?'<span class="pill pill-red" style="font-size:9px;padding:1px 6px;">SAVED</span>':''}
-                <span class="pill" style="font-size:9px;padding:1px 6px;" onclick="event.stopPropagation();alert('打开 PDF 第 ${s.page} 页')">${s.page}</span>
-                <span class="pill" style="font-size:9px;padding:1px 6px;" onclick="event.stopPropagation();window.location.href='topic.html?t=llm-longctx&tab=evidence'">SEE ALL EVIDENCE</span>
+                ${s.saved?`<span class="pill pill-red" style="font-size:9px;padding:1px 6px;">${tk('ask.pill.saved')}</span>`:''}
+                <span class="pill" style="font-size:9px;padding:1px 6px;" onclick="event.stopPropagation();alert(tk('ask.alert.openPdf')+'${s.page}'+tk('ask.alert.openPdfTail'))">${s.page}</span>
+                <span class="pill" style="font-size:9px;padding:1px 6px;" onclick="event.stopPropagation();window.location.href='topic.html?t=llm-longctx&tab=evidence'">${tk('ask.pill.seeAllEvi')}</span>
               </div>
             </div>
           </div>
-        </article>
-      `).join("")}
+        </article>`;
+      }).join("")}
     </div>
 
     <div style="padding:14px 18px;border-top:1px solid var(--divider);background:var(--bg-paper-warm);">
-      <div class="kicker-red" style="margin-bottom:8px;">RELATED IN YOUR VAULT</div>
-      ${[
-        {t:"您的笔记 #2204 · KV cache 显存计算", h:"#"},
-        {t:"StreamingLLM (ICLR 2024)", h:"#"},
-        {t:"GraphRAG vs LongMem comparison card", h:"#"},
-      ].map(r=>`<a href="${r.h}" onclick="event.preventDefault();alert('打开 '+'${r.t}')" style="display:block;font-family:var(--font-serif);font-size:13px;font-style:italic;padding:6px 0;color:var(--ink-primary);text-decoration:none;border-bottom:1px dotted var(--divider);">${r.t} →</a>`).join("")}
+      <div class="kicker-red" style="margin-bottom:8px;">${tk('ask.related')}</div>
+      ${RELATED.map(r=>`<a href="#" onclick="event.preventDefault();alert(tk('ask.alert.openItem')+'${tk(r.tK).replace(/'/g,"\\'")}')" style="display:block;font-family:var(--font-serif);font-size:13px;font-style:italic;padding:6px 0;color:var(--ink-primary);text-decoration:none;border-bottom:1px dotted var(--divider);">${tk(r.tK)} →</a>`).join("")}
     </div>
   </aside>
 </div>
 `;
 
-if (initialQ) {
-  document.getElementById("qDisplay").textContent = initialQ;
-}
+  if (initialQ) {
+    document.getElementById("qDisplay").textContent = initialQ;
+  }
 
-document.querySelectorAll('.cite').forEach(el => {
-  el.addEventListener('click', (e) => {
-    e.preventDefault();
-    const n = el.dataset.src || el.textContent.trim();
-    openSource(n);
+  document.querySelectorAll('.cite').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      const n = el.dataset.src || el.textContent.trim();
+      openSource(n);
+    });
   });
-});
+
+  document.getElementById('composer').addEventListener('keydown', e => {
+    if (e.key === 'Enter') submitFollowup();
+  });
+}
 
 function openSource(n) {
   document.querySelectorAll('.source-card').forEach(c => c.style.borderColor = 'var(--divider)');
@@ -213,11 +217,10 @@ function submitFollowup(){
   window.location.href = 'ask.html?q=' + encodeURIComponent(v);
 }
 function newAsk(){ window.location.href='ask.html'; }
-function selectHistory(i){ window.location.href='ask.html?q='+encodeURIComponent(HISTORY[i].q); }
+function selectHistory(i){ window.location.href='ask.html?q='+encodeURIComponent(tk(HISTORY[i].qK)); }
 
-document.getElementById('composer').addEventListener('keydown', e => {
-  if (e.key === 'Enter') submitFollowup();
-});
+render();
+document.addEventListener('rt:langchange', render);
 </script>
 </body>
 </html>
