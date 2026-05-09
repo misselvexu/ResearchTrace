@@ -1,1006 +1,1654 @@
 {
-  "shell.search": "在您的全部知识中提问…",
-  "shell.userName": "郁文",
-  "shell.vault": "资料库",
-  "shell.briefs": "简报",
-  "shell.plan": "套餐",
-  "shell.vault.value": "2,438 项",
-  "shell.briefs.value": "36 期已归档",
-  "shell.plan.value": "RESEARCH PRO",
-  "shell.section.workspace": "工作区",
-  "shell.section.pinned": "钉选主题",
-  "shell.section.account": "账户",
-  "nav.today": "今日",
-  "nav.topics": "主题",
-  "nav.ask": "提问",
-  "nav.briefs": "简报",
-  "nav.inbox": "收件箱",
-  "nav.settings": "设置",
-  "nav.pricing": "定价",
-  "nav.landing": "落地页",
-  "nav.topic.llm": "LLM 长上下文",
-  "nav.topic.agent": "智能体工作流",
-  "nav.topic.eval": "AI 评测",
-  "nav.topic.rag": "RAG 与记忆",
-  "nav.topic.pm": "AI 产品策略",
-  "switcher.lang.label": "EN",
-  "switcher.lang.title": "Switch to English",
-  "switcher.theme.title.toDark": "切换到暗黑模式",
-  "switcher.theme.title.toLight": "切换到亮色模式",
-  "common.confirmLogout": "确定登出？",
-  "common.confirmSkip": "跳过设置？",
-  "common.shareSuccess": "已分享当前问答给您的研究小组",
-  "common.savedAsCard": "已保存为知识卡片 · 自动归类到 LLM Long Context 主题",
-  "landing.title": "研迹 ResearchTrace · A Paper for One Reader. You.",
-  "landing.nav.why": "为什么",
-  "landing.nav.how": "如何工作",
-  "landing.nav.agents": "五个 Agent",
-  "landing.nav.pricing": "定价",
-  "landing.nav.briefs": "简报样例",
-  "landing.nav.signin": "登录",
-  "landing.cta.trial": "开始 14 天免费试用 →",
-  "landing.cta.trial.short": "开始免费试用 →",
-  "landing.cta.demo": "查看示例工作台 →",
-  "landing.cta.compare": "比较方案",
-  "landing.masthead.vol": "VOL. III · ISSUE 001 · LAUNCH EDITION",
-  "landing.masthead.est": "EST. 2026 · BEIJING / SAN FRANCISCO",
-  "landing.masthead.price": "PRICE · TIME ONLY",
-  "landing.hero.kicker": "A NEW KIND OF READING",
-  "landing.hero.title.html": "一份只为<br/>一位读者<br/>编辑的报。<br/><span style=\"color:var(--accent-red);\">您。</span>",
-  "landing.hero.lede.html": "研迹是一份<em>主动写作</em>的研究报 —— 它持续读您所读，追踪您所追，每天清晨在您打开它之前，把「<strong>本周您该知道的</strong>」已经编辑成一份真正可读的报刊。证据齐备，引用可点。",
-  "landing.hero.fig": "图 · 由您的资料库自动生成的个人知识图谱（示意）",
-  "landing.hero.users": "使用者来自 ·",
-  "landing.stats.evidence": "证据可点击",
-  "landing.stats.evidence.n": "100%",
-  "landing.stats.trace": "AI 调用追溯",
-  "landing.stats.trace.n": "完整",
-  "landing.stats.data": "数据归您",
-  "landing.stats.data.n": "E2EE",
-  "landing.stats.train": "训练免疫",
-  "landing.stats.train.n": "✓",
-  "landing.why.kicker": "§ I · 为什么需要研迹",
-  "landing.why.headline": "您每天保存 23 条链接，只读了 3 条。",
-  "landing.why.sub": "这不是您的错。是工具的错。",
-  "landing.why.01.title": "被动收集 → 主动遗忘",
-  "landing.why.01.body.html": "现有笔记工具像仓库 —— 资料堆积越多，您离它越远。研迹反过来：它<strong>主动读您的库</strong>，并把要紧的事情<em>送到您面前</em>。",
-  "landing.why.02.title": "答案 ≠ 研究",
-  "landing.why.02.body.html": "ChatGPT 给您「看似正确的句子」。研迹给您 <strong>有出处的论断</strong>。每一句结论后都有可点击的 ① ② ③，3 秒内回到原文。",
-  "landing.why.03.title": "周期，而非问答",
-  "landing.why.03.body.html": "研究是周期性活动。研迹按「每天 / 每周 / 每月」节奏交付，让您「<strong>不思考</strong>」也跟得上 —— 真正的省力。",
-  "landing.why.04.title": "您的库，不是模型的库",
-  "landing.why.04.body.html": "研迹只回答与<em>您资料库</em>相关的问题。它的根基是您手中的那 2,000 篇。这是它与所有通用 AI 的根本不同。",
-  "landing.how.kicker": "§ II · 它如何工作 · 一日时间线",
-  "landing.how.headline": "从您按下保存到收到简报，发生了什么。",
-  "landing.how.t1.title": "您在 Twitter 上保存了一条关于 RMT v3 的链接",
-  "landing.how.t1.body": "通过 Chrome 扩展、邮件转发或一键「分享到研迹」完成",
-  "landing.how.t2.title": "自动抓取并解析",
-  "landing.how.t2.body": "识别：这是一个 arXiv 链接 → 抓取 PDF → 切分章节 → 提取图表",
-  "landing.how.t3.title": "抽取关键论断与证据",
-  "landing.how.t3.body": "从 24 页中识别 8 项 claim，每项附 1-3 处证据。归类到「LLM Long Context」主题",
-  "landing.how.t4.title": "对齐到您的现有图谱",
-  "landing.how.t4.body": "发现该论文与 4月17日 LongMem (#142)、4月22日 GraphRAG (#156) 形成显性对话",
-  "landing.how.t5.title": "夜间例行扫描",
-  "landing.how.t5.body": "检测到该工作引用激增 +23 → 触发 HIGH 告警，推迟到次晨简报",
-  "landing.how.t6.title": "为您撰写当日简报",
-  "landing.how.t6.body": "综合 8 项 claim + 您过往笔记 #2204 → 生成 11 分钟阅读时长的 Today Digest",
-  "landing.how.t7.title": "打开 ResearchTrace · 看到一份只为您写的报",
-  "landing.how.t7.body": "含可点击引用、HEAT 热度、行动按钮 (FIND SIMILAR / DIAGRAM IT / REPRODUCE)",
-  "landing.how.t.next": "次晨 06:30",
-  "landing.agents.kicker": "§ III · 为您工作的五个 AGENT",
-  "landing.agents.headline": "不是一个 ChatGPT。是一支研究小组。",
-  "landing.agents.lede": "每个 Agent 各司其职，您能看到它们做了什么、读了什么、调用了哪个模型。完全可审计。",
-  "landing.agents.cta": "查看 Agent 行为日志 →",
-  "landing.agents.01.role": "摄取",
-  "landing.agents.01.body": "读 PDF / URL / 视频，做切分与索引",
-  "landing.agents.02.role": "策展",
-  "landing.agents.02.body": "抽 claim、对齐图谱、归并矛盾",
-  "landing.agents.03.role": "检索",
-  "landing.agents.03.body": "BM25 + 向量混检 + Rerank",
-  "landing.agents.04.role": "雷达",
-  "landing.agents.04.body": "监测信源、触发热度告警",
-  "landing.agents.05.role": "撰稿",
-  "landing.agents.05.body": "周报 / 月报 / Deep Dive",
-  "landing.sample.kicker": "§ IV · 看一份真正的简报",
-  "landing.sample.headline": "以下是研迹为一位用户写的本周简报。",
-  "landing.sample.body.html": "编辑摘要、本周三大头条、Curator 综述、与您过往工作的对话、反方意见、下周雷达 —— 完整 6 个章节，11 分钟阅读时长。每一处<a class=\"cite\" style=\"display:inline-flex\">12</a>都可点击。",
-  "landing.sample.cta": "阅读样例简报 No. 127 →",
-  "landing.cta.last": "最后一件事",
-  "landing.cta.title.html": "您不缺信息。<br/>您缺一份只为您写的报。",
-  "landing.cta.body": "14 天免费试用，无需信用卡。导入您现有的 Notion / Pocket / Readwise，明早 8 点您会收到第一份简报。",
-  "landing.footer.tagline": "「Find what matters before you ask for it.」 一份只为一位读者编辑的研究报。",
-  "landing.footer.col1": "产品",
-  "landing.footer.col2": "工作流",
-  "landing.footer.col3": "商业",
-  "landing.footer.col4": "公司",
-  "landing.footer.edu": "教育折扣",
-  "landing.footer.team": "Team",
-  "landing.footer.about": "关于",
-  "landing.footer.blog": "Blog",
-  "landing.footer.privacy": "隐私",
-  "landing.footer.terms": "条款",
-  "today.title": "Today — 研迹 ResearchTrace",
-  "today.crumb": "RESEARCHTRACE / TODAY · 2026年5月9日 周六",
-  "today.kicker": "VOL. III · ISSUE 127 · YOUR DAILY DIGEST",
-  "today.headline": "今日简报",
-  "today.lede.html": "5月9日，周六上午 09:14。本期为您甄选 <span style=\"color:var(--accent-red);font-weight:600;\">7 条</span> 重要进展，覆盖您追踪的 <span style=\"color:var(--accent-red);font-weight:600;\">5 个领域</span>。预计阅读 <span class=\"font-mono\" style=\"font-style:normal;\">11 分钟</span>。",
-  "today.btn.markRead": "全部已读",
-  "today.btn.archive": "归档至简报库",
-  "today.btn.weekly": "生成本周回顾",
-  "today.delivered": "DELIVERED · TODAY 08:00 · BY RADAR + REPORTER",
-  "today.fromEditor": "FROM THE EDITOR",
-  "today.editorHead": "本期主旨",
-  "today.editor.meta": "REPORTER AGENT · 0.7B SUMMARY",
-  "today.editor.label": "Editor's Brief",
-  "today.editor.body.html": "本周 LLM 长上下文领域有两项重要突破：DeepMind 发布 <em>「Recurrent Memory Transformer v3」</em> 在 2M token 上保持线性复杂度<a href=\"ask.html?cite=1\" class=\"cite\">1</a>；Anthropic 同期公开 Claude 3.5 在 200K 长度上的 needle-in-haystack 评测，准确率 99.4%<a href=\"ask.html?cite=2\" class=\"cite\">2</a>。两项工作背后的核心分歧是：<strong>「显式记忆压缩 vs 端到端注意力扩展」</strong> —— 您 4 月 17 日收藏的 LongMem 论文<a href=\"ask.html?cite=3\" class=\"cite\">3</a> 正属于前一阵营，建议优先阅读 §1。",
-  "today.editor.deepDive": "DEEP DIVE →",
-  "today.editor.readLater": "READ LATER",
-  "today.editor.saveCard": "SAVE AS CARD",
-  "today.section1": "§ I · TOP STORIES · 头条研究",
-  "today.section2": "§ II · RADAR PULSE · 雷达脉搏",
-  "today.section3": "§ III · FROM YOUR VAULT · 来自您的资料库",
-  "today.section4": "§ IV · ASK YOUR RESEARCH",
-  "today.story1.title": "Recurrent Memory Transformer v3 在 2M Token 上保持线性复杂度",
-  "today.story1.body.html": "DeepMind 团队提出新的循环压缩机制，在 2,097,152 token 长度上推理成本仅为标准注意力的 <span style=\"color:var(--accent-red);font-weight:600;\">3.7%</span>，且在 LongBench-v2 上得分超出 GPT-4-128K 约 <span style=\"color:var(--accent-red);font-weight:600;\">11.2 分</span>…",
-  "today.story1.heatNote": "5/5 · TRENDING IN YOUR CIRCLE",
-  "today.action.findSimilar": "FIND SIMILAR",
-  "today.action.seeEvidence": "SEE EVIDENCE",
-  "today.action.reproduce": "REPRODUCE",
-  "today.action.diagram": "DIAGRAM",
-  "today.story2.title": "Claude 3.5 在 200K 上下文上达成 99.4% 检索准确率",
-  "today.story2.body": "Anthropic 公布完整测试报告，跨 12 类 needle 配置全部通过；但在 needle-多跳推理子集上准确率降至 73%…",
-  "today.story3.title": "OpenAI Codex CLI 在 SWE-Bench Verified 突破 71.8%",
-  "today.story3.body": "较 3 月前的 SOTA 提升 9.3 个百分点。关键改进来自「自我对弈式 patch refinement」训练范式…",
-  "today.radar.col1": "TRENDING IN YOUR FOLLOWED TOPICS",
-  "today.radar.col2": "CITED BY YOU MOST · LAST 30 DAYS",
-  "today.radar.s1.t": "本周新增信源",
-  "today.radar.s1.s": "vs. 上周 +12%",
-  "today.radar.s2.t": "个主题需要回顾",
-  "today.radar.s2.s": "已 7 天未更新",
-  "today.radar.s3.t": "条新证据已抓取",
-  "today.radar.s3.s": "自上次登录",
-  "today.radar.s4.t": "个新观点冲突",
-  "today.radar.s4.s": "待您仲裁",
-  "today.radar.r1": "长上下文 vs 检索：综述论文激增 +38 篇",
-  "today.radar.r2": "自反思 Agent 框架：CRITIC、Reflexion 引用激增",
-  "today.radar.r3": "Holistic Eval 重新定义「helpfulness」维度",
-  "today.radar.r4": "Mem0 v2 引入 episodic memory 抽取层",
-  "today.radar.r5": "a16z 报告：Top 50 AI 应用 47% 已转 vertical",
-  "today.vault.lede.html": "您 4 月 17 日收藏的论文 <em>LongMem</em> 与本期头条主题高度相关 —— Curator Agent 已重新整理时间线，并发现 3 处与新工作的隐性对话。",
-  "today.vault.action.viewCard": "VIEW CARD",
-  "today.vault.action.askAgent": "ASK AGENT",
-  "today.vault.saved": "SAVED · ",
-  "today.ask.headline": "提问，并见到每一处证据。",
-  "today.ask.body.html": "每一个回答都来自您自己的资料库。每一句结论后都跟着可点击的引用气泡<a class=\"cite\" style=\"display:inline-flex\">12</a>，让您在 3 秒内回到原文。无幻觉，可追溯。",
-  "today.ask.cta": "OPEN ASK ↗",
-  "today.ask.suggested": "SUGGESTED QUESTIONS",
-  "today.ask.q1": "RMT v3 与 MemGPT 的核心区别？为什么我应该关心？",
-  "today.ask.q2": "我收藏的 LongMem 与今天的头条有矛盾吗？",
-  "today.ask.q3": "agent 自反思框架综述：CRITIC vs Reflexion 谁先？",
-  "today.ask.q4": "把过去 3 个月长上下文领域整理成一张时间线",
-  "today.foot.tagline": "「Find what matters before you ask for it.」",
-  "today.foot.product": "PRODUCT",
-  "today.foot.vault": "VAULT",
-  "today.foot.account": "ACCOUNT",
-  "today.foot.next": "NEXT BRIEF",
-  "today.foot.weekly": "WEEKLY DIGEST",
-  "topics.crumb": "RESEARCHTRACE / TOPICS · 12 主题在追踪中",
-  "topics.kicker": "VOL. III · CHAPTER 02 · KNOWLEDGE TOPICS",
-  "topics.title": "Topics",
-  "topics.lede.html": "您正在追踪 <span style=\"color:var(--accent-red);font-weight:600;\">12 个主题</span>，共积累 <span style=\"color:var(--accent-red);font-weight:600;\">2,438 项</span>知识、<span style=\"color:var(--accent-red);font-weight:600;\">412 处</span>证据。每一条结论都有来源，每一条来源都可点。",
-  "topics.filter": "FILTER ·",
-  "topics.f.all": "全部 · 12",
-  "topics.f.active": "ACTIVE · 7",
-  "topics.f.watching": "WATCHING · 4",
-  "topics.f.paused": "PAUSED · 1",
-  "topics.f.pinned": "PINNED · 5",
-  "topics.sort": "SORT BY HEAT",
-  "topics.new": "+ NEW TOPIC",
-  "topics.lastBrief": "LAST BRIEF · ",
-  "topics.open": "OPEN →",
-  "topics.statusActive": "TOPIC · ACTIVE",
-  "topics.statusWatching": "TOPIC · WATCHING",
-  "topics.statusPaused": "TOPIC · PAUSED",
-  "topics.alert.sortHeat": "排序按 HEAT",
-  "topics.alert.newTopic": "打开新主题创建表单",
-  "topics.lastBrief.2hAgo": "2小时前",
-  "topics.lastBrief.today08": "今日 08:00",
-  "topics.lastBrief.yesterday": "昨日",
-  "topics.lastBrief.3dAgo": "3 天前",
-  "topics.lastBrief.4dAgo": "4 天前",
-  "topics.lastBrief.5dAgo": "5 天前",
-  "topics.lastBrief.7dAgo": "7 天前",
-  "topics.lastBrief.10dAgo": "10 天前",
-  "topics.lastBrief.21dAgo": "21 天前",
-  "topics.lastBrief.2dAgo": "2 天前",
-  "topic.t1.zh": "长上下文语言模型",
-  "topic.t1.desc": "追踪 LLM 在超长上下文（≥128K）下的注意力机制、记忆压缩、外部记忆模块演进；含 RMT、MemGPT、LongMem、StreamingLLM 等代表方向。",
-  "topic.t2.zh": "自主智能体工作流",
-  "topic.t2.desc": "覆盖 ReAct、Self-Refine、Reflexion、CRITIC、Tree-of-Thoughts 等 agent 决策范式；含 SWE-Bench、AgentBench 评测追踪。",
-  "topic.t3.zh": "AI 模型评测",
-  "topic.t3.desc": "HELM v3、MMLU-Pro、LongBench、BIG-Bench Hard 等评测体系演进；关注 \"helpfulness vs harmlessness\" 维度的设计争论。",
-  "topic.t4.zh": "检索增强 与 记忆系统",
-  "topic.t4.desc": "GraphRAG、Mem0、Zep、Light­RAG 等系统的 episodic/semantic memory 设计；与长上下文路线之争。",
-  "topic.t5.zh": "AI 产品策略",
-  "topic.t5.desc": "AI 应用的市场结构、商业化路径、UX 范式；含 a16z、Sequoia、Bessemer 报告与典型案例拆解。",
-  "topic.t6.zh": "对齐与安全",
-  "topic.t6.desc": "RLHF、DPO、Constitutional AI、red-teaming 工作；关注模型可解释性进展。",
-  "topic.t7.zh": "多模态与视觉",
-  "topic.t7.desc": "GPT-4V、Gemini、Pixtral 等多模态模型的视觉推理能力评测。",
-  "topic.t8.zh": "AI 基础设施",
-  "topic.t8.desc": "vLLM、TGI、SGLang 推理引擎；FlashAttention、PagedAttention 优化技术。",
-  "topic.t9.zh": "微调与领域适配",
-  "topic.t9.desc": "LoRA、QLoRA、P-tuning v2 等参数高效微调；持续学习与灾难性遗忘。",
-  "topic.t10.zh": "开源模型生态",
-  "topic.t10.desc": "Llama、Qwen、DeepSeek、Mistral 等开源模型的能力对比与商业生态。",
-  "topic.t11.zh": "推理与数学",
-  "topic.t11.desc": "o1、DeepSeek-R1 类推理模型；Chain-of-Thought 与过程奖励模型 (PRM)。",
-  "topic.t12.zh": "语音与实时 AI",
-  "topic.t12.desc": "GPT-4o Realtime、Moshi 等流式语音模型；TTS 与 ASR 一体化趋势。",
-  "ask.crumb": "RESEARCHTRACE / ASK · 提问 · 答案附引用",
-  "ask.history": "ASK · HISTORY",
-  "ask.newQuestion": "+ 新问题",
-  "ask.meta": "已问 · 09:14 · 6 SOURCES · 2.4s",
-  "ask.confidence": "ANSWER CONFIDENCE",
-  "ask.retrieval": "RETRIEVAL · HYBRID",
-  "ask.model": "MODEL",
-  "ask.showTrace": "SHOW TRACE",
-  "ask.followup": "FOLLOW-UP ·",
-  "ask.diagramIt": "DIAGRAM IT",
-  "ask.contradictions": "FIND CONTRADICTIONS",
-  "ask.reproduce": "REPRODUCE",
-  "ask.missing": "WHAT'S MISSING",
-  "ask.saveCard": "SAVE AS CARD",
-  "ask.share": "SHARE",
-  "ask.followBox": "FOLLOW-UP QUESTION",
-  "ask.composer": "继续追问，或换一个问题…",
-  "ask.send": "提问 ↵",
-  "ask.scope": "SCOPE ·",
-  "ask.allTopics": "ALL TOPICS",
-  "ask.thisTopic": "LLM LONG CONTEXT ONLY",
-  "ask.savedItems": "SAVED ITEMS",
-  "ask.narrow": "+ 精细",
-  "ask.related": "RELATED IN YOUR VAULT",
-  "ask.sources": "SOURCES · ",
-  "ask.sources.lede": "每一处引用都来自您的资料库或您订阅的信源。点击数字 ① ② ③ ④ 跳转。",
-  "ask.q.display": "RMT v3 与 MemGPT 的核心区别？为什么我应该关心？",
-  "ask.h1": "RMT v3 与 MemGPT 的核心区别？为什么我应该关心？",
-  "ask.h2": "画一张长上下文路线之争的对比表",
-  "ask.h3": "我收藏的 LongMem 与今天的头条有矛盾吗？",
-  "ask.h4": "agent 自反思框架综述：CRITIC vs Reflexion 谁先？",
-  "ask.h5": "a16z 报告里 Top 50 AI 应用有多少做 vertical？",
-  "ask.h6": "把过去 3 个月长上下文领域整理成一张时间线",
-  "ask.h7": "GraphRAG 和 LightRAG 在 episodic memory 上有什么差异？",
-  "ask.h.t.justNow": "刚刚",
-  "ask.h.t.5min": "5 分钟前",
-  "ask.h.t.today09": "今日 09:01",
-  "ask.h.t.yesterday": "昨日",
-  "ask.h.t.may7": "5月7日",
-  "ask.h.t.may5": "5月5日",
-  "ask.h.t.may3": "5月3日",
-  "ask.answer.lede.html": "您的两篇收藏（<em>RMT v3</em>、<em>MemGPT</em>）代表两种处理\"超出训练长度上下文\"的根本不同范式 —— 这一区别在生产系统中带来 <strong>数量级的成本差异</strong>，因此值得您关心。",
-  "ask.answer.h1": "核心区别 · 一句话版",
-  "ask.answer.p1.html": "<strong>RMT v3</strong> 通过<em>循环压缩</em>把整段上下文塞进固定长度的隐状态，让模型在 2M token 上保持 O(n) 复杂度<a class=\"cite\" data-src=\"1\">1</a>；<strong>MemGPT</strong> 则把模型本身当作\"操作系统\"，通过 <em>显式记忆调度</em>（main context ↔ recall storage）来按需调入信息<a class=\"cite\" data-src=\"2\">2</a>。前者是\"编译进权重的隐式压缩\"；后者是\"运行时显式的换页机制\"。",
-  "ask.answer.h2": "三个您应该关心的实际差异",
-  "ask.answer.li1.html": "<strong>训练 vs 推理时机会成本：</strong>RMT v3 需要重新训练或继续训练 base model<a class=\"cite\" data-src=\"1\">1</a>；MemGPT 可在<em>冻结权重</em>下使用，与您 4月17日收藏的 LongMem 同属此阵营<a class=\"cite\" data-src=\"3\">3</a>。",
-  "ask.answer.li2.html": "<strong>显存占用：</strong>RMT v3 的隐状态显存恒定；MemGPT 的 main context 仍受标准 KV cache 限制 —— 在 200K 模式下 KV cache 占用可达 <strong>~125GB / 70B 模型</strong>（您 4月22日的笔记 #2204 中已有计算）。",
-  "ask.answer.li3.html": "<strong>失败模式：</strong>RMT v3 在叙事文本上压缩损失 ≤ 2.3%，但代码与表格任务上被 Anthropic 测得 14.7%<a class=\"cite\" data-src=\"1\">1</a>；MemGPT 的失败模式是<em>调度策略</em>不当时的\"换页抖动\"，需要工程化调优。",
-  "ask.answer.h3": "Lilian Weng 的反方意见",
-  "ask.answer.p2.html": "值得注意的是 5月3日 Lilian Weng 在博客中指出：即便上下文塞得下，注意力稀释也会造成多跳任务准确率下降 —— 因此\"长窗口的承诺在生产中被高估了\"<a class=\"cite\" data-src=\"4\">4</a>。这间接支持 MemGPT 路线在工程上的合理性。",
-  "ask.answer.curatorTake": "CURATOR&rsquo;S TAKE",
-  "ask.answer.curator.html": "如果您正在做 <em>会话型 agent</em>（多轮、长 horizon），MemGPT 范式的可控性更高；如果您在做 <em>批处理文档分析</em>（一次性长输入），RMT v3 的成本曲线更优。两者在 2026 H2 大概率会被某种<strong>双层混合架构</strong>统一。",
-  "ask.related.note": "您的笔记 #2204 · KV cache 显存计算",
-  "ask.related.streaming": "StreamingLLM (ICLR 2024)",
-  "ask.related.compare": "GraphRAG vs LongMem comparison card",
-  "ask.alert.openItem": "打开 ",
-  "ask.alert.openPdf": "打开 PDF 第 ",
-  "ask.alert.openPdfTail": " 页",
-  "ask.alert.trace": "查看检索全过程：5 个候选片段、rerank 分数、prompt 模板…",
-  "ask.pill.openPage": "OPEN PAGE",
-  "ask.pill.seeAllEvi": "SEE ALL EVIDENCE",
-  "ask.pill.saved": "SAVED",
-  "ask.fu.diagram": "画 RMT v3 与 MemGPT 的对比图",
-  "ask.fu.contradict": "找出与本回答矛盾的证据",
-  "ask.fu.reproduce": "如何在生产系统中复现 MemGPT 调度策略",
-  "ask.fu.missing": "本话题中我尚未关注但应关注的工作",
-  "ask.src.s4.venue": "5月3日 blog",
-  "inbox.crumb": "RESEARCHTRACE / INBOX · 收件箱",
-  "inbox.kicker": "VOL. III · INBOX · 待处理资料流",
-  "inbox.title": "Inbox",
-  "inbox.lede.html": "47 项资料正在流入您的研究库 —— 由 <span style=\"color:var(--accent-red);\">Ingestor</span> 解析、<span style=\"color:var(--accent-red);\">Curator</span> 归档。",
-  "inbox.dropzone.title": "拖放 PDF / 贴入 URL / 转发邮件",
-  "inbox.dropzone.sub": "Ingestor 将在 ≤ 30 秒完成解析、抽取关键论断、对齐到主题。",
-  "inbox.btn.emailFwd": "📧 EMAIL FORWARD",
-  "inbox.btn.installExt": "🌐 INSTALL EXT",
-  "inbox.alert.openPicker": "打开文件选择器 · 也支持拖放",
-  "inbox.alert.copyEmail": "复制您的专属转发邮箱：forward@mail.researchtrace.app",
-  "inbox.alert.installExt": "Chrome 扩展安装链接",
-  "inbox.stat.parsing": "PARSING",
-  "inbox.stat.transcribing": "TRANSCRIBING",
-  "inbox.stat.indexed": "INDEXED",
-  "inbox.stat.failed": "FAILED",
-  "inbox.stat.newSince": "NEW SINCE LAST VISIT",
-  "inbox.btn.bulkClassify": "BULK CLASSIFY",
-  "inbox.alert.bulkClassify": "批量分类至主题",
-  "inbox.btn.loadMore": "LOAD 37 MORE",
-  "inbox.alert.loadMore": "加载下一页 47 项",
-  "inbox.alert.openCard": "打开知识卡片",
-  "inbox.alert.openItem": "打开知识卡片 #",
-  "inbox.alert.openItemTail": " · 详情含原文、抽取的论断、证据、回链关系",
-  "inbox.src.dragged": "Drag-dropped · ",
-  "inbox.src.chromeExt": "Chrome ext · ",
-  "inbox.src.x": "X / Karpathy · ",
-  "inbox.src.youtube": "YouTube · ",
-  "inbox.src.fwdEmail": "forward@mail.researchtrace.app · ",
-  "inbox.src.emailFwd": "Email forward · ",
-  "inbox.src.notion": "Notion sync · ",
-  "inbox.t.yesterday2214": "昨日 22:14",
-  "inbox.t.yesterday1902": "昨日 19:02",
-  "inbox.t.yesterday1400": "昨日 14:00",
-  "inbox.t.may7": "5月7日",
-  "inbox.askPrefix": "总结 ",
-  "inbox.filter": "FILTER ·",
-  "inbox.f.all": "ALL · 47",
-  "inbox.f.pdf": "PDF · 12",
-  "inbox.f.url": "URL · 18",
-  "inbox.f.twitter": "TWITTER · 6",
-  "inbox.f.youtube": "YOUTUBE · 3",
-  "inbox.f.email": "EMAIL · 5",
-  "inbox.f.notion": "NOTION · 3",
-  "inbox.btn.card": "CARD",
-  "inbox.btn.ask": "ASK",
-  "inbox.it.1.title": "Recurrent Memory Transformer v3",
-  "inbox.it.2.title": "Anthropic — Long Context Capabilities of Claude 3.5",
-  "inbox.it.3.title": "@karpathy: long context vs RAG thread (12 tweets)",
-  "inbox.it.4.title": "Andrej Karpathy on Memory in LLMs",
-  "inbox.it.5.title": "Substack — Latent Space: This Week in Long Context",
-  "inbox.it.6.title": "GraphRAG: Local-Global Reasoning for QA",
-  "inbox.it.7.title": "a16z — State of Generative AI 2025",
-  "inbox.it.8.title": "My research-quick-notes / Long Context",
-  "inbox.it.9.title": "HELM v3 Holistic Evaluation Slice",
-  "inbox.it.10.title": "Latent Space — Reflexion deep dive",
-  "inbox.topic.long": "LLM Long Context",
-  "inbox.topic.rag": "RAG & Memory",
-  "inbox.topic.pm": "AI Product Strategy",
-  "inbox.topic.eval": "AI Evaluation",
-  "inbox.topic.agentic": "Agentic Workflows",
-  "inbox.size.web": "web",
-  "inbox.size.thread": "thread",
-  "inbox.size.video": "video",
-  "inbox.size.newsletter": "newsletter",
-  "inbox.size.longread": "longread",
-  "inbox.size.notes": " notes",
-  "inbox.t.0911": "09:11",
-  "inbox.t.0908": "09:08",
-  "inbox.t.0852": "08:52",
-  "inbox.t.0830": "08:30",
-  "inbox.t.0814": "08:14",
-  "briefs.crumb": "RESEARCHTRACE / BRIEFS · 简报库",
-  "briefs.kicker": "VOL. III · BRIEFS LIBRARY · 简报存档",
-  "briefs.title": "Briefs",
-  "briefs.lede": "您所有的研究简报存档于此。每周一与每月一日由 Reporter 自动生成，重大事件触发 Deep Dive。",
-  "briefs.f.all": "ALL · 36",
-  "briefs.f.weekly": "WEEKLY · 22",
-  "briefs.f.monthly": "MONTHLY · 5",
-  "briefs.f.deepdive": "DEEP DIVE · 6",
-  "briefs.f.initial": "INITIAL · 3",
-  "briefs.byTopic": "BY TOPIC ·",
-  "briefs.btn.newBrief": "+ NEW BRIEF",
-  "briefs.alert.newBrief": "打开 Brief 创建器：选主题、时间范围、深度…",
-  "briefs.featured": "§ FEATURED · LATEST WEEKLY DIGEST",
-  "briefs.unread": "UNREAD",
-  "briefs.weeklyNo": "WEEKLY DIGEST · No.",
-  "briefs.delivered": "DELIVERED",
-  "briefs.btn.read": "READ NOW ↗",
-  "briefs.archive": "§ ARCHIVE · 近期简报",
-  "briefs.btn.loadMore": "LOAD MORE · 27 ARCHIVED",
-  "briefs.alert.loadMore": "已加载下一批 9 篇",
-  "briefs.featured.title": "长上下文之争：显式记忆压缩与端到端注意力扩展，分歧加剧",
-  "briefs.featured.subtitle": "由 Reporter Agent 综合 412 处证据 · 阅读 11 分钟",
-  "briefs.featured.date": "今日 · 5月9日 09:14",
-  "briefs.b126.title": "Agentic Workflow 周报：自反思框架谁先？",
-  "briefs.b125.title": "RMT v3 深度拆解：三个不能忽视的细节",
-  "briefs.b124.title": "AI Evaluation 月度回顾：HELM v3 重新定义",
-  "briefs.b123.title": "GraphRAG vs LongMem：路线对比",
-  "briefs.b122.title": "AI Product Strategy · 4月研报合辑",
-  "briefs.b121.title": "Alignment & Safety 周报：DPO vs RLHF 实证",
-  "briefs.b120.title": "Reasoning models: o1 之后的下一站",
-  "briefs.b119.title": "长上下文 vs 检索：综述论文激增 +38 篇",
-  "briefs.b118.title": "长上下文评测：当 needle 已经不够用",
-  "briefs.b126.tag": "WEEKLY",
-  "briefs.b125.tag": "DEEP DIVE · TRIGGERED",
-  "briefs.b124.tag": "MONTHLY",
-  "briefs.b123.tag": "WEEKLY",
-  "briefs.b122.tag": "MONTHLY",
-  "briefs.b121.tag": "WEEKLY",
-  "briefs.b120.tag": "WEEKLY",
-  "briefs.b119.tag": "WEEKLY",
-  "briefs.b118.tag": "WEEKLY",
-  "briefs.d.yesterday": "昨日 · 5月8日",
-  "briefs.d.may7": "5月7日",
-  "briefs.d.may5": "5月5日",
-  "briefs.d.may3": "5月3日",
-  "briefs.d.may1": "5月1日",
-  "briefs.d.apr29": "4月29日",
-  "briefs.d.apr25": "4月25日",
-  "briefs.d.apr22": "4月22日",
-  "briefs.d.apr18": "4月18日",
-  "briefs.filter": "FILTER ·",
-  "briefs.bt.long": "LLM LONG CONTEXT · 8",
-  "briefs.bt.agentic": "AGENTIC · 5",
-  "briefs.bt.eval": "EVAL · 4",
-  "briefs.bt.rag": "RAG · 6",
-  "briefs.bt.product": "PRODUCT · 7",
-  "briefs.t.long": "LLM Long Context",
-  "briefs.t.agentic": "Agentic Workflows",
-  "briefs.t.eval": "AI Evaluation",
-  "briefs.t.rag": "RAG & Memory",
-  "briefs.t.pm": "AI Product Strategy",
-  "briefs.t.align": "Alignment & Safety",
-  "briefs.t.reason": "Reasoning & Math",
-  "briefs.lbl.claims": "CLAIMS",
-  "briefs.lbl.evidence": "EVIDENCE",
-  "briefs.lbl.claimsLower": " claims",
-  "briefs.featured.dateSplit": "5月9日 09:14",
-  "brief.crumb": "RESEARCHTRACE / BRIEF · 阅读视图",
-  "brief.kicker": "RESEARCHTRACE · WEEKLY DIGEST · No.",
-  "brief.title": "长上下文之争：显式记忆压缩与端到端注意力扩展，分歧加剧。",
-  "brief.subtitle": "由 Reporter Agent 综合 412 处证据、67 个信源生成。预计阅读 11 分钟。",
-  "brief.delivered": "DELIVERED · 2026·05·09 · 09:14 CST",
-  "brief.topic": "TOPIC · LLM LONG CONTEXT",
-  "brief.editor": "EDITOR · REPORTER AGENT v0.3",
-  "brief.btn.save": "★ SAVE",
-  "brief.btn.export": "EXPORT PDF",
-  "brief.btn.share": "SHARE",
-  "brief.btn.print": "PRINT",
-  "brief.alert.save": "已加入收藏",
-  "brief.alert.export": "已导出为 PDF · A4 印刷版式",
-  "brief.alert.share": "已分享给您的研究小组",
-  "brief.btn.library": "← BRIEFS LIBRARY",
-  "brief.toc": "CONTENTS",
-  "brief.toc.1": "Editor's Brief — 30秒摘要",
-  "brief.toc.2": "本周三大头条",
-  "brief.toc.3": "Curator's Synthesis — 路线之争",
-  "brief.toc.4": "与您过往工作的对话",
-  "brief.toc.5": "值得关注的反方意见",
-  "brief.toc.6": "下周的雷达",
-  "brief.s1.kicker": "§ I · EDITOR&rsquo;S BRIEF",
-  "brief.s1.label": "30秒摘要",
-  "brief.s1.body.html": "本周长上下文领域两项重磅工作落地：DeepMind 的 <em>RMT v3</em> 在 2M token 上保持线性复杂度<a class=\"cite\" href=\"ask.html?cite=1\">1</a>；Anthropic 公布 Claude 3.5 在 200K needle 任务上 99.4% 准确率<a class=\"cite\" href=\"ask.html?cite=2\">2</a>。表面看是技术突破，实则两者代表两种相互冲突的路线 —— 您的资料库中已有同源证据指向第三种可能（双层混合）。",
-  "brief.s2.kicker": "§ II · 本周三大头条",
-  "brief.s2.h1.t": "DeepMind 发布 Recurrent Memory Transformer v3",
-  "brief.s2.h1.d": "循环压缩机制在 2,097,152 token 长度上保持线性复杂度，LongBench-v2 超出 GPT-4-128K 11.2 分。",
-  "brief.s2.h2.t": "Claude 3.5 在 200K 上下文上达成 99.4% needle 准确率",
-  "brief.s2.h2.d": "跨 12 类 needle 配置全部通过；多跳子集准确率 73.1%。",
-  "brief.s2.h3.t": "GraphRAG v0.4：8K 窗口 + 外部记忆 17 项中胜 11 项",
-  "brief.s2.h3.d": "Microsoft 实证：长 QA 任务上 \"小窗口 + 强检索\" 不输纯 200K。",
-  "brief.s3.kicker": "§ III · CURATOR&rsquo;S SYNTHESIS",
-  "brief.s3.p1.html": "过去三十天内，长上下文领域共有 412 处文献证据被纳入您的资料库。其中最具影响力的是 <strong>5月7日</strong> DeepMind 的 RMT v3<a class=\"cite\" href=\"ask.html?cite=1\">1</a> 与同期 Anthropic 的 Claude 3.5 长上下文报告<a class=\"cite\" href=\"ask.html?cite=2\">2</a>。两者表面均在解决同一问题，路径却截然相反 —— 一个用<em>压缩</em>避开长序列代价，一个用<em>扩展</em>正面承担代价。",
-  "brief.s3.p2.html": "您 4月17日收藏的 <em>LongMem</em><a class=\"cite\" href=\"ask.html?cite=3\">3</a> 实际上隐含第三条道路：<strong>冻结基座 + 外部记忆模块</strong>。Microsoft 的 GraphRAG 实证<a class=\"cite\" href=\"ask.html?cite=4\">4</a> 进一步指出：在 17 项长 QA 指标中，\"小窗口 + 强检索\"在 11 项上不输纯 200K。这意味着争论的实质并非\"长 vs 短\"，而是<strong>\"信息熵在哪里被消耗\"</strong>。",
-  "brief.s3.fig": "图 1 · 三条路线在\"信息熵—成本\"二维上的位置 · 由 Curator 自动生成。",
-  "brief.s4.kicker": "§ IV · 与您过往工作的对话",
-  "brief.s4.p.html": "您 4月22日笔记 <em>#2204 \"长窗口的真实成本\"</em> 中已经指出：200K KV cache 显存是 8K 的 25 倍。本周 Lilian Weng 博客<a class=\"cite\" href=\"ask.html?cite=4\">4</a> 给出了与此一致的判断：\"长窗口的承诺在生产中被高估了\"。这意味着您 22 天前的判断<strong>已经被独立验证</strong>。",
-  "brief.s4.callout": "YOUR JUDGEMENT VALIDATED",
-  "brief.s4.callout.body": "\"200K KV cache 是 8K 的 25 倍\" · 4月22日 · 笔记 #2204 — 5月3日由 Lilian Weng 独立支持。",
-  "brief.s5.kicker": "§ V · 值得关注的反方意见",
-  "brief.s5.p1.html": "Anthropic 团队在 5月8日发表的 rebuttal memo<a class=\"cite\" href=\"ask.html?cite=5\">5</a> 指出：RMT v3 论文的\"压缩损失 ≤ 2.3%\"测试集偏向叙事文本。在 1,200 段代码补全任务上，同样的压缩器在语法密集区域损失 <strong>14.7%</strong>。这是头条工作中最值得您怀疑的细节。",
-  "brief.s5.p2.html": "HELM v3 团队<a class=\"cite\" href=\"ask.html?cite=6\">6</a> 同时提出：needle-in-haystack 任务作为评测标准已经过于简单，应转向 multi-needle + 反事实 needle。这意味着 Anthropic 的 99.4% 数字本身在评测论上将面临重新审视。",
-  "brief.s6.kicker": "§ VI · 下周的雷达",
-  "brief.s6.intro": "Radar Agent 已为下周设置 4 项重点关注：",
-  "brief.s6.l1": "RMT v3 的代码任务复现（预计 5月12日前后社区会有结果）",
-  "brief.s6.l2": "HELM v3 multi-needle 测试集发布（5月14日）",
-  "brief.s6.l3": "NeurIPS 2025 论文征稿截止前的\"长上下文\"集中投递（5月15日）",
-  "brief.s6.l4": "Anthropic 是否就 rebuttal 给出 RMT 团队回应（社区追踪中）",
-  "brief.followups": "FOLLOW-UPS · 一键发起后续研究",
-  "brief.fu.diagram": "DIAGRAM 三条路线",
-  "brief.fu.reproduce": "REPRODUCE",
-  "brief.fu.viewEvi": "VIEW ALL 412 EVIDENCE",
-  "brief.fu.challenge": "CHALLENGE THIS BRIEF",
-  "brief.fu.subscribe": "SUBSCRIBE WEEKLY",
-  "brief.fu.alert.subscribe": "已生成下周深度简报订阅",
-  "brief.colophon.tagline": "\"Find what matters before you ask for it.\"",
-  "brief.colophon.byline": "研迹 RESEARCHTRACE · A PAPER FOR ONE READER · YOU.",
-  "brief.prevnext": "PREV · No.126 · NEXT · No.128",
-  "brief.btn.library2": "LIBRARY",
-  "brief.fu.diagram.q": "画一张三条路线对比的总表",
-  "brief.fu.reproduce.q": "如何在我自己的 codebase 上复现 RMT v3",
-  "brief.fu.challenge.q": "对此周报有什么我没想到的角度",
-  "onboarding.crumb": "RESEARCHTRACE / ONBOARDING · 入门",
-  "onboarding.title": "Onboarding — 研迹 ResearchTrace",
-  "onboarding.brand": "研迹 ResearchTrace",
-  "onboarding.step": "SETUP · STEP",
-  "onboarding.skip": "SKIP →",
-  "onboarding.kicker": "VOL. III · ONBOARDING",
-  "onboarding.btn.back": "← BACK",
-  "onboarding.btn.continue": "CONTINUE →",
-  "onboarding.btn.deliver": "DELIVER MY FIRST DIGEST →",
-  "onboarding.stepLabel": "STEP",
-  "onboarding.stepOf": "OF 4",
-  "onboarding.finish.alert": "🎉 设置完成。Reporter Agent 已启动首次扫描。\n\n您的首份简报将在 24 小时内投递。",
-  "onboarding.s1.title": "Step I · 您主要做什么？",
-  "onboarding.s1.subtitle": "我们会按角色优化默认主题与 Brief 节奏 —— 您随时可改。",
-  "onboarding.s1.r1.t": "AI 产品经理",
-  "onboarding.s1.r1.d": "追踪市场结构、产品案例、定价策略",
-  "onboarding.s1.r2.t": "创业者 / 投资人",
-  "onboarding.s1.r2.d": "关注趋势报告、商业指标、典型案例",
-  "onboarding.s1.r3.t": "独立研究者",
-  "onboarding.s1.r3.d": "深读论文、追踪一线进展、构建论断图谱",
-  "onboarding.s1.r4.t": "AI 工程师",
-  "onboarding.s1.r4.d": "关注实现细节、benchmark、infra 选型",
-  "onboarding.s1.r5.t": "内容创作者",
-  "onboarding.s1.r5.d": "周更深度内容、追踪潮流话题",
-  "onboarding.s1.r6.t": "其他 / 多重角色",
-  "onboarding.s1.r6.d": "自由组合默认主题包",
-  "onboarding.s1.defaults": "DEFAULT TOPICS",
-  "onboarding.s2.title": "Step II · 选择您要追踪的主题",
-  "onboarding.s2.subtitle": "勾选 3 ~ 8 个 —— Radar Agent 将为这些主题每日扫描。",
-  "onboarding.s2.custom": "CUSTOM TOPIC ·",
-  "onboarding.s2.custom.placeholder": "例如：AI in Education / Robotics",
-  "onboarding.s2.add": "+ ADD",
-  "onboarding.s2.add.alert": "已添加自定义主题",
-  "onboarding.s3.title": "Step III · 连接您的资料源",
-  "onboarding.s3.subtitle": "至少连接一个 —— 否则 Inbox 将是空的。可选多种。",
-  "onboarding.s3.s1.t": "📧 邮件转发",
-  "onboarding.s3.s1.d": "使用您的专属邮箱：forward@mail.researchtrace.app",
-  "onboarding.s3.s1.cta": "复制邮箱地址",
-  "onboarding.s3.s2.t": "🌐 Chrome / Edge 扩展",
-  "onboarding.s3.s2.d": "一键保存任何网页 + Twitter 主串 + Reddit",
-  "onboarding.s3.s2.cta": "安装扩展",
-  "onboarding.s3.s3.t": "📁 拖放 / 上传 PDF",
-  "onboarding.s3.s3.d": "支持 PDF、Word、TXT、Markdown，单次最多 50 项",
-  "onboarding.s3.s3.cta": "打开文件选择器",
-  "onboarding.s3.s4.t": "📒 Notion / Obsidian / Readwise 同步",
-  "onboarding.s3.s4.d": "双向同步您的现有笔记库 (oauth)",
-  "onboarding.s3.s4.cta": "开始连接",
-  "onboarding.s3.s5.t": "📺 YouTube / Podcast 订阅",
-  "onboarding.s3.s5.d": "自动转录 + 章节切分 + 关键论断抽取",
-  "onboarding.s3.s5.cta": "添加频道",
-  "onboarding.s3.s6.t": "🐦 X / Twitter 列表",
-  "onboarding.s3.s6.d": "订阅信息节点账号，长串自动整理",
-  "onboarding.s3.s6.cta": "绑定账号",
-  "onboarding.s3.connected": "✓ CONNECTED",
-  "onboarding.s3.tip.html": "💡 我们建议至少连接 <strong>邮件转发</strong> + <strong>Chrome 扩展</strong>，这是最高频的两个入口。",
-  "onboarding.s4.title": "Step IV · 您的第一份简报",
-  "onboarding.s4.subtitle": "Reporter Agent 将基于您的选择，于 24 小时内交付您的初始简报。",
-  "onboarding.s4.delivery": "DELIVERY SCHEDULE",
-  "onboarding.s4.d1.k": "首次扫描",
-  "onboarding.s4.d1.v": "今天 23:00 自动启动",
-  "onboarding.s4.d2.k": "首份简报",
-  "onboarding.s4.d2.v": "明日 08:00 投递",
-  "onboarding.s4.d3.k": "每周回顾",
-  "onboarding.s4.d3.v": "每周一 08:00",
-  "onboarding.s4.d4.k": "每月长读",
-  "onboarding.s4.d4.v": "每月 1 日 08:00",
-  "onboarding.s4.channel": "PREFERRED CHANNEL",
-  "onboarding.s4.ch.app": "应用内",
-  "onboarding.s4.ch.email": "邮件",
-  "onboarding.s4.ch.rss": "RSS",
-  "onboarding.s4.ch.wechat": "微信小程序",
-  "onboarding.s4.depth": "DEPTH PREFERENCE",
-  "onboarding.s4.depth.short": "SHORT · 5 min",
-  "onboarding.s4.depth.std": "STANDARD · 10 min",
-  "onboarding.s4.depth.deep": "DEEP · 20 min",
-  "onboarding.s4.preview": "PREVIEW · 您的首份简报会长这样",
-  "onboarding.s4.preview.kicker": "YOUR FIRST DIGEST · No.001",
-  "onboarding.s4.preview.title": "本周 5 个主题的初始扫描总览",
-  "onboarding.s4.preview.sub": "由 Reporter Agent 综合 ~120 项初始证据 · 阅读 9 分钟",
-  "onboarding.s4.preview.cta": "CLICK TO PREVIEW →",
-  "onboarding.s2.t1.zh": "长上下文",
-  "onboarding.s2.t2.zh": "自主智能体",
-  "onboarding.s2.t3.zh": "模型评测",
-  "onboarding.s2.t4.zh": "检索增强",
-  "onboarding.s2.t5.zh": "产品策略",
-  "onboarding.s2.t6.zh": "对齐与安全",
-  "onboarding.s2.t7.zh": "多模态",
-  "onboarding.s2.t8.zh": "推理数学",
-  "onboarding.s2.t9.zh": "开源模型",
-  "onboarding.s2.t10.zh": "基础设施",
-  "onboarding.s2.t11.zh": "微调",
-  "onboarding.s2.t12.zh": "语音实时",
-  "settings.crumb": "RESEARCHTRACE / SETTINGS · 设置",
-  "settings.kicker": "VOL. III · SETTINGS · 偏好",
-  "settings.title": "Settings",
-  "settings.lede": "控制 Agent 的行为、订阅节奏，以及您的数据归属。",
-  "settings.nav.profile": "Profile · 个人资料",
-  "settings.nav.delivery": "Delivery · 简报节奏与渠道",
-  "settings.nav.agents": "Agents · AI 行为偏好",
-  "settings.nav.sources": "Sources · 信源管理",
-  "settings.nav.plan": "Plan & Billing · 订阅",
-  "settings.nav.data": "Data & Privacy · 数据隐私",
-  "settings.btn.logout": "↩ LOG OUT",
-  "settings.profile.kicker": "§ 01 · PROFILE",
-  "settings.profile.change": "CHANGE",
-  "settings.profile.alert": "打开头像上传器",
-  "settings.profile.k1": "显示名",
-  "settings.profile.v1": "郁文 Yuwen",
-  "settings.profile.k2": "邮箱",
-  "settings.profile.v2": "yuwen@research.trace",
-  "settings.profile.k3": "主要角色",
-  "settings.profile.v3": "AI 产品经理 + 独立研究者",
-  "settings.profile.k4": "所在时区",
-  "settings.profile.v4": "Asia/Shanghai (UTC+8)",
-  "settings.profile.k5": "语言偏好",
-  "settings.profile.v5": "简体中文 / English",
-  "settings.profile.k6": "专属转发邮箱",
-  "settings.profile.v6": "forward@mail.researchtrace.app",
-  "settings.delivery.kicker": "§ 02 · DELIVERY",
-  "settings.delivery.cadence": "投递节奏",
-  "settings.delivery.r1.k": "每日 Today Digest",
-  "settings.delivery.r1.v": "每天 08:00",
-  "settings.delivery.r2.k": "每周 Weekly Brief",
-  "settings.delivery.r2.v": "每周一 08:00",
-  "settings.delivery.r3.k": "每月 Long Read",
-  "settings.delivery.r3.v": "每月 1 日 08:00",
-  "settings.delivery.r4.k": "重大事件 Deep Dive",
-  "settings.delivery.r4.v": "HEAT ≥ 4 自动触发",
-  "settings.delivery.r5.k": "每周不读则提醒",
-  "settings.delivery.r5.v": "本周内未读 → 周日 18:00 提醒",
-  "settings.delivery.channels": "投递渠道",
-  "settings.delivery.ch.app": "应用内",
-  "settings.delivery.ch.email": "邮件",
-  "settings.delivery.ch.rss": "RSS",
-  "settings.delivery.ch.wechat": "微信小程序",
-  "settings.delivery.ch.slack": "Slack DM",
-  "settings.delivery.ch.tg": "Telegram Bot",
-  "settings.agents.kicker": "§ 03 · AGENTS",
-  "settings.agents.lede": "5 个 Agent 在为您工作。点击查看每个 Agent 的最近行为日志。",
-  "settings.agents.alert": "打开 Agent 行为日志 · 含 prompt、调用记录、token 用量",
-  "settings.agents.alertPrefix": "打开 ",
-  "settings.agents.alertSuffix": " Agent 行为日志 · 含 prompt、调用记录、token 用量",
-  "settings.agents.a1.zh": "摄取",
-  "settings.agents.a1.d": "解析 PDF/URL/视频",
-  "settings.agents.a2.zh": "策展",
-  "settings.agents.a2.d": "抽取论断、构建图谱",
-  "settings.agents.a3.zh": "检索",
-  "settings.agents.a3.d": "BM25 + 向量混检",
-  "settings.agents.a4.zh": "雷达",
-  "settings.agents.a4.d": "监测信源、触发告警",
-  "settings.agents.a5.zh": "撰稿",
-  "settings.agents.a5.d": "周报/月报/Deep Dive",
-  "settings.agents.a1.last": "3 分钟前",
-  "settings.agents.a2.last": "7 分钟前",
-  "settings.agents.a3.last": "刚刚",
-  "settings.agents.a4.last": "23:00 next",
-  "settings.agents.a5.last": "今晨 08:00",
-  "settings.agents.last": "LAST · ",
-  "settings.agents.routing": "语言模型路由",
-  "settings.agents.r1.k": "TASK · 摘要 / 简报",
-  "settings.agents.r2.k": "TASK · 抽取论断",
-  "settings.agents.r3.k": "TASK · 长上下文综合",
-  "settings.agents.routeChange": "切换模型路由",
-  "settings.plan.kicker": "§ 05 · PLAN & BILLING",
-  "settings.plan.current": "CURRENT PLAN · RESEARCH PRO",
-  "settings.plan.price": "$29 / 月 · 已订阅 4 个月",
-  "settings.plan.next": "下一次扣费：2026·06·09 · 自动续订已开启",
-  "settings.plan.btn.change": "CHANGE PLAN",
-  "settings.plan.btn.pause": "PAUSE AUTO-RENEW",
-  "settings.plan.alert.pause": "已暂停自动续订",
-  "settings.data.kicker": "§ 06 · DATA & PRIVACY",
-  "settings.data.lede": "您的数据是您的。我们不用于训练任何公开模型，且支持完整导出与销毁。",
-  "settings.data.r1.k": "导出全部数据",
-  "settings.data.r1.d": "以 zip 含 markdown + 原始文件 + 知识图谱 JSON",
-  "settings.data.r1.cta": "导出",
-  "settings.data.r2.k": "销毁账号与全部数据",
-  "settings.data.r2.d": "30 天内可恢复，过后不可逆",
-  "settings.data.r2.cta": "销毁",
-  "settings.data.r3.k": "训练数据使用",
-  "settings.data.r3.d": "禁止用于公共模型训练 · 当前：已禁用",
-  "settings.data.r3.cta": "已禁用",
-  "settings.data.r4.k": "端到端加密笔记",
-  "settings.data.r4.d": "为您的私人笔记启用 E2EE",
-  "settings.data.r4.cta": "启用",
-  "settings.data.alertSuffix": "操作已记录",
-  "pricing.crumb": "RESEARCHTRACE / PRICING · 订阅方案",
-  "pricing.kicker": "VOL. III · PRICING",
-  "pricing.title": "为认真做研究的人而生。",
-  "pricing.lede": "不是另一个 ChatGPT 包装层。是一份只为您一人编辑的研究报。下方四档，覆盖从尝试到团队协作。",
-  "pricing.monthly": "月付",
-  "pricing.yearly": "年付 · 省 17%",
-  "pricing.yearly.alert": "已切换至年付 · 整体优惠约 17%",
-  "pricing.faq": "FREQUENTLY ASKED",
-  "pricing.eduTitle": "EDU / NON-PROFIT · 教育与公益折扣",
-  "pricing.eduBody": "学生、教师、研究机构、公益组织 · 50% off",
-  "pricing.eduSub": "使用 .edu / 机构邮箱注册自动获得 · 不限方案档位",
-  "pricing.eduCta": "APPLY NOW →",
-  "pricing.eduCta.alert": "打开教育认证流程",
-  "pricing.popular": "★ MOST POPULAR",
-  "pricing.your": "YOUR PLAN",
-  "pricing.btn.current": "CURRENT PLAN",
-  "pricing.btn.free": "START FREE →",
-  "pricing.btn.contact": "CONTACT SALES →",
-  "pricing.btn.trial": "START 14-DAY TRIAL →",
-  "pricing.alert.current": "您当前正在使用此方案",
-  "pricing.alert.trial": "开始 14 天免费试用 · 无需信用卡",
-  "pricing.p1.name": "Free",
-  "pricing.p1.zh": "免费",
-  "pricing.p1.period": "永久",
-  "pricing.p1.pitch": "开始体验主动研究 · 限制额度",
-  "pricing.p2.name": "Pro",
-  "pricing.p2.zh": "个人",
-  "pricing.p2.period": "/ 月",
-  "pricing.p2.pitch": "个人研究者的标配 · 取消随时",
-  "pricing.p3.name": "Research Pro",
-  "pricing.p3.zh": "研究专业",
-  "pricing.p3.period": "/ 月",
-  "pricing.p3.pitch": "独立研究者 / 创业者的核心生产工具",
-  "pricing.p4.name": "Team",
-  "pricing.p4.zh": "小组",
-  "pricing.p4.period": "/ 月 / 5 席",
-  "pricing.p4.pitch": "研究小组共享主题与简报",
-  "pricing.feat.topics": "主题",
-  "pricing.feat.vault": "Vault 容量",
-  "pricing.feat.calls": "每日 Agent 调用",
-  "pricing.feat.briefs": "每月简报",
-  "pricing.feat.channel": "渠道",
-  "pricing.feat.routing": "模型路由",
-  "pricing.feat.evidence": "证据引用",
-  "pricing.feat.export": "导出数据",
-  "pricing.feat.sync": "Chrome / Notion 同步",
-  "pricing.feat.fwd": "邮件转发",
-  "pricing.feat.e2ee": "E2EE 加密笔记",
-  "pricing.feat.priority": "优先响应 + 抢先体验",
-  "pricing.feat.seats": "席位",
-  "pricing.feat.shared": "共享 Vault",
-  "pricing.feat.sharedT": "共享主题",
-  "pricing.feat.sharedB": "共享简报",
-  "pricing.feat.admin": "管理后台",
-  "pricing.feat.private": "私有部署选项",
-  "pricing.feat.cs": "专属客户成功",
-  "pricing.v.p1.topics": "1 个",
-  "pricing.v.p1.vault": "100 项",
-  "pricing.v.p1.calls": "20 次",
-  "pricing.v.p1.briefs": "2 份",
-  "pricing.v.p1.channel": "仅应用内",
-  "pricing.v.p1.routing": "固定 GPT-4o-mini",
-  "pricing.v.p1.evidence": "✓",
-  "pricing.v.p1.export": "Markdown / JSON",
-  "pricing.v.p2.topics": "8 个",
-  "pricing.v.p2.vault": "2,000 项",
-  "pricing.v.p2.calls": "500 次",
-  "pricing.v.p2.briefs": "20 份 + Deep Dive 5 次",
-  "pricing.v.p2.channel": "应用内 / 邮件 / RSS",
-  "pricing.v.p2.routing": "Claude / GPT / Gemini 自动",
-  "pricing.v.p2.sync": "✓",
-  "pricing.v.p2.fwd": "✓ 专属邮箱",
-  "pricing.v.p3.topics": "无限",
-  "pricing.v.p3.vault": "无限",
-  "pricing.v.p3.calls": "5,000 次",
-  "pricing.v.p3.briefs": "无限 + Deep Dive 20 次",
-  "pricing.v.p3.channel": "全渠道 + 微信 / Slack / TG",
-  "pricing.v.p3.routing": "顶级模型优先 (Sonnet / Opus / GPT-4)",
-  "pricing.v.p3.e2ee": "✓",
-  "pricing.v.p3.priority": "✓",
-  "pricing.v.p4.seats": "5 (可加购 +$15/席)",
-  "pricing.v.p4.shared": "全员可读 + 权限控制",
-  "pricing.v.p4.sharedT": "✓ 协作策展",
-  "pricing.v.p4.sharedB": "✓ 含评论",
-  "pricing.v.p4.admin": "审计日志 + SSO",
-  "pricing.v.p4.routing": "顶级模型 + 自带 API key",
-  "pricing.v.p4.private": "加价模块",
-  "pricing.v.p4.cs": "✓",
-  "pricing.faq.q1": "与 ChatGPT / Perplexity 有什么不同？",
-  "pricing.faq.a1": "它们答任何问题；研迹只答您的问题，且基于您的资料库。每次回答都附可点击的引用。",
-  "pricing.faq.q2": "数据会被用于训练吗？",
-  "pricing.faq.a2": "不会。我们的合同条款包含 \"opt-out by default\"，您的资料库不进入任何公共训练集。",
-  "pricing.faq.q3": "可以离线 / 私有部署吗？",
-  "pricing.faq.a3": "Team 方案以上支持自带 API key 与 VPC 部署，企业版支持 fully on-prem。",
-  "pricing.faq.q4": "我可以随时取消吗？",
-  "pricing.faq.a4": "随时。取消后保留只读访问 14 天，可随时导出全部数据。",
-  "pricing.faq.q5": "我现有的 Notion / Obsidian 笔记呢？",
-  "pricing.faq.a5": "支持双向同步。您不需要「迁移」，研迹与您现有工具共存。",
-  "pricing.faq.q6": "支持中文吗？",
-  "pricing.faq.a6": "原生支持。中英双语 UI、双语简报、混合语料检索均经过专门优化。",
-  "topic.crumb": "RESEARCHTRACE / TOPIC · 主题详情",
-  "topic.crumbPrefix": "RESEARCHTRACE / TOPICS / ",
-  "topic.allTopics": "← ALL TOPICS",
-  "topic.no": "TOPIC No. ",
-  "topic.stat.items": "ITEMS",
-  "topic.stat.claims": "CLAIMS",
-  "topic.stat.evidence": "EVIDENCE",
-  "topic.stat.briefs": "BRIEFS",
-  "topic.stat.sources": "SOURCES",
-  "topic.btn.pinned": "★ PINNED",
-  "topic.btn.settings": "SETTINGS",
-  "topic.alert.pin": "已订阅 / 取消订阅 该主题",
-  "topic.alert.settings": "打开主题设置",
-  "topic.tab.overview": "总览",
-  "topic.tab.sources": "信源",
-  "topic.tab.claims": "观点",
-  "topic.tab.evidence": "证据",
-  "topic.tab.radar": "雷达",
-  "topic.tab.briefs": "简报",
-  "topic.ov.kicker": "EDITOR&rsquo;S SYNTHESIS · 由 REPORTER AGENT 综述 · 5月8日 23:47",
-  "topic.ov.h1": "长上下文之争：显式记忆压缩与端到端注意力扩展，分歧加剧。",
-  "topic.ov.brief.label": "EDITOR&rsquo;S BRIEF · 30秒摘要",
-  "topic.ov.brief.body.html": "本主题在过去 30 天积累了 <strong>38 项关键论断</strong>、<strong>412 处证据</strong>。两条主流路线正在分化 —— <strong>路线 A（DeepMind/Anthropic 系）</strong>主张端到端扩展注意力上下文窗口；<strong>路线 B（Microsoft Research/MemGPT 系）</strong>主张以外部 episodic memory 替代长窗口。Curator 认为：两者并非互斥，更可能在 2026 年下半年走向\"双层混合\"架构。",
-  "topic.ov.p1.html": "过去三十天内，长上下文这一领域共有 <a href=\"topic.html?t=llm-longctx&tab=evidence\" class=\"link-red\">412 篇文献证据</a>被纳入您的资料库。其中最具影响的是 <strong>5月7日</strong> DeepMind 发布的 Recurrent Memory Transformer v3，它以循环压缩机制在 2,097,152 token 长度上保持线性复杂度<a class=\"cite\" href=\"ask.html?cite=rmt-v3\">1</a>。同期 Anthropic 公开了 Claude 3.5 在 200K 上下文上的 needle-in-haystack 评测，跨 12 类配置全部通过，准确率 99.4%<a class=\"cite\" href=\"ask.html?cite=claude-needle\">2</a>。",
-  "topic.ov.p2.html": "然而，您 4月17日 收藏的 <em>LongMem</em> 论文<a class=\"cite\" href=\"ask.html?cite=longmem\">3</a> 隐含的另一条道路 —— 即用外部记忆模块\"假装\"长上下文 —— 并未消亡。Microsoft Research 在 5月3日 提出的 GraphRAG v0.4 实验中显示<a class=\"cite\" href=\"ask.html?cite=graphrag\">4</a>，对 1M token 文档的 QA 任务，外部记忆 + 8K 窗口的组合在 17 项指标中 11 项优于纯 200K 上下文方案。这意味着两条路线在不同任务结构上各占胜场。",
-  "topic.ov.h3": "三个您需要知道的分歧",
-  "topic.ov.li1.html": "<strong>压缩损失之争 ——</strong> RMT v3 论文称压缩损失 ≤ 2.3%，但 Anthropic 团队指出其测试集偏向\"叙事文本\"，在代码 / 表格类长上下文上损失会被低估<a class=\"cite\" href=\"ask.html?cite=anth-rebuttal\">5</a>。",
-  "topic.ov.li2.html": "<strong>定位检索之争 ——</strong> needle-in-haystack 是否仍是有效评测？HELM v3 团队认为单 needle 任务已过于简单，应转向 multi-needle + 反事实 needle<a class=\"cite\" href=\"ask.html?cite=helm-v3\">6</a>。",
-  "topic.ov.li3.html": "<strong>推理成本之争 ——</strong> 您 4月22日的笔记 <a href=\"ask.html?cite=note-2204\" class=\"link-red\">\"长窗口的真实成本\"</a>已指出：在生产系统中 200K 上下文的 KV cache 显存占用是 8K 的 25 倍，这一点尚未被任何头条工作正视。",
-  "topic.ov.btn.diagram": "DIAGRAM IT →",
-  "topic.ov.btn.findSimilar": "FIND SIMILAR",
-  "topic.ov.btn.allClaims": "SEE ALL 38 CLAIMS",
-  "topic.ov.btn.deepBrief": "GENERATE DEEP BRIEF",
-  "topic.ov.alert.deepBrief": "已生成本主题深度简报，将在邮箱与 Briefs 出现",
-  "topic.ov.fig.html": "图 1 · 由 Curator Agent 自动生成的领域知识图谱：5 个主要研究流派、12 个关键 milestone。<a href=\"ask.html?q=展开图 1 的每个节点\" class=\"link-red\">点此交互探索 →</a>",
-  "topic.ov.fact.label": "TOPIC FACTSHEET",
-  "topic.ov.fact.k1": "TRACKED SINCE",
-  "topic.ov.fact.v1": "2026·01·14",
-  "topic.ov.fact.k2": "LAST UPDATE",
-  "topic.ov.fact.v2": "5 分钟前",
-  "topic.ov.fact.k3": "NEXT SCAN",
-  "topic.ov.fact.v3": "今晚 23:00",
-  "topic.ov.fact.k4": "SCAN FREQUENCY",
-  "topic.ov.fact.v4": "DAILY · 09 SOURCES",
-  "topic.ov.fact.k5": "READER",
-  "topic.ov.fact.v5": "郁文 · OWNER",
-  "topic.ov.radar": "RADAR · 信源覆盖",
-  "topic.ov.radar.seeAll": "SEE ALL",
-  "topic.ov.radar.sources": " SOURCES →",
-  "topic.ov.notes": "YOUR RECENT NOTES",
-  "topic.ov.note1": "\"长窗口的真实成本：KV cache 显存占用是 8K 的 25 倍…\"",
-  "topic.ov.note2": "\"压缩损失 ≤ 2.3% 的说法在代码任务上不成立。\"",
-  "topic.ov.note3": "\"双层混合架构是 2026 H2 最可能的统一形态。\"",
-  "topic.ov.askDiagram": "画一张长上下文路线之争的对比表",
-  "topic.ov.askSimilar": "对比 RMT v3 与 GraphRAG 在长 QA 上的差异",
-  "topic.ov.personalSaves": "Personal Saves",
-  "topic.ov.alert.openNote": "打开知识卡片 ",
-  "topic.src.title": "All Sources",
-  "topic.src.showing": "SHOWING 1–10 OF 67",
-  "topic.src.add": "+ ADD SOURCE",
-  "topic.src.alert.add": "已添加新信源订阅",
-  "topic.src.filter": "FILTER · 67 SOURCES",
-  "topic.src.byType": "BY TYPE",
-  "topic.src.byYear": "BY YEAR",
-  "topic.src.byMark": "BY MARK",
-  "topic.src.savedByYou": "SAVED BY YOU",
-  "topic.src.highlighted": "HIGHLIGHTED",
-  "topic.src.claims": " claims",
-  "topic.src.evidence": " evidence",
-  "topic.src.deepRead": "深读 ",
-  "topic.src.s1.title": "Recurrent Memory Transformer v3",
-  "topic.src.s1.auth": "Bulatov et al., DeepMind",
-  "topic.src.s2.title": "Long-Context Capabilities of Claude 3.5 Sonnet",
-  "topic.src.s2.auth": "Anthropic Research",
-  "topic.src.s2.venue": "Anthropic Tech Report",
-  "topic.src.s3.title": "LongMem: Augmented Memory for Frozen LLMs",
-  "topic.src.s4.title": "Why 200K Context May Not Be the Answer",
-  "topic.src.s5.title": "GraphRAG: Local-Global Reasoning for QA",
-  "topic.src.s5.auth": "Edge et al., Microsoft",
-  "topic.src.s6.title": "StreamingLLM: Efficient Streaming with Attention Sinks",
-  "topic.src.s7.title": "State of Long-Context LLMs: HELM v3 Slice",
-  "topic.src.s7.auth": "CRFM Stanford",
-  "topic.src.s8.title": "Andrej Karpathy on Memory in LLMs",
-  "topic.src.s9.title": "MemGPT: LLMs as Operating Systems",
-  "topic.src.s10.title": "Latent Space: This Week in Long Context",
-  "topic.src.d.may7": "5月7日",
-  "topic.src.d.apr17saved": "4月17日 saved",
-  "topic.src.d.may3": "5月3日",
-  "topic.src.d.apr22saved": "4月22日 saved",
-  "topic.src.d.mar12saved": "3月12日 saved",
-  "topic.src.d.may1": "5月1日",
-  "topic.src.d.apr29": "4月29日",
-  "topic.src.d.feb8saved": "2月8日 saved",
-  "topic.src.d.may5": "5月5日",
-  "topic.src.alert.page": "页 ",
-  "topic.src.alert.next": "下一页",
-  "topic.cl.title": "Claims · 38 项关键论断",
-  "topic.cl.note": "每项论断都附支持/反驳证据 · 按置信度排序",
-  "topic.cl.lede": "由 Curator Agent 从 67 个信源中提取，并以 Reranker 对齐到证据图谱。",
-  "topic.cl.f.all": "ALL · 38",
-  "topic.cl.f.long": "PRO LONG-CONTEXT · 14",
-  "topic.cl.f.mem": "PRO MEMORY · 11",
-  "topic.cl.f.cost": "COST CONCERN · 5",
-  "topic.cl.f.eval": "EVAL CONCERN · 4",
-  "topic.cl.f.fcst": "FORECAST · 4",
-  "topic.cl.cited": "CITED FROM · ",
-  "topic.cl.supporting": " SUPPORTING",
-  "topic.cl.contra": " CONTRADICTING",
-  "topic.cl.askAgent": "▸ ASK AGENT",
-  "topic.cl.askPrefix": "深入解读论断：",
-  "topic.cl.confidence": "CONFIDENCE",
-  "topic.cl.c1": "循环记忆压缩可在 2M token 上保持线性复杂度，损失 ≤ 2.3%",
-  "topic.cl.c2": "Claude 3.5 在 200K needle-in-haystack 上达成 99.4% 准确率",
-  "topic.cl.c3": "外部记忆模块 + 短窗口在 17 项 QA 指标中 11 项优于纯长上下文",
-  "topic.cl.c4": "压缩损失在代码与表格任务上被严重低估",
-  "topic.cl.c5": "200K 上下文 KV cache 显存占用是 8K 的 25 倍 (生产成本论)",
-  "topic.cl.c6": "needle-in-haystack 任务已过于简单，应转向 multi-needle 测试",
-  "topic.cl.c7": "双层混合（长窗口 + episodic memory）将成为 2026 H2 主流",
-  "topic.cl.c8": "Attention sink 现象在所有 long context LLM 中均存在",
-  "topic.cl.by1": "Bulatov et al.",
-  "topic.cl.by2": "Anthropic",
-  "topic.cl.by3": "GraphRAG paper",
-  "topic.cl.by4": "Anthropic rebuttal",
-  "topic.cl.by5": "您的笔记 #2204",
-  "topic.cl.by6": "HELM v3 team",
-  "topic.cl.by7": "Curator Agent",
-  "topic.cl.by8": "StreamingLLM",
-  "topic.evi.title": "Evidence · 412 处证据",
-  "topic.evi.note": "每一处都来自原文 · 可点击直达 PDF 高亮位置",
-  "topic.evi.supports": "EVIDENCE · supports ",
-  "topic.evi.yourNote": "YOUR NOTE",
-  "topic.evi.expand": "EXPAND CONTEXT",
-  "topic.evi.openPdf": "OPEN IN PDF",
-  "topic.evi.saveCard": "SAVE AS CARD",
-  "topic.evi.findContra": "FIND CONTRADICTIONS",
-  "topic.evi.expandPrefix": "展开证据 #",
-  "topic.evi.contraPrefix": "与证据 #",
-  "topic.evi.contraSuffix": " 矛盾的工作有哪些?",
-  "topic.evi.alert.openPdf": "已打开 PDF 第 ",
-  "topic.evi.alert.openPdfTail": " 页高亮",
-  "topic.evi.alert.savedCard": "已添加为知识卡片",
-  "topic.evi.e1.title": "§2.3 Memory Compression Loss Curve",
-  "topic.evi.e1.source": "Bulatov et al. 2025 · Fig 4",
-  "topic.evi.e2.title": "Needle-in-Haystack 12 Categories",
-  "topic.evi.e2.source": "Anthropic Tech Report 2025-05",
-  "topic.evi.e3.title": "GraphRAG vs Pure Long-Context QA Comparison",
-  "topic.evi.e3.source": "Edge et al. 2024 · Table 6",
-  "topic.evi.e4.title": "KV Cache Memory Footprint Calculation",
-  "topic.evi.e4.source": "您的笔记 #2204 · 4月22日",
-  "topic.evi.e5.title": "Code Task Compression Loss Audit",
-  "topic.evi.e5.source": "Anthropic Rebuttal Memo (5月8日)",
-  "topic.rd.title": "Radar · 信源监测与告警",
-  "topic.rd.lede": "每天 23:00 由 Radar Agent 自动扫描 9 个信源，并在异常增量出现时主动告警。",
-  "topic.rd.recent": "RECENT 14 DAYS · ALERTS & SCANS",
-  "topic.rd.e1.t": "Anthropic 发布 200K needle 测试报告",
-  "topic.rd.e1.note": "该工作直接挑战 RMT v3 的『端到端 vs 压缩』路线",
-  "topic.rd.e2.t": "DeepMind RMT v3 发布",
-  "topic.rd.e2.note": "上线 30 分钟内 arXiv 引用激增 23 次，触发热度告警",
-  "topic.rd.e3.t": "日常扫描 · 抓取 14 项新增",
-  "topic.rd.e3.note": "涵盖 arXiv (8) + 推特 (3) + Anthropic Blog (1) + GitHub (2)",
-  "topic.rd.e4.t": "swyx 周报特别提到 LongMem",
-  "topic.rd.e4.note": "间接证实您 4月17日收藏的判断",
-  "topic.rd.e5.t": "日常扫描 · 抓取 9 项新增",
-  "topic.rd.e6.t": "日常扫描 · 抓取 11 项新增",
-  "topic.rd.e1.date": "5月8日 23:47",
-  "topic.rd.e2.date": "5月7日 16:22",
-  "topic.rd.e3.date": "5月6日 23:00",
-  "topic.rd.e4.date": "5月5日 09:14",
-  "topic.rd.e5.date": "5月4日 23:00",
-  "topic.rd.e6.date": "5月3日 23:00",
-  "topic.rd.threshold": "ALERT THRESHOLDS",
-  "topic.rd.t1.k": "新增信源 ≥",
-  "topic.rd.t1.v": "5 / 24h",
-  "topic.rd.t2.k": "头条工作引用 ≥",
-  "topic.rd.t2.v": "20 次",
-  "topic.rd.t3.k": "与已有论断矛盾",
-  "topic.rd.t3.v": "触发即告警",
-  "topic.rd.t4.k": "关键词突现",
-  "topic.rd.t4.v": "HEAT ≥ 4",
-  "topic.rd.editTh": "EDIT THRESHOLDS",
-  "topic.rd.alert.editTh": "打开告警阈值设置",
-  "topic.rd.coverage": "SCAN COVERAGE",
-  "topic.rd.daily": "SOURCES SCANNED DAILY",
-  "topic.rd.addSrc": "+ ADD SOURCE",
-  "topic.rd.alert.addSrc": "打开信源管理面板",
-  "topic.br.title": "Briefs · 本主题简报存档",
-  "topic.br.btn.gen": "GENERATE NEW BRIEF",
-  "topic.br.alert.gen": "正在生成此主题深度简报…",
-  "topic.br.read": "READ →",
-  "topic.br.unread": "UNREAD",
-  "topic.br.b1.t": "长上下文之争：显式记忆压缩与端到端注意力扩展",
-  "topic.br.b1.tag": "WEEKLY DIGEST",
-  "topic.br.b1.date": "今日 08:00",
-  "topic.br.b2.t": "RMT v3 深度拆解：三个不能忽视的细节",
-  "topic.br.b2.tag": "DEEP DIVE · TRIGGERED",
-  "topic.br.b2.date": "5月7日 22:00",
-  "topic.br.b3.t": "过去 30 天长上下文领域全景回顾",
-  "topic.br.b3.tag": "MONTHLY",
-  "topic.br.b3.date": "5月1日 08:00",
-  "topic.br.b4.t": "GraphRAG vs LongMem：路线对比",
-  "topic.br.b4.tag": "WEEKLY DIGEST",
-  "topic.br.b4.date": "4月25日 08:00",
-  "topic.br.b5.t": "长上下文评测：当 needle 已经不够用",
-  "topic.br.b5.tag": "WEEKLY DIGEST",
-  "topic.br.b5.date": "4月18日 08:00",
-  "topic.br.b6.t": "StreamingLLM 实证报告整理",
-  "topic.br.b6.tag": "WEEKLY DIGEST",
-  "topic.br.b6.date": "4月11日 08:00",
-  "topic.br.b7.t": "主题创建 · 初始扫描简报",
-  "topic.br.b7.tag": "INITIAL",
-  "topic.br.b7.date": "1月14日 12:00",
-  "topic.br.b8.t": "主题概览 · 由您创建",
-  "topic.br.b8.tag": "GENESIS",
-  "topic.br.b8.date": "1月14日 11:42"
+  "shell": {
+    "search": "在您的全部知识中提问…",
+    "userName": "郁文",
+    "vault": {
+      "_value": "资料库",
+      "value": "2,438 项"
+    },
+    "briefs": {
+      "_value": "简报",
+      "value": "36 期已归档"
+    },
+    "plan": {
+      "_value": "套餐",
+      "value": "RESEARCH PRO"
+    },
+    "section": {
+      "workspace": "工作区",
+      "pinned": "钉选主题",
+      "account": "账户"
+    }
+  },
+  "nav": {
+    "today": "今日",
+    "topics": "主题",
+    "ask": "提问",
+    "briefs": "简报",
+    "inbox": "收件箱",
+    "settings": "设置",
+    "pricing": "定价",
+    "landing": "落地页",
+    "topic": {
+      "llm": "LLM 长上下文",
+      "agent": "智能体工作流",
+      "eval": "AI 评测",
+      "rag": "RAG 与记忆",
+      "pm": "AI 产品策略"
+    }
+  },
+  "switcher": {
+    "lang": {
+      "label": "EN",
+      "title": "Switch to English"
+    },
+    "theme": {
+      "title": {
+        "toDark": "切换到暗黑模式",
+        "toLight": "切换到亮色模式"
+      }
+    }
+  },
+  "common": {
+    "confirmLogout": "确定登出？",
+    "confirmSkip": "跳过设置？",
+    "shareSuccess": "已分享当前问答给您的研究小组",
+    "savedAsCard": "已保存为知识卡片 · 自动归类到 LLM Long Context 主题"
+  },
+  "landing": {
+    "title": "研迹 ResearchTrace · A Paper for One Reader. You.",
+    "nav": {
+      "why": "为什么",
+      "how": "如何工作",
+      "agents": "五个 Agent",
+      "pricing": "定价",
+      "briefs": "简报样例",
+      "signin": "登录"
+    },
+    "cta": {
+      "trial": {
+        "_value": "开始 14 天免费试用 →",
+        "short": "开始免费试用 →"
+      },
+      "demo": "查看示例工作台 →",
+      "compare": "比较方案",
+      "last": "最后一件事",
+      "title": {
+        "html": "您不缺信息。<br/>您缺一份只为您写的报。"
+      },
+      "body": "14 天免费试用，无需信用卡。导入您现有的 Notion / Pocket / Readwise，明早 8 点您会收到第一份简报。"
+    },
+    "masthead": {
+      "vol": "VOL. III · ISSUE 001 · LAUNCH EDITION",
+      "est": "EST. 2026 · BEIJING / SAN FRANCISCO",
+      "price": "PRICE · TIME ONLY"
+    },
+    "hero": {
+      "kicker": "A NEW KIND OF READING",
+      "title": {
+        "html": "一份只为<br/>一位读者<br/>编辑的报。<br/><span style=\"color:var(--accent-red);\">您。</span>"
+      },
+      "lede": {
+        "html": "研迹是一份<em>主动写作</em>的研究报 —— 它持续读您所读，追踪您所追，每天清晨在您打开它之前，把「<strong>本周您该知道的</strong>」已经编辑成一份真正可读的报刊。证据齐备，引用可点。"
+      },
+      "fig": "图 · 由您的资料库自动生成的个人知识图谱（示意）",
+      "users": "使用者来自 ·"
+    },
+    "stats": {
+      "evidence": {
+        "_value": "证据可点击",
+        "n": "100%"
+      },
+      "trace": {
+        "_value": "AI 调用追溯",
+        "n": "完整"
+      },
+      "data": {
+        "_value": "数据归您",
+        "n": "E2EE"
+      },
+      "train": {
+        "_value": "训练免疫",
+        "n": "✓"
+      }
+    },
+    "why": {
+      "kicker": "§ I · 为什么需要研迹",
+      "headline": "您每天保存 23 条链接，只读了 3 条。",
+      "sub": "这不是您的错。是工具的错。",
+      "01": {
+        "title": "被动收集 → 主动遗忘",
+        "body": {
+          "html": "现有笔记工具像仓库 —— 资料堆积越多，您离它越远。研迹反过来：它<strong>主动读您的库</strong>，并把要紧的事情<em>送到您面前</em>。"
+        }
+      },
+      "02": {
+        "title": "答案 ≠ 研究",
+        "body": {
+          "html": "ChatGPT 给您「看似正确的句子」。研迹给您 <strong>有出处的论断</strong>。每一句结论后都有可点击的 ① ② ③，3 秒内回到原文。"
+        }
+      },
+      "03": {
+        "title": "周期，而非问答",
+        "body": {
+          "html": "研究是周期性活动。研迹按「每天 / 每周 / 每月」节奏交付，让您「<strong>不思考</strong>」也跟得上 —— 真正的省力。"
+        }
+      },
+      "04": {
+        "title": "您的库，不是模型的库",
+        "body": {
+          "html": "研迹只回答与<em>您资料库</em>相关的问题。它的根基是您手中的那 2,000 篇。这是它与所有通用 AI 的根本不同。"
+        }
+      }
+    },
+    "how": {
+      "kicker": "§ II · 它如何工作 · 一日时间线",
+      "headline": "从您按下保存到收到简报，发生了什么。",
+      "t1": {
+        "title": "您在 Twitter 上保存了一条关于 RMT v3 的链接",
+        "body": "通过 Chrome 扩展、邮件转发或一键「分享到研迹」完成"
+      },
+      "t2": {
+        "title": "自动抓取并解析",
+        "body": "识别：这是一个 arXiv 链接 → 抓取 PDF → 切分章节 → 提取图表"
+      },
+      "t3": {
+        "title": "抽取关键论断与证据",
+        "body": "从 24 页中识别 8 项 claim，每项附 1-3 处证据。归类到「LLM Long Context」主题"
+      },
+      "t4": {
+        "title": "对齐到您的现有图谱",
+        "body": "发现该论文与 4月17日 LongMem (#142)、4月22日 GraphRAG (#156) 形成显性对话"
+      },
+      "t5": {
+        "title": "夜间例行扫描",
+        "body": "检测到该工作引用激增 +23 → 触发 HIGH 告警，推迟到次晨简报"
+      },
+      "t6": {
+        "title": "为您撰写当日简报",
+        "body": "综合 8 项 claim + 您过往笔记 #2204 → 生成 11 分钟阅读时长的 Today Digest"
+      },
+      "t7": {
+        "title": "打开 ResearchTrace · 看到一份只为您写的报",
+        "body": "含可点击引用、HEAT 热度、行动按钮 (FIND SIMILAR / DIAGRAM IT / REPRODUCE)"
+      },
+      "t": {
+        "next": "次晨 06:30"
+      }
+    },
+    "agents": {
+      "kicker": "§ III · 为您工作的五个 AGENT",
+      "headline": "不是一个 ChatGPT。是一支研究小组。",
+      "lede": "每个 Agent 各司其职，您能看到它们做了什么、读了什么、调用了哪个模型。完全可审计。",
+      "cta": "查看 Agent 行为日志 →",
+      "01": {
+        "role": "摄取",
+        "body": "读 PDF / URL / 视频，做切分与索引"
+      },
+      "02": {
+        "role": "策展",
+        "body": "抽 claim、对齐图谱、归并矛盾"
+      },
+      "03": {
+        "role": "检索",
+        "body": "BM25 + 向量混检 + Rerank"
+      },
+      "04": {
+        "role": "雷达",
+        "body": "监测信源、触发热度告警"
+      },
+      "05": {
+        "role": "撰稿",
+        "body": "周报 / 月报 / Deep Dive"
+      }
+    },
+    "sample": {
+      "kicker": "§ IV · 看一份真正的简报",
+      "headline": "以下是研迹为一位用户写的本周简报。",
+      "body": {
+        "html": "编辑摘要、本周三大头条、Curator 综述、与您过往工作的对话、反方意见、下周雷达 —— 完整 6 个章节，11 分钟阅读时长。每一处<a class=\"cite\" style=\"display:inline-flex\">12</a>都可点击。"
+      },
+      "cta": "阅读样例简报 No. 127 →"
+    },
+    "footer": {
+      "tagline": "「Find what matters before you ask for it.」 一份只为一位读者编辑的研究报。",
+      "col1": "产品",
+      "col2": "工作流",
+      "col3": "商业",
+      "col4": "公司",
+      "edu": "教育折扣",
+      "team": "Team",
+      "about": "关于",
+      "blog": "Blog",
+      "privacy": "隐私",
+      "terms": "条款"
+    }
+  },
+  "today": {
+    "title": "Today — 研迹 ResearchTrace",
+    "crumb": "RESEARCHTRACE / TODAY · 2026年5月9日 周六",
+    "kicker": "VOL. III · ISSUE 127 · YOUR DAILY DIGEST",
+    "headline": "今日简报",
+    "lede": {
+      "html": "5月9日，周六上午 09:14。本期为您甄选 <span style=\"color:var(--accent-red);font-weight:600;\">7 条</span> 重要进展，覆盖您追踪的 <span style=\"color:var(--accent-red);font-weight:600;\">5 个领域</span>。预计阅读 <span class=\"font-mono\" style=\"font-style:normal;\">11 分钟</span>。"
+    },
+    "btn": {
+      "markRead": "全部已读",
+      "archive": "归档至简报库",
+      "weekly": "生成本周回顾"
+    },
+    "delivered": "DELIVERED · TODAY 08:00 · BY RADAR + REPORTER",
+    "fromEditor": "FROM THE EDITOR",
+    "editorHead": "本期主旨",
+    "editor": {
+      "meta": "REPORTER AGENT · 0.7B SUMMARY",
+      "label": "Editor's Brief",
+      "body": {
+        "html": "本周 LLM 长上下文领域有两项重要突破：DeepMind 发布 <em>「Recurrent Memory Transformer v3」</em> 在 2M token 上保持线性复杂度<a href=\"ask.html?cite=1\" class=\"cite\">1</a>；Anthropic 同期公开 Claude 3.5 在 200K 长度上的 needle-in-haystack 评测，准确率 99.4%<a href=\"ask.html?cite=2\" class=\"cite\">2</a>。两项工作背后的核心分歧是：<strong>「显式记忆压缩 vs 端到端注意力扩展」</strong> —— 您 4 月 17 日收藏的 LongMem 论文<a href=\"ask.html?cite=3\" class=\"cite\">3</a> 正属于前一阵营，建议优先阅读 §1。"
+      },
+      "deepDive": "DEEP DIVE →",
+      "readLater": "READ LATER",
+      "saveCard": "SAVE AS CARD"
+    },
+    "section1": "§ I · TOP STORIES · 头条研究",
+    "section2": "§ II · RADAR PULSE · 雷达脉搏",
+    "section3": "§ III · FROM YOUR VAULT · 来自您的资料库",
+    "section4": "§ IV · ASK YOUR RESEARCH",
+    "story1": {
+      "title": "Recurrent Memory Transformer v3 在 2M Token 上保持线性复杂度",
+      "body": {
+        "html": "DeepMind 团队提出新的循环压缩机制，在 2,097,152 token 长度上推理成本仅为标准注意力的 <span style=\"color:var(--accent-red);font-weight:600;\">3.7%</span>，且在 LongBench-v2 上得分超出 GPT-4-128K 约 <span style=\"color:var(--accent-red);font-weight:600;\">11.2 分</span>…"
+      },
+      "heatNote": "5/5 · TRENDING IN YOUR CIRCLE"
+    },
+    "action": {
+      "findSimilar": "FIND SIMILAR",
+      "seeEvidence": "SEE EVIDENCE",
+      "reproduce": "REPRODUCE",
+      "diagram": "DIAGRAM"
+    },
+    "story2": {
+      "title": "Claude 3.5 在 200K 上下文上达成 99.4% 检索准确率",
+      "body": "Anthropic 公布完整测试报告，跨 12 类 needle 配置全部通过；但在 needle-多跳推理子集上准确率降至 73%…"
+    },
+    "story3": {
+      "title": "OpenAI Codex CLI 在 SWE-Bench Verified 突破 71.8%",
+      "body": "较 3 月前的 SOTA 提升 9.3 个百分点。关键改进来自「自我对弈式 patch refinement」训练范式…"
+    },
+    "radar": {
+      "col1": "TRENDING IN YOUR FOLLOWED TOPICS",
+      "col2": "CITED BY YOU MOST · LAST 30 DAYS",
+      "s1": {
+        "t": "本周新增信源",
+        "s": "vs. 上周 +12%"
+      },
+      "s2": {
+        "t": "个主题需要回顾",
+        "s": "已 7 天未更新"
+      },
+      "s3": {
+        "t": "条新证据已抓取",
+        "s": "自上次登录"
+      },
+      "s4": {
+        "t": "个新观点冲突",
+        "s": "待您仲裁"
+      },
+      "r1": "长上下文 vs 检索：综述论文激增 +38 篇",
+      "r2": "自反思 Agent 框架：CRITIC、Reflexion 引用激增",
+      "r3": "Holistic Eval 重新定义「helpfulness」维度",
+      "r4": "Mem0 v2 引入 episodic memory 抽取层",
+      "r5": "a16z 报告：Top 50 AI 应用 47% 已转 vertical"
+    },
+    "vault": {
+      "lede": {
+        "html": "您 4 月 17 日收藏的论文 <em>LongMem</em> 与本期头条主题高度相关 —— Curator Agent 已重新整理时间线，并发现 3 处与新工作的隐性对话。"
+      },
+      "action": {
+        "viewCard": "VIEW CARD",
+        "askAgent": "ASK AGENT"
+      },
+      "saved": "SAVED · "
+    },
+    "ask": {
+      "headline": "提问，并见到每一处证据。",
+      "body": {
+        "html": "每一个回答都来自您自己的资料库。每一句结论后都跟着可点击的引用气泡<a class=\"cite\" style=\"display:inline-flex\">12</a>，让您在 3 秒内回到原文。无幻觉，可追溯。"
+      },
+      "cta": "OPEN ASK ↗",
+      "suggested": "SUGGESTED QUESTIONS",
+      "q1": "RMT v3 与 MemGPT 的核心区别？为什么我应该关心？",
+      "q2": "我收藏的 LongMem 与今天的头条有矛盾吗？",
+      "q3": "agent 自反思框架综述：CRITIC vs Reflexion 谁先？",
+      "q4": "把过去 3 个月长上下文领域整理成一张时间线"
+    },
+    "foot": {
+      "tagline": "「Find what matters before you ask for it.」",
+      "product": "PRODUCT",
+      "vault": "VAULT",
+      "account": "ACCOUNT",
+      "next": "NEXT BRIEF",
+      "weekly": "WEEKLY DIGEST"
+    }
+  },
+  "topics": {
+    "crumb": "RESEARCHTRACE / TOPICS · 12 主题在追踪中",
+    "kicker": "VOL. III · CHAPTER 02 · KNOWLEDGE TOPICS",
+    "title": "Topics",
+    "lede": {
+      "html": "您正在追踪 <span style=\"color:var(--accent-red);font-weight:600;\">12 个主题</span>，共积累 <span style=\"color:var(--accent-red);font-weight:600;\">2,438 项</span>知识、<span style=\"color:var(--accent-red);font-weight:600;\">412 处</span>证据。每一条结论都有来源，每一条来源都可点。"
+    },
+    "filter": "FILTER ·",
+    "f": {
+      "all": "全部 · 12",
+      "active": "ACTIVE · 7",
+      "watching": "WATCHING · 4",
+      "paused": "PAUSED · 1",
+      "pinned": "PINNED · 5"
+    },
+    "sort": "SORT BY HEAT",
+    "new": "+ NEW TOPIC",
+    "lastBrief": {
+      "_value": "LAST BRIEF · ",
+      "2hAgo": "2小时前",
+      "today08": "今日 08:00",
+      "yesterday": "昨日",
+      "3dAgo": "3 天前",
+      "4dAgo": "4 天前",
+      "5dAgo": "5 天前",
+      "7dAgo": "7 天前",
+      "10dAgo": "10 天前",
+      "21dAgo": "21 天前",
+      "2dAgo": "2 天前"
+    },
+    "open": "OPEN →",
+    "statusActive": "TOPIC · ACTIVE",
+    "statusWatching": "TOPIC · WATCHING",
+    "statusPaused": "TOPIC · PAUSED",
+    "alert": {
+      "sortHeat": "排序按 HEAT",
+      "newTopic": "打开新主题创建表单"
+    }
+  },
+  "topic": {
+    "t1": {
+      "zh": "长上下文语言模型",
+      "desc": "追踪 LLM 在超长上下文（≥128K）下的注意力机制、记忆压缩、外部记忆模块演进；含 RMT、MemGPT、LongMem、StreamingLLM 等代表方向。"
+    },
+    "t2": {
+      "zh": "自主智能体工作流",
+      "desc": "覆盖 ReAct、Self-Refine、Reflexion、CRITIC、Tree-of-Thoughts 等 agent 决策范式；含 SWE-Bench、AgentBench 评测追踪。"
+    },
+    "t3": {
+      "zh": "AI 模型评测",
+      "desc": "HELM v3、MMLU-Pro、LongBench、BIG-Bench Hard 等评测体系演进；关注 \"helpfulness vs harmlessness\" 维度的设计争论。"
+    },
+    "t4": {
+      "zh": "检索增强 与 记忆系统",
+      "desc": "GraphRAG、Mem0、Zep、Light­RAG 等系统的 episodic/semantic memory 设计；与长上下文路线之争。"
+    },
+    "t5": {
+      "zh": "AI 产品策略",
+      "desc": "AI 应用的市场结构、商业化路径、UX 范式；含 a16z、Sequoia、Bessemer 报告与典型案例拆解。"
+    },
+    "t6": {
+      "zh": "对齐与安全",
+      "desc": "RLHF、DPO、Constitutional AI、red-teaming 工作；关注模型可解释性进展。"
+    },
+    "t7": {
+      "zh": "多模态与视觉",
+      "desc": "GPT-4V、Gemini、Pixtral 等多模态模型的视觉推理能力评测。"
+    },
+    "t8": {
+      "zh": "AI 基础设施",
+      "desc": "vLLM、TGI、SGLang 推理引擎；FlashAttention、PagedAttention 优化技术。"
+    },
+    "t9": {
+      "zh": "微调与领域适配",
+      "desc": "LoRA、QLoRA、P-tuning v2 等参数高效微调；持续学习与灾难性遗忘。"
+    },
+    "t10": {
+      "zh": "开源模型生态",
+      "desc": "Llama、Qwen、DeepSeek、Mistral 等开源模型的能力对比与商业生态。"
+    },
+    "t11": {
+      "zh": "推理与数学",
+      "desc": "o1、DeepSeek-R1 类推理模型；Chain-of-Thought 与过程奖励模型 (PRM)。"
+    },
+    "t12": {
+      "zh": "语音与实时 AI",
+      "desc": "GPT-4o Realtime、Moshi 等流式语音模型；TTS 与 ASR 一体化趋势。"
+    },
+    "crumb": "RESEARCHTRACE / TOPIC · 主题详情",
+    "crumbPrefix": "RESEARCHTRACE / TOPICS / ",
+    "allTopics": "← ALL TOPICS",
+    "no": "TOPIC No. ",
+    "stat": {
+      "items": "ITEMS",
+      "claims": "CLAIMS",
+      "evidence": "EVIDENCE",
+      "briefs": "BRIEFS",
+      "sources": "SOURCES"
+    },
+    "btn": {
+      "pinned": "★ PINNED",
+      "settings": "SETTINGS"
+    },
+    "alert": {
+      "pin": "已订阅 / 取消订阅 该主题",
+      "settings": "打开主题设置"
+    },
+    "tab": {
+      "overview": "总览",
+      "sources": "信源",
+      "claims": "观点",
+      "evidence": "证据",
+      "radar": "雷达",
+      "briefs": "简报"
+    },
+    "ov": {
+      "kicker": "EDITOR&rsquo;S SYNTHESIS · 由 REPORTER AGENT 综述 · 5月8日 23:47",
+      "h1": "长上下文之争：显式记忆压缩与端到端注意力扩展，分歧加剧。",
+      "brief": {
+        "label": "EDITOR&rsquo;S BRIEF · 30秒摘要",
+        "body": {
+          "html": "本主题在过去 30 天积累了 <strong>38 项关键论断</strong>、<strong>412 处证据</strong>。两条主流路线正在分化 —— <strong>路线 A（DeepMind/Anthropic 系）</strong>主张端到端扩展注意力上下文窗口；<strong>路线 B（Microsoft Research/MemGPT 系）</strong>主张以外部 episodic memory 替代长窗口。Curator 认为：两者并非互斥，更可能在 2026 年下半年走向\"双层混合\"架构。"
+        }
+      },
+      "p1": {
+        "html": "过去三十天内，长上下文这一领域共有 <a href=\"topic.html?t=llm-longctx&tab=evidence\" class=\"link-red\">412 篇文献证据</a>被纳入您的资料库。其中最具影响的是 <strong>5月7日</strong> DeepMind 发布的 Recurrent Memory Transformer v3，它以循环压缩机制在 2,097,152 token 长度上保持线性复杂度<a class=\"cite\" href=\"ask.html?cite=rmt-v3\">1</a>。同期 Anthropic 公开了 Claude 3.5 在 200K 上下文上的 needle-in-haystack 评测，跨 12 类配置全部通过，准确率 99.4%<a class=\"cite\" href=\"ask.html?cite=claude-needle\">2</a>。"
+      },
+      "p2": {
+        "html": "然而，您 4月17日 收藏的 <em>LongMem</em> 论文<a class=\"cite\" href=\"ask.html?cite=longmem\">3</a> 隐含的另一条道路 —— 即用外部记忆模块\"假装\"长上下文 —— 并未消亡。Microsoft Research 在 5月3日 提出的 GraphRAG v0.4 实验中显示<a class=\"cite\" href=\"ask.html?cite=graphrag\">4</a>，对 1M token 文档的 QA 任务，外部记忆 + 8K 窗口的组合在 17 项指标中 11 项优于纯 200K 上下文方案。这意味着两条路线在不同任务结构上各占胜场。"
+      },
+      "h3": "三个您需要知道的分歧",
+      "li1": {
+        "html": "<strong>压缩损失之争 ——</strong> RMT v3 论文称压缩损失 ≤ 2.3%，但 Anthropic 团队指出其测试集偏向\"叙事文本\"，在代码 / 表格类长上下文上损失会被低估<a class=\"cite\" href=\"ask.html?cite=anth-rebuttal\">5</a>。"
+      },
+      "li2": {
+        "html": "<strong>定位检索之争 ——</strong> needle-in-haystack 是否仍是有效评测？HELM v3 团队认为单 needle 任务已过于简单，应转向 multi-needle + 反事实 needle<a class=\"cite\" href=\"ask.html?cite=helm-v3\">6</a>。"
+      },
+      "li3": {
+        "html": "<strong>推理成本之争 ——</strong> 您 4月22日的笔记 <a href=\"ask.html?cite=note-2204\" class=\"link-red\">\"长窗口的真实成本\"</a>已指出：在生产系统中 200K 上下文的 KV cache 显存占用是 8K 的 25 倍，这一点尚未被任何头条工作正视。"
+      },
+      "btn": {
+        "diagram": "DIAGRAM IT →",
+        "findSimilar": "FIND SIMILAR",
+        "allClaims": "SEE ALL 38 CLAIMS",
+        "deepBrief": "GENERATE DEEP BRIEF"
+      },
+      "alert": {
+        "deepBrief": "已生成本主题深度简报，将在邮箱与 Briefs 出现",
+        "openNote": "打开知识卡片 "
+      },
+      "fig": {
+        "html": "图 1 · 由 Curator Agent 自动生成的领域知识图谱：5 个主要研究流派、12 个关键 milestone。<a href=\"ask.html?q=展开图 1 的每个节点\" class=\"link-red\">点此交互探索 →</a>"
+      },
+      "fact": {
+        "label": "TOPIC FACTSHEET",
+        "k1": "TRACKED SINCE",
+        "v1": "2026·01·14",
+        "k2": "LAST UPDATE",
+        "v2": "5 分钟前",
+        "k3": "NEXT SCAN",
+        "v3": "今晚 23:00",
+        "k4": "SCAN FREQUENCY",
+        "v4": "DAILY · 09 SOURCES",
+        "k5": "READER",
+        "v5": "郁文 · OWNER"
+      },
+      "radar": {
+        "_value": "RADAR · 信源覆盖",
+        "seeAll": "SEE ALL",
+        "sources": " SOURCES →"
+      },
+      "notes": "YOUR RECENT NOTES",
+      "note1": "\"长窗口的真实成本：KV cache 显存占用是 8K 的 25 倍…\"",
+      "note2": "\"压缩损失 ≤ 2.3% 的说法在代码任务上不成立。\"",
+      "note3": "\"双层混合架构是 2026 H2 最可能的统一形态。\"",
+      "askDiagram": "画一张长上下文路线之争的对比表",
+      "askSimilar": "对比 RMT v3 与 GraphRAG 在长 QA 上的差异",
+      "personalSaves": "Personal Saves"
+    },
+    "src": {
+      "title": "All Sources",
+      "showing": "SHOWING 1–10 OF 67",
+      "add": "+ ADD SOURCE",
+      "alert": {
+        "add": "已添加新信源订阅",
+        "page": "页 ",
+        "next": "下一页"
+      },
+      "filter": "FILTER · 67 SOURCES",
+      "byType": "BY TYPE",
+      "byYear": "BY YEAR",
+      "byMark": "BY MARK",
+      "savedByYou": "SAVED BY YOU",
+      "highlighted": "HIGHLIGHTED",
+      "claims": " claims",
+      "evidence": " evidence",
+      "deepRead": "深读 ",
+      "s1": {
+        "title": "Recurrent Memory Transformer v3",
+        "auth": "Bulatov et al., DeepMind"
+      },
+      "s2": {
+        "title": "Long-Context Capabilities of Claude 3.5 Sonnet",
+        "auth": "Anthropic Research",
+        "venue": "Anthropic Tech Report"
+      },
+      "s3": {
+        "title": "LongMem: Augmented Memory for Frozen LLMs"
+      },
+      "s4": {
+        "title": "Why 200K Context May Not Be the Answer"
+      },
+      "s5": {
+        "title": "GraphRAG: Local-Global Reasoning for QA",
+        "auth": "Edge et al., Microsoft"
+      },
+      "s6": {
+        "title": "StreamingLLM: Efficient Streaming with Attention Sinks"
+      },
+      "s7": {
+        "title": "State of Long-Context LLMs: HELM v3 Slice",
+        "auth": "CRFM Stanford"
+      },
+      "s8": {
+        "title": "Andrej Karpathy on Memory in LLMs"
+      },
+      "s9": {
+        "title": "MemGPT: LLMs as Operating Systems"
+      },
+      "s10": {
+        "title": "Latent Space: This Week in Long Context"
+      },
+      "d": {
+        "may7": "5月7日",
+        "apr17saved": "4月17日 saved",
+        "may3": "5月3日",
+        "apr22saved": "4月22日 saved",
+        "mar12saved": "3月12日 saved",
+        "may1": "5月1日",
+        "apr29": "4月29日",
+        "feb8saved": "2月8日 saved",
+        "may5": "5月5日"
+      }
+    },
+    "cl": {
+      "title": "Claims · 38 项关键论断",
+      "note": "每项论断都附支持/反驳证据 · 按置信度排序",
+      "lede": "由 Curator Agent 从 67 个信源中提取，并以 Reranker 对齐到证据图谱。",
+      "f": {
+        "all": "ALL · 38",
+        "long": "PRO LONG-CONTEXT · 14",
+        "mem": "PRO MEMORY · 11",
+        "cost": "COST CONCERN · 5",
+        "eval": "EVAL CONCERN · 4",
+        "fcst": "FORECAST · 4"
+      },
+      "cited": "CITED FROM · ",
+      "supporting": " SUPPORTING",
+      "contra": " CONTRADICTING",
+      "askAgent": "▸ ASK AGENT",
+      "askPrefix": "深入解读论断：",
+      "confidence": "CONFIDENCE",
+      "c1": "循环记忆压缩可在 2M token 上保持线性复杂度，损失 ≤ 2.3%",
+      "c2": "Claude 3.5 在 200K needle-in-haystack 上达成 99.4% 准确率",
+      "c3": "外部记忆模块 + 短窗口在 17 项 QA 指标中 11 项优于纯长上下文",
+      "c4": "压缩损失在代码与表格任务上被严重低估",
+      "c5": "200K 上下文 KV cache 显存占用是 8K 的 25 倍 (生产成本论)",
+      "c6": "needle-in-haystack 任务已过于简单，应转向 multi-needle 测试",
+      "c7": "双层混合（长窗口 + episodic memory）将成为 2026 H2 主流",
+      "c8": "Attention sink 现象在所有 long context LLM 中均存在",
+      "by1": "Bulatov et al.",
+      "by2": "Anthropic",
+      "by3": "GraphRAG paper",
+      "by4": "Anthropic rebuttal",
+      "by5": "您的笔记 #2204",
+      "by6": "HELM v3 team",
+      "by7": "Curator Agent",
+      "by8": "StreamingLLM"
+    },
+    "evi": {
+      "title": "Evidence · 412 处证据",
+      "note": "每一处都来自原文 · 可点击直达 PDF 高亮位置",
+      "supports": "EVIDENCE · supports ",
+      "yourNote": "YOUR NOTE",
+      "expand": "EXPAND CONTEXT",
+      "openPdf": "OPEN IN PDF",
+      "saveCard": "SAVE AS CARD",
+      "findContra": "FIND CONTRADICTIONS",
+      "expandPrefix": "展开证据 #",
+      "contraPrefix": "与证据 #",
+      "contraSuffix": " 矛盾的工作有哪些?",
+      "alert": {
+        "openPdf": "已打开 PDF 第 ",
+        "openPdfTail": " 页高亮",
+        "savedCard": "已添加为知识卡片"
+      },
+      "e1": {
+        "title": "§2.3 Memory Compression Loss Curve",
+        "source": "Bulatov et al. 2025 · Fig 4"
+      },
+      "e2": {
+        "title": "Needle-in-Haystack 12 Categories",
+        "source": "Anthropic Tech Report 2025-05"
+      },
+      "e3": {
+        "title": "GraphRAG vs Pure Long-Context QA Comparison",
+        "source": "Edge et al. 2024 · Table 6"
+      },
+      "e4": {
+        "title": "KV Cache Memory Footprint Calculation",
+        "source": "您的笔记 #2204 · 4月22日"
+      },
+      "e5": {
+        "title": "Code Task Compression Loss Audit",
+        "source": "Anthropic Rebuttal Memo (5月8日)"
+      }
+    },
+    "rd": {
+      "title": "Radar · 信源监测与告警",
+      "lede": "每天 23:00 由 Radar Agent 自动扫描 9 个信源，并在异常增量出现时主动告警。",
+      "recent": "RECENT 14 DAYS · ALERTS & SCANS",
+      "e1": {
+        "t": "Anthropic 发布 200K needle 测试报告",
+        "note": "该工作直接挑战 RMT v3 的『端到端 vs 压缩』路线",
+        "date": "5月8日 23:47"
+      },
+      "e2": {
+        "t": "DeepMind RMT v3 发布",
+        "note": "上线 30 分钟内 arXiv 引用激增 23 次，触发热度告警",
+        "date": "5月7日 16:22"
+      },
+      "e3": {
+        "t": "日常扫描 · 抓取 14 项新增",
+        "note": "涵盖 arXiv (8) + 推特 (3) + Anthropic Blog (1) + GitHub (2)",
+        "date": "5月6日 23:00"
+      },
+      "e4": {
+        "t": "swyx 周报特别提到 LongMem",
+        "note": "间接证实您 4月17日收藏的判断",
+        "date": "5月5日 09:14"
+      },
+      "e5": {
+        "t": "日常扫描 · 抓取 9 项新增",
+        "date": "5月4日 23:00"
+      },
+      "e6": {
+        "t": "日常扫描 · 抓取 11 项新增",
+        "date": "5月3日 23:00"
+      },
+      "threshold": "ALERT THRESHOLDS",
+      "t1": {
+        "k": "新增信源 ≥",
+        "v": "5 / 24h"
+      },
+      "t2": {
+        "k": "头条工作引用 ≥",
+        "v": "20 次"
+      },
+      "t3": {
+        "k": "与已有论断矛盾",
+        "v": "触发即告警"
+      },
+      "t4": {
+        "k": "关键词突现",
+        "v": "HEAT ≥ 4"
+      },
+      "editTh": "EDIT THRESHOLDS",
+      "alert": {
+        "editTh": "打开告警阈值设置",
+        "addSrc": "打开信源管理面板"
+      },
+      "coverage": "SCAN COVERAGE",
+      "daily": "SOURCES SCANNED DAILY",
+      "addSrc": "+ ADD SOURCE"
+    },
+    "br": {
+      "title": "Briefs · 本主题简报存档",
+      "btn": {
+        "gen": "GENERATE NEW BRIEF"
+      },
+      "alert": {
+        "gen": "正在生成此主题深度简报…"
+      },
+      "read": "READ →",
+      "unread": "UNREAD",
+      "b1": {
+        "t": "长上下文之争：显式记忆压缩与端到端注意力扩展",
+        "tag": "WEEKLY DIGEST",
+        "date": "今日 08:00"
+      },
+      "b2": {
+        "t": "RMT v3 深度拆解：三个不能忽视的细节",
+        "tag": "DEEP DIVE · TRIGGERED",
+        "date": "5月7日 22:00"
+      },
+      "b3": {
+        "t": "过去 30 天长上下文领域全景回顾",
+        "tag": "MONTHLY",
+        "date": "5月1日 08:00"
+      },
+      "b4": {
+        "t": "GraphRAG vs LongMem：路线对比",
+        "tag": "WEEKLY DIGEST",
+        "date": "4月25日 08:00"
+      },
+      "b5": {
+        "t": "长上下文评测：当 needle 已经不够用",
+        "tag": "WEEKLY DIGEST",
+        "date": "4月18日 08:00"
+      },
+      "b6": {
+        "t": "StreamingLLM 实证报告整理",
+        "tag": "WEEKLY DIGEST",
+        "date": "4月11日 08:00"
+      },
+      "b7": {
+        "t": "主题创建 · 初始扫描简报",
+        "tag": "INITIAL",
+        "date": "1月14日 12:00"
+      },
+      "b8": {
+        "t": "主题概览 · 由您创建",
+        "tag": "GENESIS",
+        "date": "1月14日 11:42"
+      }
+    }
+  },
+  "ask": {
+    "crumb": "RESEARCHTRACE / ASK · 提问 · 答案附引用",
+    "history": "ASK · HISTORY",
+    "newQuestion": "+ 新问题",
+    "meta": "已问 · 09:14 · 6 SOURCES · 2.4s",
+    "confidence": "ANSWER CONFIDENCE",
+    "retrieval": "RETRIEVAL · HYBRID",
+    "model": "MODEL",
+    "showTrace": "SHOW TRACE",
+    "followup": "FOLLOW-UP ·",
+    "diagramIt": "DIAGRAM IT",
+    "contradictions": "FIND CONTRADICTIONS",
+    "reproduce": "REPRODUCE",
+    "missing": "WHAT'S MISSING",
+    "saveCard": "SAVE AS CARD",
+    "share": "SHARE",
+    "followBox": "FOLLOW-UP QUESTION",
+    "composer": "继续追问，或换一个问题…",
+    "send": "提问 ↵",
+    "scope": "SCOPE ·",
+    "allTopics": "ALL TOPICS",
+    "thisTopic": "LLM LONG CONTEXT ONLY",
+    "savedItems": "SAVED ITEMS",
+    "narrow": "+ 精细",
+    "related": {
+      "_value": "RELATED IN YOUR VAULT",
+      "note": "您的笔记 #2204 · KV cache 显存计算",
+      "streaming": "StreamingLLM (ICLR 2024)",
+      "compare": "GraphRAG vs LongMem comparison card"
+    },
+    "sources": {
+      "_value": "SOURCES · ",
+      "lede": "每一处引用都来自您的资料库或您订阅的信源。点击数字 ① ② ③ ④ 跳转。"
+    },
+    "q": {
+      "display": "RMT v3 与 MemGPT 的核心区别？为什么我应该关心？"
+    },
+    "h1": "RMT v3 与 MemGPT 的核心区别？为什么我应该关心？",
+    "h2": "画一张长上下文路线之争的对比表",
+    "h3": "我收藏的 LongMem 与今天的头条有矛盾吗？",
+    "h4": "agent 自反思框架综述：CRITIC vs Reflexion 谁先？",
+    "h5": "a16z 报告里 Top 50 AI 应用有多少做 vertical？",
+    "h6": "把过去 3 个月长上下文领域整理成一张时间线",
+    "h7": "GraphRAG 和 LightRAG 在 episodic memory 上有什么差异？",
+    "h": {
+      "t": {
+        "justNow": "刚刚",
+        "5min": "5 分钟前",
+        "today09": "今日 09:01",
+        "yesterday": "昨日",
+        "may7": "5月7日",
+        "may5": "5月5日",
+        "may3": "5月3日"
+      }
+    },
+    "answer": {
+      "lede": {
+        "html": "您的两篇收藏（<em>RMT v3</em>、<em>MemGPT</em>）代表两种处理\"超出训练长度上下文\"的根本不同范式 —— 这一区别在生产系统中带来 <strong>数量级的成本差异</strong>，因此值得您关心。"
+      },
+      "h1": "核心区别 · 一句话版",
+      "p1": {
+        "html": "<strong>RMT v3</strong> 通过<em>循环压缩</em>把整段上下文塞进固定长度的隐状态，让模型在 2M token 上保持 O(n) 复杂度<a class=\"cite\" data-src=\"1\">1</a>；<strong>MemGPT</strong> 则把模型本身当作\"操作系统\"，通过 <em>显式记忆调度</em>（main context ↔ recall storage）来按需调入信息<a class=\"cite\" data-src=\"2\">2</a>。前者是\"编译进权重的隐式压缩\"；后者是\"运行时显式的换页机制\"。"
+      },
+      "h2": "三个您应该关心的实际差异",
+      "li1": {
+        "html": "<strong>训练 vs 推理时机会成本：</strong>RMT v3 需要重新训练或继续训练 base model<a class=\"cite\" data-src=\"1\">1</a>；MemGPT 可在<em>冻结权重</em>下使用，与您 4月17日收藏的 LongMem 同属此阵营<a class=\"cite\" data-src=\"3\">3</a>。"
+      },
+      "li2": {
+        "html": "<strong>显存占用：</strong>RMT v3 的隐状态显存恒定；MemGPT 的 main context 仍受标准 KV cache 限制 —— 在 200K 模式下 KV cache 占用可达 <strong>~125GB / 70B 模型</strong>（您 4月22日的笔记 #2204 中已有计算）。"
+      },
+      "li3": {
+        "html": "<strong>失败模式：</strong>RMT v3 在叙事文本上压缩损失 ≤ 2.3%，但代码与表格任务上被 Anthropic 测得 14.7%<a class=\"cite\" data-src=\"1\">1</a>；MemGPT 的失败模式是<em>调度策略</em>不当时的\"换页抖动\"，需要工程化调优。"
+      },
+      "h3": "Lilian Weng 的反方意见",
+      "p2": {
+        "html": "值得注意的是 5月3日 Lilian Weng 在博客中指出：即便上下文塞得下，注意力稀释也会造成多跳任务准确率下降 —— 因此\"长窗口的承诺在生产中被高估了\"<a class=\"cite\" data-src=\"4\">4</a>。这间接支持 MemGPT 路线在工程上的合理性。"
+      },
+      "curatorTake": "CURATOR&rsquo;S TAKE",
+      "curator": {
+        "html": "如果您正在做 <em>会话型 agent</em>（多轮、长 horizon），MemGPT 范式的可控性更高；如果您在做 <em>批处理文档分析</em>（一次性长输入），RMT v3 的成本曲线更优。两者在 2026 H2 大概率会被某种<strong>双层混合架构</strong>统一。"
+      }
+    },
+    "alert": {
+      "openItem": "打开 ",
+      "openPdf": "打开 PDF 第 ",
+      "openPdfTail": " 页",
+      "trace": "查看检索全过程：5 个候选片段、rerank 分数、prompt 模板…"
+    },
+    "pill": {
+      "openPage": "OPEN PAGE",
+      "seeAllEvi": "SEE ALL EVIDENCE",
+      "saved": "SAVED"
+    },
+    "fu": {
+      "diagram": "画 RMT v3 与 MemGPT 的对比图",
+      "contradict": "找出与本回答矛盾的证据",
+      "reproduce": "如何在生产系统中复现 MemGPT 调度策略",
+      "missing": "本话题中我尚未关注但应关注的工作"
+    },
+    "src": {
+      "s4": {
+        "venue": "5月3日 blog"
+      }
+    }
+  },
+  "inbox": {
+    "crumb": "RESEARCHTRACE / INBOX · 收件箱",
+    "kicker": "VOL. III · INBOX · 待处理资料流",
+    "title": "Inbox",
+    "lede": {
+      "html": "47 项资料正在流入您的研究库 —— 由 <span style=\"color:var(--accent-red);\">Ingestor</span> 解析、<span style=\"color:var(--accent-red);\">Curator</span> 归档。"
+    },
+    "dropzone": {
+      "title": "拖放 PDF / 贴入 URL / 转发邮件",
+      "sub": "Ingestor 将在 ≤ 30 秒完成解析、抽取关键论断、对齐到主题。"
+    },
+    "btn": {
+      "emailFwd": "📧 EMAIL FORWARD",
+      "installExt": "🌐 INSTALL EXT",
+      "bulkClassify": "BULK CLASSIFY",
+      "loadMore": "LOAD 37 MORE",
+      "card": "CARD",
+      "ask": "ASK"
+    },
+    "alert": {
+      "openPicker": "打开文件选择器 · 也支持拖放",
+      "copyEmail": "复制您的专属转发邮箱：forward@mail.researchtrace.app",
+      "installExt": "Chrome 扩展安装链接",
+      "bulkClassify": "批量分类至主题",
+      "loadMore": "加载下一页 47 项",
+      "openCard": "打开知识卡片",
+      "openItem": "打开知识卡片 #",
+      "openItemTail": " · 详情含原文、抽取的论断、证据、回链关系"
+    },
+    "stat": {
+      "parsing": "PARSING",
+      "transcribing": "TRANSCRIBING",
+      "indexed": "INDEXED",
+      "failed": "FAILED",
+      "newSince": "NEW SINCE LAST VISIT"
+    },
+    "src": {
+      "dragged": "Drag-dropped · ",
+      "chromeExt": "Chrome ext · ",
+      "x": "X / Karpathy · ",
+      "youtube": "YouTube · ",
+      "fwdEmail": "forward@mail.researchtrace.app · ",
+      "emailFwd": "Email forward · ",
+      "notion": "Notion sync · "
+    },
+    "t": {
+      "yesterday2214": "昨日 22:14",
+      "yesterday1902": "昨日 19:02",
+      "yesterday1400": "昨日 14:00",
+      "may7": "5月7日",
+      "0911": "09:11",
+      "0908": "09:08",
+      "0852": "08:52",
+      "0830": "08:30",
+      "0814": "08:14"
+    },
+    "askPrefix": "总结 ",
+    "filter": "FILTER ·",
+    "f": {
+      "all": "ALL · 47",
+      "pdf": "PDF · 12",
+      "url": "URL · 18",
+      "twitter": "TWITTER · 6",
+      "youtube": "YOUTUBE · 3",
+      "email": "EMAIL · 5",
+      "notion": "NOTION · 3"
+    },
+    "it": {
+      "1": {
+        "title": "Recurrent Memory Transformer v3"
+      },
+      "2": {
+        "title": "Anthropic — Long Context Capabilities of Claude 3.5"
+      },
+      "3": {
+        "title": "@karpathy: long context vs RAG thread (12 tweets)"
+      },
+      "4": {
+        "title": "Andrej Karpathy on Memory in LLMs"
+      },
+      "5": {
+        "title": "Substack — Latent Space: This Week in Long Context"
+      },
+      "6": {
+        "title": "GraphRAG: Local-Global Reasoning for QA"
+      },
+      "7": {
+        "title": "a16z — State of Generative AI 2025"
+      },
+      "8": {
+        "title": "My research-quick-notes / Long Context"
+      },
+      "9": {
+        "title": "HELM v3 Holistic Evaluation Slice"
+      },
+      "10": {
+        "title": "Latent Space — Reflexion deep dive"
+      }
+    },
+    "topic": {
+      "long": "LLM Long Context",
+      "rag": "RAG & Memory",
+      "pm": "AI Product Strategy",
+      "eval": "AI Evaluation",
+      "agentic": "Agentic Workflows"
+    },
+    "size": {
+      "web": "web",
+      "thread": "thread",
+      "video": "video",
+      "newsletter": "newsletter",
+      "longread": "longread",
+      "notes": " notes"
+    }
+  },
+  "briefs": {
+    "crumb": "RESEARCHTRACE / BRIEFS · 简报库",
+    "kicker": "VOL. III · BRIEFS LIBRARY · 简报存档",
+    "title": "Briefs",
+    "lede": "您所有的研究简报存档于此。每周一与每月一日由 Reporter 自动生成，重大事件触发 Deep Dive。",
+    "f": {
+      "all": "ALL · 36",
+      "weekly": "WEEKLY · 22",
+      "monthly": "MONTHLY · 5",
+      "deepdive": "DEEP DIVE · 6",
+      "initial": "INITIAL · 3"
+    },
+    "byTopic": "BY TOPIC ·",
+    "btn": {
+      "newBrief": "+ NEW BRIEF",
+      "read": "READ NOW ↗",
+      "loadMore": "LOAD MORE · 27 ARCHIVED"
+    },
+    "alert": {
+      "newBrief": "打开 Brief 创建器：选主题、时间范围、深度…",
+      "loadMore": "已加载下一批 9 篇"
+    },
+    "featured": {
+      "_value": "§ FEATURED · LATEST WEEKLY DIGEST",
+      "title": "长上下文之争：显式记忆压缩与端到端注意力扩展，分歧加剧",
+      "subtitle": "由 Reporter Agent 综合 412 处证据 · 阅读 11 分钟",
+      "date": "今日 · 5月9日 09:14",
+      "dateSplit": "5月9日 09:14"
+    },
+    "unread": "UNREAD",
+    "weeklyNo": "WEEKLY DIGEST · No.",
+    "delivered": "DELIVERED",
+    "archive": "§ ARCHIVE · 近期简报",
+    "b126": {
+      "title": "Agentic Workflow 周报：自反思框架谁先？",
+      "tag": "WEEKLY"
+    },
+    "b125": {
+      "title": "RMT v3 深度拆解：三个不能忽视的细节",
+      "tag": "DEEP DIVE · TRIGGERED"
+    },
+    "b124": {
+      "title": "AI Evaluation 月度回顾：HELM v3 重新定义",
+      "tag": "MONTHLY"
+    },
+    "b123": {
+      "title": "GraphRAG vs LongMem：路线对比",
+      "tag": "WEEKLY"
+    },
+    "b122": {
+      "title": "AI Product Strategy · 4月研报合辑",
+      "tag": "MONTHLY"
+    },
+    "b121": {
+      "title": "Alignment & Safety 周报：DPO vs RLHF 实证",
+      "tag": "WEEKLY"
+    },
+    "b120": {
+      "title": "Reasoning models: o1 之后的下一站",
+      "tag": "WEEKLY"
+    },
+    "b119": {
+      "title": "长上下文 vs 检索：综述论文激增 +38 篇",
+      "tag": "WEEKLY"
+    },
+    "b118": {
+      "title": "长上下文评测：当 needle 已经不够用",
+      "tag": "WEEKLY"
+    },
+    "d": {
+      "yesterday": "昨日 · 5月8日",
+      "may7": "5月7日",
+      "may5": "5月5日",
+      "may3": "5月3日",
+      "may1": "5月1日",
+      "apr29": "4月29日",
+      "apr25": "4月25日",
+      "apr22": "4月22日",
+      "apr18": "4月18日"
+    },
+    "filter": "FILTER ·",
+    "bt": {
+      "long": "LLM LONG CONTEXT · 8",
+      "agentic": "AGENTIC · 5",
+      "eval": "EVAL · 4",
+      "rag": "RAG · 6",
+      "product": "PRODUCT · 7"
+    },
+    "t": {
+      "long": "LLM Long Context",
+      "agentic": "Agentic Workflows",
+      "eval": "AI Evaluation",
+      "rag": "RAG & Memory",
+      "pm": "AI Product Strategy",
+      "align": "Alignment & Safety",
+      "reason": "Reasoning & Math"
+    },
+    "lbl": {
+      "claims": "CLAIMS",
+      "evidence": "EVIDENCE",
+      "claimsLower": " claims"
+    }
+  },
+  "brief": {
+    "crumb": "RESEARCHTRACE / BRIEF · 阅读视图",
+    "kicker": "RESEARCHTRACE · WEEKLY DIGEST · No.",
+    "title": "长上下文之争：显式记忆压缩与端到端注意力扩展，分歧加剧。",
+    "subtitle": "由 Reporter Agent 综合 412 处证据、67 个信源生成。预计阅读 11 分钟。",
+    "delivered": "DELIVERED · 2026·05·09 · 09:14 CST",
+    "topic": "TOPIC · LLM LONG CONTEXT",
+    "editor": "EDITOR · REPORTER AGENT v0.3",
+    "btn": {
+      "save": "★ SAVE",
+      "export": "EXPORT PDF",
+      "share": "SHARE",
+      "print": "PRINT",
+      "library": "← BRIEFS LIBRARY",
+      "library2": "LIBRARY"
+    },
+    "alert": {
+      "save": "已加入收藏",
+      "export": "已导出为 PDF · A4 印刷版式",
+      "share": "已分享给您的研究小组"
+    },
+    "toc": {
+      "_value": "CONTENTS",
+      "1": "Editor's Brief — 30秒摘要",
+      "2": "本周三大头条",
+      "3": "Curator's Synthesis — 路线之争",
+      "4": "与您过往工作的对话",
+      "5": "值得关注的反方意见",
+      "6": "下周的雷达"
+    },
+    "s1": {
+      "kicker": "§ I · EDITOR&rsquo;S BRIEF",
+      "label": "30秒摘要",
+      "body": {
+        "html": "本周长上下文领域两项重磅工作落地：DeepMind 的 <em>RMT v3</em> 在 2M token 上保持线性复杂度<a class=\"cite\" href=\"ask.html?cite=1\">1</a>；Anthropic 公布 Claude 3.5 在 200K needle 任务上 99.4% 准确率<a class=\"cite\" href=\"ask.html?cite=2\">2</a>。表面看是技术突破，实则两者代表两种相互冲突的路线 —— 您的资料库中已有同源证据指向第三种可能（双层混合）。"
+      }
+    },
+    "s2": {
+      "kicker": "§ II · 本周三大头条",
+      "h1": {
+        "t": "DeepMind 发布 Recurrent Memory Transformer v3",
+        "d": "循环压缩机制在 2,097,152 token 长度上保持线性复杂度，LongBench-v2 超出 GPT-4-128K 11.2 分。"
+      },
+      "h2": {
+        "t": "Claude 3.5 在 200K 上下文上达成 99.4% needle 准确率",
+        "d": "跨 12 类 needle 配置全部通过；多跳子集准确率 73.1%。"
+      },
+      "h3": {
+        "t": "GraphRAG v0.4：8K 窗口 + 外部记忆 17 项中胜 11 项",
+        "d": "Microsoft 实证：长 QA 任务上 \"小窗口 + 强检索\" 不输纯 200K。"
+      }
+    },
+    "s3": {
+      "kicker": "§ III · CURATOR&rsquo;S SYNTHESIS",
+      "p1": {
+        "html": "过去三十天内，长上下文领域共有 412 处文献证据被纳入您的资料库。其中最具影响力的是 <strong>5月7日</strong> DeepMind 的 RMT v3<a class=\"cite\" href=\"ask.html?cite=1\">1</a> 与同期 Anthropic 的 Claude 3.5 长上下文报告<a class=\"cite\" href=\"ask.html?cite=2\">2</a>。两者表面均在解决同一问题，路径却截然相反 —— 一个用<em>压缩</em>避开长序列代价，一个用<em>扩展</em>正面承担代价。"
+      },
+      "p2": {
+        "html": "您 4月17日收藏的 <em>LongMem</em><a class=\"cite\" href=\"ask.html?cite=3\">3</a> 实际上隐含第三条道路：<strong>冻结基座 + 外部记忆模块</strong>。Microsoft 的 GraphRAG 实证<a class=\"cite\" href=\"ask.html?cite=4\">4</a> 进一步指出：在 17 项长 QA 指标中，\"小窗口 + 强检索\"在 11 项上不输纯 200K。这意味着争论的实质并非\"长 vs 短\"，而是<strong>\"信息熵在哪里被消耗\"</strong>。"
+      },
+      "fig": "图 1 · 三条路线在\"信息熵—成本\"二维上的位置 · 由 Curator 自动生成。"
+    },
+    "s4": {
+      "kicker": "§ IV · 与您过往工作的对话",
+      "p": {
+        "html": "您 4月22日笔记 <em>#2204 \"长窗口的真实成本\"</em> 中已经指出：200K KV cache 显存是 8K 的 25 倍。本周 Lilian Weng 博客<a class=\"cite\" href=\"ask.html?cite=4\">4</a> 给出了与此一致的判断：\"长窗口的承诺在生产中被高估了\"。这意味着您 22 天前的判断<strong>已经被独立验证</strong>。"
+      },
+      "callout": {
+        "_value": "YOUR JUDGEMENT VALIDATED",
+        "body": "\"200K KV cache 是 8K 的 25 倍\" · 4月22日 · 笔记 #2204 — 5月3日由 Lilian Weng 独立支持。"
+      }
+    },
+    "s5": {
+      "kicker": "§ V · 值得关注的反方意见",
+      "p1": {
+        "html": "Anthropic 团队在 5月8日发表的 rebuttal memo<a class=\"cite\" href=\"ask.html?cite=5\">5</a> 指出：RMT v3 论文的\"压缩损失 ≤ 2.3%\"测试集偏向叙事文本。在 1,200 段代码补全任务上，同样的压缩器在语法密集区域损失 <strong>14.7%</strong>。这是头条工作中最值得您怀疑的细节。"
+      },
+      "p2": {
+        "html": "HELM v3 团队<a class=\"cite\" href=\"ask.html?cite=6\">6</a> 同时提出：needle-in-haystack 任务作为评测标准已经过于简单，应转向 multi-needle + 反事实 needle。这意味着 Anthropic 的 99.4% 数字本身在评测论上将面临重新审视。"
+      }
+    },
+    "s6": {
+      "kicker": "§ VI · 下周的雷达",
+      "intro": "Radar Agent 已为下周设置 4 项重点关注：",
+      "l1": "RMT v3 的代码任务复现（预计 5月12日前后社区会有结果）",
+      "l2": "HELM v3 multi-needle 测试集发布（5月14日）",
+      "l3": "NeurIPS 2025 论文征稿截止前的\"长上下文\"集中投递（5月15日）",
+      "l4": "Anthropic 是否就 rebuttal 给出 RMT 团队回应（社区追踪中）"
+    },
+    "followups": "FOLLOW-UPS · 一键发起后续研究",
+    "fu": {
+      "diagram": {
+        "_value": "DIAGRAM 三条路线",
+        "q": "画一张三条路线对比的总表"
+      },
+      "reproduce": {
+        "_value": "REPRODUCE",
+        "q": "如何在我自己的 codebase 上复现 RMT v3"
+      },
+      "viewEvi": "VIEW ALL 412 EVIDENCE",
+      "challenge": {
+        "_value": "CHALLENGE THIS BRIEF",
+        "q": "对此周报有什么我没想到的角度"
+      },
+      "subscribe": "SUBSCRIBE WEEKLY",
+      "alert": {
+        "subscribe": "已生成下周深度简报订阅"
+      }
+    },
+    "colophon": {
+      "tagline": "\"Find what matters before you ask for it.\"",
+      "byline": "研迹 RESEARCHTRACE · A PAPER FOR ONE READER · YOU."
+    },
+    "prevnext": "PREV · No.126 · NEXT · No.128"
+  },
+  "onboarding": {
+    "crumb": "RESEARCHTRACE / ONBOARDING · 入门",
+    "title": "Onboarding — 研迹 ResearchTrace",
+    "brand": "研迹 ResearchTrace",
+    "step": "SETUP · STEP",
+    "skip": "SKIP →",
+    "kicker": "VOL. III · ONBOARDING",
+    "btn": {
+      "back": "← BACK",
+      "continue": "CONTINUE →",
+      "deliver": "DELIVER MY FIRST DIGEST →"
+    },
+    "stepLabel": "STEP",
+    "stepOf": "OF 4",
+    "finish": {
+      "alert": "🎉 设置完成。Reporter Agent 已启动首次扫描。\n\n您的首份简报将在 24 小时内投递。"
+    },
+    "s1": {
+      "title": "Step I · 您主要做什么？",
+      "subtitle": "我们会按角色优化默认主题与 Brief 节奏 —— 您随时可改。",
+      "r1": {
+        "t": "AI 产品经理",
+        "d": "追踪市场结构、产品案例、定价策略"
+      },
+      "r2": {
+        "t": "创业者 / 投资人",
+        "d": "关注趋势报告、商业指标、典型案例"
+      },
+      "r3": {
+        "t": "独立研究者",
+        "d": "深读论文、追踪一线进展、构建论断图谱"
+      },
+      "r4": {
+        "t": "AI 工程师",
+        "d": "关注实现细节、benchmark、infra 选型"
+      },
+      "r5": {
+        "t": "内容创作者",
+        "d": "周更深度内容、追踪潮流话题"
+      },
+      "r6": {
+        "t": "其他 / 多重角色",
+        "d": "自由组合默认主题包"
+      },
+      "defaults": "DEFAULT TOPICS"
+    },
+    "s2": {
+      "title": "Step II · 选择您要追踪的主题",
+      "subtitle": "勾选 3 ~ 8 个 —— Radar Agent 将为这些主题每日扫描。",
+      "custom": {
+        "_value": "CUSTOM TOPIC ·",
+        "placeholder": "例如：AI in Education / Robotics"
+      },
+      "add": {
+        "_value": "+ ADD",
+        "alert": "已添加自定义主题"
+      },
+      "t1": {
+        "zh": "长上下文"
+      },
+      "t2": {
+        "zh": "自主智能体"
+      },
+      "t3": {
+        "zh": "模型评测"
+      },
+      "t4": {
+        "zh": "检索增强"
+      },
+      "t5": {
+        "zh": "产品策略"
+      },
+      "t6": {
+        "zh": "对齐与安全"
+      },
+      "t7": {
+        "zh": "多模态"
+      },
+      "t8": {
+        "zh": "推理数学"
+      },
+      "t9": {
+        "zh": "开源模型"
+      },
+      "t10": {
+        "zh": "基础设施"
+      },
+      "t11": {
+        "zh": "微调"
+      },
+      "t12": {
+        "zh": "语音实时"
+      }
+    },
+    "s3": {
+      "title": "Step III · 连接您的资料源",
+      "subtitle": "至少连接一个 —— 否则 Inbox 将是空的。可选多种。",
+      "s1": {
+        "t": "📧 邮件转发",
+        "d": "使用您的专属邮箱：forward@mail.researchtrace.app",
+        "cta": "复制邮箱地址"
+      },
+      "s2": {
+        "t": "🌐 Chrome / Edge 扩展",
+        "d": "一键保存任何网页 + Twitter 主串 + Reddit",
+        "cta": "安装扩展"
+      },
+      "s3": {
+        "t": "📁 拖放 / 上传 PDF",
+        "d": "支持 PDF、Word、TXT、Markdown，单次最多 50 项",
+        "cta": "打开文件选择器"
+      },
+      "s4": {
+        "t": "📒 Notion / Obsidian / Readwise 同步",
+        "d": "双向同步您的现有笔记库 (oauth)",
+        "cta": "开始连接"
+      },
+      "s5": {
+        "t": "📺 YouTube / Podcast 订阅",
+        "d": "自动转录 + 章节切分 + 关键论断抽取",
+        "cta": "添加频道"
+      },
+      "s6": {
+        "t": "🐦 X / Twitter 列表",
+        "d": "订阅信息节点账号，长串自动整理",
+        "cta": "绑定账号"
+      },
+      "connected": "✓ CONNECTED",
+      "tip": {
+        "html": "💡 我们建议至少连接 <strong>邮件转发</strong> + <strong>Chrome 扩展</strong>，这是最高频的两个入口。"
+      }
+    },
+    "s4": {
+      "title": "Step IV · 您的第一份简报",
+      "subtitle": "Reporter Agent 将基于您的选择，于 24 小时内交付您的初始简报。",
+      "delivery": "DELIVERY SCHEDULE",
+      "d1": {
+        "k": "首次扫描",
+        "v": "今天 23:00 自动启动"
+      },
+      "d2": {
+        "k": "首份简报",
+        "v": "明日 08:00 投递"
+      },
+      "d3": {
+        "k": "每周回顾",
+        "v": "每周一 08:00"
+      },
+      "d4": {
+        "k": "每月长读",
+        "v": "每月 1 日 08:00"
+      },
+      "channel": "PREFERRED CHANNEL",
+      "ch": {
+        "app": "应用内",
+        "email": "邮件",
+        "rss": "RSS",
+        "wechat": "微信小程序"
+      },
+      "depth": {
+        "_value": "DEPTH PREFERENCE",
+        "short": "SHORT · 5 min",
+        "std": "STANDARD · 10 min",
+        "deep": "DEEP · 20 min"
+      },
+      "preview": {
+        "_value": "PREVIEW · 您的首份简报会长这样",
+        "kicker": "YOUR FIRST DIGEST · No.001",
+        "title": "本周 5 个主题的初始扫描总览",
+        "sub": "由 Reporter Agent 综合 ~120 项初始证据 · 阅读 9 分钟",
+        "cta": "CLICK TO PREVIEW →"
+      }
+    }
+  },
+  "settings": {
+    "crumb": "RESEARCHTRACE / SETTINGS · 设置",
+    "kicker": "VOL. III · SETTINGS · 偏好",
+    "title": "Settings",
+    "lede": "控制 Agent 的行为、订阅节奏，以及您的数据归属。",
+    "nav": {
+      "profile": "Profile · 个人资料",
+      "delivery": "Delivery · 简报节奏与渠道",
+      "agents": "Agents · AI 行为偏好",
+      "sources": "Sources · 信源管理",
+      "plan": "Plan & Billing · 订阅",
+      "data": "Data & Privacy · 数据隐私"
+    },
+    "btn": {
+      "logout": "↩ LOG OUT"
+    },
+    "profile": {
+      "kicker": "§ 01 · PROFILE",
+      "change": "CHANGE",
+      "alert": "打开头像上传器",
+      "k1": "显示名",
+      "v1": "郁文 Yuwen",
+      "k2": "邮箱",
+      "v2": "yuwen@research.trace",
+      "k3": "主要角色",
+      "v3": "AI 产品经理 + 独立研究者",
+      "k4": "所在时区",
+      "v4": "Asia/Shanghai (UTC+8)",
+      "k5": "语言偏好",
+      "v5": "简体中文 / English",
+      "k6": "专属转发邮箱",
+      "v6": "forward@mail.researchtrace.app"
+    },
+    "delivery": {
+      "kicker": "§ 02 · DELIVERY",
+      "cadence": "投递节奏",
+      "r1": {
+        "k": "每日 Today Digest",
+        "v": "每天 08:00"
+      },
+      "r2": {
+        "k": "每周 Weekly Brief",
+        "v": "每周一 08:00"
+      },
+      "r3": {
+        "k": "每月 Long Read",
+        "v": "每月 1 日 08:00"
+      },
+      "r4": {
+        "k": "重大事件 Deep Dive",
+        "v": "HEAT ≥ 4 自动触发"
+      },
+      "r5": {
+        "k": "每周不读则提醒",
+        "v": "本周内未读 → 周日 18:00 提醒"
+      },
+      "channels": "投递渠道",
+      "ch": {
+        "app": "应用内",
+        "email": "邮件",
+        "rss": "RSS",
+        "wechat": "微信小程序",
+        "slack": "Slack DM",
+        "tg": "Telegram Bot"
+      }
+    },
+    "agents": {
+      "kicker": "§ 03 · AGENTS",
+      "lede": "5 个 Agent 在为您工作。点击查看每个 Agent 的最近行为日志。",
+      "alert": "打开 Agent 行为日志 · 含 prompt、调用记录、token 用量",
+      "alertPrefix": "打开 ",
+      "alertSuffix": " Agent 行为日志 · 含 prompt、调用记录、token 用量",
+      "a1": {
+        "zh": "摄取",
+        "d": "解析 PDF/URL/视频",
+        "last": "3 分钟前"
+      },
+      "a2": {
+        "zh": "策展",
+        "d": "抽取论断、构建图谱",
+        "last": "7 分钟前"
+      },
+      "a3": {
+        "zh": "检索",
+        "d": "BM25 + 向量混检",
+        "last": "刚刚"
+      },
+      "a4": {
+        "zh": "雷达",
+        "d": "监测信源、触发告警",
+        "last": "23:00 next"
+      },
+      "a5": {
+        "zh": "撰稿",
+        "d": "周报/月报/Deep Dive",
+        "last": "今晨 08:00"
+      },
+      "last": "LAST · ",
+      "routing": "语言模型路由",
+      "r1": {
+        "k": "TASK · 摘要 / 简报"
+      },
+      "r2": {
+        "k": "TASK · 抽取论断"
+      },
+      "r3": {
+        "k": "TASK · 长上下文综合"
+      },
+      "routeChange": "切换模型路由"
+    },
+    "plan": {
+      "kicker": "§ 05 · PLAN & BILLING",
+      "current": "CURRENT PLAN · RESEARCH PRO",
+      "price": "$29 / 月 · 已订阅 4 个月",
+      "next": "下一次扣费：2026·06·09 · 自动续订已开启",
+      "btn": {
+        "change": "CHANGE PLAN",
+        "pause": "PAUSE AUTO-RENEW"
+      },
+      "alert": {
+        "pause": "已暂停自动续订"
+      }
+    },
+    "data": {
+      "kicker": "§ 06 · DATA & PRIVACY",
+      "lede": "您的数据是您的。我们不用于训练任何公开模型，且支持完整导出与销毁。",
+      "r1": {
+        "k": "导出全部数据",
+        "d": "以 zip 含 markdown + 原始文件 + 知识图谱 JSON",
+        "cta": "导出"
+      },
+      "r2": {
+        "k": "销毁账号与全部数据",
+        "d": "30 天内可恢复，过后不可逆",
+        "cta": "销毁"
+      },
+      "r3": {
+        "k": "训练数据使用",
+        "d": "禁止用于公共模型训练 · 当前：已禁用",
+        "cta": "已禁用"
+      },
+      "r4": {
+        "k": "端到端加密笔记",
+        "d": "为您的私人笔记启用 E2EE",
+        "cta": "启用"
+      },
+      "alertSuffix": "操作已记录"
+    }
+  },
+  "pricing": {
+    "crumb": "RESEARCHTRACE / PRICING · 订阅方案",
+    "kicker": "VOL. III · PRICING",
+    "title": "为认真做研究的人而生。",
+    "lede": "不是另一个 ChatGPT 包装层。是一份只为您一人编辑的研究报。下方四档，覆盖从尝试到团队协作。",
+    "monthly": "月付",
+    "yearly": {
+      "_value": "年付 · 省 17%",
+      "alert": "已切换至年付 · 整体优惠约 17%"
+    },
+    "faq": {
+      "_value": "FREQUENTLY ASKED",
+      "q1": "与 ChatGPT / Perplexity 有什么不同？",
+      "a1": "它们答任何问题；研迹只答您的问题，且基于您的资料库。每次回答都附可点击的引用。",
+      "q2": "数据会被用于训练吗？",
+      "a2": "不会。我们的合同条款包含 \"opt-out by default\"，您的资料库不进入任何公共训练集。",
+      "q3": "可以离线 / 私有部署吗？",
+      "a3": "Team 方案以上支持自带 API key 与 VPC 部署，企业版支持 fully on-prem。",
+      "q4": "我可以随时取消吗？",
+      "a4": "随时。取消后保留只读访问 14 天，可随时导出全部数据。",
+      "q5": "我现有的 Notion / Obsidian 笔记呢？",
+      "a5": "支持双向同步。您不需要「迁移」，研迹与您现有工具共存。",
+      "q6": "支持中文吗？",
+      "a6": "原生支持。中英双语 UI、双语简报、混合语料检索均经过专门优化。"
+    },
+    "eduTitle": "EDU / NON-PROFIT · 教育与公益折扣",
+    "eduBody": "学生、教师、研究机构、公益组织 · 50% off",
+    "eduSub": "使用 .edu / 机构邮箱注册自动获得 · 不限方案档位",
+    "eduCta": {
+      "_value": "APPLY NOW →",
+      "alert": "打开教育认证流程"
+    },
+    "popular": "★ MOST POPULAR",
+    "your": "YOUR PLAN",
+    "btn": {
+      "current": "CURRENT PLAN",
+      "free": "START FREE →",
+      "contact": "CONTACT SALES →",
+      "trial": "START 14-DAY TRIAL →"
+    },
+    "alert": {
+      "current": "您当前正在使用此方案",
+      "trial": "开始 14 天免费试用 · 无需信用卡"
+    },
+    "p1": {
+      "name": "Free",
+      "zh": "免费",
+      "period": "永久",
+      "pitch": "开始体验主动研究 · 限制额度"
+    },
+    "p2": {
+      "name": "Pro",
+      "zh": "个人",
+      "period": "/ 月",
+      "pitch": "个人研究者的标配 · 取消随时"
+    },
+    "p3": {
+      "name": "Research Pro",
+      "zh": "研究专业",
+      "period": "/ 月",
+      "pitch": "独立研究者 / 创业者的核心生产工具"
+    },
+    "p4": {
+      "name": "Team",
+      "zh": "小组",
+      "period": "/ 月 / 5 席",
+      "pitch": "研究小组共享主题与简报"
+    },
+    "feat": {
+      "topics": "主题",
+      "vault": "Vault 容量",
+      "calls": "每日 Agent 调用",
+      "briefs": "每月简报",
+      "channel": "渠道",
+      "routing": "模型路由",
+      "evidence": "证据引用",
+      "export": "导出数据",
+      "sync": "Chrome / Notion 同步",
+      "fwd": "邮件转发",
+      "e2ee": "E2EE 加密笔记",
+      "priority": "优先响应 + 抢先体验",
+      "seats": "席位",
+      "shared": "共享 Vault",
+      "sharedT": "共享主题",
+      "sharedB": "共享简报",
+      "admin": "管理后台",
+      "private": "私有部署选项",
+      "cs": "专属客户成功"
+    },
+    "v": {
+      "p1": {
+        "topics": "1 个",
+        "vault": "100 项",
+        "calls": "20 次",
+        "briefs": "2 份",
+        "channel": "仅应用内",
+        "routing": "固定 GPT-4o-mini",
+        "evidence": "✓",
+        "export": "Markdown / JSON"
+      },
+      "p2": {
+        "topics": "8 个",
+        "vault": "2,000 项",
+        "calls": "500 次",
+        "briefs": "20 份 + Deep Dive 5 次",
+        "channel": "应用内 / 邮件 / RSS",
+        "routing": "Claude / GPT / Gemini 自动",
+        "sync": "✓",
+        "fwd": "✓ 专属邮箱"
+      },
+      "p3": {
+        "topics": "无限",
+        "vault": "无限",
+        "calls": "5,000 次",
+        "briefs": "无限 + Deep Dive 20 次",
+        "channel": "全渠道 + 微信 / Slack / TG",
+        "routing": "顶级模型优先 (Sonnet / Opus / GPT-4)",
+        "e2ee": "✓",
+        "priority": "✓"
+      },
+      "p4": {
+        "seats": "5 (可加购 +$15/席)",
+        "shared": "全员可读 + 权限控制",
+        "sharedT": "✓ 协作策展",
+        "sharedB": "✓ 含评论",
+        "admin": "审计日志 + SSO",
+        "routing": "顶级模型 + 自带 API key",
+        "private": "加价模块",
+        "cs": "✓"
+      }
+    }
+  }
 }
