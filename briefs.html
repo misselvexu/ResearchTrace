@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Briefs — 研迹 ResearchTrace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="stylesheet" href="css/tokens.css" />
+</head>
+<body data-page="briefs">
+<div id="app"></div>
+<script src="js/shell.js"></script>
+<script>
+RT.mountShell({ activeId: "briefs", crumb: "RESEARCHTRACE / BRIEFS · 36 已归档简报" });
+
+const FEATURED = {
+  n:"127", date:"今日 · 5月9日 09:14", title:"长上下文之争：显式记忆压缩与端到端注意力扩展，分歧加剧", subtitle:"由 Reporter Agent 综合 412 处证据 · 阅读 11 分钟", topic:"LLM Long Context", img:"thumb-longctx.png", read:false, claims:7, evidence:23
+};
+
+const BRIEFS = [
+  {n:"126", date:"昨日 · 5月8日", title:"Agentic Workflow 周报：自反思框架谁先？", topic:"Agentic Workflows", img:"thumb-agentic.png", tag:"WEEKLY", read:true, len:"9 min", claims:5, evidence:18},
+  {n:"125", date:"5月7日", title:"RMT v3 深度拆解：三个不能忽视的细节", topic:"LLM Long Context", img:"thumb-longctx.png", tag:"DEEP DIVE · TRIGGERED", read:true, len:"18 min", claims:8, evidence:34},
+  {n:"124", date:"5月5日", title:"AI Evaluation 月度回顾：HELM v3 重新定义", topic:"AI Evaluation", img:"thumb-bench.png", tag:"MONTHLY", read:true, len:"22 min", claims:11, evidence:42},
+  {n:"123", date:"5月3日", title:"GraphRAG vs LongMem：路线对比", topic:"RAG & Memory", img:"thumb-rag.png", tag:"WEEKLY", read:true, len:"10 min", claims:6, evidence:21},
+  {n:"122", date:"5月1日", title:"AI Product Strategy · 4月研报合辑", topic:"AI Product Strategy", img:"thumb-strategy.png", tag:"MONTHLY", read:true, len:"24 min", claims:9, evidence:31},
+  {n:"121", date:"4月29日", title:"Alignment & Safety 周报：DPO vs RLHF 实证", topic:"Alignment & Safety", img:"thumb-align.png", tag:"WEEKLY", read:true, len:"7 min", claims:4, evidence:15},
+  {n:"120", date:"4月25日", title:"Reasoning models: o1 之后的下一站", topic:"Reasoning & Math", img:"thumb-bench.png", tag:"WEEKLY", read:true, len:"11 min", claims:6, evidence:19},
+  {n:"119", date:"4月22日", title:"长上下文 vs 检索：综述论文激增 +38 篇", topic:"LLM Long Context", img:"thumb-longctx.png", tag:"WEEKLY", read:true, len:"13 min", claims:7, evidence:28},
+  {n:"118", date:"4月18日", title:"长上下文评测：当 needle 已经不够用", topic:"LLM Long Context", img:"thumb-bench.png", tag:"WEEKLY", read:true, len:"10 min", claims:5, evidence:17},
+];
+
+document.getElementById("main").innerHTML = `
+<section style="border-bottom:1px solid var(--divider);">
+  <div style="max-width:1280px;margin:0 auto;padding:36px 48px 22px;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;">
+      <div>
+        <div class="kicker-red" style="margin-bottom:10px;">VOL. III · BRIEFS LIBRARY · 简报存档</div>
+        <h1 class="headline" style="font-size:46px;margin:0;">Briefs</h1>
+        <p class="font-serif" style="font-style:italic;color:var(--ink-secondary);margin:6px 0 0;max-width:680px;">
+          您所有的研究简报存档于此。每周一与每月一日由 Reporter 自动生成，重大事件触发 Deep Dive。
+        </p>
+      </div>
+      <div style="text-align:right;">
+        <div class="watermark-number" style="font-size:96px;">36</div>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:6px;margin-top:24px;padding-top:18px;border-top:1px solid var(--divider);flex-wrap:wrap;">
+      <span class="kicker">FILTER ·</span>
+      <button class="pill is-active">ALL · 36</button>
+      <button class="pill">WEEKLY · 22</button>
+      <button class="pill">MONTHLY · 5</button>
+      <button class="pill">DEEP DIVE · 6</button>
+      <button class="pill">INITIAL · 3</button>
+      <span style="margin:0 8px;color:var(--divider-strong)">|</span>
+      <span class="kicker">BY TOPIC ·</span>
+      <button class="pill">LLM LONG CONTEXT · 8</button>
+      <button class="pill">AGENTIC · 5</button>
+      <button class="pill">EVAL · 4</button>
+      <button class="pill">RAG · 6</button>
+      <button class="pill">PRODUCT · 7</button>
+      <span style="flex:1"></span>
+      <button class="btn btn-red" onclick="alert('打开 Brief 创建器：选主题、时间范围、深度…')">+ NEW BRIEF</button>
+    </div>
+  </div>
+</section>
+
+<!-- Featured (latest) brief -->
+<section style="background:var(--bg-paper-warm);border-bottom:1px solid var(--divider);">
+  <div style="max-width:1280px;margin:0 auto;padding:42px 48px;">
+    <div class="kicker-red" style="margin-bottom:16px;">§ FEATURED · LATEST WEEKLY DIGEST</div>
+    <a href="brief.html?id=${FEATURED.n}" style="text-decoration:none;color:inherit;display:grid;grid-template-columns:380px 1fr;gap:36px;align-items:center;">
+      <div style="position:relative;">
+        <img src="assets/img/${FEATURED.img}" alt="" style="width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--divider);"/>
+        <span class="watermark-number" style="position:absolute;top:-20px;left:-16px;font-size:120px;">${FEATURED.n}</span>
+        ${FEATURED.read?'':'<span class="pill pill-red" style="position:absolute;top:14px;right:14px;font-size:10px;">UNREAD</span>'}
+      </div>
+      <div>
+        <div style="display:flex;gap:8px;margin-bottom:14px;">
+          <span class="pill pill-red">WEEKLY DIGEST · No. ${FEATURED.n}</span>
+          <span class="pill">${FEATURED.topic}</span>
+        </div>
+        <h2 class="headline" style="font-size:34px;margin:0 0 10px;line-height:1.2;">${FEATURED.title}</h2>
+        <div class="kicker" style="font-style:italic;font-family:var(--font-serif);font-size:14px;text-transform:none;letter-spacing:0;color:var(--ink-secondary);margin-bottom:14px;">${FEATURED.subtitle}</div>
+        <div style="display:flex;gap:18px;align-items:center;margin-bottom:18px;">
+          <div><div class="font-serif" style="font-size:22px;font-weight:600;">${FEATURED.claims}</div><div class="kicker" style="font-size:9px;">CLAIMS</div></div>
+          <div><div class="font-serif" style="font-size:22px;font-weight:600;">${FEATURED.evidence}</div><div class="kicker" style="font-size:9px;">EVIDENCE</div></div>
+          <div><div class="font-serif" style="font-size:22px;font-weight:600;">${FEATURED.date.split(' · ')[1] || FEATURED.date}</div><div class="kicker" style="font-size:9px;">DELIVERED</div></div>
+        </div>
+        <button class="btn btn-red">READ NOW ↗</button>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- Brief grid -->
+<section>
+  <div style="max-width:1280px;margin:0 auto;padding:42px 48px 64px;">
+    <div class="kicker-red" style="margin-bottom:18px;">§ ARCHIVE · 近期简报</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      ${BRIEFS.map(b=>`
+        <a href="brief.html?id=${b.n}" class="paper-card" style="display:flex;flex-direction:column;text-decoration:none;color:inherit;overflow:hidden;">
+          <div style="position:relative;aspect-ratio:16/9;border-bottom:1px solid var(--divider);overflow:hidden;">
+            <img src="assets/img/${b.img}" alt="" style="width:100%;height:100%;object-fit:cover;"/>
+            <span class="watermark-number" style="position:absolute;top:-12px;right:6px;font-size:70px;">${b.n}</span>
+          </div>
+          <div style="padding:16px 18px;flex:1;display:flex;flex-direction:column;">
+            <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap;">
+              <span class="pill" style="font-size:9px;">${b.tag}</span>
+              <span class="pill" style="font-size:9px;">${b.topic}</span>
+            </div>
+            <div class="font-serif" style="font-size:17px;font-weight:600;line-height:1.3;margin-bottom:10px;flex:1;">${b.title}</div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;border-top:1px dotted var(--divider-strong);padding-top:10px;">
+              <span class="kicker">${b.date}</span>
+              <span class="font-mono" style="font-size:11px;color:var(--ink-secondary);">${b.len} · ${b.claims} claims</span>
+            </div>
+          </div>
+        </a>
+      `).join("")}
+    </div>
+
+    <div style="text-align:center;margin-top:32px;">
+      <button class="btn btn-ghost" onclick="alert('已加载下一批 9 篇')">LOAD MORE · 27 ARCHIVED</button>
+    </div>
+  </div>
+</section>
+`;
+</script>
+</body>
+</html>

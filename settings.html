@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Settings — 研迹 ResearchTrace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="stylesheet" href="css/tokens.css" />
+</head>
+<body data-page="settings">
+<div id="app"></div>
+<script src="js/shell.js"></script>
+<script>
+RT.mountShell({ activeId: "settings", crumb: "RESEARCHTRACE / SETTINGS · 偏好与订阅" });
+
+const SECTIONS = [
+  ["profile", "Profile · 个人资料"],
+  ["delivery", "Delivery · 简报节奏与渠道"],
+  ["agents", "Agents · AI 行为偏好"],
+  ["sources", "Sources · 信源管理"],
+  ["plan", "Plan & Billing · 订阅"],
+  ["data", "Data & Privacy · 数据隐私"],
+];
+
+document.getElementById("main").innerHTML = `
+<section style="border-bottom:1px solid var(--divider);">
+  <div style="max-width:1180px;margin:0 auto;padding:36px 48px 22px;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;">
+      <div>
+        <div class="kicker-red" style="margin-bottom:10px;">VOL. III · SETTINGS · 偏好</div>
+        <h1 class="headline" style="font-size:42px;margin:0;">Settings</h1>
+        <p class="font-serif" style="font-style:italic;color:var(--ink-secondary);margin:6px 0 0;">控制 Agent 的行为、订阅节奏，以及您的数据归属。</p>
+      </div>
+      <div class="watermark-number" style="font-size:88px;opacity:.85;">06</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div style="max-width:1180px;margin:0 auto;padding:32px 48px 64px;display:grid;grid-template-columns:220px 1fr;gap:48px;">
+
+    <!-- Settings nav -->
+    <aside style="position:sticky;top:88px;align-self:start;">
+      ${SECTIONS.map(([id,label],i)=>`
+        <a href="#${id}" class="leader" style="text-decoration:none;color:${i===0?'var(--accent-red)':'var(--ink-secondary)'};padding:6px 0;display:flex;align-items:baseline;gap:6px;">
+          <span class="font-mono" style="font-size:10px;">0${i+1}</span>
+          <span class="font-serif" style="font-size:14px;">${label}</span>
+        </a>
+      `).join("")}
+      <button class="btn btn-ghost" style="margin-top:24px;width:100%;justify-content:center;font-size:10px;" onclick="if(confirm('确定登出？')) window.location.href='index.html'">↩ LOG OUT</button>
+    </aside>
+
+    <div>
+
+      <!-- Profile -->
+      <section id="profile" style="margin-bottom:48px;">
+        <div class="rule-kicker"><span class="kicker-red">§ 01 · PROFILE</span></div>
+        <div style="display:grid;grid-template-columns:140px 1fr;gap:32px;">
+          <div style="text-align:center;">
+            <img src="assets/img/avatar.png" alt="" style="width:120px;height:120px;border-radius:50%;border:1px solid var(--divider);object-fit:cover;background:var(--bg-paper-warm);"/>
+            <button class="pill" style="margin-top:10px;font-size:9px;" onclick="alert('打开头像上传器')">CHANGE</button>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            ${[
+              ["显示名","郁文 Yuwen"],
+              ["邮箱","yuwen@research.trace"],
+              ["主要角色","AI 产品经理 + 独立研究者"],
+              ["所在时区","Asia/Shanghai (UTC+8)"],
+              ["语言偏好","简体中文 / English"],
+              ["专属转发邮箱","forward@mail.researchtrace.app"],
+            ].map(([k,v])=>`
+              <div>
+                <div class="kicker" style="font-size:9px;margin-bottom:4px;">${k}</div>
+                <div style="font-family:var(--font-serif);font-size:15px;padding:8px 12px;border:1px solid var(--divider);background:var(--bg-card);">${v}</div>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      </section>
+
+      <!-- Delivery -->
+      <section id="delivery" style="margin-bottom:48px;">
+        <div class="rule-kicker"><span class="kicker-red">§ 02 · DELIVERY</span></div>
+
+        <div style="margin-bottom:18px;">
+          <div class="kicker" style="margin-bottom:10px;">投递节奏</div>
+          ${[
+            ["每日 Today Digest","每天 08:00",true],
+            ["每周 Weekly Brief","每周一 08:00",true],
+            ["每月 Long Read","每月 1 日 08:00",true],
+            ["重大事件 Deep Dive","HEAT ≥ 4 自动触发",true],
+            ["每周不读则提醒","本周内未读 → 周日 18:00 提醒",false],
+          ].map(([k,v,on])=>`
+            <div style="display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px dotted var(--divider);">
+              <div style="flex:1;">
+                <div class="font-serif" style="font-size:15px;font-weight:500;">${k}</div>
+                <div class="font-mono" style="font-size:11px;color:var(--ink-secondary);margin-top:2px;">${v}</div>
+              </div>
+              <button onclick="toggle(this)" data-on="${on}" style="width:42px;height:22px;border-radius:11px;background:${on?'var(--accent-red)':'var(--divider-strong)'};border:none;position:relative;cursor:pointer;transition:all .2s;">
+                <span style="position:absolute;top:2px;left:${on?'22px':'2px'};width:18px;height:18px;border-radius:50%;background:#fff;transition:left .2s;"></span>
+              </button>
+            </div>
+          `).join("")}
+        </div>
+
+        <div>
+          <div class="kicker" style="margin-bottom:10px;">投递渠道</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="pill is-active">应用内</button>
+            <button class="pill is-active">邮件</button>
+            <button class="pill">RSS</button>
+            <button class="pill">微信小程序</button>
+            <button class="pill">Slack DM</button>
+            <button class="pill">Telegram Bot</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Agents -->
+      <section id="agents" style="margin-bottom:48px;">
+        <div class="rule-kicker"><span class="kicker-red">§ 03 · AGENTS</span></div>
+        <p class="font-serif" style="font-style:italic;color:var(--ink-secondary);font-size:14px;margin:0 0 18px;">5 个 Agent 在为您工作。点击查看每个 Agent 的最近行为日志。</p>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;">
+          ${[
+            {n:"Ingestor",zh:"摄取",d:"解析 PDF/URL/视频",last:"3 分钟前",calls:"127/today"},
+            {n:"Curator",zh:"策展",d:"抽取论断、构建图谱",last:"7 分钟前",calls:"38/today"},
+            {n:"Retriever",zh:"检索",d:"BM25 + 向量混检",last:"刚刚",calls:"412/today"},
+            {n:"Radar",zh:"雷达",d:"监测信源、触发告警",last:"23:00 next",calls:"9 sources"},
+            {n:"Reporter",zh:"撰稿",d:"周报/月报/Deep Dive",last:"今晨 08:00",calls:"3 briefs"},
+          ].map(a=>`
+            <div class="paper-card clickable" onclick="alert('打开 ${a.n} Agent 行为日志 · 含 prompt、调用记录、token 用量')" style="padding:14px;text-align:center;">
+              <div class="font-serif" style="font-size:15px;font-weight:600;">${a.n}</div>
+              <div class="kicker" style="font-style:italic;font-family:var(--font-serif);font-size:11px;text-transform:none;letter-spacing:0;color:var(--ink-secondary);margin:2px 0 8px;">${a.zh}</div>
+              <div class="font-serif" style="font-size:12px;color:var(--ink-secondary);margin-bottom:8px;line-height:1.3;">${a.d}</div>
+              <div class="kicker-red" style="font-size:9px;">LAST · ${a.last}</div>
+              <div class="font-mono" style="font-size:10px;color:var(--ink-tertiary);margin-top:2px;">${a.calls}</div>
+            </div>
+          `).join("")}
+        </div>
+
+        <div style="margin-top:22px;">
+          <div class="kicker" style="margin-bottom:10px;">语言模型路由</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+            ${[
+              ["TASK · 摘要 / 简报","Claude 3.5 Sonnet"],
+              ["TASK · 抽取论断","GPT-4o-mini"],
+              ["TASK · 长上下文综合","Gemini 2.5 Pro"],
+            ].map(([k,v])=>`
+              <div class="paper-card" style="padding:12px 14px;">
+                <div class="kicker" style="font-size:9px;">${k}</div>
+                <div class="font-mono" style="font-size:13px;font-weight:500;margin-top:4px;">${v}</div>
+                <button class="pill" style="margin-top:8px;font-size:9px;" onclick="alert('切换模型路由')">CHANGE</button>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      </section>
+
+      <!-- Plan -->
+      <section id="plan" style="margin-bottom:48px;">
+        <div class="rule-kicker"><span class="kicker-red">§ 05 · PLAN &amp; BILLING</span></div>
+        <div class="paper-card is-feature" style="padding:24px 28px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;">
+          <div>
+            <span class="pill pill-red" style="margin-bottom:8px;">CURRENT PLAN · RESEARCH PRO</span>
+            <div class="font-serif" style="font-size:24px;font-weight:600;margin-top:6px;">$29 / 月 · 已订阅 4 个月</div>
+            <div class="font-serif" style="font-style:italic;color:var(--ink-secondary);font-size:13px;margin-top:4px;">下一次扣费：2026·06·09 · 自动续订已开启</div>
+          </div>
+          <div style="text-align:right;">
+            <button class="btn btn-ghost" onclick="window.location.href='pricing.html'">CHANGE PLAN</button>
+            <button class="pill" style="margin-top:8px;font-size:9px;" onclick="alert('已暂停自动续订')">PAUSE AUTO-RENEW</button>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px;">
+          ${[["VAULT","2,438 / ∞"],["AGENT CALLS","580 / 5,000 today"],["TOPICS","12 / ∞"],["DEEP DIVES","6 / 20 monthly"]].map(([k,v])=>`
+            <div style="padding:12px 14px;background:var(--bg-paper-warm);">
+              <div class="kicker" style="font-size:9px;">${k}</div>
+              <div class="font-mono" style="font-size:13px;margin-top:4px;">${v}</div>
+            </div>`).join("")}
+        </div>
+      </section>
+
+      <!-- Data -->
+      <section id="data">
+        <div class="rule-kicker"><span class="kicker-red">§ 06 · DATA &amp; PRIVACY</span></div>
+        <p class="font-serif" style="font-style:italic;color:var(--ink-secondary);font-size:14px;margin:0 0 14px;">您的数据是您的。我们不用于训练任何公开模型，且支持完整导出与销毁。</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+          ${[
+            ["导出全部数据","以 zip 含 markdown + 原始文件 + 知识图谱 JSON","导出"],
+            ["销毁账号与全部数据","30 天内可恢复，过后不可逆","销毁"],
+            ["训练数据使用","禁止用于公共模型训练 · 当前：已禁用","已禁用"],
+            ["端到端加密笔记","为您的私人笔记启用 E2EE","启用"],
+          ].map(([k,d,cta])=>`
+            <article class="paper-card" style="padding:16px 18px;">
+              <div class="font-serif" style="font-size:15px;font-weight:600;">${k}</div>
+              <div class="font-serif" style="font-size:13px;font-style:italic;color:var(--ink-secondary);margin:4px 0 10px;">${d}</div>
+              <button class="${cta==='销毁'?'pill pill-red':'pill'}" style="font-size:10px;" onclick="alert('${cta}操作已记录')">${cta} →</button>
+            </article>
+          `).join("")}
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+`;
+
+function toggle(btn){
+  const on = btn.dataset.on === 'true';
+  btn.dataset.on = (!on).toString();
+  btn.style.background = on ? 'var(--divider-strong)' : 'var(--accent-red)';
+  btn.querySelector('span').style.left = on ? '2px' : '22px';
+}
+</script>
+</body>
+</html>

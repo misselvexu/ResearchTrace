@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Topic — 研迹 ResearchTrace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="stylesheet" href="css/tokens.css" />
+</head>
+<body data-page="topic">
+<div id="app"></div>
+<script src="js/shell.js"></script>
+<script>
+const TOPIC_DATA = {
+  "llm-longctx": { name:"LLM Long Context", zh:"长上下文语言模型", n:"01", img:"thumb-longctx.png", items:147, claims:38, evidence:412, briefs:8, sourceCount:67, navId:"topic-llm" },
+  "agentic":     { name:"Agentic Workflows", zh:"自主智能体工作流", n:"02", img:"thumb-agentic.png", items:89, claims:24, evidence:213, briefs:5, sourceCount:42, navId:"topic-agent" },
+  "eval":        { name:"AI Evaluation", zh:"AI 模型评测", n:"03", img:"thumb-bench.png", items:62, claims:19, evidence:141, briefs:4, sourceCount:31, navId:"topic-eval" },
+  "rag":         { name:"RAG & Memory", zh:"检索增强 与 记忆系统", n:"04", img:"thumb-rag.png", items:104, claims:31, evidence:298, briefs:6, sourceCount:48, navId:"topic-rag" },
+  "pm":          { name:"AI Product Strategy", zh:"AI 产品策略", n:"05", img:"thumb-strategy.png", items:78, claims:22, evidence:167, briefs:7, sourceCount:36, navId:"topic-pm" },
+  "alignment":   { name:"Alignment & Safety", zh:"对齐与安全", n:"06", img:"thumb-align.png", items:43, claims:14, evidence:96, briefs:3, sourceCount:22, navId:"" },
+};
+
+const params = new URLSearchParams(location.search);
+const tid = params.get("t") || "llm-longctx";
+const tab = params.get("tab") || "overview";
+const T = TOPIC_DATA[tid] || TOPIC_DATA["llm-longctx"];
+
+RT.mountShell({ activeId: T.navId || "topics", crumb: `RESEARCHTRACE / TOPICS / ${T.name.toUpperCase()}` });
+
+const TABS = [
+  ["overview", "Overview", "总览"],
+  ["sources", "Sources", "信源"],
+  ["claims", "Claims", "观点"],
+  ["evidence", "Evidence", "证据"],
+  ["radar", "Radar", "雷达"],
+  ["briefs", "Briefs", "简报"],
+];
+
+function tabPanel(t){
+  if (t==="overview") return overviewPanel();
+  if (t==="sources") return sourcesPanel();
+  if (t==="claims") return claimsPanel();
+  if (t==="evidence") return evidencePanel();
+  if (t==="radar") return radarPanel();
+  if (t==="briefs") return briefsPanel();
+  return overviewPanel();
+}
+
+/* ============ OVERVIEW ============ */
+function overviewPanel(){
+  return `
+  <div style="display:grid;grid-template-columns:1fr 320px;gap:48px;">
+    <!-- LEFT: Editor synthesis -->
+    <article>
+      <div class="kicker-red">EDITOR&rsquo;S SYNTHESIS · 由 REPORTER AGENT 综述 · 5月8日 23:47</div>
+      <h2 class="headline" style="font-size:34px;margin:14px 0 22px;line-height:1.18;">长上下文之争：显式记忆压缩与端到端注意力扩展，分歧加剧。</h2>
+
+      <div class="callout-brief" style="margin-bottom:28px;">
+        <span class="label">EDITOR&rsquo;S BRIEF · 30秒摘要</span>
+        本主题在过去 30 天积累了 <strong>38 项关键论断</strong>、<strong>412 处证据</strong>。两条主流路线正在分化 ——
+        <strong>路线 A（DeepMind/Anthropic 系）</strong>主张端到端扩展注意力上下文窗口；
+        <strong>路线 B（Microsoft Research/MemGPT 系）</strong>主张以外部 episodic memory 替代长窗口。
+        Curator 认为：两者并非互斥，更可能在 2026 年下半年走向"双层混合"架构。
+      </div>
+
+      <p class="font-serif dropcap" style="font-size:17px;line-height:1.75;color:var(--ink-primary);">
+        过去三十天内，长上下文这一领域共有 <a href="topic.html?t=llm-longctx&tab=evidence" class="link-red">412 篇文献证据</a>被纳入您的资料库。其中最具影响的是 <strong>5月7日</strong> DeepMind 发布的 Recurrent Memory Transformer v3，它以循环压缩机制在 2,097,152 token 长度上保持线性复杂度<a class="cite" href="ask.html?cite=rmt-v3">1</a>。同期 Anthropic 公开了 Claude 3.5 在 200K 上下文上的 needle-in-haystack 评测，跨 12 类配置全部通过，准确率 99.4%<a class="cite" href="ask.html?cite=claude-needle">2</a>。
+      </p>
+
+      <p class="font-serif" style="font-size:17px;line-height:1.75;color:var(--ink-primary);margin-top:18px;">
+        然而，您 4月17日 收藏的 <em>LongMem</em> 论文<a class="cite" href="ask.html?cite=longmem">3</a> 隐含的另一条道路 —— 即用外部记忆模块"假装"长上下文 —— 并未消亡。Microsoft Research 在 5月3日 提出的 GraphRAG v0.4 实验中显示<a class="cite" href="ask.html?cite=graphrag">4</a>，对 1M token 文档的 QA 任务，外部记忆 + 8K 窗口的组合在 17 项指标中 11 项优于纯 200K 上下文方案。这意味着两条路线在不同任务结构上各占胜场。
+      </p>
+
+      <h3 class="font-serif" style="font-size:22px;font-weight:600;margin:30px 0 12px;">三个您需要知道的分歧</h3>
+      <ol style="font-family:var(--font-serif);font-size:16px;line-height:1.7;color:var(--ink-primary);padding-left:20px;">
+        <li><strong>压缩损失之争 ——</strong> RMT v3 论文称压缩损失 ≤ 2.3%，但 Anthropic 团队指出其测试集偏向"叙事文本"，在代码 / 表格类长上下文上损失会被低估<a class="cite" href="ask.html?cite=anth-rebuttal">5</a>。</li>
+        <li><strong>定位检索之争 ——</strong> needle-in-haystack 是否仍是有效评测？HELM v3 团队认为单 needle 任务已过于简单，应转向 multi-needle + 反事实 needle<a class="cite" href="ask.html?cite=helm-v3">6</a>。</li>
+        <li><strong>推理成本之争 ——</strong> 您 4月22日的笔记 <a href="ask.html?cite=note-2204" class="link-red">"长窗口的真实成本"</a>已指出：在生产系统中 200K 上下文的 KV cache 显存占用是 8K 的 25 倍，这一点尚未被任何头条工作正视。</li>
+      </ol>
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:30px;padding-top:18px;border-top:1px solid var(--divider);">
+        <a href="ask.html?q=画一张长上下文路线之争的对比表" class="pill pill-red">DIAGRAM IT →</a>
+        <a href="ask.html?q=对比 RMT v3 与 GraphRAG 在长 QA 上的差异" class="pill">FIND SIMILAR</a>
+        <a href="topic.html?t=llm-longctx&tab=claims" class="pill">SEE ALL 38 CLAIMS</a>
+        <button class="pill" onclick="alert('已生成本主题深度简报，将在邮箱与 Briefs 出现')">GENERATE DEEP BRIEF</button>
+      </div>
+
+      <!-- Architecture diagram -->
+      <figure style="margin:38px 0 0;padding:24px;background:var(--bg-paper-warm);border:1px solid var(--divider);">
+        <img src="assets/img/agents-diagram.png" alt="" style="width:100%;border:1px solid var(--divider);background:#fff"/>
+        <figcaption class="font-serif" style="font-style:italic;font-size:13px;color:var(--ink-secondary);margin-top:10px;text-align:center;">
+          图 1 · 由 Curator Agent 自动生成的领域知识图谱：5 个主要研究流派、12 个关键 milestone。<a href="ask.html?q=展开图 1 的每个节点" class="link-red">点此交互探索 →</a>
+        </figcaption>
+      </figure>
+    </article>
+
+    <!-- RIGHT: meta column -->
+    <aside style="position:sticky;top:88px;align-self:start;">
+      <div style="border:1px solid var(--divider);background:var(--bg-card);padding:18px 18px 14px;">
+        <div class="kicker-red" style="margin-bottom:10px;">TOPIC FACTSHEET</div>
+        ${[
+          ["TRACKED SINCE", "2026·01·14"],
+          ["LAST UPDATE", "5 分钟前"],
+          ["NEXT SCAN", "今晚 23:00"],
+          ["SCAN FREQUENCY", "DAILY · 09 SOURCES"],
+          ["READER", "郁文 · OWNER"],
+        ].map(([k,v])=>`
+          <div class="leader" style="margin-bottom:6px;">
+            <span class="kicker" style="font-size:10px;">${k}</span>
+            <span class="dots"></span>
+            <span class="font-mono" style="font-size:11px;">${v}</span>
+          </div>`).join("")}
+      </div>
+
+      <div style="border:1px solid var(--divider);background:var(--bg-card);padding:18px;margin-top:14px;">
+        <div class="kicker-red" style="margin-bottom:14px;">RADAR · 信源覆盖</div>
+        ${[["arXiv cs.CL","23"],["GitHub Trending","8"],["Anthropic Research","4"],["DeepMind Blog","3"],["Personal Saves","12"]].map(([s,n])=>`
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--accent-red);"></span>
+            <span style="font-size:13px;flex:1">${s}</span>
+            <span class="font-mono" style="font-size:11px;color:var(--ink-secondary);">${n}</span>
+          </div>`).join("")}
+        <a href="topic.html?t=${tid}&tab=sources" class="link-red font-mono" style="font-size:10px;letter-spacing:.14em;">SEE ALL ${T.sourceCount} SOURCES →</a>
+      </div>
+
+      <div style="border:1px solid var(--divider);background:var(--bg-paper-warm);padding:18px;margin-top:14px;">
+        <div class="kicker-red" style="margin-bottom:10px;">YOUR RECENT NOTES</div>
+        <a href="#" onclick="alert('打开知识卡片 #2204')" style="display:block;font-family:var(--font-serif);font-size:14px;font-style:italic;color:var(--ink-primary);text-decoration:none;line-height:1.5;border-bottom:1px solid var(--divider);padding:8px 0;">"长窗口的真实成本：KV cache 显存占用是 8K 的 25 倍…"</a>
+        <a href="#" onclick="alert('打开知识卡片 #2156')" style="display:block;font-family:var(--font-serif);font-size:14px;font-style:italic;color:var(--ink-primary);text-decoration:none;line-height:1.5;border-bottom:1px solid var(--divider);padding:8px 0;">"压缩损失 ≤ 2.3% 的说法在代码任务上不成立。"</a>
+        <a href="#" onclick="alert('打开知识卡片 #2098')" style="display:block;font-family:var(--font-serif);font-size:14px;font-style:italic;color:var(--ink-primary);text-decoration:none;line-height:1.5;padding:8px 0;">"双层混合架构是 2026 H2 最可能的统一形态。"</a>
+      </div>
+    </aside>
+  </div>`;
+}
+
+/* ============ SOURCES ============ */
+function sourcesPanel(){
+  const SOURCES = [
+    {type:"PAPER", year:"2025", n:"01", title:"Recurrent Memory Transformer v3", auth:"Bulatov et al., DeepMind", venue:"arXiv 2505.04127", date:"5月7日", refs:23, evi:18, hot:5},
+    {type:"PAPER", year:"2025", n:"02", title:"Long-Context Capabilities of Claude 3.5 Sonnet", auth:"Anthropic Research", venue:"Anthropic Tech Report", date:"5月7日", refs:14, evi:11, hot:5},
+    {type:"PAPER", year:"2024", n:"03", title:"LongMem: Augmented Memory for Frozen LLMs", auth:"Wang et al.", venue:"NeurIPS 2024", date:"4月17日 saved", refs:23, evi:21, hot:4, saved:true},
+    {type:"BLOG", year:"2025", n:"04", title:"Why 200K Context May Not Be the Answer", auth:"Lilian Weng", venue:"lilianweng.github.io", date:"5月3日", refs:8, evi:6, hot:4},
+    {type:"PAPER", year:"2024", n:"05", title:"GraphRAG: Local-Global Reasoning for QA", auth:"Edge et al., Microsoft", venue:"arXiv 2404.16130", date:"4月22日 saved", refs:12, evi:14, hot:4, saved:true},
+    {type:"PAPER", year:"2024", n:"06", title:"StreamingLLM: Efficient Streaming with Attention Sinks", auth:"Xiao et al.", venue:"ICLR 2024", date:"3月12日 saved", refs:9, evi:8, hot:3, saved:true},
+    {type:"REPORT", year:"2025", n:"07", title:"State of Long-Context LLMs: HELM v3 Slice", auth:"CRFM Stanford", venue:"crfm.stanford.edu", date:"5月1日", refs:7, evi:9, hot:3},
+    {type:"VIDEO", year:"2025", n:"08", title:"Andrej Karpathy on Memory in LLMs", auth:"Karpathy", venue:"YouTube · 92min", date:"4月29日", refs:5, evi:4, hot:3},
+    {type:"PAPER", year:"2023", n:"09", title:"MemGPT: LLMs as Operating Systems", auth:"Packer et al.", venue:"arXiv 2310.08560", date:"2月8日 saved", refs:11, evi:10, hot:3, saved:true},
+    {type:"NEWSLETTER", year:"2025", n:"10", title:"Latent Space: This Week in Long Context", auth:"swyx", venue:"latent.space", date:"5月5日", refs:6, evi:3, hot:2},
+  ];
+  const types = [...new Set(SOURCES.map(s=>s.type))];
+  return `
+  <div style="display:grid;grid-template-columns:200px 1fr;gap:36px;">
+    <!-- Filter sidebar -->
+    <aside>
+      <div class="kicker-red" style="margin-bottom:12px;">FILTER · 67 SOURCES</div>
+      <div style="margin-bottom:18px;">
+        <div class="kicker" style="font-size:10px;margin-bottom:6px;">BY TYPE</div>
+        ${[["ALL",67],["PAPER",38],["BLOG",12],["REPORT",8],["VIDEO",5],["NEWSLETTER",4]].map(([t,n],i)=>`
+          <a href="#" onclick="event.preventDefault()" style="display:flex;justify-content:space-between;padding:5px 0;font-size:13px;color:${i===0?'var(--accent-red)':'var(--ink-secondary)'};text-decoration:none;border-bottom:1px dotted var(--divider);">
+            <span>${t}</span><span class="font-mono">${n}</span>
+          </a>`).join("")}
+      </div>
+      <div style="margin-bottom:18px;">
+        <div class="kicker" style="font-size:10px;margin-bottom:6px;">BY YEAR</div>
+        ${[["2025",24],["2024",31],["2023",10],["≤2022",2]].map(([y,n])=>`
+          <a href="#" onclick="event.preventDefault()" style="display:flex;justify-content:space-between;padding:5px 0;font-size:13px;color:var(--ink-secondary);text-decoration:none;border-bottom:1px dotted var(--divider);">
+            <span>${y}</span><span class="font-mono">${n}</span>
+          </a>`).join("")}
+      </div>
+      <div>
+        <div class="kicker" style="font-size:10px;margin-bottom:6px;">BY MARK</div>
+        <a href="#" onclick="event.preventDefault()" style="display:flex;justify-content:space-between;padding:5px 0;font-size:13px;color:var(--ink-secondary);text-decoration:none;">
+          <span>SAVED BY YOU</span><span class="font-mono">12</span>
+        </a>
+        <a href="#" onclick="event.preventDefault()" style="display:flex;justify-content:space-between;padding:5px 0;font-size:13px;color:var(--ink-secondary);text-decoration:none;">
+          <span>HIGHLIGHTED</span><span class="font-mono">7</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Sources list -->
+    <div>
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:14px;">
+        <h2 class="headline" style="font-size:24px;margin:0;">All Sources</h2>
+        <span class="kicker">SHOWING 1–10 OF 67</span>
+        <span style="flex:1"></span>
+        <button class="btn btn-ghost" onclick="alert('已添加新信源订阅')">+ ADD SOURCE</button>
+      </div>
+      ${SOURCES.map(s=>`
+        <article class="paper-card clickable" style="padding:18px 20px;margin-bottom:10px;display:grid;grid-template-columns:48px 1fr 100px 80px;gap:16px;align-items:center;" onclick="window.location.href='ask.html?q=${encodeURIComponent('深读 '+s.title)}'">
+          <div class="font-serif" style="font-size:32px;font-weight:700;color:var(--accent-red);line-height:1;">${s.n}</div>
+          <div>
+            <div style="display:flex;gap:8px;align-items:center;margin-bottom:4px;flex-wrap:wrap;">
+              <span class="pill" style="font-size:9px;">${s.type}</span>
+              <span class="kicker">${s.venue} · ${s.date}</span>
+              ${s.saved?'<span class="pill pill-red" style="font-size:9px;">SAVED</span>':''}
+            </div>
+            <div class="font-serif" style="font-size:16px;font-weight:600;line-height:1.3;margin-bottom:2px;">${s.title}</div>
+            <div class="font-serif" style="font-size:13px;font-style:italic;color:var(--ink-secondary);">${s.auth}</div>
+          </div>
+          <div style="text-align:center;">
+            <div class="font-serif" style="font-size:18px;font-weight:600;color:var(--ink-primary);">${s.refs}<span style="color:var(--ink-tertiary);font-size:12px;"> claims</span></div>
+            <div class="font-serif" style="font-size:14px;color:var(--ink-secondary);">${s.evi} <span style="color:var(--ink-tertiary);font-size:11px;">evidence</span></div>
+          </div>
+          <div class="heat-bars" style="justify-content:flex-end;">${Array.from({length:5},(_,i)=>`<div class="heat-bar ${i<s.hot?'on':''}"></div>`).join("")}</div>
+        </article>`).join("")}
+
+      <div style="display:flex;justify-content:center;gap:6px;margin-top:20px;">
+        ${[1,2,3,4,5,6,7].map(p=>`<button class="pill ${p===1?'is-active':''}" onclick="alert('页 '+${p})">${p}</button>`).join("")}
+        <button class="pill" onclick="alert('下一页')">→</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ============ CLAIMS ============ */
+function claimsPanel(){
+  const CLAIMS = [
+    {n:"38", txt:"循环记忆压缩可在 2M token 上保持线性复杂度，损失 ≤ 2.3%", side:"PRO LONG-CONTEXT", conf:88, support:5, contra:1, by:"Bulatov et al."},
+    {n:"37", txt:"Claude 3.5 在 200K needle-in-haystack 上达成 99.4% 准确率", side:"PRO LONG-CONTEXT", conf:96, support:4, contra:0, by:"Anthropic"},
+    {n:"36", txt:"外部记忆模块 + 短窗口在 17 项 QA 指标中 11 项优于纯长上下文", side:"PRO MEMORY", conf:74, support:3, contra:2, by:"GraphRAG paper"},
+    {n:"35", txt:"压缩损失在代码与表格任务上被严重低估", side:"PRO MEMORY", conf:68, support:3, contra:1, by:"Anthropic rebuttal"},
+    {n:"34", txt:"200K 上下文 KV cache 显存占用是 8K 的 25 倍 (生产成本论)", side:"COST CONCERN", conf:91, support:4, contra:0, by:"您的笔记 #2204"},
+    {n:"33", txt:"needle-in-haystack 任务已过于简单，应转向 multi-needle 测试", side:"EVAL CONCERN", conf:79, support:4, contra:1, by:"HELM v3 team"},
+    {n:"32", txt:"双层混合（长窗口 + episodic memory）将成为 2026 H2 主流", side:"FORECAST", conf:62, support:2, contra:1, by:"Curator Agent"},
+    {n:"31", txt:"Attention sink 现象在所有 long context LLM 中均存在", side:"EMPIRICAL", conf:85, support:3, contra:0, by:"StreamingLLM"},
+  ];
+  return `
+  <div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;">
+      <h2 class="headline" style="font-size:26px;margin:0;">Claims · 38 项关键论断</h2>
+      <span class="kicker">每项论断都附支持/反驳证据 · 按置信度排序</span>
+    </div>
+    <p class="font-serif" style="font-style:italic;color:var(--ink-secondary);margin:0 0 22px;">由 Curator Agent 从 67 个信源中提取，并以 Reranker 对齐到证据图谱。</p>
+
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:24px;">
+      <button class="pill is-active">ALL · 38</button>
+      <button class="pill">PRO LONG-CONTEXT · 14</button>
+      <button class="pill">PRO MEMORY · 11</button>
+      <button class="pill">COST CONCERN · 5</button>
+      <button class="pill">EVAL CONCERN · 4</button>
+      <button class="pill">FORECAST · 4</button>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      ${CLAIMS.map(c=>`
+        <article class="paper-card" style="padding:20px 22px;display:grid;grid-template-columns:60px 1fr 200px;gap:20px;align-items:center;">
+          <div class="font-serif" style="font-size:34px;font-weight:700;color:var(--accent-red);line-height:1;">${c.n}</div>
+          <div>
+            <div style="display:flex;gap:8px;margin-bottom:6px;">
+              <span class="pill pill-red">${c.side}</span>
+              <span class="kicker">CITED FROM · ${c.by}</span>
+            </div>
+            <div class="font-serif" style="font-size:17px;line-height:1.5;color:var(--ink-primary);">${c.txt}</div>
+            <div style="display:flex;gap:14px;margin-top:10px;align-items:center;">
+              <a href="topic.html?t=${tid}&tab=evidence&claim=${c.n}" class="font-mono" style="font-size:11px;color:var(--accent-red);text-decoration:none;letter-spacing:.1em;">▸ ${c.support} SUPPORTING</a>
+              <a href="topic.html?t=${tid}&tab=evidence&claim=${c.n}&pol=contra" class="font-mono" style="font-size:11px;color:${c.contra>0?'var(--ink-primary)':'var(--ink-tertiary)'};text-decoration:none;letter-spacing:.1em;">▸ ${c.contra} CONTRADICTING</a>
+              <a href="ask.html?q=${encodeURIComponent('深入解读论断：'+c.txt)}" class="font-mono" style="font-size:11px;color:var(--ink-secondary);text-decoration:none;letter-spacing:.1em;">▸ ASK AGENT</a>
+            </div>
+          </div>
+          <div>
+            <div class="kicker" style="font-size:10px;">CONFIDENCE</div>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:4px;">
+              <div class="confidence-track"><div class="confidence-fill" style="width:${c.conf}%;background:${c.conf>=80?'var(--success-green)':c.conf>=60?'var(--warning-amber)':'var(--accent-red)'}"></div></div>
+              <span class="font-mono" style="font-size:13px;font-weight:600;">${c.conf}%</span>
+            </div>
+          </div>
+        </article>
+      `).join("")}
+    </div>
+  </div>`;
+}
+
+/* ============ EVIDENCE ============ */
+function evidencePanel(){
+  const EVI = [
+    {n:"412", title:"§2.3 Memory Compression Loss Curve", source:"Bulatov et al. 2025 · Fig 4", excerpt:"&hellip; under 2M token sequences, the proposed recurrent compression yields a reconstruction loss of <strong>2.27%</strong> ± 0.04, compared to 3.81% for prior MemGPT-style methods&hellip;", page:"p.7", supports:"Claim #38"},
+    {n:"411", title:"Needle-in-Haystack 12 Categories", source:"Anthropic Tech Report 2025-05", excerpt:"Across all 12 categories of needle insertion, Claude 3.5 Sonnet achieved <strong>99.4%</strong> exact-match recall on inputs of 200K tokens. Performance on multi-needle reasoning subset drops to <strong>73.1%</strong>&hellip;", page:"§3.2", supports:"Claim #37"},
+    {n:"410", title:"GraphRAG vs Pure Long-Context QA Comparison", source:"Edge et al. 2024 · Table 6", excerpt:"&hellip; on the LongDocQA benchmark, the GraphRAG + 8K window combination outperformed the 200K window baseline on <strong>11 out of 17 metrics</strong>, particularly in multi-hop reasoning&hellip;", page:"p.14", supports:"Claim #36"},
+    {n:"409", title:"KV Cache Memory Footprint Calculation", source:"您的笔记 #2204 · 4月22日", excerpt:"&hellip; for a 70B model at 200K context, KV cache occupies approximately <strong>~125GB</strong> at fp16, vs ~5GB at 8K context, giving a <strong>25× increase</strong>&hellip;", page:"note", supports:"Claim #34", saved:true},
+    {n:"408", title:"Code Task Compression Loss Audit", source:"Anthropic Rebuttal Memo (5月8日)", excerpt:"&hellip; we ran the RMT v3 compressor on 1,200 code-completion tasks. The reconstruction loss measured was <strong>14.7%</strong> on syntactically dense regions, far exceeding the paper&rsquo;s reported figure&hellip;", page:"§B", supports:"Claim #35"},
+  ];
+  return `
+  <div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px;">
+      <h2 class="headline" style="font-size:26px;margin:0;">Evidence · 412 处证据</h2>
+      <span class="kicker">每一处都来自原文 · 可点击直达 PDF 高亮位置</span>
+    </div>
+
+    ${EVI.map(e=>`
+      <article style="margin-bottom:22px;background:var(--bg-card);border:1px solid var(--divider);border-left:3px solid var(--accent-red);padding:20px 24px;">
+        <div style="display:flex;align-items:flex-start;gap:18px;">
+          <div class="font-serif" style="font-size:28px;font-weight:700;color:var(--accent-red);line-height:1;min-width:64px;">#${e.n}</div>
+          <div style="flex:1">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
+              <span class="kicker-red">EVIDENCE · supports ${e.supports}</span>
+              ${e.saved?'<span class="pill pill-red" style="font-size:9px;">YOUR NOTE</span>':''}
+            </div>
+            <div class="font-serif" style="font-size:18px;font-weight:600;margin-bottom:4px;">${e.title}</div>
+            <div class="kicker" style="font-style:italic;font-family:var(--font-serif);font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-secondary);margin-bottom:12px;">${e.source} · ${e.page}</div>
+            <blockquote style="font-family:var(--font-serif);font-size:15.5px;line-height:1.7;color:var(--ink-primary);background:var(--bg-paper-warm);border-left:2px solid var(--divider-strong);padding:14px 18px;margin:0 0 14px;font-style:italic;">${e.excerpt}</blockquote>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <a href="ask.html?q=${encodeURIComponent('展开证据 #'+e.n)}" class="pill">EXPAND CONTEXT</a>
+              <button class="pill" onclick="alert('已打开 PDF 第 '+'${e.page}'+' 页高亮')">OPEN IN PDF</button>
+              <button class="pill" onclick="alert('已添加为知识卡片')">SAVE AS CARD</button>
+              <a href="ask.html?q=${encodeURIComponent('与证据 #'+e.n+' 矛盾的工作有哪些?')}" class="pill">FIND CONTRADICTIONS</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    `).join("")}
+  </div>`;
+}
+
+/* ============ RADAR ============ */
+function radarPanel(){
+  return `
+  <div style="display:grid;grid-template-columns:1fr 320px;gap:36px;">
+    <div>
+      <h2 class="headline" style="font-size:26px;margin:0 0 8px;">Radar · 信源监测与告警</h2>
+      <p class="font-serif" style="font-style:italic;color:var(--ink-secondary);margin:0 0 26px;">每天 23:00 由 Radar Agent 自动扫描 9 个信源，并在异常增量出现时主动告警。</p>
+
+      <!-- Radar timeline -->
+      <div class="kicker-red" style="margin-bottom:14px;">RECENT 14 DAYS · ALERTS &amp; SCANS</div>
+      <div style="position:relative;padding-left:24px;border-left:1px dotted var(--divider-strong);">
+        ${[
+          {date:"5月8日 23:47", t:"alert", title:"Anthropic 发布 200K needle 测试报告", note:"该工作直接挑战 RMT v3 的『端到端 vs 压缩』路线", level:"HIGH"},
+          {date:"5月7日 16:22", t:"alert", title:"DeepMind RMT v3 发布", note:"上线 30 分钟内 arXiv 引用激增 23 次，触发热度告警", level:"HIGH"},
+          {date:"5月6日 23:00", t:"scan", title:"日常扫描 · 抓取 14 项新增", note:"涵盖 arXiv (8) + 推特 (3) + Anthropic Blog (1) + GitHub (2)"},
+          {date:"5月5日 09:14", t:"alert", title:"swyx 周报特别提到 LongMem", note:"间接证实您 4月17日收藏的判断", level:"MEDIUM"},
+          {date:"5月4日 23:00", t:"scan", title:"日常扫描 · 抓取 9 项新增"},
+          {date:"5月3日 23:00", t:"scan", title:"日常扫描 · 抓取 11 项新增"},
+        ].map(e=>`
+          <div style="position:relative;margin-bottom:18px;">
+            <span style="position:absolute;left:-30px;top:6px;width:10px;height:10px;border-radius:50%;background:${e.t==='alert'?'var(--accent-red)':'var(--divider-strong)'};border:2px solid var(--bg-paper);"></span>
+            <div class="kicker" style="margin-bottom:4px;">${e.date}${e.level?' · '+e.level:''}</div>
+            <div class="font-serif" style="font-size:16px;font-weight:600;margin-bottom:2px;">${e.title}</div>
+            ${e.note?`<div class="font-serif" style="font-style:italic;color:var(--ink-secondary);font-size:13.5px;">${e.note}</div>`:''}
+          </div>
+        `).join("")}
+      </div>
+    </div>
+
+    <aside style="position:sticky;top:88px;align-self:start;">
+      <div style="border:1px solid var(--divider);background:var(--bg-card);padding:18px;">
+        <div class="kicker-red" style="margin-bottom:14px;">ALERT THRESHOLDS</div>
+        ${[
+          ["新增信源 ≥","5 / 24h","HIGH"],
+          ["头条工作引用 ≥","20 次","HIGH"],
+          ["与已有论断矛盾","触发即告警","MEDIUM"],
+          ["关键词突现","HEAT ≥ 4","MEDIUM"],
+        ].map(([k,v,l])=>`
+          <div style="display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px dotted var(--divider);">
+            <div>
+              <div style="font-size:13px">${k}</div>
+              <div class="font-mono" style="font-size:11px;color:var(--accent-red);">${v}</div>
+            </div>
+            <span class="pill ${l==='HIGH'?'pill-red':''}" style="font-size:9px;">${l}</span>
+          </div>
+        `).join("")}
+        <button class="btn btn-ghost" style="width:100%;margin-top:14px;justify-content:center;" onclick="alert('打开告警阈值设置')">EDIT THRESHOLDS</button>
+      </div>
+
+      <div style="border:1px solid var(--divider);background:var(--bg-paper-warm);padding:18px;margin-top:14px;">
+        <div class="kicker-red" style="margin-bottom:10px;">SCAN COVERAGE</div>
+        <div style="font-family:var(--font-serif);font-size:38px;font-weight:700;color:var(--accent-red);line-height:1;">9</div>
+        <div class="kicker" style="margin-top:4px;">SOURCES SCANNED DAILY</div>
+        <button class="btn btn-red" style="width:100%;margin-top:14px;justify-content:center;" onclick="alert('打开信源管理面板')">+ ADD SOURCE</button>
+      </div>
+    </aside>
+  </div>`;
+}
+
+/* ============ BRIEFS ============ */
+function briefsPanel(){
+  const BRIEFS = [
+    {n:"08", title:"长上下文之争：显式记忆压缩与端到端注意力扩展", date:"今日 08:00", tag:"WEEKLY DIGEST", read:false, len:"11 min"},
+    {n:"07", title:"RMT v3 深度拆解：三个不能忽视的细节", date:"5月7日 22:00", tag:"DEEP DIVE · TRIGGERED", read:true, len:"18 min"},
+    {n:"06", title:"过去 30 天长上下文领域全景回顾", date:"5月1日 08:00", tag:"MONTHLY", read:true, len:"24 min"},
+    {n:"05", title:"GraphRAG vs LongMem：路线对比", date:"4月25日 08:00", tag:"WEEKLY DIGEST", read:true, len:"9 min"},
+    {n:"04", title:"长上下文评测：当 needle 已经不够用", date:"4月18日 08:00", tag:"WEEKLY DIGEST", read:true, len:"10 min"},
+    {n:"03", title:"StreamingLLM 实证报告整理", date:"4月11日 08:00", tag:"WEEKLY DIGEST", read:true, len:"8 min"},
+    {n:"02", title:"主题创建 · 初始扫描简报", date:"1月14日 12:00", tag:"INITIAL", read:true, len:"6 min"},
+    {n:"01", title:"主题概览 · 由您创建", date:"1月14日 11:42", tag:"GENESIS", read:true, len:"3 min"},
+  ];
+  return `
+  <div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px;">
+      <h2 class="headline" style="font-size:26px;margin:0;">Briefs · 本主题简报存档</h2>
+      <button class="btn btn-red" onclick="alert('正在生成此主题深度简报…')">GENERATE NEW BRIEF</button>
+    </div>
+
+    ${BRIEFS.map(b=>`
+      <a href="brief.html?id=${b.n}" style="display:grid;grid-template-columns:60px 1fr 130px 80px 100px;gap:18px;align-items:center;padding:18px 0;border-bottom:1px solid var(--divider);text-decoration:none;color:inherit;">
+        <div class="font-serif" style="font-size:32px;font-weight:700;color:var(--accent-red);line-height:1;">${b.n}</div>
+        <div>
+          <div style="display:flex;gap:8px;align-items:center;margin-bottom:4px;">
+            <span class="pill" style="font-size:9px;">${b.tag}</span>
+            ${b.read?'':'<span class="pill pill-red" style="font-size:9px;">UNREAD</span>'}
+          </div>
+          <div class="font-serif" style="font-size:18px;font-weight:600;line-height:1.3;">${b.title}</div>
+        </div>
+        <div class="kicker">${b.date}</div>
+        <div class="font-mono" style="font-size:11px;color:var(--ink-tertiary);">${b.len}</div>
+        <div style="text-align:right;font-family:var(--font-mono);font-size:11px;color:var(--accent-red);letter-spacing:.1em;">READ →</div>
+      </a>
+    `).join("")}
+  </div>`;
+}
+
+/* render header + tabbed content */
+document.getElementById("main").innerHTML = `
+<!-- Topic masthead -->
+<section style="border-bottom:1px solid var(--divider);background:var(--bg-paper);">
+  <div style="max-width:1280px;margin:0 auto;padding:32px 48px 0;">
+    <div style="display:grid;grid-template-columns:1fr 200px;gap:32px;align-items:flex-end;">
+      <div>
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:14px;">
+          <a href="topics.html" class="kicker" style="text-decoration:none;color:var(--ink-tertiary);">← ALL TOPICS</a>
+          <span class="kicker">·</span>
+          <span class="kicker-red">TOPIC No. ${T.n}</span>
+        </div>
+        <h1 class="headline" style="font-size:48px;margin:0 0 4px;">${T.name}</h1>
+        <div class="font-serif" style="font-style:italic;color:var(--ink-secondary);font-size:17px;">${T.zh}</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="watermark-number" style="font-size:120px;">${T.n}</div>
+      </div>
+    </div>
+
+    <!-- Topic stats strip -->
+    <div style="display:grid;grid-template-columns:repeat(5,1fr) auto;gap:12px;margin-top:26px;padding-top:18px;border-top:1px solid var(--divider);align-items:center;">
+      ${[["ITEMS",T.items],["CLAIMS",T.claims],["EVIDENCE",T.evidence],["BRIEFS",T.briefs],["SOURCES",T.sourceCount]].map(([l,n])=>`
+        <div>
+          <div class="font-serif" style="font-size:24px;font-weight:600;line-height:1;">${n}</div>
+          <div class="kicker" style="font-size:10px;margin-top:2px;">${l}</div>
+        </div>
+      `).join("")}
+      <div style="display:flex;gap:6px;">
+        <button class="pill pill-red" onclick="alert('已订阅 / 取消订阅 该主题')">★ PINNED</button>
+        <button class="pill" onclick="alert('打开主题设置')">SETTINGS</button>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <nav class="tab-strip" style="margin-top:22px;">
+      ${TABS.map(([id,en,zh])=>`
+        <a href="topic.html?t=${tid}&tab=${id}" class="${id===tab?'is-active':''}">
+          <span>${en}</span>
+          <span style="margin-left:6px;font-size:9px;color:var(--ink-tertiary);">${zh}</span>
+        </a>
+      `).join("")}
+    </nav>
+  </div>
+</section>
+
+<!-- Tab content -->
+<section>
+  <div style="max-width:1280px;margin:0 auto;padding:36px 48px 80px;">
+    ${tabPanel(tab)}
+  </div>
+</section>
+`;
+</script>
+</body>
+</html>

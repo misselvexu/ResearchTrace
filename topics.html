@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Topics — 研迹 ResearchTrace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="stylesheet" href="css/tokens.css" />
+</head>
+<body data-page="topics">
+<div id="app"></div>
+<script src="js/shell.js"></script>
+<script>
+RT.mountShell({ activeId: "topics", crumb: "RESEARCHTRACE / TOPICS · 12 主题在追踪中" });
+
+const TOPICS = [
+  { id:"llm-longctx", name:"LLM Long Context", zh:"长上下文语言模型", n:"01", img:"thumb-longctx.png", items:147, claims:38, evidence:412, briefs:8, heat:5, status:"ACTIVE", lastBrief:"2小时前", desc:"追踪 LLM 在超长上下文（≥128K）下的注意力机制、记忆压缩、外部记忆模块演进；含 RMT、MemGPT、LongMem、StreamingLLM 等代表方向。", pinned:true },
+  { id:"agentic", name:"Agentic Workflows", zh:"自主智能体工作流", n:"02", img:"thumb-agentic.png", items:89, claims:24, evidence:213, briefs:5, heat:5, status:"ACTIVE", lastBrief:"今日 08:00", desc:"覆盖 ReAct、Self-Refine、Reflexion、CRITIC、Tree-of-Thoughts 等 agent 决策范式；含 SWE-Bench、AgentBench 评测追踪。", pinned:true },
+  { id:"eval", name:"AI Evaluation", zh:"AI 模型评测", n:"03", img:"thumb-bench.png", items:62, claims:19, evidence:141, briefs:4, heat:4, status:"ACTIVE", lastBrief:"昨日", desc:"HELM v3、MMLU-Pro、LongBench、BIG-Bench Hard 等评测体系演进；关注 \"helpfulness vs harmlessness\" 维度的设计争论。", pinned:true },
+  { id:"rag", name:"RAG & Memory", zh:"检索增强 与 记忆系统", n:"04", img:"thumb-rag.png", items:104, claims:31, evidence:298, briefs:6, heat:4, status:"ACTIVE", lastBrief:"今日 08:00", desc:"GraphRAG、Mem0、Zep、Light­RAG 等系统的 episodic/semantic memory 设计；与长上下文路线之争。", pinned:true },
+  { id:"pm", name:"AI Product Strategy", zh:"AI 产品策略", n:"05", img:"thumb-strategy.png", items:78, claims:22, evidence:167, briefs:7, heat:3, status:"ACTIVE", lastBrief:"3 天前", desc:"AI 应用的市场结构、商业化路径、UX 范式；含 a16z、Sequoia、Bessemer 报告与典型案例拆解。", pinned:true },
+  { id:"alignment", name:"Alignment & Safety", zh:"对齐与安全", n:"06", img:"thumb-align.png", items:43, claims:14, evidence:96, briefs:3, heat:3, status:"WATCHING", lastBrief:"5 天前", desc:"RLHF、DPO、Constitutional AI、red-teaming 工作；关注模型可解释性进展。", pinned:false },
+  { id:"multi", name:"Multimodal & Vision", zh:"多模态与视觉", n:"07", img:"thumb-strategy.png", items:36, claims:11, evidence:78, briefs:2, heat:3, status:"WATCHING", lastBrief:"4 天前", desc:"GPT-4V、Gemini、Pixtral 等多模态模型的视觉推理能力评测。", pinned:false },
+  { id:"infra", name:"AI Infrastructure", zh:"AI 基础设施", n:"08", img:"thumb-rag.png", items:51, claims:15, evidence:122, briefs:4, heat:2, status:"WATCHING", lastBrief:"7 天前", desc:"vLLM、TGI、SGLang 推理引擎；FlashAttention、PagedAttention 优化技术。", pinned:false },
+  { id:"finetune", name:"Fine-tuning & Adaptation", zh:"微调与领域适配", n:"09", img:"thumb-longctx.png", items:29, claims:9, evidence:64, briefs:1, heat:2, status:"WATCHING", lastBrief:"10 天前", desc:"LoRA、QLoRA、P-tuning v2 等参数高效微调；持续学习与灾难性遗忘。", pinned:false },
+  { id:"opensrc", name:"Open Source Models", zh:"开源模型生态", n:"10", img:"thumb-agentic.png", items:67, claims:18, evidence:154, briefs:5, heat:3, status:"ACTIVE", lastBrief:"昨日", desc:"Llama、Qwen、DeepSeek、Mistral 等开源模型的能力对比与商业生态。", pinned:false },
+  { id:"reasoning", name:"Reasoning & Math", zh:"推理与数学", n:"11", img:"thumb-bench.png", items:48, claims:16, evidence:112, briefs:3, heat:4, status:"ACTIVE", lastBrief:"2 天前", desc:"o1、DeepSeek-R1 类推理模型；Chain-of-Thought 与过程奖励模型 (PRM)。", pinned:false },
+  { id:"voice", name:"Voice & Real-time AI", zh:"语音与实时 AI", n:"12", img:"thumb-strategy.png", items:24, claims:7, evidence:48, briefs:1, heat:2, status:"PAUSED", lastBrief:"21 天前", desc:"GPT-4o Realtime、Moshi 等流式语音模型；TTS 与 ASR 一体化趋势。", pinned:false },
+];
+
+document.getElementById("main").innerHTML = `
+<!-- Masthead -->
+<section style="border-bottom:1px solid var(--divider);">
+  <div style="max-width:1240px;margin:0 auto;padding:36px 48px 24px;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:32px;">
+      <div>
+        <div class="kicker-red" style="margin-bottom:12px;">VOL. III · CHAPTER 02 · KNOWLEDGE TOPICS</div>
+        <h1 class="headline" style="font-size:48px;margin:0;">Topics</h1>
+        <p class="font-serif" style="font-style:italic;color:var(--ink-secondary);margin:8px 0 0;font-size:16px;max-width:720px;">
+          您正在追踪 <span style="color:var(--accent-red);font-weight:600;">12 个主题</span>，共积累 <span style="color:var(--accent-red);font-weight:600;">2,438 项</span>知识、<span style="color:var(--accent-red);font-weight:600;">412 处</span>证据。每一条结论都有来源，每一条来源都可点。
+        </p>
+      </div>
+      <div style="text-align:right">
+        <div class="watermark-number" style="font-size:96px;">02</div>
+      </div>
+    </div>
+
+    <!-- Filter bar -->
+    <div style="display:flex;align-items:center;gap:8px;margin-top:28px;flex-wrap:wrap;border-top:1px solid var(--divider);padding-top:18px;">
+      <span class="kicker">FILTER ·</span>
+      <button class="pill is-active" onclick="filterTopics('all', this)">ALL · 12</button>
+      <button class="pill" onclick="filterTopics('ACTIVE', this)">ACTIVE · 7</button>
+      <button class="pill" onclick="filterTopics('WATCHING', this)">WATCHING · 4</button>
+      <button class="pill" onclick="filterTopics('PAUSED', this)">PAUSED · 1</button>
+      <button class="pill" onclick="filterTopics('pinned', this)">PINNED · 5</button>
+      <span style="flex:1"></span>
+      <button class="btn btn-ghost" onclick="alert('排序按 HEAT')">SORT BY HEAT</button>
+      <button class="btn btn-red" onclick="alert('打开新主题创建表单')">+ NEW TOPIC</button>
+    </div>
+  </div>
+</section>
+
+<!-- Topics grid -->
+<section>
+  <div style="max-width:1240px;margin:0 auto;padding:32px 48px 64px;">
+    <div id="topicGrid" style="display:grid;grid-template-columns:repeat(3, 1fr);gap:24px;">
+      ${TOPICS.map(t=>`
+        <article data-status="${t.status}" data-pinned="${t.pinned}" class="paper-card clickable fade-up" style="overflow:hidden;display:flex;flex-direction:column;" onclick="window.location.href='topic.html?t=${t.id}'">
+          <div style="position:relative;aspect-ratio:16/9;overflow:hidden;border-bottom:1px solid var(--divider);">
+            <img src="assets/img/${t.img}" alt="" style="width:100%;height:100%;object-fit:cover;"/>
+            <span class="watermark-number" style="position:absolute;top:-10px;right:6px;font-size:64px;color:var(--accent-red);opacity:.92;text-shadow:1px 1px 0 rgba(255,255,255,.4)">${t.n}</span>
+            ${t.pinned ? `<span class="pill pill-solid" style="position:absolute;top:10px;left:10px;font-size:9px;padding:2px 8px;">PINNED</span>` : ""}
+          </div>
+          <div style="padding:18px 20px;display:flex;flex-direction:column;flex:1;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+              <span class="kicker-red">TOPIC · ${t.status}</span>
+              <span class="heat" title="HEAT 热度">
+                <div class="heat-bars">${Array.from({length:5},(_,i)=>`<div class="heat-bar ${i<t.heat?'on':''}"></div>`).join("")}</div>
+              </span>
+            </div>
+            <h3 class="font-serif" style="font-size:21px;font-weight:600;margin:2px 0 4px;line-height:1.2;">${t.name}</h3>
+            <div class="kicker" style="margin-bottom:10px;font-style:italic;font-family:var(--font-serif);font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink-secondary);">${t.zh}</div>
+            <p class="font-serif" style="font-size:13.5px;line-height:1.55;color:var(--ink-secondary);margin:0 0 14px;flex:1;">${t.desc}</p>
+
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;border-top:1px dotted var(--divider-strong);padding-top:12px;margin-bottom:12px;">
+              ${[["ITEMS",t.items],["CLAIMS",t.claims],["EVIDENCE",t.evidence],["BRIEFS",t.briefs]].map(([l,n])=>`
+                <div>
+                  <div class="font-serif" style="font-size:18px;font-weight:600;color:var(--ink-primary);">${n}</div>
+                  <div class="kicker" style="font-size:9px;">${l}</div>
+                </div>`).join("")}
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span class="kicker">LAST BRIEF · ${t.lastBrief}</span>
+              <span class="font-mono" style="font-size:11px;color:var(--accent-red);">OPEN →</span>
+            </div>
+          </div>
+        </article>
+      `).join("")}
+    </div>
+  </div>
+</section>
+`;
+
+function filterTopics(filter, btn) {
+  document.querySelectorAll('.pill.is-active').forEach(p => p.classList.remove('is-active'));
+  btn.classList.add('is-active');
+  document.querySelectorAll('#topicGrid > article').forEach(a => {
+    let show = true;
+    if (filter === 'all') show = true;
+    else if (filter === 'pinned') show = a.dataset.pinned === 'true';
+    else show = a.dataset.status === filter;
+    a.style.display = show ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>
