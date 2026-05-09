@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light" data-lang="zh">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Briefs — 研迹 ResearchTrace</title>
+<script src="js/prefs.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
@@ -12,9 +13,11 @@
 </head>
 <body data-page="briefs">
 <div id="app"></div>
+<script src="js/i18n.js"></script>
 <script src="js/shell.js"></script>
 <script>
-RT.mountShell({ activeId: "briefs", crumb: "RESEARCHTRACE / BRIEFS · 36 已归档简报" });
+RT.mountShell({ activeId: "briefs", crumbKey: "briefs.crumb", crumb: RTI18n.t("briefs.crumb") });
+RT.autoApplyI18n();
 
 const FEATURED = {
   n:"127", date:"今日 · 5月9日 09:14", title:"长上下文之争：显式记忆压缩与端到端注意力扩展，分歧加剧", subtitle:"由 Reporter Agent 综合 412 处证据 · 阅读 11 分钟", topic:"LLM Long Context", img:"thumb-longctx.png", read:false, claims:7, evidence:23

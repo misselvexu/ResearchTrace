@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light" data-lang="zh">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Topics — 研迹 ResearchTrace</title>
+<script src="js/prefs.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
@@ -12,9 +13,11 @@
 </head>
 <body data-page="topics">
 <div id="app"></div>
+<script src="js/i18n.js"></script>
 <script src="js/shell.js"></script>
 <script>
-RT.mountShell({ activeId: "topics", crumb: "RESEARCHTRACE / TOPICS · 12 主题在追踪中" });
+RT.mountShell({ activeId: "topics", crumbKey: "topics.crumb", crumb: RTI18n.t("topics.crumb") });
+RT.autoApplyI18n();
 
 const TOPICS = [
   { id:"llm-longctx", name:"LLM Long Context", zh:"长上下文语言模型", n:"01", img:"thumb-longctx.png", items:147, claims:38, evidence:412, briefs:8, heat:5, status:"ACTIVE", lastBrief:"2小时前", desc:"追踪 LLM 在超长上下文（≥128K）下的注意力机制、记忆压缩、外部记忆模块演进；含 RMT、MemGPT、LongMem、StreamingLLM 等代表方向。", pinned:true },

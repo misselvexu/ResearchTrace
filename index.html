@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light" data-lang="zh">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>研迹 ResearchTrace · A Paper for One Reader. You.</title>
+<title data-i18n="landing.title">研迹 ResearchTrace · A Paper for One Reader. You.</title>
+<script src="js/prefs.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
@@ -23,14 +24,15 @@
       </span>
     </a>
     <nav style="display:flex;gap:24px;flex:1;justify-content:center;">
-      <a href="#why" style="font-size:13px;text-decoration:none;color:var(--ink-secondary);">为什么</a>
-      <a href="#how" style="font-size:13px;text-decoration:none;color:var(--ink-secondary);">如何工作</a>
-      <a href="#agents" style="font-size:13px;text-decoration:none;color:var(--ink-secondary);">五个 Agent</a>
-      <a href="pricing.html" style="font-size:13px;text-decoration:none;color:var(--ink-secondary);">定价</a>
-      <a href="briefs.html" style="font-size:13px;text-decoration:none;color:var(--ink-secondary);">简报样例</a>
+      <a href="#why"     style="font-size:13px;text-decoration:none;color:var(--ink-secondary);" data-i18n="landing.nav.why">为什么</a>
+      <a href="#how"     style="font-size:13px;text-decoration:none;color:var(--ink-secondary);" data-i18n="landing.nav.how">如何工作</a>
+      <a href="#agents"  style="font-size:13px;text-decoration:none;color:var(--ink-secondary);" data-i18n="landing.nav.agents">五个 Agent</a>
+      <a href="pricing.html" style="font-size:13px;text-decoration:none;color:var(--ink-secondary);" data-i18n="landing.nav.pricing">定价</a>
+      <a href="briefs.html"  style="font-size:13px;text-decoration:none;color:var(--ink-secondary);" data-i18n="landing.nav.briefs">简报样例</a>
     </nav>
-    <a href="onboarding.html" style="font-size:13px;text-decoration:none;color:var(--ink-secondary);">登录</a>
-    <a href="onboarding.html" class="btn btn-red">开始 14 天免费试用 →</a>
+    <div id="rtPrefs"></div>
+    <a href="onboarding.html" style="font-size:13px;text-decoration:none;color:var(--ink-secondary);" data-i18n="landing.nav.signin">登录</a>
+    <a href="onboarding.html" class="btn btn-red" data-i18n="landing.cta.trial">开始 14 天免费试用 →</a>
   </div>
 </header>
 
@@ -38,54 +40,54 @@
 <section style="border-bottom:3px double var(--divider-strong);background:var(--bg-paper);">
   <div style="max-width:1280px;margin:0 auto;padding:54px 48px 36px;position:relative;">
     <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--divider);padding-bottom:14px;margin-bottom:36px;">
-      <span class="kicker">VOL. III · ISSUE 001 · LAUNCH EDITION</span>
-      <span class="kicker">EST. 2026 · BEIJING / SAN FRANCISCO</span>
-      <span class="kicker">PRICE · TIME ONLY</span>
+      <span class="kicker" data-i18n="landing.masthead.vol">VOL. III · ISSUE 001 · LAUNCH EDITION</span>
+      <span class="kicker" data-i18n="landing.masthead.est">EST. 2026 · BEIJING / SAN FRANCISCO</span>
+      <span class="kicker" data-i18n="landing.masthead.price">PRICE · TIME ONLY</span>
     </div>
 
     <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:64px;align-items:center;">
       <div>
-        <div class="kicker-red" style="margin-bottom:16px;">A NEW KIND OF READING</div>
-        <h1 class="headline" style="font-size:72px;line-height:.98;letter-spacing:-.02em;margin:0 0 22px;">
-          A paper<br/>for one<br/>reader.<br/>
-          <span style="color:var(--accent-red);">You.</span>
+        <div class="kicker-red" style="margin-bottom:16px;" data-i18n="landing.hero.kicker">A NEW KIND OF READING</div>
+        <h1 class="headline" style="font-size:72px;line-height:.98;letter-spacing:-.02em;margin:0 0 22px;" data-i18n-html="landing.hero.title.html">
+          一份只为<br/>一位读者<br/>编辑的报。<br/>
+          <span style="color:var(--accent-red);">您。</span>
         </h1>
-        <p class="font-serif" style="font-size:19px;line-height:1.6;color:var(--ink-secondary);margin:0 0 28px;max-width:520px;">
-          研迹是一份<em>主动写作</em>的研究报 —— 它持续读您所读，追踪您所追，每天清晨在您打开它之前，把"<strong>本周您该知道的</strong>"已经编辑成一份真正可读的报刊。证据齐备，引用可点。
+        <p class="font-serif" style="font-size:19px;line-height:1.6;color:var(--ink-secondary);margin:0 0 28px;max-width:520px;" data-i18n-html="landing.hero.lede.html">
+          研迹是一份<em>主动写作</em>的研究报 —— 它持续读您所读，追踪您所追，每天清晨在您打开它之前，把「<strong>本周您该知道的</strong>」已经编辑成一份真正可读的报刊。证据齐备，引用可点。
         </p>
         <div style="display:flex;gap:10px;flex-wrap:wrap;">
-          <a href="onboarding.html" class="btn btn-red" style="font-size:13px;padding:12px 22px;">开始 14 天免费试用 →</a>
-          <a href="today.html" class="btn btn-ghost" style="font-size:13px;padding:12px 22px;">查看示例工作台 →</a>
+          <a href="onboarding.html" class="btn btn-red"   style="font-size:13px;padding:12px 22px;" data-i18n="landing.cta.trial">开始 14 天免费试用 →</a>
+          <a href="today.html"      class="btn btn-ghost" style="font-size:13px;padding:12px 22px;" data-i18n="landing.cta.demo">查看示例工作台 →</a>
         </div>
         <div style="display:flex;gap:24px;margin-top:32px;padding-top:24px;border-top:1px solid var(--divider);">
           <div>
-            <div class="font-serif" style="font-size:24px;font-weight:600;color:var(--accent-red);line-height:1;">100%</div>
-            <div class="kicker" style="font-size:9px;margin-top:4px;">证据可点击</div>
+            <div class="font-serif" style="font-size:24px;font-weight:600;color:var(--accent-red);line-height:1;" data-i18n="landing.stats.evidence.n">100%</div>
+            <div class="kicker" style="font-size:9px;margin-top:4px;" data-i18n="landing.stats.evidence">证据可点击</div>
           </div>
           <div>
-            <div class="font-serif" style="font-size:24px;font-weight:600;color:var(--accent-red);line-height:1;">完整</div>
-            <div class="kicker" style="font-size:9px;margin-top:4px;">AI 调用追溯</div>
+            <div class="font-serif" style="font-size:24px;font-weight:600;color:var(--accent-red);line-height:1;" data-i18n="landing.stats.trace.n">完整</div>
+            <div class="kicker" style="font-size:9px;margin-top:4px;" data-i18n="landing.stats.trace">AI 调用追溯</div>
           </div>
           <div>
-            <div class="font-serif" style="font-size:24px;font-weight:600;color:var(--accent-red);line-height:1;">E2EE</div>
-            <div class="kicker" style="font-size:9px;margin-top:4px;">数据归您</div>
+            <div class="font-serif" style="font-size:24px;font-weight:600;color:var(--accent-red);line-height:1;" data-i18n="landing.stats.data.n">E2EE</div>
+            <div class="kicker" style="font-size:9px;margin-top:4px;" data-i18n="landing.stats.data">数据归您</div>
           </div>
           <div>
-            <div class="font-serif" style="font-size:24px;font-weight:600;color:var(--accent-red);line-height:1;">✓</div>
-            <div class="kicker" style="font-size:9px;margin-top:4px;">训练免疫</div>
+            <div class="font-serif" style="font-size:24px;font-weight:600;color:var(--accent-red);line-height:1;" data-i18n="landing.stats.train.n">✓</div>
+            <div class="kicker" style="font-size:9px;margin-top:4px;" data-i18n="landing.stats.train">训练免疫</div>
           </div>
         </div>
       </div>
 
       <figure style="position:relative;">
         <img src="assets/img/hero-graph.png" alt="" style="width:100%;border:1px solid var(--divider);background:var(--bg-paper-warm);"/>
-        <figcaption class="font-serif" style="font-style:italic;font-size:12px;color:var(--ink-secondary);text-align:center;margin-top:8px;">图 · 由您的资料库自动生成的个人知识图谱（示意）</figcaption>
+        <figcaption class="font-serif" style="font-style:italic;font-size:12px;color:var(--ink-secondary);text-align:center;margin-top:8px;" data-i18n="landing.hero.fig">图 · 由您的资料库自动生成的个人知识图谱（示意）</figcaption>
         <span class="watermark-number" style="position:absolute;top:-32px;left:-24px;font-size:140px;opacity:.85;">001</span>
       </figure>
     </div>
 
     <div style="margin-top:42px;padding-top:18px;border-top:1px solid var(--divider);display:flex;justify-content:space-between;align-items:center;">
-      <span class="kicker">使用者来自 ·</span>
+      <span class="kicker" data-i18n="landing.hero.users">使用者来自 ·</span>
       <span class="font-mono" style="font-size:11px;letter-spacing:.14em;color:var(--ink-secondary);">DEEPMIND · ANTHROPIC · GOOGLE BRAIN · A16Z · BESSEMER · MIT MEDIA LAB · TSINGHUA AIR · OPEN SOURCE FELLOWS</span>
     </div>
   </div>
@@ -94,32 +96,32 @@
 <!-- Why -->
 <section id="why" style="border-bottom:1px solid var(--divider);">
   <div style="max-width:1280px;margin:0 auto;padding:64px 48px;">
-    <div class="rule-kicker"><span class="kicker-red">§ I · 为什么需要研迹</span></div>
+    <div class="rule-kicker"><span class="kicker-red" data-i18n="landing.why.kicker">§ I · 为什么需要研迹</span></div>
     <div style="display:grid;grid-template-columns:1.2fr 2fr;gap:48px;align-items:start;">
       <div>
-        <h2 class="headline" style="font-size:42px;margin:0 0 14px;line-height:1.15;">您每天保存 23 条链接，只读了 3 条。</h2>
-        <p class="font-serif" style="font-style:italic;font-size:17px;color:var(--ink-secondary);margin:0;">这不是您的错。是工具的错。</p>
+        <h2 class="headline" style="font-size:42px;margin:0 0 14px;line-height:1.15;" data-i18n="landing.why.headline">您每天保存 23 条链接，只读了 3 条。</h2>
+        <p class="font-serif" style="font-style:italic;font-size:17px;color:var(--ink-secondary);margin:0;" data-i18n="landing.why.sub">这不是您的错。是工具的错。</p>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
         <article style="padding:20px 22px;background:var(--bg-card);border:1px solid var(--divider);">
           <div class="font-serif" style="font-size:36px;font-weight:700;color:var(--accent-red);line-height:1;margin-bottom:8px;">01</div>
-          <div class="font-serif" style="font-size:18px;font-weight:600;margin-bottom:6px;">被动收集 → 主动遗忘</div>
-          <div class="font-serif" style="font-size:14.5px;line-height:1.6;color:var(--ink-secondary);">现有笔记工具像仓库 —— 资料堆积越多，您离它越远。研迹反过来：它<strong>主动读您的库</strong>，并把要紧的事情<em>送到您面前</em>。</div>
+          <div class="font-serif" style="font-size:18px;font-weight:600;margin-bottom:6px;" data-i18n="landing.why.01.title">被动收集 → 主动遗忘</div>
+          <div class="font-serif" style="font-size:14.5px;line-height:1.6;color:var(--ink-secondary);" data-i18n-html="landing.why.01.body.html">现有笔记工具像仓库 —— 资料堆积越多，您离它越远。研迹反过来：它<strong>主动读您的库</strong>，并把要紧的事情<em>送到您面前</em>。</div>
         </article>
         <article style="padding:20px 22px;background:var(--bg-card);border:1px solid var(--divider);">
           <div class="font-serif" style="font-size:36px;font-weight:700;color:var(--accent-red);line-height:1;margin-bottom:8px;">02</div>
-          <div class="font-serif" style="font-size:18px;font-weight:600;margin-bottom:6px;">答案 ≠ 研究</div>
-          <div class="font-serif" style="font-size:14.5px;line-height:1.6;color:var(--ink-secondary);">ChatGPT 给您「看似正确的句子」。研迹给您 <strong>有出处的论断</strong>。每一句结论后都有可点击的 ① ② ③，3 秒内回到原文。</div>
+          <div class="font-serif" style="font-size:18px;font-weight:600;margin-bottom:6px;" data-i18n="landing.why.02.title">答案 ≠ 研究</div>
+          <div class="font-serif" style="font-size:14.5px;line-height:1.6;color:var(--ink-secondary);" data-i18n-html="landing.why.02.body.html">ChatGPT 给您「看似正确的句子」。研迹给您 <strong>有出处的论断</strong>。每一句结论后都有可点击的 ① ② ③，3 秒内回到原文。</div>
         </article>
         <article style="padding:20px 22px;background:var(--bg-card);border:1px solid var(--divider);">
           <div class="font-serif" style="font-size:36px;font-weight:700;color:var(--accent-red);line-height:1;margin-bottom:8px;">03</div>
-          <div class="font-serif" style="font-size:18px;font-weight:600;margin-bottom:6px;">周期，而非问答</div>
-          <div class="font-serif" style="font-size:14.5px;line-height:1.6;color:var(--ink-secondary);">研究是周期性活动。研迹按「每天 / 每周 / 每月」节奏交付，让您「<strong>不思考</strong>」也跟得上 —— 真正的省力。</div>
+          <div class="font-serif" style="font-size:18px;font-weight:600;margin-bottom:6px;" data-i18n="landing.why.03.title">周期，而非问答</div>
+          <div class="font-serif" style="font-size:14.5px;line-height:1.6;color:var(--ink-secondary);" data-i18n-html="landing.why.03.body.html">研究是周期性活动。研迹按「每天 / 每周 / 每月」节奏交付，让您「<strong>不思考</strong>」也跟得上 —— 真正的省力。</div>
         </article>
         <article style="padding:20px 22px;background:var(--bg-card);border:1px solid var(--divider);">
           <div class="font-serif" style="font-size:36px;font-weight:700;color:var(--accent-red);line-height:1;margin-bottom:8px;">04</div>
-          <div class="font-serif" style="font-size:18px;font-weight:600;margin-bottom:6px;">您的库，不是模型的库</div>
-          <div class="font-serif" style="font-size:14.5px;line-height:1.6;color:var(--ink-secondary);">研迹只回答与<em>您资料库</em>相关的问题。它的根基是您手中的那 2,000 篇。这是它与所有通用 AI 的根本不同。</div>
+          <div class="font-serif" style="font-size:18px;font-weight:600;margin-bottom:6px;" data-i18n="landing.why.04.title">您的库，不是模型的库</div>
+          <div class="font-serif" style="font-size:14.5px;line-height:1.6;color:var(--ink-secondary);" data-i18n-html="landing.why.04.body.html">研迹只回答与<em>您资料库</em>相关的问题。它的根基是您手中的那 2,000 篇。这是它与所有通用 AI 的根本不同。</div>
         </article>
       </div>
     </div>
@@ -129,8 +131,8 @@
 <!-- How it works -->
 <section id="how" style="background:var(--bg-paper-warm);border-bottom:1px solid var(--divider);">
   <div style="max-width:1280px;margin:0 auto;padding:64px 48px;">
-    <div class="rule-kicker"><span class="kicker-red">§ II · 它如何工作 · 一日时间线</span></div>
-    <h2 class="headline" style="font-size:38px;margin:0 0 32px;">从您按下保存到收到简报，发生了什么。</h2>
+    <div class="rule-kicker"><span class="kicker-red" data-i18n="landing.how.kicker">§ II · 它如何工作 · 一日时间线</span></div>
+    <h2 class="headline" style="font-size:38px;margin:0 0 32px;" data-i18n="landing.how.headline">从您按下保存到收到简报，发生了什么。</h2>
 
     <div style="position:relative;">
       <div style="position:absolute;left:36px;top:30px;bottom:30px;width:1px;background:var(--divider-strong);border-left:1px dotted var(--divider-strong);"></div>
@@ -139,8 +141,8 @@
         <span style="position:relative;width:14px;height:14px;border-radius:50%;background:var(--ink-primary);border:3px solid var(--bg-paper-warm);margin-top:2px;justify-self:center;"></span>
         <span class="pill pill-solid" style="justify-self:start;font-size:9px;">YOU</span>
         <div>
-          <div class="font-serif" style="font-size:16px;font-weight:600;margin-bottom:2px;">您在 Twitter 上保存了一条关于 RMT v3 的链接</div>
-          <div class="font-serif" style="font-style:italic;font-size:13.5px;color:var(--ink-secondary);">通过 Chrome 扩展、邮件转发或一键「分享到研迹」完成</div>
+          <div class="font-serif" style="font-size:16px;font-weight:600;margin-bottom:2px;" data-i18n="landing.how.t1.title">您在 Twitter 上保存了一条关于 RMT v3 的链接</div>
+          <div class="font-serif" style="font-style:italic;font-size:13.5px;color:var(--ink-secondary);" data-i18n="landing.how.t1.body">通过 Chrome 扩展、邮件转发或一键「分享到研迹」完成</div>
         </div>
       </div>
       <div style="display:grid;grid-template-columns:80px 28px 130px 1fr;gap:14px;align-items:flex-start;padding:14px 0;position:relative;">
@@ -148,8 +150,8 @@
         <span style="position:relative;width:14px;height:14px;border-radius:50%;background:var(--accent-red);border:3px solid var(--bg-paper-warm);margin-top:2px;justify-self:center;"></span>
         <span class="pill pill-red" style="justify-self:start;font-size:9px;">INGESTOR</span>
         <div>
-          <div class="font-serif" style="font-size:16px;font-weight:600;margin-bottom:2px;">自动抓取并解析</div>
-          <div class="font-serif" style="font-style:italic;font-size:13.5px;color:var(--ink-secondary);">识别：这是一个 arXiv 链接 → 抓取 PDF → 切分章节 → 提取图表</div>
+          <div class="font-serif" style="font-size:16px;font-weight:600;margin-bottom:2px;" data-i18n="landing.how.t2.title">自动抓取并解析</div>
+          <div class="font-serif" style="font-style:italic;font-size:13.5px;color:var(--ink-secondary);" data-i18n="landing.how.t2.body">识别：这是一个 arXiv 链接 → 抓取 PDF → 切分章节 → 提取图表</div>
         </div>
       </div>
       <div style="display:grid;grid-template-columns:80px 28px 130px 1fr;gap:14px;align-items:flex-start;padding:14px 0;position:relative;">
@@ -157,8 +159,8 @@
         <span style="position:relative;width:14px;height:14px;border-radius:50%;background:var(--accent-red);border:3px solid var(--bg-paper-warm);margin-top:2px;justify-self:center;"></span>
         <span class="pill pill-red" style="justify-self:start;font-size:9px;">CURATOR</span>
         <div>
-          <div class="font-serif" style="font-size:16px;font-weight:600;margin-bottom:2px;">抽取关键论断与证据</div>
-          <div class="font-serif" style="font-style:italic;font-size:13.5px;color:var(--ink-secondary);">从 24 页中识别 8 项 claim，每项附 1-3 处证据。归类到「LLM Long Context」主题</div>
+          <div class="font-serif" style="font-size:16px;font-weight:600;margin-bottom:2px;" data-i18n="landing.how.t3.title">抽取关键论断与证据</div>
+          <div class="font-serif" style="font-style:italic;font-size:13.5px;color:var(--ink-secondary);" data-i18n="landing.how.t3.body">从 24 页中识别 8 项 claim，每项附 1-3 处证据。归类到「LLM Long Context」主题</div>
         </div>
       </div>
       <div style="display:grid;grid-template-columns:80px 28px 130px 1fr;gap:14px;align-items:flex-start;padding:14px 0;position:relative;">
@@ -166,8 +168,8 @@
         <span style="position:relative;width:14px;height:14px;border-radius:50%;background:var(--accent-red);border:3px solid var(--bg-paper-warm);margin-top:2px;justify-self:center;"></span>
         <span class="pill pill-red" style="justify-self:start;font-size:9px;">RETRIEVER</span>
         <div>
-          <div class="font-serif" style="font-size:16px;font-weight:600;margin-bottom:2px;">对齐到您的现有图谱</div>
-          <div class="font-serif" style="font-style:italic;font-size:13.5px;color:var(--ink-secondary);">发现该论文与 4月17日 LongMem (#142)、4月22日 GraphRAG (#156) 形成显性对话</div>
+          <div class="font-serif" style="font-size:16px;font-weight:600;margin-bottom:2px;" data-i18n="landing.how.t4.title">对齐到您的现有图谱</div>
+          <div class="font-serif" style="font-style:italic;font-size:13.5px;color:var(--ink-secondary);" data-i18n="landing.how.t4.body">发现该论文与 4月17日 LongMem (#142)、4月22日 GraphRAG (#156) 形成显性对话</div>
         </div>
       </div>
       <div style="display:grid;grid-template-columns:80px 28px 130px 1fr;gap:14px;align-items:flex-start;padding:14px 0;position:relative;">
@@ -175,17 +177,17 @@
         <span style="position:relative;width:14px;height:14px;border-radius:50%;background:var(--accent-red);border:3px solid var(--bg-paper-warm);margin-top:2px;justify-self:center;"></span>
         <span class="pill pill-red" style="justify-self:start;font-size:9px;">RADAR</span>
         <div>
-          <div class="font-serif" style="font-size:16px;font-weight:600;margin-bottom:2px;">夜间例行扫描</div>
-          <div class="font-serif" style="font-style:italic;font-size:13.5px;color:var(--ink-secondary);">检测到该工作引用激增 +23 → 触发 HIGH 告警，推迟到次晨简报</div>
+          <div class="font-serif" style="font-size:16px;font-weight:600;margin-bottom:2px;" data-i18n="landing.how.t5.title">夜间例行扫描</div>
+          <div class="font-serif" style="font-style:italic;font-size:13.5px;color:var(--ink-secondary);" data-i18n="landing.how.t5.body">检测到该工作引用激增 +23 → 触发 HIGH 告警，推迟到次晨简报</div>
         </div>
       </div>
       <div style="display:grid;grid-template-columns:80px 28px 130px 1fr;gap:14px;align-items:flex-start;padding:14px 0;position:relative;">
-        <span class="font-mono" style="font-size:12px;color:var(--accent-red);text-align:right;font-weight:600;">次晨 06:30</span>
+        <span class="font-mono" style="font-size:12px;color:var(--accent-red);text-align:right;font-weight:600;" data-i18n="landing.how.t.next">次晨 06:30</span>
         <span style="position:relative;width:14px;height:14px;border-radius:50%;background:var(--accent-red);border:3px solid var(--bg-paper-warm);margin-top:2px;justify-self:center;"></span>
         <span class="pill pill-red" style="justify-self:start;font-size:9px;">REPORTER</span>
         <div>
-          <div class="font-serif" style="font-size:16px;font-weight:600;margin-bottom:2px;">为您撰写当日简报</div>
-          <div class="font-serif" style="font-style:italic;font-size:13.5px;color:var(--ink-secondary);">综合 8 项 claim + 您过往笔记 #2204 → 生成 11 分钟阅读时长的 Today Digest</div>
+          <div class="font-serif" style="font-size:16px;font-weight:600;margin-bottom:2px;" data-i18n="landing.how.t6.title">为您撰写当日简报</div>
+          <div class="font-serif" style="font-style:italic;font-size:13.5px;color:var(--ink-secondary);" data-i18n="landing.how.t6.body">综合 8 项 claim + 您过往笔记 #2204 → 生成 11 分钟阅读时长的 Today Digest</div>
         </div>
       </div>
       <div style="display:grid;grid-template-columns:80px 28px 130px 1fr;gap:14px;align-items:flex-start;padding:14px 0;position:relative;">
@@ -193,8 +195,8 @@
         <span style="position:relative;width:14px;height:14px;border-radius:50%;background:var(--ink-primary);border:3px solid var(--bg-paper-warm);margin-top:2px;justify-self:center;"></span>
         <span class="pill pill-solid" style="justify-self:start;font-size:9px;">YOU</span>
         <div>
-          <div class="font-serif" style="font-size:16px;font-weight:600;margin-bottom:2px;">打开 ResearchTrace · 看到一份只为您写的报</div>
-          <div class="font-serif" style="font-style:italic;font-size:13.5px;color:var(--ink-secondary);">含可点击引用、HEAT 热度、行动按钮 (FIND SIMILAR / DIAGRAM IT / REPRODUCE)</div>
+          <div class="font-serif" style="font-size:16px;font-weight:600;margin-bottom:2px;" data-i18n="landing.how.t7.title">打开 ResearchTrace · 看到一份只为您写的报</div>
+          <div class="font-serif" style="font-style:italic;font-size:13.5px;color:var(--ink-secondary);" data-i18n="landing.how.t7.body">含可点击引用、HEAT 热度、行动按钮 (FIND SIMILAR / DIAGRAM IT / REPRODUCE)</div>
         </div>
       </div>
     </div>
@@ -204,12 +206,12 @@
 <!-- Agents -->
 <section id="agents" style="border-bottom:1px solid var(--divider);">
   <div style="max-width:1280px;margin:0 auto;padding:64px 48px;">
-    <div class="rule-kicker"><span class="kicker-red">§ III · 为您工作的五个 AGENT</span></div>
+    <div class="rule-kicker"><span class="kicker-red" data-i18n="landing.agents.kicker">§ III · 为您工作的五个 AGENT</span></div>
     <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;">
       <div>
-        <h2 class="headline" style="font-size:38px;margin:0 0 12px;line-height:1.15;">不是一个 ChatGPT。是一支研究小组。</h2>
-        <p class="font-serif" style="font-style:italic;font-size:16px;color:var(--ink-secondary);margin:0 0 18px;">每个 Agent 各司其职，您能看到它们做了什么、读了什么、调用了哪个模型。完全可审计。</p>
-        <a href="settings.html#agents" class="btn btn-ghost">查看 Agent 行为日志 →</a>
+        <h2 class="headline" style="font-size:38px;margin:0 0 12px;line-height:1.15;" data-i18n="landing.agents.headline">不是一个 ChatGPT。是一支研究小组。</h2>
+        <p class="font-serif" style="font-style:italic;font-size:16px;color:var(--ink-secondary);margin:0 0 18px;" data-i18n="landing.agents.lede">每个 Agent 各司其职，您能看到它们做了什么、读了什么、调用了哪个模型。完全可审计。</p>
+        <a href="settings.html#agents" class="btn btn-ghost" data-i18n="landing.agents.cta">查看 Agent 行为日志 →</a>
       </div>
       <figure style="margin:0;">
         <img src="assets/img/agents-diagram.png" alt="" style="width:100%;border:1px solid var(--divider);background:var(--bg-paper-warm);"/>
@@ -220,32 +222,32 @@
       <article class="paper-card" style="padding:20px 18px;text-align:center;">
         <div class="font-serif" style="font-size:36px;font-weight:700;color:var(--accent-red);line-height:1;margin-bottom:6px;">01</div>
         <div class="font-serif" style="font-size:18px;font-weight:600;">Ingestor</div>
-        <div class="kicker" style="font-style:italic;font-family:var(--font-serif);font-size:12px;text-transform:none;letter-spacing:0;color:var(--ink-secondary);margin:2px 0 10px;">摄取</div>
-        <div class="font-serif" style="font-size:13px;line-height:1.5;color:var(--ink-secondary);">读 PDF / URL / 视频，做切分与索引</div>
+        <div class="kicker" style="font-style:italic;font-family:var(--font-serif);font-size:12px;text-transform:none;letter-spacing:0;color:var(--ink-secondary);margin:2px 0 10px;" data-i18n="landing.agents.01.role">摄取</div>
+        <div class="font-serif" style="font-size:13px;line-height:1.5;color:var(--ink-secondary);" data-i18n="landing.agents.01.body">读 PDF / URL / 视频，做切分与索引</div>
       </article>
       <article class="paper-card" style="padding:20px 18px;text-align:center;">
         <div class="font-serif" style="font-size:36px;font-weight:700;color:var(--accent-red);line-height:1;margin-bottom:6px;">02</div>
         <div class="font-serif" style="font-size:18px;font-weight:600;">Curator</div>
-        <div class="kicker" style="font-style:italic;font-family:var(--font-serif);font-size:12px;text-transform:none;letter-spacing:0;color:var(--ink-secondary);margin:2px 0 10px;">策展</div>
-        <div class="font-serif" style="font-size:13px;line-height:1.5;color:var(--ink-secondary);">抽 claim、对齐图谱、归并矛盾</div>
+        <div class="kicker" style="font-style:italic;font-family:var(--font-serif);font-size:12px;text-transform:none;letter-spacing:0;color:var(--ink-secondary);margin:2px 0 10px;" data-i18n="landing.agents.02.role">策展</div>
+        <div class="font-serif" style="font-size:13px;line-height:1.5;color:var(--ink-secondary);" data-i18n="landing.agents.02.body">抽 claim、对齐图谱、归并矛盾</div>
       </article>
       <article class="paper-card" style="padding:20px 18px;text-align:center;">
         <div class="font-serif" style="font-size:36px;font-weight:700;color:var(--accent-red);line-height:1;margin-bottom:6px;">03</div>
         <div class="font-serif" style="font-size:18px;font-weight:600;">Retriever</div>
-        <div class="kicker" style="font-style:italic;font-family:var(--font-serif);font-size:12px;text-transform:none;letter-spacing:0;color:var(--ink-secondary);margin:2px 0 10px;">检索</div>
-        <div class="font-serif" style="font-size:13px;line-height:1.5;color:var(--ink-secondary);">BM25 + 向量混检 + Rerank</div>
+        <div class="kicker" style="font-style:italic;font-family:var(--font-serif);font-size:12px;text-transform:none;letter-spacing:0;color:var(--ink-secondary);margin:2px 0 10px;" data-i18n="landing.agents.03.role">检索</div>
+        <div class="font-serif" style="font-size:13px;line-height:1.5;color:var(--ink-secondary);" data-i18n="landing.agents.03.body">BM25 + 向量混检 + Rerank</div>
       </article>
       <article class="paper-card" style="padding:20px 18px;text-align:center;">
         <div class="font-serif" style="font-size:36px;font-weight:700;color:var(--accent-red);line-height:1;margin-bottom:6px;">04</div>
         <div class="font-serif" style="font-size:18px;font-weight:600;">Radar</div>
-        <div class="kicker" style="font-style:italic;font-family:var(--font-serif);font-size:12px;text-transform:none;letter-spacing:0;color:var(--ink-secondary);margin:2px 0 10px;">雷达</div>
-        <div class="font-serif" style="font-size:13px;line-height:1.5;color:var(--ink-secondary);">监测信源、触发热度告警</div>
+        <div class="kicker" style="font-style:italic;font-family:var(--font-serif);font-size:12px;text-transform:none;letter-spacing:0;color:var(--ink-secondary);margin:2px 0 10px;" data-i18n="landing.agents.04.role">雷达</div>
+        <div class="font-serif" style="font-size:13px;line-height:1.5;color:var(--ink-secondary);" data-i18n="landing.agents.04.body">监测信源、触发热度告警</div>
       </article>
       <article class="paper-card" style="padding:20px 18px;text-align:center;">
         <div class="font-serif" style="font-size:36px;font-weight:700;color:var(--accent-red);line-height:1;margin-bottom:6px;">05</div>
         <div class="font-serif" style="font-size:18px;font-weight:600;">Reporter</div>
-        <div class="kicker" style="font-style:italic;font-family:var(--font-serif);font-size:12px;text-transform:none;letter-spacing:0;color:var(--ink-secondary);margin:2px 0 10px;">撰稿</div>
-        <div class="font-serif" style="font-size:13px;line-height:1.5;color:var(--ink-secondary);">周报 / 月报 / Deep Dive</div>
+        <div class="kicker" style="font-style:italic;font-family:var(--font-serif);font-size:12px;text-transform:none;letter-spacing:0;color:var(--ink-secondary);margin:2px 0 10px;" data-i18n="landing.agents.05.role">撰稿</div>
+        <div class="font-serif" style="font-size:13px;line-height:1.5;color:var(--ink-secondary);" data-i18n="landing.agents.05.body">周报 / 月报 / Deep Dive</div>
       </article>
     </div>
   </div>
@@ -255,12 +257,12 @@
 <section style="background:var(--bg-sidebar);color:var(--ink-inverse);border-bottom:1px solid var(--rule-on-dark);">
   <div style="max-width:1280px;margin:0 auto;padding:64px 48px;display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:center;">
     <div>
-      <div class="kicker-red" style="margin-bottom:14px;">§ IV · 看一份真正的简报</div>
-      <h2 class="headline" style="font-size:38px;color:#fff;margin:0 0 16px;">以下是研迹为一位用户写的本周简报。</h2>
-      <p class="font-serif" style="font-size:16px;color:var(--ink-mute-on-dark);line-height:1.7;margin:0 0 22px;">
+      <div class="kicker-red" style="margin-bottom:14px;" data-i18n="landing.sample.kicker">§ IV · 看一份真正的简报</div>
+      <h2 class="headline" style="font-size:38px;color:#fff;margin:0 0 16px;" data-i18n="landing.sample.headline">以下是研迹为一位用户写的本周简报。</h2>
+      <p class="font-serif" style="font-size:16px;color:var(--ink-mute-on-dark);line-height:1.7;margin:0 0 22px;" data-i18n-html="landing.sample.body.html">
         编辑摘要、本周三大头条、Curator 综述、与您过往工作的对话、反方意见、下周雷达 —— 完整 6 个章节，11 分钟阅读时长。每一处<a class="cite" style="display:inline-flex">12</a>都可点击。
       </p>
-      <a href="brief.html?id=127" class="btn btn-red">阅读样例简报 No. 127 →</a>
+      <a href="brief.html?id=127" class="btn btn-red" data-i18n="landing.sample.cta">阅读样例简报 No. 127 →</a>
     </div>
     <figure style="margin:0;position:relative;">
       <a href="brief.html?id=127" style="display:block;text-decoration:none;">
@@ -274,14 +276,14 @@
 <!-- Final CTA -->
 <section style="border-bottom:1px solid var(--divider);">
   <div style="max-width:1100px;margin:0 auto;padding:80px 48px;text-align:center;">
-    <div class="kicker-red" style="margin-bottom:14px;">最后一件事</div>
-    <h2 class="headline" style="font-size:50px;margin:0 0 18px;line-height:1.08;">您不缺信息。<br/>您缺一份只为您写的报。</h2>
-    <p class="font-serif" style="font-style:italic;font-size:17px;color:var(--ink-secondary);max-width:580px;margin:0 auto 28px;">
+    <div class="kicker-red" style="margin-bottom:14px;" data-i18n="landing.cta.last">最后一件事</div>
+    <h2 class="headline" style="font-size:50px;margin:0 0 18px;line-height:1.08;" data-i18n-html="landing.cta.title.html">您不缺信息。<br/>您缺一份只为您写的报。</h2>
+    <p class="font-serif" style="font-style:italic;font-size:17px;color:var(--ink-secondary);max-width:580px;margin:0 auto 28px;" data-i18n="landing.cta.body">
       14 天免费试用，无需信用卡。导入您现有的 Notion / Pocket / Readwise，明早 8 点您会收到第一份简报。
     </p>
     <div style="display:flex;justify-content:center;gap:10px;">
-      <a href="onboarding.html" class="btn btn-red" style="font-size:14px;padding:14px 28px;">开始免费试用 →</a>
-      <a href="pricing.html" class="btn btn-ghost" style="font-size:14px;padding:14px 28px;">比较方案</a>
+      <a href="onboarding.html" class="btn btn-red"   style="font-size:14px;padding:14px 28px;" data-i18n="landing.cta.trial.short">开始免费试用 →</a>
+      <a href="pricing.html"    class="btn btn-ghost" style="font-size:14px;padding:14px 28px;" data-i18n="landing.cta.compare">比较方案</a>
     </div>
   </div>
 </section>
@@ -294,41 +296,54 @@
         <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border:1.5px solid var(--accent-red);color:var(--accent-red);font-family:var(--font-serif);font-weight:700;">研</span>
         <span class="font-serif" style="font-size:18px;font-weight:600;">研迹 ResearchTrace</span>
       </div>
-      <div class="font-serif" style="font-style:italic;font-size:13.5px;color:var(--ink-secondary);max-width:340px;line-height:1.6;">
-        "Find what matters before you ask for it." 一份只为一位读者编辑的研究报。
+      <div class="font-serif" style="font-style:italic;font-size:13.5px;color:var(--ink-secondary);max-width:340px;line-height:1.6;" data-i18n="landing.footer.tagline">
+        「Find what matters before you ask for it.」 一份只为一位读者编辑的研究报。
       </div>
     </div>
     <div>
-      <div class="kicker" style="margin-bottom:10px;">产品</div>
-      <a href="today.html" style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;">Today</a>
-      <a href="topics.html" style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;">Topics</a>
-      <a href="ask.html" style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;">Ask</a>
-      <a href="briefs.html" style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;">Briefs</a>
+      <div class="kicker" style="margin-bottom:10px;" data-i18n="landing.footer.col1">产品</div>
+      <a href="today.html"   style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;">Today</a>
+      <a href="topics.html"  style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;">Topics</a>
+      <a href="ask.html"     style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;">Ask</a>
+      <a href="briefs.html"  style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;">Briefs</a>
     </div>
     <div>
-      <div class="kicker" style="margin-bottom:10px;">工作流</div>
-      <a href="inbox.html" style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;">Inbox</a>
+      <div class="kicker" style="margin-bottom:10px;" data-i18n="landing.footer.col2">工作流</div>
+      <a href="inbox.html"      style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;">Inbox</a>
       <a href="onboarding.html" style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;">Onboarding</a>
-      <a href="settings.html" style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;">Settings</a>
+      <a href="settings.html"   style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;">Settings</a>
     </div>
     <div>
-      <div class="kicker" style="margin-bottom:10px;">商业</div>
-      <a href="pricing.html" style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;">定价</a>
-      <a href="#" style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;">教育折扣</a>
-      <a href="#" style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;">Team</a>
+      <div class="kicker" style="margin-bottom:10px;" data-i18n="landing.footer.col3">商业</div>
+      <a href="pricing.html" style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;" data-i18n="landing.nav.pricing">定价</a>
+      <a href="#" style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;" data-i18n="landing.footer.edu">教育折扣</a>
+      <a href="#" style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;" data-i18n="landing.footer.team">Team</a>
     </div>
     <div>
-      <div class="kicker" style="margin-bottom:10px;">公司</div>
-      <a href="#" style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;">关于</a>
-      <a href="#" style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;">Blog</a>
-      <a href="#" style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;">隐私</a>
-      <a href="#" style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;">条款</a>
+      <div class="kicker" style="margin-bottom:10px;" data-i18n="landing.footer.col4">公司</div>
+      <a href="#" style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;" data-i18n="landing.footer.about">关于</a>
+      <a href="#" style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;" data-i18n="landing.footer.blog">Blog</a>
+      <a href="#" style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;" data-i18n="landing.footer.privacy">隐私</a>
+      <a href="#" style="display:block;font-size:13px;text-decoration:none;color:var(--ink-secondary);margin-bottom:4px;" data-i18n="landing.footer.terms">条款</a>
     </div>
   </div>
   <div style="max-width:1280px;margin:0 auto;padding:14px 48px 28px;display:flex;justify-content:space-between;color:var(--ink-tertiary);font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;">
     <span>© 2026 RESEARCHTRACE LABS · BEIJING / SAN FRANCISCO</span>
-    <span>BUILT WITH INK &amp; PAPER · v0.3.0-PROTOTYPE</span>
+    <span>BUILT WITH INK &amp; PAPER · v0.4.0-PROTOTYPE</span>
   </div>
 </footer>
+
+<script src="js/i18n.js"></script>
+<script src="js/shell.js"></script>
+<script>
+  // Mount the lang/theme switcher into the landing nav
+  document.getElementById('rtPrefs').innerHTML = RT.buildPrefSwitch({ onDark: false });
+  // Apply translations everywhere on the page
+  RTI18n.apply(document);
+  // Wire switcher (delegated)
+  RT.wirePrefSwitch(document);
+  // Re-translate on language change
+  document.addEventListener("rt:langchange", () => RTI18n.apply(document));
+</script>
 </body>
 </html>

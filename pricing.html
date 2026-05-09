@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light" data-lang="zh">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Pricing — 研迹 ResearchTrace</title>
+<script src="js/prefs.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
@@ -12,9 +13,11 @@
 </head>
 <body data-page="pricing">
 <div id="app"></div>
+<script src="js/i18n.js"></script>
 <script src="js/shell.js"></script>
 <script>
-RT.mountShell({ activeId: "pricing", crumb: "RESEARCHTRACE / PRICING · 订阅方案" });
+RT.mountShell({ activeId: "pricing", crumbKey: "pricing.crumb", crumb: RTI18n.t("pricing.crumb") });
+RT.autoApplyI18n();
 
 const PLANS = [
   { tier:"01", name:"Free", zh:"免费", price:"$0", period:"永久", color:"var(--ink-primary)",
@@ -136,7 +139,7 @@ document.getElementById("main").innerHTML = `
           ["数据会被用于训练吗？","不会。我们的合同条款包含 \"opt-out by default\"，您的资料库不进入任何公共训练集。"],
           ["可以离线 / 私有部署吗？","Team 方案以上支持自带 API key 与 VPC 部署，企业版支持 fully on-prem。"],
           ["我可以随时取消吗？","随时。取消后保留只读访问 14 天，可随时导出全部数据。"],
-          ["我现有的 Notion / Obsidian 笔记呢？","支持双向同步。您不需要"迁移"，研迹与您现有工具共存。"],
+          ["我现有的 Notion / Obsidian 笔记呢？","支持双向同步。您不需要「迁移」，研迹与您现有工具共存。"],
           ["支持中文吗？","原生支持。中英双语 UI、双语简报、混合语料检索均经过专门优化。"],
         ].map(([q,a])=>`
           <article>

@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light" data-lang="zh">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Inbox — 研迹 ResearchTrace</title>
+<script src="js/prefs.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
@@ -12,9 +13,11 @@
 </head>
 <body data-page="inbox">
 <div id="app"></div>
+<script src="js/i18n.js"></script>
 <script src="js/shell.js"></script>
 <script>
-RT.mountShell({ activeId: "inbox", crumb: "RESEARCHTRACE / INBOX · 47 待处理" });
+RT.mountShell({ activeId: "inbox", crumbKey: "inbox.crumb", crumb: RTI18n.t("inbox.crumb") });
+RT.autoApplyI18n();
 
 const ITEMS = [
   {n:"47", type:"PDF",  title:"Recurrent Memory Transformer v3", source:"Drag-dropped · 09:11", status:"PARSING", topic:"LLM Long Context", size:"2.4 MB", pages:"24p", new:true},

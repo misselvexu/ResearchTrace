@@ -1,8 +1,10 @@
 /* ============================================
    研迹 ResearchTrace — Design Tokens
    Inspired by LLM Wiki Demo "Research Digest" aesthetic
+   Light = paper white · Dark = ink-on-warm-charcoal
    ============================================ */
-:root {
+:root,
+:root[data-theme="light"] {
   /* Surfaces */
   --bg-paper:        #FAF7F2;
   --bg-paper-warm:   #F4EFE6;
@@ -11,6 +13,7 @@
   --bg-sidebar-2:    #2A2421;
   --bg-card:         #FFFDF8;
   --bg-callout:      #FBEDED;
+  --bg-overlay:      rgba(250,247,242,.92);
 
   /* Ink */
   --ink-primary:     #1A1614;
@@ -32,6 +35,49 @@
   --divider:         #D9D2C7;
   --divider-strong:  #B8AE9E;
   --rule-on-dark:    #3A332E;
+
+  /* Image filters (no-op in light) */
+  --img-filter:      none;
+  --grain-color:     rgba(26,22,20,.012);
+}
+
+/* =========== DARK · ink on warm charcoal =========== */
+:root[data-theme="dark"] {
+  /* Warm charcoal "paper" — never pure black, stays in the same family as light */
+  --bg-paper:        #15110E;
+  --bg-paper-warm:   #1C1814;
+  --bg-paper-deep:   #221D18;
+  --bg-sidebar:      #0E0B09;
+  --bg-sidebar-2:    #181410;
+  --bg-card:         #1F1A16;
+  --bg-callout:      #2A1A18;
+  --bg-overlay:      rgba(21,17,14,.92);
+
+  --ink-primary:     #F0E9DC;
+  --ink-secondary:   #B5AC9D;
+  --ink-tertiary:    #847B6E;
+  --ink-inverse:     #15110E;
+  --ink-mute-on-dark:#A89F92;
+
+  /* A slightly warmer, brighter scholarly red so it punches against dark */
+  --accent-red:      #D8554F;
+  --accent-red-deep: #B33C36;
+  --accent-red-soft: #6E2A28;
+  --accent-pink-bg:  #2A1A18;
+  --success-green:   #6FAE7E;
+  --warning-amber:   #D9A75A;
+  --info-blue:       #6E9CCB;
+
+  --divider:         #2E2722;
+  --divider-strong:  #4A4138;
+  --rule-on-dark:    #3A332E;
+
+  --img-filter:      brightness(.86) contrast(1.04);
+  --grain-color:     rgba(240,233,220,.018);
+}
+
+:root { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
 
   /* Type */
   --font-serif: "Source Serif 4", "Source Serif Pro", "Noto Serif SC", "Songti SC", Georgia, serif;
@@ -269,6 +315,19 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--divider-strong); border-radius: 6px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--ink-tertiary); }
 
+/* Form inputs in dark mode */
+:root[data-theme="dark"] input,
+:root[data-theme="dark"] textarea,
+:root[data-theme="dark"] select {
+  background: var(--bg-card);
+  color: var(--ink-primary);
+  border-color: var(--divider);
+}
+:root[data-theme="dark"] input::placeholder,
+:root[data-theme="dark"] textarea::placeholder {
+  color: var(--ink-tertiary);
+}
+
 /* Link */
 a { color: inherit; }
 a.link-red { color: var(--accent-red); text-decoration: none; border-bottom: 1px solid currentColor; }
@@ -319,10 +378,65 @@ a.link-red:hover { color: var(--accent-red-deep); }
 /* Subtle paper grain */
 .paper-grain {
   background-image:
-    radial-gradient(circle at 20% 30%, rgba(26,22,20,.012) 1px, transparent 1px),
-    radial-gradient(circle at 70% 70%, rgba(26,22,20,.012) 1px, transparent 1px);
+    radial-gradient(circle at 20% 30%, var(--grain-color) 1px, transparent 1px),
+    radial-gradient(circle at 70% 70%, var(--grain-color) 1px, transparent 1px);
   background-size: 24px 24px, 32px 32px;
 }
+
+/* In dark mode, soften photographic illustrations to stay paper-like */
+:root[data-theme="dark"] img:not([data-no-filter]) {
+  filter: var(--img-filter);
+}
+
+/* ============= Pref switcher (lang + theme) ============= */
+.rt-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px;
+  border: 1px solid var(--divider);
+  border-radius: 4px;
+  background: var(--bg-card);
+}
+.rt-switch button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--ink-secondary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  padding: 4px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all .12s ease;
+  min-height: 24px;
+}
+.rt-switch button:hover { color: var(--ink-primary); background: var(--bg-paper-deep); }
+.rt-switch button svg { display: block; }
+.rt-switch .divider {
+  width: 1px;
+  height: 14px;
+  background: var(--divider);
+  margin: 0 1px;
+}
+/* Sidebar variant — sits on dark sidebar */
+.rt-switch.on-dark {
+  border-color: var(--rule-on-dark);
+  background: var(--bg-sidebar-2);
+}
+.rt-switch.on-dark button { color: var(--ink-mute-on-dark); }
+.rt-switch.on-dark button:hover { color: #fff; background: rgba(255,255,255,.04); }
+.rt-switch.on-dark .divider { background: var(--rule-on-dark); }
+
+/* The sun/moon icon flip */
+:root[data-theme="dark"] .rt-icon-sun { display: inline; }
+:root[data-theme="dark"] .rt-icon-moon { display: none; }
+:root[data-theme="light"] .rt-icon-sun, :root:not([data-theme="dark"]) .rt-icon-sun { display: none; }
+:root[data-theme="light"] .rt-icon-moon, :root:not([data-theme="dark"]) .rt-icon-moon { display: inline; }
 
 /* Dotted leader (ToC style) */
 .leader {
