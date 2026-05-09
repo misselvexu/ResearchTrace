@@ -1,0 +1,349 @@
+openapi: 3.1.0
+info:
+  title: ResearchTrace API
+  description: |
+    **ResearchTrace** — A Paper for One Reader. You.
+
+    Backend-agnostic OpenAPI 3.1 contract. Implementations may use Java/Spring,
+    Go, Node/NestJS, Python/FastAPI — codegen tooling exists for all of them.
+
+    ## Conventions
+
+    - **Base path**: `/api/v1`
+    - **Auth**: JWT Bearer (Access 15min) + Refresh Token (HttpOnly Cookie, 30d).
+      OAuth 2.0 (Google/GitHub) supported via `/auth/oauth/*`.
+    - **Content type**: `application/json; charset=utf-8`
+    - **Timestamps**: ISO 8601 UTC strings.
+    - **Pagination**: cursor-based (`?cursor=...&limit=20`); see `PageResponse`.
+    - **Responses**: every endpoint returns `ApiResponse<T>` envelope.
+    - **Errors**: `code` field carries business error code (see `ErrorCode`).
+    - **i18n**: user-visible text fields are bilingual (`LocalizedText { zh, en }`).
+    - **IDs**: opaque strings; treat as branded types in TypeScript clients.
+
+    ## Domains
+
+    1. **Auth** — login/signup/refresh/oauth
+    2. **User** — profile, preferences, plan
+    3. **Topics** — research topic subscriptions
+    4. **Sources** — data source management (arXiv, RSS, GitHub, ...)
+    5. **Inbox** — incoming items requiring triage
+    6. **Vault** — saved knowledge base
+    7. **Briefs** — generated research briefs
+    8. **Claims** — evidence-backed assertions
+    9. **Ask** — Q&A composer / chat sessions
+    10. **Agents** — background workers / orchestrations
+    11. **Notifications** — system + topic notifications
+    12. **Billing** — plans, subscriptions, invoices
+
+    ## Authentication Flow
+
+    ```
+    POST /auth/login           → { accessToken, refreshToken (cookie) }
+    GET  /api/v1/* (Authorization: Bearer <accessToken>)
+    POST /auth/refresh         → { accessToken } (uses HttpOnly cookie)
+    POST /auth/logout          → 204 + clears cookie
+    ```
+
+  version: 1.0.0
+  contact:
+    name: ResearchTrace Engineering
+    url: https://github.com/misselvexu/ResearchTrace
+  license:
+    name: Proprietary
+
+servers:
+  - url: https://api.researchtrace.com/api/v1
+    description: Production
+  - url: https://staging-api.researchtrace.com/api/v1
+    description: Staging
+  - url: http://localhost:8080/api/v1
+    description: Local development
+
+# ============================================================================
+# Tags — one per domain, ordered by user-facing prominence
+# ============================================================================
+tags:
+  - name: Auth
+    description: Login, signup, token refresh, OAuth.
+  - name: User
+    description: Profile, preferences, plan info.
+  - name: Topics
+    description: Research topic subscriptions.
+  - name: Sources
+    description: External data source management.
+  - name: Inbox
+    description: Incoming items requiring triage.
+  - name: Vault
+    description: Saved knowledge base.
+  - name: Briefs
+    description: Generated research briefs.
+  - name: Claims
+    description: Evidence-backed assertions.
+  - name: Ask
+    description: Q&A composer and chat sessions.
+  - name: Agents
+    description: Background workers / orchestrations.
+  - name: Notifications
+    description: System and topic-level notifications.
+  - name: Billing
+    description: Plans, subscriptions, invoices.
+
+# ============================================================================
+# Security — JWT Bearer is global default; some endpoints (login/signup) override
+# ============================================================================
+security:
+  - bearerAuth: []
+
+# ============================================================================
+# Paths — split per domain into ./paths/*.yaml; merged at build time.
+# For now, schemas are colocated below; concrete endpoints land in B2.2-B2.5.
+# ============================================================================
+paths: {}
+
+# ============================================================================
+# Components
+# ============================================================================
+components:
+  # --------------------------------------------------------------------------
+  # Security schemes
+  # --------------------------------------------------------------------------
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        Pass the access token as `Authorization: Bearer <token>`.
+        Access tokens expire after 15 minutes; use `/auth/refresh` to get a new one.
+
+    refreshCookie:
+      type: apiKey
+      in: cookie
+      name: rt-refresh
+      description: |
+        HttpOnly, Secure, SameSite=Lax refresh token cookie.
+        Set by `/auth/login` and `/auth/oauth/callback`; consumed by `/auth/refresh`.
+
+  # --------------------------------------------------------------------------
+  # Reusable parameters
+  # --------------------------------------------------------------------------
+  parameters:
+    CursorParam:
+      name: cursor
+      in: query
+      description: Opaque pagination cursor. Omit for first page.
+      schema:
+        type: string
+    LimitParam:
+      name: limit
+      in: query
+      description: Max items per page (default 20, max 100).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    AcceptLanguageHeader:
+      name: Accept-Language
+      in: header
+      description: |
+        Preferred locale for `LocalizedText` field selection hints in error messages.
+        `LocalizedText` payloads always include both `zh` and `en` regardless.
+      schema:
+        type: string
+        enum: [zh, en]
+
+  # --------------------------------------------------------------------------
+  # Common responses
+  # --------------------------------------------------------------------------
+  responses:
+    Unauthorized:
+      description: Missing or invalid access token.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiResponseUnit"
+    Forbidden:
+      description: Authenticated but not allowed.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiResponseUnit"
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiResponseUnit"
+    ValidationFailed:
+      description: Request body or query failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiResponseUnit"
+    TooManyRequests:
+      description: Rate limit exceeded.
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Seconds to wait before retrying.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiResponseUnit"
+
+  # --------------------------------------------------------------------------
+  # Schemas — shared envelope + primitives. Domain schemas land in B2.2-B2.5.
+  # --------------------------------------------------------------------------
+  schemas:
+    # ----- Bilingual text -----
+    LocalizedText:
+      type: object
+      description: Bilingual user-visible string. At least one of `zh`/`en` SHOULD be non-empty.
+      required: [zh, en]
+      properties:
+        zh:
+          type: string
+          example: "今日"
+        en:
+          type: string
+          example: "Today"
+
+    # ----- Error code enum -----
+    ErrorCode:
+      type: integer
+      description: |
+        Business error code. `0` = Success.
+        See `src/types/api/_shared.ts → enum ErrorCode` for the full list.
+      enum:
+        - 0
+        - 10001
+        - 10002
+        - 10003
+        - 10004
+        - 10005
+        - 10006
+        - 10007
+        - 10008
+        - 10009
+        - 10101
+        - 10102
+        - 10103
+        - 11001
+        - 11002
+        - 11003
+        - 11101
+        - 11102
+        - 11103
+        - 12001
+        - 12101
+        - 12102
+        - 13001
+        - 13002
+        - 13101
+        - 13102
+        - 14001
+        - 14002
+        - 14101
+        - 14102
+        - 15001
+        - 16001
+        - 16002
+        - 16003
+        - 90001
+        - 90401
+        - 90403
+        - 90404
+        - 90409
+        - 90429
+        - 90500
+        - 90503
+
+    # ----- Universal response envelope -----
+    ApiResponseBase:
+      type: object
+      required: [code, message, requestId, timestamp]
+      properties:
+        code:
+          $ref: "#/components/schemas/ErrorCode"
+        message:
+          type: string
+          description: Human-readable message (English). Clients localize via `code`.
+        requestId:
+          type: string
+          description: Server-generated trace ID.
+        timestamp:
+          type: string
+          format: date-time
+          description: Server time (ISO 8601 UTC).
+
+    ApiResponseUnit:
+      description: ApiResponse with no payload (used on errors / 204-equivalents).
+      allOf:
+        - $ref: "#/components/schemas/ApiResponseBase"
+        - type: object
+          required: [data]
+          properties:
+            data:
+              type: "null"
+
+    # ----- Cursor-paginated list -----
+    PageResponseBase:
+      type: object
+      required: [nextCursor, totalEstimate, size]
+      properties:
+        nextCursor:
+          type: [string, "null"]
+          description: Cursor for the next page; null = no more pages.
+        totalEstimate:
+          type: integer
+          description: Approximate total count. May be slightly stale.
+        size:
+          type: integer
+          description: Items returned in this page.
+
+    # ----- Audit fields (mixed into entities) -----
+    AuditFields:
+      type: object
+      required: [createdAt, updatedAt]
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    # ----- DocumentRef -----
+    DocumentRef:
+      type: object
+      description: A reference to a remote document (paper, blog post, dataset, etc.).
+      required: [url, title]
+      properties:
+        url:
+          type: string
+          format: uri
+          description: Globally-unique URL. Used as the natural key.
+        title:
+          $ref: "#/components/schemas/LocalizedText"
+        doi:
+          type: string
+          description: Canonical DOI (if applicable).
+          example: "10.48550/arXiv.2501.12345"
+        arxivId:
+          type: string
+          example: "2501.12345"
+        venue:
+          type: string
+          example: "NeurIPS 2024"
+        authors:
+          type: array
+          items:
+            type: string
+        publishedAt:
+          type: string
+          format: date-time
+        language:
+          type: string
+          enum: [zh, en, other]
