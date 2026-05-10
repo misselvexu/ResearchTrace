@@ -28,6 +28,7 @@ export function TopBar({ crumbKey, crumb }: TopBarProps) {
 
   return (
     <header
+      className="rt-topbar"
       style={{
         position: "sticky",
         top: 0,
@@ -36,47 +37,43 @@ export function TopBar({ crumbKey, crumb }: TopBarProps) {
         backdropFilter: "blur(8px)",
         WebkitBackdropFilter: "blur(8px)",
         borderBottom: "1px solid var(--divider)",
+        display: "flex",
+        alignItems: "center",
+        gap: 18,
+        padding: "14px 32px",
       }}
     >
+      {/* Crumb */}
       <div
+        className="font-mono rt-topbar-crumb"
         style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 18,
-          padding: "14px 32px",
+          fontSize: 11,
+          letterSpacing: ".16em",
+          color: "var(--ink-tertiary)",
+          textTransform: "uppercase",
         }}
       >
-        {/* Crumb */}
-        <div
-          className="font-mono"
+        {crumbText}
+      </div>
+
+      {/* Search box (centered, 520px) — clickable, navigates to /search */}
+      <div className="rt-topbar-search" style={{ flex: 1, display: "flex", justifyContent: "center", maxWidth: 520, marginInline: "auto" }}>
+        <Link
+          href="/search"
+          className="clickable"
           style={{
-            fontSize: 11,
-            letterSpacing: ".16em",
-            color: "var(--ink-tertiary)",
-            textTransform: "uppercase",
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            width: "100%",
+            maxWidth: 520,
+            background: "var(--bg-card)",
+            border: "1px solid var(--divider)",
+            borderRadius: 6,
+            padding: "8px 14px",
+            textDecoration: "none",
           }}
         >
-          {crumbText}
-        </div>
-
-        {/* Search box (centered, 520px) — clickable, navigates to /search */}
-        <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
-          <Link
-            href="/search"
-            className="clickable"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 10,
-              width: 520,
-              maxWidth: "100%",
-              background: "var(--bg-card)",
-              border: "1px solid var(--divider)",
-              borderRadius: 6,
-              padding: "8px 14px",
-              textDecoration: "none",
-            }}
-          >
             <svg
               width="14"
               height="14"
@@ -196,7 +193,6 @@ export function TopBar({ crumbKey, crumb }: TopBarProps) {
           />
           <span style={{ fontSize: 12 }}>{t("shell.userName")}</span>
         </Link>
-      </div>
     </header>
   );
 }

@@ -41,6 +41,7 @@ export default function LoginPage() {
 
   return (
     <main
+      data-rt-auth-card
       style={{
         minHeight: "100vh",
         display: "grid",

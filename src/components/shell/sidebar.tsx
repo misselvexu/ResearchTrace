@@ -18,7 +18,7 @@ export function Sidebar({ activeId }: SidebarProps) {
 
   return (
     <aside
-      className="sidebar fade-up"
+      className="sidebar rt-sidebar fade-up"
       style={{
         width: 248,
         minWidth: 248,
@@ -32,6 +32,7 @@ export function Sidebar({ activeId }: SidebarProps) {
     >
       {/* Brand */}
       <div
+        className="rt-sidebar-brand"
         style={{
           padding: "22px 18px 14px",
           borderBottom: "1px solid var(--rule-on-dark)",
@@ -128,6 +129,7 @@ export function Sidebar({ activeId }: SidebarProps) {
 
       {/* Footer stats */}
       <div
+        className="rt-sidebar-footer"
         style={{
           padding: "14px 16px",
           borderTop: "1px solid var(--rule-on-dark)",

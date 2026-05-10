@@ -52,6 +52,7 @@ export default function SignupPage() {
 
   return (
     <main
+      data-rt-auth-card
       style={{
         minHeight: "100vh",
         display: "grid",

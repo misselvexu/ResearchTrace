@@ -26,7 +26,9 @@ export function PublicShell({
   ];
 
   return (
-    <div style={{ minHeight: "100vh", background: "var(--bg-paper)", color: "var(--ink-primary)" }}>
+    <>
+    <a href="#rt-public-main" className="skip-link">Skip to content</a>
+    <div data-responsive="public" style={{ minHeight: "100vh", background: "var(--bg-paper)", color: "var(--ink-primary)", display: "flex", flexDirection: "column" }}>
       {/* Branded header */}
       <header
         style={{
@@ -113,23 +115,25 @@ export function PublicShell({
         </nav>
       </header>
 
-      {crumb ? (
-        <div
-          className="kicker"
-          style={{
-            maxWidth: 1080,
-            margin: "0 auto",
-            padding: "18px 48px 0",
-            color: "var(--ink-tertiary)",
-            fontSize: 11,
-            letterSpacing: "0.12em",
-          }}
-        >
-          {crumb}
-        </div>
-      ) : null}
+      <main id="rt-public-main" style={{ flex: 1 }}>
+        {crumb ? (
+          <div
+            className="kicker"
+            style={{
+              maxWidth: 1080,
+              margin: "0 auto",
+              padding: "18px 48px 0",
+              color: "var(--ink-tertiary)",
+              fontSize: 11,
+              letterSpacing: "0.12em",
+            }}
+          >
+            {crumb}
+          </div>
+        ) : null}
 
-      {children}
+        {children}
+      </main>
 
       {/* Footer */}
       <footer
@@ -183,5 +187,6 @@ export function PublicShell({
         </div>
       </footer>
     </div>
+    </>
   );
 }

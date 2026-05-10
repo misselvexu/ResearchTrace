@@ -29,19 +29,31 @@ interface AppLayoutProps {
 
 export function AppLayout({ activeId, crumbKey, crumb, children }: AppLayoutProps) {
   return (
-    <div style={{ display: "flex", minHeight: "100vh" }}>
-      <Sidebar activeId={activeId} />
-      <div
-        style={{
-          flex: 1,
-          display: "flex",
-          flexDirection: "column",
-          minWidth: 0,
-        }}
-      >
-        <TopBar crumbKey={crumbKey} crumb={crumb} />
-        <main style={{ flex: 1 }}>{children}</main>
+    <>
+      <a href="#rt-main" className="skip-link">Skip to content</a>
+      <div data-responsive="app" style={{ display: "block", minHeight: "100vh" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "248px 1fr",
+            minHeight: "100vh",
+          }}
+        >
+          <Sidebar activeId={activeId} />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              minWidth: 0,
+            }}
+          >
+            <TopBar crumbKey={crumbKey} crumb={crumb} />
+            <main id="rt-main" className="rt-main" data-rt-main style={{ flex: 1 }}>
+              {children}
+            </main>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
