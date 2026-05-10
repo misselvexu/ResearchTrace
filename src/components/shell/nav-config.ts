@@ -11,13 +11,20 @@ export type NavItemId =
   | "ask"
   | "briefs"
   | "inbox"
+  | "search"
+  | "vault"
+  | "sources"
   | "topic-llm"
   | "topic-agent"
   | "topic-eval"
   | "topic-rag"
   | "topic-pm"
+  | "notifications"
+  | "billing"
   | "settings"
   | "pricing"
+  | "about"
+  | "changelog"
   | "landing";
 
 export type NavEntry =
@@ -38,6 +45,9 @@ export const NAV: NavEntry[] = [
   { kind: "item", id: "ask", key: "nav.ask", href: "/ask" },
   { kind: "item", id: "briefs", key: "nav.briefs", href: "/briefs", badge: "3" },
   { kind: "item", id: "inbox", key: "nav.inbox", href: "/inbox", badge: "47" },
+  { kind: "item", id: "search", key: "nav.search", href: "/search" },
+  { kind: "item", id: "vault", key: "nav.vault", href: "/vault" },
+  { kind: "item", id: "sources", key: "nav.sources", href: "/sources" },
   { kind: "section", key: "shell.section.pinned" },
   {
     kind: "item",
@@ -75,7 +85,11 @@ export const NAV: NavEntry[] = [
     tone: "topic",
   },
   { kind: "section", key: "shell.section.account" },
+  { kind: "item", id: "notifications", key: "nav.notifications", href: "/notifications", badge: "5" },
+  { kind: "item", id: "billing", key: "nav.billing", href: "/billing" },
   { kind: "item", id: "settings", key: "nav.settings", href: "/settings" },
   { kind: "item", id: "pricing", key: "nav.pricing", href: "/pricing" },
-  { kind: "item", id: "landing", key: "nav.landing", href: "/" },
+  { kind: "item", id: "about", key: "nav.about", href: "/about" },
+  { kind: "item", id: "changelog", key: "nav.changelog", href: "/changelog" },
+  { kind: "item", id: "landing", key: "nav.landing", href: "/landing" },
 ];

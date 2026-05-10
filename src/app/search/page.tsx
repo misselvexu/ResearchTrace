@@ -87,7 +87,7 @@ function SearchInner() {
   ];
 
   return (
-    <AppLayout crumbKey="search.crumb">
+    <AppLayout activeId="search" crumbKey="search.crumb">
       {/* Masthead */}
       <section style={{ borderBottom: "1px solid var(--divider)" }}>
         <div style={{ maxWidth: 1080, margin: "0 auto", padding: "32px 48px 22px" }}>

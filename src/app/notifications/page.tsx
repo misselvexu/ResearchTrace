@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
+import { toast } from "@/components/providers/toast";
 
 type Section = "today" | "yesterday" | "earlier";
 type Kind = "alert" | "digest" | "mention" | "system" | "ingest";
@@ -88,11 +89,11 @@ export default function NotificationsPage() {
 
   const markAll = () => {
     setReadSet(new Set(ITEMS.map((i) => i.k)));
-    alert(t("notifications.alert.markAllDone"));
+    toast(t("notifications.alert.markAllDone"));
   };
 
   return (
-    <AppLayout crumbKey="notifications.crumb">
+    <AppLayout activeId="notifications" crumbKey="notifications.crumb">
       {/* Masthead */}
       <section style={{ borderBottom: "1px solid var(--divider)" }}>
         <div style={{ maxWidth: 1180, margin: "0 auto", padding: "32px 48px 22px" }}>

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
+import { toast } from "@/components/providers/toast";
 
 type SectionId = "profile" | "delivery" | "agents" | "sources" | "plan" | "data";
 
@@ -220,7 +221,7 @@ export default function SettingsPage() {
                     type="button"
                     className="pill"
                     style={{ marginTop: 10, fontSize: 9 }}
-                    onClick={() => alert(t("settings.profile.alert"))}
+                    onClick={() => toast(t("settings.profile.alert"))}
                   >
                     {t("settings.profile.change")}
                   </button>
@@ -339,7 +340,7 @@ export default function SettingsPage() {
                     key={a.n}
                     className="paper-card clickable"
                     onClick={() =>
-                      alert(t("settings.agents.alertPrefix") + a.n + t("settings.agents.alertSuffix"))
+                      toast(t("settings.agents.alertPrefix") + a.n + t("settings.agents.alertSuffix"))
                     }
                     style={{ padding: 14, textAlign: "center" }}
                   >
@@ -405,7 +406,7 @@ export default function SettingsPage() {
                         type="button"
                         className="pill"
                         style={{ marginTop: 8, fontSize: 9 }}
-                        onClick={() => alert(t("settings.agents.routeChange"))}
+                        onClick={() => toast(t("settings.agents.routeChange"))}
                       >
                         {t("settings.profile.change")}
                       </button>
@@ -460,7 +461,7 @@ export default function SettingsPage() {
                     type="button"
                     className="pill"
                     style={{ marginTop: 8, fontSize: 9 }}
-                    onClick={() => alert(t("settings.plan.alert.pause"))}
+                    onClick={() => toast(t("settings.plan.alert.pause"))}
                   >
                     {t("settings.plan.btn.pause")}
                   </button>
@@ -527,7 +528,7 @@ export default function SettingsPage() {
                       type="button"
                       className={r.danger ? "pill pill-red" : "pill"}
                       style={{ fontSize: 10 }}
-                      onClick={() => alert(t(r.ctaK) + t("settings.data.alertSuffix"))}
+                      onClick={() => toast(t(r.ctaK) + t("settings.data.alertSuffix"))}
                     >
                       {t(r.ctaK)} →
                     </button>

@@ -59,10 +59,10 @@ export function TopBar({ crumbKey, crumb }: TopBarProps) {
           {crumbText}
         </div>
 
-        {/* Search box (centered, 520px) — clickable, navigates to /ask */}
+        {/* Search box (centered, 520px) — clickable, navigates to /search */}
         <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
           <Link
-            href="/ask"
+            href="/search"
             className="clickable"
             style={{
               display: "flex",

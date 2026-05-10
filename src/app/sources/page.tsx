@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
+import { toast } from "@/components/providers/toast";
 
 type SourceType = "RSS" | "EMAIL" | "API" | "EXT" | "MANUAL";
 type SourceStatus = "active" | "paused" | "error";
@@ -73,7 +74,7 @@ export default function SourcesPage() {
   const totalError = ROWS.filter((r) => r.status === "error").length;
 
   return (
-    <AppLayout crumbKey="sources.crumb">
+    <AppLayout activeId="sources" crumbKey="sources.crumb">
       {/* Masthead */}
       <section style={{ borderBottom: "1px solid var(--divider)" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: "32px 48px 22px" }}>
@@ -121,13 +122,13 @@ export default function SourcesPage() {
               </button>
             ))}
             <span style={{ flex: 1 }} />
-            <button className="btn btn-ghost" onClick={() => alert(t("sources.alert.import"))}>
+            <button className="btn btn-ghost" onClick={() => toast(t("sources.alert.import"))}>
               {t("sources.btn.import")}
             </button>
-            <button className="btn btn-ghost" onClick={() => alert(t("sources.alert.export"))}>
+            <button className="btn btn-ghost" onClick={() => toast(t("sources.alert.export"))}>
               {t("sources.btn.export")}
             </button>
-            <button className="btn btn-red" onClick={() => alert(t("sources.alert.add"))}>
+            <button className="btn btn-red" onClick={() => toast(t("sources.alert.add"))}>
               {t("sources.btn.add")}
             </button>
           </div>
@@ -221,7 +222,7 @@ export default function SourcesPage() {
                     className="pill"
                     style={{ fontSize: 9, padding: "1px 6px" }}
                     onClick={() =>
-                      alert(row.status === "active" ? t("sources.alert.pause") : t("sources.alert.resume"))
+                      toast(row.status === "active" ? t("sources.alert.pause") : t("sources.alert.resume"))
                     }
                   >
                     {row.status === "active" ? t("sources.act.pause") : t("sources.act.resume")}
@@ -229,7 +230,7 @@ export default function SourcesPage() {
                   <button
                     className="pill"
                     style={{ fontSize: 9, padding: "1px 6px" }}
-                    onClick={() => alert(t("sources.alert.edit"))}
+                    onClick={() => toast(t("sources.alert.edit"))}
                   >
                     {t("sources.act.edit")}
                   </button>

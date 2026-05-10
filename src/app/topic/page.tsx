@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
+import { toast } from "@/components/providers/toast";
 
 type TopicId = "llm-longctx" | "agentic" | "eval" | "rag" | "pm" | "alignment";
 type TabId = "overview" | "sources" | "claims" | "evidence" | "radar" | "briefs";
@@ -102,8 +103,8 @@ function TopicPageInner() {
               </div>
             ))}
             <div style={{ display: "flex", gap: 6 }}>
-              <button className="pill pill-red" onClick={() => alert(t("topic.alert.pin"))}>{t("topic.btn.pinned")}</button>
-              <button className="pill" onClick={() => alert(t("topic.alert.settings"))}>{t("topic.btn.settings")}</button>
+              <button className="pill pill-red" onClick={() => toast(t("topic.alert.pin"))}>{t("topic.btn.pinned")}</button>
+              <button className="pill" onClick={() => toast(t("topic.alert.settings"))}>{t("topic.btn.settings")}</button>
             </div>
           </div>
 
@@ -198,7 +199,7 @@ function OverviewPanel({ tid, T }: { tid: TopicId; T: TopicEntry }) {
           <Link href="/topic?t=llm-longctx&tab=claims" className="pill" style={{ textDecoration: "none" }}>
             {t("topic.ov.btn.allClaims")}
           </Link>
-          <button className="pill" onClick={() => alert(t("topic.ov.alert.deepBrief"))}>
+          <button className="pill" onClick={() => toast(t("topic.ov.alert.deepBrief"))}>
             {t("topic.ov.btn.deepBrief")}
           </button>
         </div>
@@ -257,7 +258,7 @@ function OverviewPanel({ tid, T }: { tid: TopicId; T: TopicEntry }) {
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                alert(t("topic.ov.alert.openNote") + num);
+                toast(t("topic.ov.alert.openNote") + num);
               }}
               style={{
                 display: "block",
@@ -381,7 +382,7 @@ function SourcesPanel() {
           <h2 className="headline" style={{ fontSize: 24, margin: 0 }}>{t("topic.src.title")}</h2>
           <span className="kicker">{t("topic.src.showing")}</span>
           <span style={{ flex: 1 }} />
-          <button className="btn btn-ghost" onClick={() => alert(t("topic.src.alert.add"))}>{t("topic.src.add")}</button>
+          <button className="btn btn-ghost" onClick={() => toast(t("topic.src.alert.add"))}>{t("topic.src.add")}</button>
         </div>
         {SOURCES.map((s) => {
           const title = t(s.titleK);
@@ -438,12 +439,12 @@ function SourcesPanel() {
             <button
               key={p}
               className={`pill ${p === 1 ? "is-active" : ""}`}
-              onClick={() => alert(t("topic.src.alert.page") + p)}
+              onClick={() => toast(t("topic.src.alert.page") + p)}
             >
               {p}
             </button>
           ))}
-          <button className="pill" onClick={() => alert(t("topic.src.alert.next"))}>→</button>
+          <button className="pill" onClick={() => toast(t("topic.src.alert.next"))}>→</button>
         </div>
       </div>
     </div>
@@ -633,11 +634,11 @@ function EvidencePanel() {
                   </Link>
                   <button
                     className="pill"
-                    onClick={() => alert(t("topic.evi.alert.openPdf") + e.page + t("topic.evi.alert.openPdfTail"))}
+                    onClick={() => toast(t("topic.evi.alert.openPdf") + e.page + t("topic.evi.alert.openPdfTail"))}
                   >
                     {t("topic.evi.openPdf")}
                   </button>
-                  <button className="pill" onClick={() => alert(t("topic.evi.alert.savedCard"))}>
+                  <button className="pill" onClick={() => toast(t("topic.evi.alert.savedCard"))}>
                     {t("topic.evi.saveCard")}
                   </button>
                   <Link
@@ -747,7 +748,7 @@ function RadarPanel() {
           <button
             className="btn btn-ghost"
             style={{ width: "100%", marginTop: 14, justifyContent: "center" }}
-            onClick={() => alert(t("topic.rd.alert.editTh"))}
+            onClick={() => toast(t("topic.rd.alert.editTh"))}
           >
             {t("topic.rd.editTh")}
           </button>
@@ -760,7 +761,7 @@ function RadarPanel() {
           <button
             className="btn btn-red"
             style={{ width: "100%", marginTop: 14, justifyContent: "center" }}
-            onClick={() => alert(t("topic.rd.alert.addSrc"))}
+            onClick={() => toast(t("topic.rd.alert.addSrc"))}
           >
             {t("topic.rd.addSrc")}
           </button>
@@ -790,7 +791,7 @@ function BriefsPanel() {
     <div>
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 18 }}>
         <h2 className="headline" style={{ fontSize: 26, margin: 0 }}>{t("topic.br.title")}</h2>
-        <button className="btn btn-red" onClick={() => alert(t("topic.br.alert.gen"))}>{t("topic.br.btn.gen")}</button>
+        <button className="btn btn-red" onClick={() => toast(t("topic.br.alert.gen"))}>{t("topic.br.btn.gen")}</button>
       </div>
 
       {T_BRIEFS.map((b) => (

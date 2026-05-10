@@ -4,6 +4,7 @@ import { use, useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { PrefSwitcher } from "@/components/providers/pref-switcher";
+import { toast } from "@/components/providers/toast";
 
 type Params = { id: string };
 
@@ -257,7 +258,7 @@ export default function SharePage({ params }: { params: Promise<Params> }) {
           >
             {copied ? t("share.actions.copied") : t("share.actions.copy")}
           </button>
-          <button className="btn btn-ghost" onClick={() => alert(t("share.alert.save"))}>
+          <button className="btn btn-ghost" onClick={() => toast(t("share.alert.save"))}>
             {t("share.actions.save")}
           </button>
           <Link

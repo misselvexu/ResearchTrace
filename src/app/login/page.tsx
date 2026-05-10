@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { PrefSwitcher } from "@/components/providers/pref-switcher";
+import { toast } from "@/components/providers/toast";
+import { signIn } from "@/lib/auth";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -21,17 +23,18 @@ export default function LoginPage() {
     e.preventDefault();
     if (submitting) return;
     if (!email.trim() || !password.trim()) {
-      alert(t("login.alert.missing"));
+      toast(t("login.alert.missing"));
       return;
     }
     if (!EMAIL_RE.test(email.trim())) {
-      alert(t("login.alert.invalidEmail"));
+      toast(t("login.alert.invalidEmail"));
       return;
     }
     setSubmitting(true);
-    // DEMO: simulate latency, redirect to /today
+    // DEMO: simulate latency, persist session, redirect to /today
     setTimeout(() => {
-      alert(t("login.alert.demo"));
+      signIn({ email: email.trim() });
+      toast.success(t("login.alert.demo"));
       router.push("/today");
     }, 600);
   }
@@ -163,7 +166,7 @@ export default function LoginPage() {
                   href="#"
                   onClick={(e) => {
                     e.preventDefault();
-                    alert(t("login.form.forgot"));
+                    toast(t("login.form.forgot"));
                   }}
                   className="link-red"
                   style={{ fontSize: 11, textDecoration: "none" }}
@@ -251,7 +254,7 @@ export default function LoginPage() {
                 key={p}
                 type="button"
                 className="btn btn-ghost"
-                onClick={() => alert(`OAuth · ${t(`login.oauth.${p}`)}`)}
+                onClick={() => toast(`OAuth · ${t(`login.oauth.${p}`)}`)}
                 style={{
                   width: "100%",
                   justifyContent: "center",

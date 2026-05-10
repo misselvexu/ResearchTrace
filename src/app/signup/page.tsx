@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { PrefSwitcher } from "@/components/providers/pref-switcher";
+import { toast } from "@/components/providers/toast";
+import { signIn } from "@/lib/auth";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PASSWORD_RE = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
@@ -25,24 +27,25 @@ export default function SignupPage() {
     e.preventDefault();
     if (submitting) return;
     if (!name.trim() || !email.trim() || !password.trim()) {
-      alert(t("signup.alert.missing"));
+      toast(t("signup.alert.missing"));
       return;
     }
     if (!EMAIL_RE.test(email.trim())) {
-      alert(t("signup.alert.invalidEmail"));
+      toast(t("signup.alert.invalidEmail"));
       return;
     }
     if (!PASSWORD_RE.test(password)) {
-      alert(t("signup.alert.weakPassword"));
+      toast(t("signup.alert.weakPassword"));
       return;
     }
     if (!agree) {
-      alert(t("signup.alert.needAgree"));
+      toast(t("signup.alert.needAgree"));
       return;
     }
     setSubmitting(true);
     setTimeout(() => {
-      alert(t("signup.alert.demo"));
+      signIn({ email: email.trim(), name: name.trim() || undefined });
+      toast.success(t("signup.alert.demo"));
       router.push("/onboarding");
     }, 600);
   }
@@ -291,7 +294,7 @@ export default function SignupPage() {
                 key={p}
                 type="button"
                 className="btn btn-ghost"
-                onClick={() => alert(`OAuth · ${t(`signup.oauth.${p}`)}`)}
+                onClick={() => toast(`OAuth · ${t(`signup.oauth.${p}`)}`)}
                 style={{
                   width: "100%",
                   justifyContent: "center",

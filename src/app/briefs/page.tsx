@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
+import { toast } from "@/components/providers/toast";
 
 type FormatFilter = "all" | "weekly" | "monthly" | "deepdive" | "initial";
 type TopicFilter = "all" | "long" | "agentic" | "eval" | "rag" | "product";
@@ -128,7 +129,7 @@ export default function BriefsPage() {
               </button>
             ))}
             <span style={{ flex: 1 }} />
-            <button className="btn btn-red" onClick={() => alert(t("briefs.alert.newBrief"))}>
+            <button className="btn btn-red" onClick={() => toast(t("briefs.alert.newBrief"))}>
               {t("briefs.btn.newBrief")}
             </button>
           </div>
@@ -272,7 +273,7 @@ export default function BriefsPage() {
           </div>
 
           <div style={{ textAlign: "center", marginTop: 32 }}>
-            <button className="btn btn-ghost" onClick={() => alert(t("briefs.alert.loadMore"))}>
+            <button className="btn btn-ghost" onClick={() => toast(t("briefs.alert.loadMore"))}>
               {t("briefs.btn.loadMore")}
             </button>
           </div>

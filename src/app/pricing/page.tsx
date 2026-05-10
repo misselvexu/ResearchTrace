@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
+import { toast } from "@/components/providers/toast";
 
 type BillingCycle = "monthly" | "yearly";
 
@@ -148,7 +149,7 @@ export default function PricingPage() {
               className={`pill ${cycle === "yearly" ? "is-active" : ""}`}
               onClick={() => {
                 setCycle("yearly");
-                alert(t("pricing.yearly.alert"));
+                toast(t("pricing.yearly.alert"));
               }}
             >
               {t("pricing.yearly")}
@@ -270,7 +271,7 @@ export default function PricingPage() {
 
                 <button
                   className={p.current ? "btn btn-ghost" : "btn btn-red"}
-                  onClick={() => alert(p.current ? t("pricing.alert.current") : t("pricing.alert.trial"))}
+                  onClick={() => toast(p.current ? t("pricing.alert.current") : t("pricing.alert.trial"))}
                   style={{ width: "100%", justifyContent: "center" }}
                 >
                   {t(ctaLabelKey(p))}
@@ -302,7 +303,7 @@ export default function PricingPage() {
                 {t("pricing.eduSub")}
               </div>
             </div>
-            <button className="btn btn-ghost" onClick={() => alert(t("pricing.eduCta.alert"))}>
+            <button className="btn btn-ghost" onClick={() => toast(t("pricing.eduCta.alert"))}>
               {t("pricing.eduCta")}
             </button>
           </div>

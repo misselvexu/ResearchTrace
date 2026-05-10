@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
+import { toast } from "@/components/providers/toast";
 
 type InvoiceStatus = "paid" | "pending" | "refunded";
 
@@ -41,7 +42,7 @@ export default function BillingPage() {
     if (cancelling) return;
     if (confirm(t("billing.alert.cancel"))) {
       setCancelling(true);
-      alert(t("billing.alert.cancelConfirmed"));
+      toast(t("billing.alert.cancelConfirmed"));
     }
   };
 
@@ -52,7 +53,7 @@ export default function BillingPage() {
   });
 
   return (
-    <AppLayout crumbKey="billing.crumb">
+    <AppLayout activeId="billing" crumbKey="billing.crumb">
       {/* Masthead */}
       <section style={{ borderBottom: "1px solid var(--divider)" }}>
         <div style={{ maxWidth: 1180, margin: "0 auto", padding: "32px 48px 22px" }}>
@@ -123,14 +124,14 @@ export default function BillingPage() {
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                 <button
                   className="btn btn-red"
-                  onClick={() => alert(t("billing.alert.upgrade"))}
+                  onClick={() => toast(t("billing.alert.upgrade"))}
                 >
                   {t("billing.plan.btnUpgrade")}
                 </button>
                 <button
                   className="btn btn-ghost"
                   style={{ borderColor: "var(--rule-on-dark)", color: "#fff" }}
-                  onClick={() => alert(t("billing.alert.downloadInvoice"))}
+                  onClick={() => toast(t("billing.alert.downloadInvoice"))}
                 >
                   {t("billing.plan.btnInvoice")}
                 </button>
@@ -225,13 +226,13 @@ export default function BillingPage() {
                 <button
                   className="btn btn-red"
                   style={{ flex: 1, justifyContent: "center" }}
-                  onClick={() => alert(t("billing.alert.updateMethod"))}
+                  onClick={() => toast(t("billing.alert.updateMethod"))}
                 >
                   {t("billing.method.btnUpdate")}
                 </button>
                 <button
                   className="btn btn-ghost"
-                  onClick={() => alert(t("billing.alert.addMethod"))}
+                  onClick={() => toast(t("billing.alert.addMethod"))}
                 >
                   {t("billing.method.btnAdd")}
                 </button>
@@ -472,7 +473,7 @@ export default function BillingPage() {
                     <button
                       className="pill"
                       style={{ fontSize: 9, padding: "1px 6px" }}
-                      onClick={() => alert(t("billing.alert.viewInvoice"))}
+                      onClick={() => toast(t("billing.alert.viewInvoice"))}
                     >
                       {t("billing.invoice.act.view")}
                     </button>
@@ -484,7 +485,7 @@ export default function BillingPage() {
                         color: "var(--accent-red)",
                         borderColor: "currentColor",
                       }}
-                      onClick={() => alert(t("billing.alert.downloadInvoice"))}
+                      onClick={() => toast(t("billing.alert.downloadInvoice"))}
                     >
                       {t("billing.invoice.act.download")}
                     </button>

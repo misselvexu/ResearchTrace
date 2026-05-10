@@ -26,8 +26,15 @@
     "ask": "Ask",
     "briefs": "Briefs",
     "inbox": "Inbox",
+    "search": "Search",
+    "vault": "Vault",
+    "sources": "Sources",
+    "notifications": "Notifications",
+    "billing": "Billing",
     "settings": "Settings",
     "pricing": "Pricing",
+    "about": "About",
+    "changelog": "Changelog",
     "landing": "Landing Page",
     "topic": {
       "llm": "LLM Long Context",
@@ -1840,20 +1847,62 @@
       "remove": "Remove this source?"
     },
     "row": {
-      "1": { "name": "arXiv cs.CL · Computation and Language", "src": "arxiv.org/list/cs.CL" },
-      "2": { "name": "Hugging Face Daily Papers", "src": "huggingface.co/papers" },
-      "3": { "name": "Anthropic Research", "src": "anthropic.com/research" },
-      "4": { "name": "OpenAI Blog", "src": "openai.com/blog" },
-      "5": { "name": "DeepMind Publications", "src": "deepmind.com/research" },
-      "6": { "name": "Simon Willison's Newsletter", "src": "simonwillison.net" },
-      "7": { "name": "The Gradient", "src": "thegradient.pub" },
-      "8": { "name": "AI Snake Oil · Substack", "src": "aisnakeoil.com" },
-      "9": { "name": "Papers With Code · Trending", "src": "paperswithcode.com" },
-      "10": { "name": "ICLR 2026 OpenReview", "src": "openreview.net" },
-      "11": { "name": "Twitter/X · ML list", "src": "x.com/i/lists/llm-research" },
-      "12": { "name": "Notion · My research plan", "src": "notion.so · personal" },
-      "13": { "name": "Email Forward · alerts@research.trace", "src": "Email forwarding" },
-      "14": { "name": "Chrome Extension · One-click save", "src": "researchtrace-ext v0.4" }
+      "1": {
+        "name": "arXiv cs.CL · Computation and Language",
+        "src": "arxiv.org/list/cs.CL"
+      },
+      "2": {
+        "name": "Hugging Face Daily Papers",
+        "src": "huggingface.co/papers"
+      },
+      "3": {
+        "name": "Anthropic Research",
+        "src": "anthropic.com/research"
+      },
+      "4": {
+        "name": "OpenAI Blog",
+        "src": "openai.com/blog"
+      },
+      "5": {
+        "name": "DeepMind Publications",
+        "src": "deepmind.com/research"
+      },
+      "6": {
+        "name": "Simon Willison's Newsletter",
+        "src": "simonwillison.net"
+      },
+      "7": {
+        "name": "The Gradient",
+        "src": "thegradient.pub"
+      },
+      "8": {
+        "name": "AI Snake Oil · Substack",
+        "src": "aisnakeoil.com"
+      },
+      "9": {
+        "name": "Papers With Code · Trending",
+        "src": "paperswithcode.com"
+      },
+      "10": {
+        "name": "ICLR 2026 OpenReview",
+        "src": "openreview.net"
+      },
+      "11": {
+        "name": "Twitter/X · ML list",
+        "src": "x.com/i/lists/llm-research"
+      },
+      "12": {
+        "name": "Notion · My research plan",
+        "src": "notion.so · personal"
+      },
+      "13": {
+        "name": "Email Forward · alerts@research.trace",
+        "src": "Email forwarding"
+      },
+      "14": {
+        "name": "Chrome Extension · One-click save",
+        "src": "researchtrace-ext v0.4"
+      }
     },
     "lastFetch": {
       "now": "just now",
@@ -1918,18 +1967,66 @@
       "open": "DEMO · open item card"
     },
     "item": {
-      "1": { "title": "Recurrent Memory Transformer v3", "topic": "longctx", "src": "arXiv · 2025-04" },
-      "2": { "title": "Claude 3.5 Long-context Eval Report", "topic": "longctx", "src": "Anthropic · 2025-05" },
-      "3": { "title": "LongMem: Augmenting LLMs with Long-Term Memory", "topic": "longctx", "src": "saved 4/17" },
-      "4": { "title": "Reflexion: Language Agents with Verbal RL", "topic": "agentic", "src": "arXiv · NeurIPS '24" },
-      "5": { "title": "CRITIC: Self-Correcting LLMs via Tool Use", "topic": "agentic", "src": "arXiv · 2024-05" },
-      "6": { "title": "GraphRAG: Graph-Enhanced Retrieval", "topic": "rag", "src": "Microsoft · 2025-02" },
-      "7": { "title": "MemGPT: Towards LLMs as Operating Systems", "topic": "rag", "src": "UC Berkeley · 2024" },
-      "8": { "title": "LongBench-v2: Long-context Eval Suite", "topic": "eval", "src": "THU · 2025-04" },
-      "9": { "title": "AI Product PRD Template (your notes)", "topic": "pm", "src": "Notion · #2204" },
-      "10": { "title": "AI Eval Leaderboards · research notes", "topic": "eval", "src": "your notes · #1842" },
-      "11": { "title": "Agent Workflow Patterns survey", "topic": "agentic", "src": "your notes · #1976" },
-      "12": { "title": "Holistic Evaluation of Language Models", "topic": "eval", "src": "Stanford · HELM" }
+      "1": {
+        "title": "Recurrent Memory Transformer v3",
+        "topic": "longctx",
+        "src": "arXiv · 2025-04"
+      },
+      "2": {
+        "title": "Claude 3.5 Long-context Eval Report",
+        "topic": "longctx",
+        "src": "Anthropic · 2025-05"
+      },
+      "3": {
+        "title": "LongMem: Augmenting LLMs with Long-Term Memory",
+        "topic": "longctx",
+        "src": "saved 4/17"
+      },
+      "4": {
+        "title": "Reflexion: Language Agents with Verbal RL",
+        "topic": "agentic",
+        "src": "arXiv · NeurIPS '24"
+      },
+      "5": {
+        "title": "CRITIC: Self-Correcting LLMs via Tool Use",
+        "topic": "agentic",
+        "src": "arXiv · 2024-05"
+      },
+      "6": {
+        "title": "GraphRAG: Graph-Enhanced Retrieval",
+        "topic": "rag",
+        "src": "Microsoft · 2025-02"
+      },
+      "7": {
+        "title": "MemGPT: Towards LLMs as Operating Systems",
+        "topic": "rag",
+        "src": "UC Berkeley · 2024"
+      },
+      "8": {
+        "title": "LongBench-v2: Long-context Eval Suite",
+        "topic": "eval",
+        "src": "THU · 2025-04"
+      },
+      "9": {
+        "title": "AI Product PRD Template (your notes)",
+        "topic": "pm",
+        "src": "Notion · #2204"
+      },
+      "10": {
+        "title": "AI Eval Leaderboards · research notes",
+        "topic": "eval",
+        "src": "your notes · #1842"
+      },
+      "11": {
+        "title": "Agent Workflow Patterns survey",
+        "topic": "agentic",
+        "src": "your notes · #1976"
+      },
+      "12": {
+        "title": "Holistic Evaluation of Language Models",
+        "topic": "eval",
+        "src": "Stanford · HELM"
+      }
     },
     "topicLabel": {
       "longctx": "Long ctx",
@@ -2150,18 +2247,50 @@
       "headline": "Usage this month",
       "lede": "Resets at 00:00 on the 1st of each month. Current cycle 2026/05/01 – 2026/05/31.",
       "items": {
-        "ingest": { "k": "Items ingested", "v": "247 / unlimited", "n": 247, "limit": 0 },
-        "claims": { "k": "Claims extracted", "v": "684 / unlimited", "n": 684, "limit": 0 },
-        "ask": { "k": "ASK queries", "v": "318 / 1,000", "n": 318, "limit": 1000 },
-        "storage": { "k": "Storage used", "v": "1.4 / 10 GB", "n": 1.4, "limit": 10 }
+        "ingest": {
+          "k": "Items ingested",
+          "v": "247 / unlimited",
+          "n": 247,
+          "limit": 0
+        },
+        "claims": {
+          "k": "Claims extracted",
+          "v": "684 / unlimited",
+          "n": 684,
+          "limit": 0
+        },
+        "ask": {
+          "k": "ASK queries",
+          "v": "318 / 1,000",
+          "n": 318,
+          "limit": 1000
+        },
+        "storage": {
+          "k": "Storage used",
+          "v": "1.4 / 10 GB",
+          "n": 1.4,
+          "limit": 10
+        }
       }
     },
     "compare": {
       "kicker": "PLAN COMPARISON",
       "headline": "Compare plans",
-      "free": { "name": "EXPLORER", "price": "¥0", "per": "/mo" },
-      "pro": { "name": "PRO", "price": "¥99", "per": "/mo" },
-      "team": { "name": "TEAM", "price": "¥299", "per": "/mo" },
+      "free": {
+        "name": "EXPLORER",
+        "price": "¥0",
+        "per": "/mo"
+      },
+      "pro": {
+        "name": "PRO",
+        "price": "¥99",
+        "per": "/mo"
+      },
+      "team": {
+        "name": "TEAM",
+        "price": "¥299",
+        "per": "/mo"
+      },
       "row": {
         "topics": "Topics",
         "ask": "ASK monthly quota",
@@ -2216,12 +2345,42 @@
         "refunded": "Refunded"
       },
       "row": {
-        "1": { "date": "2026-05-01", "no": "INV-2026-05-001", "amount": "¥99.00", "status": "paid" },
-        "2": { "date": "2026-04-01", "no": "INV-2026-04-001", "amount": "¥99.00", "status": "paid" },
-        "3": { "date": "2026-03-01", "no": "INV-2026-03-001", "amount": "¥99.00", "status": "paid" },
-        "4": { "date": "2026-02-01", "no": "INV-2026-02-001", "amount": "¥99.00", "status": "paid" },
-        "5": { "date": "2026-01-01", "no": "INV-2026-01-001", "amount": "¥99.00", "status": "paid" },
-        "6": { "date": "2025-12-01", "no": "INV-2025-12-001", "amount": "¥99.00", "status": "paid" }
+        "1": {
+          "date": "2026-05-01",
+          "no": "INV-2026-05-001",
+          "amount": "¥99.00",
+          "status": "paid"
+        },
+        "2": {
+          "date": "2026-04-01",
+          "no": "INV-2026-04-001",
+          "amount": "¥99.00",
+          "status": "paid"
+        },
+        "3": {
+          "date": "2026-03-01",
+          "no": "INV-2026-03-001",
+          "amount": "¥99.00",
+          "status": "paid"
+        },
+        "4": {
+          "date": "2026-02-01",
+          "no": "INV-2026-02-001",
+          "amount": "¥99.00",
+          "status": "paid"
+        },
+        "5": {
+          "date": "2026-01-01",
+          "no": "INV-2026-01-001",
+          "amount": "¥99.00",
+          "status": "paid"
+        },
+        "6": {
+          "date": "2025-12-01",
+          "no": "INV-2025-12-001",
+          "amount": "¥99.00",
+          "status": "paid"
+        }
       }
     },
     "alert": {
@@ -2362,19 +2521,52 @@
       }
     },
     "timeline": {
-      "t1": { "d": "2025-01", "k": "The spark", "v": "Yuwen realises 'newsroom editor' beats 'warehouse' as a metaphor" },
-      "t2": { "d": "2025-04", "k": "First line of code", "v": "Ingestor + Curator prototype works end-to-end" },
-      "t3": { "d": "2025-09", "k": "Closed beta", "v": "14 researchers begin receiving the daily brief" },
-      "t4": { "d": "2025-11", "k": "v0.3 launch", "v": "All 5 Agents are in place; 12 topics covered" },
-      "t5": { "d": "2026-05", "k": "v0.4", "v": "Unified search / view toggle / dark-mode polish" },
-      "t6": { "d": "Today", "k": "You are here", "v": "On this page — perhaps about to start a paper edited for you" }
+      "t1": {
+        "d": "2025-01",
+        "k": "The spark",
+        "v": "Yuwen realises 'newsroom editor' beats 'warehouse' as a metaphor"
+      },
+      "t2": {
+        "d": "2025-04",
+        "k": "First line of code",
+        "v": "Ingestor + Curator prototype works end-to-end"
+      },
+      "t3": {
+        "d": "2025-09",
+        "k": "Closed beta",
+        "v": "14 researchers begin receiving the daily brief"
+      },
+      "t4": {
+        "d": "2025-11",
+        "k": "v0.3 launch",
+        "v": "All 5 Agents are in place; 12 topics covered"
+      },
+      "t5": {
+        "d": "2026-05",
+        "k": "v0.4",
+        "v": "Unified search / view toggle / dark-mode polish"
+      },
+      "t6": {
+        "d": "Today",
+        "k": "You are here",
+        "v": "On this page — perhaps about to start a paper edited for you"
+      }
     },
     "team": {
       "lede": "We're a 7-person team across Beijing / San Francisco / Amsterdam, working remote. We've all been chewed up by 'information overload' in our own research.",
       "people": {
-        "1": { "n": "Yuwen", "r": "Founder · Editor-in-chief" },
-        "2": { "n": "Maya", "r": "Principal architect · Agent systems" },
-        "3": { "n": "Ren", "r": "ML · Retrieval & memory" }
+        "1": {
+          "n": "Yuwen",
+          "r": "Founder · Editor-in-chief"
+        },
+        "2": {
+          "n": "Maya",
+          "r": "Principal architect · Agent systems"
+        },
+        "3": {
+          "n": "Ren",
+          "r": "ML · Retrieval & memory"
+        }
       }
     },
     "contact": {
@@ -2424,52 +2616,115 @@
         "v": "v0.4.0",
         "d": "2026-05-05",
         "title": "Unified search & view toggle",
-        "i1": { "tag": "added", "txt": "Brand-new /search page: query across briefs / claims / sources / topics in parallel; results grouped, keyword-highlighted." },
-        "i2": { "tag": "added", "txt": "/vault now supports grid / list dual views; instant filter by title and source." },
-        "i3": { "tag": "added", "txt": "/notifications: 6 filter pills, mark-read & mark-all-read, timeline grouped by today/yesterday/earlier." },
-        "i4": { "tag": "improved", "txt": "Sidebar topic-group badges redesigned; active red badges read more clearly." },
-        "i5": { "tag": "improved", "txt": "Dark-mode typography polish: blockquote leading and watermark contrast." },
-        "i6": { "tag": "fixed", "txt": "Fixed: ASK page cite-click occasionally not scrolling under Safari." }
+        "i1": {
+          "tag": "added",
+          "txt": "Brand-new /search page: query across briefs / claims / sources / topics in parallel; results grouped, keyword-highlighted."
+        },
+        "i2": {
+          "tag": "added",
+          "txt": "/vault now supports grid / list dual views; instant filter by title and source."
+        },
+        "i3": {
+          "tag": "added",
+          "txt": "/notifications: 6 filter pills, mark-read & mark-all-read, timeline grouped by today/yesterday/earlier."
+        },
+        "i4": {
+          "tag": "improved",
+          "txt": "Sidebar topic-group badges redesigned; active red badges read more clearly."
+        },
+        "i5": {
+          "tag": "improved",
+          "txt": "Dark-mode typography polish: blockquote leading and watermark contrast."
+        },
+        "i6": {
+          "tag": "fixed",
+          "txt": "Fixed: ASK page cite-click occasionally not scrolling under Safari."
+        }
       },
       "2": {
         "v": "v0.3.2",
         "d": "2026-04-12",
         "title": "/billing & plan compare",
-        "i1": { "tag": "added", "txt": "New /billing page with plan card, usage bars, 3-tier comparison and 6-month invoice history." },
-        "i2": { "tag": "added", "txt": "Plan upgrade / downgrade flows including cancellation confirm dialog." },
-        "i3": { "tag": "improved", "txt": "/pricing and /billing comparison tables aligned to prevent data drift." }
+        "i1": {
+          "tag": "added",
+          "txt": "New /billing page with plan card, usage bars, 3-tier comparison and 6-month invoice history."
+        },
+        "i2": {
+          "tag": "added",
+          "txt": "Plan upgrade / downgrade flows including cancellation confirm dialog."
+        },
+        "i3": {
+          "tag": "improved",
+          "txt": "/pricing and /billing comparison tables aligned to prevent data drift."
+        }
       },
       "3": {
         "v": "v0.3.1",
         "d": "2026-03-08",
         "title": "Brief detail page & print polish",
-        "i1": { "tag": "added", "txt": "/briefs/[id] detail page: 6-section editorial layout with clickable citations, heat bars and action buttons." },
-        "i2": { "tag": "improved", "txt": "Added print stylesheet — A4 two-column layout, citations as footnotes." },
-        "i3": { "tag": "fixed", "txt": "Fixed next-intl nested-key bug rendering raw key strings in brief titles." }
+        "i1": {
+          "tag": "added",
+          "txt": "/briefs/[id] detail page: 6-section editorial layout with clickable citations, heat bars and action buttons."
+        },
+        "i2": {
+          "tag": "improved",
+          "txt": "Added print stylesheet — A4 two-column layout, citations as footnotes."
+        },
+        "i3": {
+          "tag": "fixed",
+          "txt": "Fixed next-intl nested-key bug rendering raw key strings in brief titles."
+        }
       },
       "4": {
         "v": "v0.3.0",
         "d": "2026-02-14",
         "title": "All 5 Agents in place",
-        "i1": { "tag": "breaking", "txt": "Curator Agent rewritten: claim extraction moved from single-model to ensemble voting; historic claim scores will be recomputed once." },
-        "i2": { "tag": "added", "txt": "Radar Agent: source monitoring + heat alerts." },
-        "i3": { "tag": "added", "txt": "Reporter Agent: automated daily / weekly / monthly briefs." },
-        "i4": { "tag": "improved", "txt": "12 built-in topics covering LLMs, agents, RAG, evaluation, product strategy and more." }
+        "i1": {
+          "tag": "breaking",
+          "txt": "Curator Agent rewritten: claim extraction moved from single-model to ensemble voting; historic claim scores will be recomputed once."
+        },
+        "i2": {
+          "tag": "added",
+          "txt": "Radar Agent: source monitoring + heat alerts."
+        },
+        "i3": {
+          "tag": "added",
+          "txt": "Reporter Agent: automated daily / weekly / monthly briefs."
+        },
+        "i4": {
+          "tag": "improved",
+          "txt": "12 built-in topics covering LLMs, agents, RAG, evaluation, product strategy and more."
+        }
       },
       "5": {
         "v": "v0.2.0",
         "d": "2025-12-01",
         "title": "Ask & vault",
-        "i1": { "tag": "added", "txt": "/ask page: history left, answer center, sources right, cite-click jumps." },
-        "i2": { "tag": "added", "txt": "/vault baseline: import PDF / URL / video / email / Notion." },
-        "i3": { "tag": "security", "txt": "All user data is end-to-end encrypted; new 'training-immune' setting added." }
+        "i1": {
+          "tag": "added",
+          "txt": "/ask page: history left, answer center, sources right, cite-click jumps."
+        },
+        "i2": {
+          "tag": "added",
+          "txt": "/vault baseline: import PDF / URL / video / email / Notion."
+        },
+        "i3": {
+          "tag": "security",
+          "txt": "All user data is end-to-end encrypted; new 'training-immune' setting added."
+        }
       },
       "6": {
         "v": "v0.1.0",
         "d": "2025-09-15",
         "title": "Closed beta · the first paper",
-        "i1": { "tag": "added", "txt": "Today / Topics / Briefs — three core pages." },
-        "i2": { "tag": "added", "txt": "Ingestor + Curator prototype live; 14 researchers receive their first daily brief." }
+        "i1": {
+          "tag": "added",
+          "txt": "Today / Topics / Briefs — three core pages."
+        },
+        "i2": {
+          "tag": "added",
+          "txt": "Ingestor + Curator prototype live; 14 researchers receive their first daily brief."
+        }
       }
     }
   },

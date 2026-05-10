@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
+import { toast } from "@/components/providers/toast";
 
 type TopicStatus = "ACTIVE" | "WATCHING" | "PAUSED";
 type FilterKey = "all" | TopicStatus | "pinned";
@@ -109,8 +110,8 @@ export default function TopicsPage() {
               </button>
             ))}
             <span style={{ flex: 1 }} />
-            <button className="btn btn-ghost" onClick={() => alert(t("topics.alert.sortHeat"))}>{t("topics.sort")}</button>
-            <button className="btn btn-red" onClick={() => alert(t("topics.alert.newTopic"))}>{t("topics.new")}</button>
+            <button className="btn btn-ghost" onClick={() => toast.info(t("topics.alert.sortHeat"))}>{t("topics.sort")}</button>
+            <button className="btn btn-red" onClick={() => toast.success(t("topics.alert.newTopic"))}>{t("topics.new")}</button>
           </div>
         </div>
       </section>

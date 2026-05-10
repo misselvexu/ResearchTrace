@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { PrefSwitcher } from "@/components/providers/pref-switcher";
+import { signIn } from "@/lib/auth";
+import { toast } from "@/components/providers/toast";
 
 type RoleId = "pm" | "founder" | "researcher" | "engineer" | "writer" | "other";
 
@@ -49,9 +51,20 @@ const DELIVERY_S4: [string, string, string][] = [
   ["onboarding.s4.d4.k", "onboarding.s4.d4.v", "var(--ink-primary)"],
 ];
 
+const ONBOARDING_KEY = "rt.onboarding.v1";
+
+type OnboardingPersist = {
+  step: 1 | 2 | 3 | 4;
+  selectedRole: RoleId | null;
+  selectedTopics: string[];
+  channel: string;
+  depth: string;
+};
+
 export default function OnboardingPage() {
   const t = useTranslations();
   const router = useRouter();
+  const [hydrated, setHydrated] = useState(false);
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
   const [selectedRole, setSelectedRole] = useState<RoleId | null>(null);
   const [selectedTopics, setSelectedTopics] = useState<Set<string>>(
@@ -61,6 +74,42 @@ export default function OnboardingPage() {
   const [channel, setChannel] = useState("app");
   const [depth, setDepth] = useState("std");
 
+  // Hydrate persisted state once on mount
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const raw = window.localStorage.getItem(ONBOARDING_KEY);
+      if (raw) {
+        const s = JSON.parse(raw) as Partial<OnboardingPersist>;
+        if (s.step && s.step >= 1 && s.step <= 4) setStep(s.step);
+        if (s.selectedRole !== undefined) setSelectedRole(s.selectedRole as RoleId | null);
+        if (Array.isArray(s.selectedTopics)) setSelectedTopics(new Set(s.selectedTopics));
+        if (s.channel) setChannel(s.channel);
+        if (s.depth) setDepth(s.depth);
+      }
+    } catch {
+      // ignore
+    }
+    setHydrated(true);
+  }, []);
+
+  // Persist on every change after hydration
+  useEffect(() => {
+    if (!hydrated || typeof window === "undefined") return;
+    try {
+      const persist: OnboardingPersist = {
+        step,
+        selectedRole,
+        selectedTopics: [...selectedTopics],
+        channel,
+        depth,
+      };
+      window.localStorage.setItem(ONBOARDING_KEY, JSON.stringify(persist));
+    } catch {
+      // ignore
+    }
+  }, [hydrated, step, selectedRole, selectedTopics, channel, depth]);
+
   function nextStep() {
     if (step < 4) setStep((s) => (s + 1) as 1 | 2 | 3 | 4);
   }
@@ -68,7 +117,15 @@ export default function OnboardingPage() {
     if (step > 1) setStep((s) => (s - 1) as 1 | 2 | 3 | 4);
   }
   function finish() {
-    alert(t("onboarding.finish.alert"));
+    // Mark the session as authed (covers users arriving via OAuth/skip)
+    signIn();
+    // Clear scratch onboarding state
+    try {
+      window.localStorage.removeItem(ONBOARDING_KEY);
+    } catch {
+      // ignore
+    }
+    toast.success(t("onboarding.finish.alert"));
     router.push("/today");
   }
   function toggleTopic(name: string) {
@@ -356,7 +413,7 @@ export default function OnboardingPage() {
                     type="button"
                     className="pill pill-red"
                     onClick={() => {
-                      alert(t("onboarding.s2.add.alert"));
+                      toast(t("onboarding.s2.add.alert"));
                       setCustomTopic("");
                     }}
                   >
@@ -422,7 +479,7 @@ export default function OnboardingPage() {
                         type="button"
                         className={s.done ? "pill is-active" : "btn btn-ghost"}
                         style={s.done ? undefined : { fontSize: 10 }}
-                        onClick={() => alert(t(s.ctaK))}
+                        onClick={() => toast(t(s.ctaK))}
                       >
                         {s.done ? t("onboarding.s3.connected") : t(s.ctaK)}
                       </button>

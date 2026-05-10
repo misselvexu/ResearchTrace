@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
+import { toast } from "@/components/providers/toast";
 
 type InboxType = "PDF" | "URL" | "TWITTER" | "YOUTUBE" | "EMAIL" | "NOTION";
 type InboxStatus = "PARSING" | "INDEXED" | "TRANSCRIBING" | "FAILED";
@@ -88,7 +89,7 @@ export default function InboxPage() {
           </div>
 
           <div
-            onClick={() => alert(t("inbox.alert.openPicker"))}
+            onClick={() => toast(t("inbox.alert.openPicker"))}
             className="clickable"
             style={{
               marginTop: 24,
@@ -112,7 +113,7 @@ export default function InboxPage() {
                 className="pill"
                 onClick={(e) => {
                   e.stopPropagation();
-                  alert(t("inbox.alert.copyEmail"));
+                  toast(t("inbox.alert.copyEmail"));
                 }}
               >
                 {t("inbox.btn.emailFwd")}
@@ -121,7 +122,7 @@ export default function InboxPage() {
                 className="pill"
                 onClick={(e) => {
                   e.stopPropagation();
-                  alert(t("inbox.alert.installExt"));
+                  toast(t("inbox.alert.installExt"));
                 }}
               >
                 {t("inbox.btn.installExt")}
@@ -156,7 +157,7 @@ export default function InboxPage() {
               </button>
             ))}
             <span style={{ flex: 1 }} />
-            <button className="btn btn-ghost" onClick={() => alert(t("inbox.alert.bulkClassify"))}>
+            <button className="btn btn-ghost" onClick={() => toast(t("inbox.alert.bulkClassify"))}>
               {t("inbox.btn.bulkClassify")}
             </button>
           </div>
@@ -186,7 +187,7 @@ export default function InboxPage() {
                   gap: 16,
                   alignItems: "center",
                 }}
-                onClick={() => alert(`${t("inbox.alert.openItem")}${it.n}${t("inbox.alert.openItemTail")}`)}
+                onClick={() => toast(`${t("inbox.alert.openItem")}${it.n}${t("inbox.alert.openItemTail")}`)}
               >
                 <div className="font-serif" style={{ fontSize: 24, fontWeight: 700, color: "var(--accent-red)", lineHeight: 1 }}>
                   {it.n}
@@ -237,7 +238,7 @@ export default function InboxPage() {
                     style={{ fontSize: 9, padding: "1px 6px" }}
                     onClick={(e) => {
                       e.stopPropagation();
-                      alert(t("inbox.alert.openCard"));
+                      toast(t("inbox.alert.openCard"));
                     }}
                   >
                     {t("inbox.btn.card")}
@@ -256,7 +257,7 @@ export default function InboxPage() {
           })}
 
           <div style={{ textAlign: "center", marginTop: 22 }}>
-            <button className="btn btn-ghost" onClick={() => alert(t("inbox.alert.loadMore"))}>
+            <button className="btn btn-ghost" onClick={() => toast(t("inbox.alert.loadMore"))}>
               {t("inbox.btn.loadMore")}
             </button>
           </div>

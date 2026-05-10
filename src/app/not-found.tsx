@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
+import { toast } from "@/components/providers/toast";
 
 type SuggestionKey = "today" | "briefs" | "topics" | "ask";
 
@@ -70,7 +71,7 @@ export default function NotFoundPage() {
               <button
                 type="button"
                 className="pill"
-                onClick={() => alert(t("notFound.report.alert"))}
+                onClick={() => toast(t("notFound.report.alert"))}
               >
                 {t("notFound.btn.report")}
               </button>

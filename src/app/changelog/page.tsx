@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { PublicShell } from "@/components/shell/public-shell";
+import { toast } from "@/components/providers/toast";
 
 type TagId = "added" | "improved" | "fixed" | "breaking" | "security";
 type FilterId = "all" | TagId;
@@ -69,14 +70,14 @@ export default function ChangelogPage() {
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             <button
               className="btn btn-ghost"
-              onClick={() => alert("RSS: /changelog/rss.xml")}
+              onClick={() => toast("RSS: /changelog/rss.xml")}
               style={{ fontSize: 12 }}
             >
               {t("changelog.btn.rss")}
             </button>
             <button
               className="btn btn-ghost"
-              onClick={() => alert(t("changelog.btn.feedback"))}
+              onClick={() => toast(t("changelog.btn.feedback"))}
               style={{ fontSize: 12 }}
             >
               {t("changelog.btn.feedback")}

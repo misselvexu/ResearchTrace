@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
+import { toast } from "@/components/providers/toast";
 
 type HistoryItem = { qK: string; tK: string };
 type SourceItem = {
@@ -249,7 +250,7 @@ function AskPageInner() {
             <button
               type="button"
               className="pill"
-              onClick={() => alert(t("ask.alert.trace"))}
+              onClick={() => toast(t("ask.alert.trace"))}
             >
               {t("ask.showTrace")}
             </button>
@@ -327,13 +328,13 @@ function AskPageInner() {
             <Link href={`/ask?q=${encodeURIComponent(t("ask.fu.missing"))}`} className="pill">
               {t("ask.missing")}
             </Link>
-            <button type="button" className="pill" onClick={() => alert(t("common.savedAsCard"))}>
+            <button type="button" className="pill" onClick={() => toast(t("common.savedAsCard"))}>
               {t("ask.saveCard")}
             </button>
             <button
               type="button"
               className="pill pill-solid"
-              onClick={() => alert(t("common.shareSuccess"))}
+              onClick={() => toast(t("common.shareSuccess"))}
             >
               {t("ask.share")}
             </button>
@@ -483,7 +484,7 @@ function AskPageInner() {
                           style={{ fontSize: 9, padding: "1px 6px" }}
                           onClick={(e) => {
                             e.stopPropagation();
-                            alert(t("ask.alert.openPdf") + s.page + t("ask.alert.openPdfTail"));
+                            toast(t("ask.alert.openPdf") + s.page + t("ask.alert.openPdfTail"));
                           }}
                         >
                           {s.page}
@@ -520,7 +521,7 @@ function AskPageInner() {
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
-                  alert(t("ask.alert.openItem") + t(k));
+                  toast(t("ask.alert.openItem") + t(k));
                 }}
                 style={{
                   display: "block",

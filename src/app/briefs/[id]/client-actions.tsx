@@ -3,18 +3,19 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { toast } from "@/components/providers/toast";
 
 export function BriefHeaderActionsClient({ PrintButton }: { PrintButton: ReactNode }) {
   const t = useTranslations();
   return (
     <div style={{ display: "flex", gap: 8, marginTop: 24, flexWrap: "wrap" }}>
-      <button className="btn btn-red" onClick={() => alert(t("brief.alert.save"))}>
+      <button className="btn btn-red" onClick={() => toast(t("brief.alert.save"))}>
         {t("brief.btn.save")}
       </button>
-      <button className="btn btn-ghost" onClick={() => alert(t("brief.alert.export"))}>
+      <button className="btn btn-ghost" onClick={() => toast(t("brief.alert.export"))}>
         {t("brief.btn.export")}
       </button>
-      <button className="btn btn-ghost" onClick={() => alert(t("brief.alert.share"))}>
+      <button className="btn btn-ghost" onClick={() => toast(t("brief.alert.share"))}>
         {t("brief.btn.share")}
       </button>
       {PrintButton}
@@ -68,7 +69,7 @@ export function BriefFollowupsClient() {
       >
         {t("brief.fu.challenge")}
       </Link>
-      <button className="pill" onClick={() => alert(t("brief.fu.alert.subscribe"))}>
+      <button className="pill" onClick={() => toast(t("brief.fu.alert.subscribe"))}>
         {t("brief.fu.subscribe")}
       </button>
     </div>

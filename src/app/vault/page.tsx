@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
+import { toast } from "@/components/providers/toast";
 
 type TopicKey = "longctx" | "agentic" | "rag" | "eval" | "pm" | "other";
 type FilterKey = "all" | TopicKey;
@@ -69,7 +70,7 @@ export default function VaultPage() {
   });
 
   return (
-    <AppLayout crumbKey="vault.crumb">
+    <AppLayout activeId="vault" crumbKey="vault.crumb">
       {/* Masthead */}
       <section style={{ borderBottom: "1px solid var(--divider)" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: "32px 48px 22px" }}>
@@ -139,8 +140,8 @@ export default function VaultPage() {
                 {t("vault.view.list")}
               </button>
             </div>
-            <button className="btn btn-ghost" onClick={() => alert(t("vault.alert.export"))}>{t("vault.btn.export")}</button>
-            <button className="btn btn-red" onClick={() => alert(t("vault.alert.add"))}>{t("vault.btn.add")}</button>
+            <button className="btn btn-ghost" onClick={() => toast(t("vault.alert.export"))}>{t("vault.btn.export")}</button>
+            <button className="btn btn-red" onClick={() => toast(t("vault.alert.add"))}>{t("vault.btn.add")}</button>
           </div>
 
           {/* Topic filter */}
@@ -177,7 +178,7 @@ export default function VaultPage() {
                     key={it.k}
                     className="paper-card clickable"
                     style={{ padding: "18px 20px", display: "flex", flexDirection: "column", gap: 10, minHeight: 180 }}
-                    onClick={() => alert(t("vault.alert.open"))}
+                    onClick={() => toast(t("vault.alert.open"))}
                   >
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                       <span
@@ -239,7 +240,7 @@ export default function VaultPage() {
                       gap: 16,
                       alignItems: "center",
                     }}
-                    onClick={() => alert(t("vault.alert.open"))}
+                    onClick={() => toast(t("vault.alert.open"))}
                   >
                     <span className="font-mono" style={{ fontSize: 11, color: "var(--ink-tertiary)" }}>#{it.k.padStart(4, "0")}</span>
                     <span

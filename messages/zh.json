@@ -26,8 +26,15 @@
     "ask": "提问",
     "briefs": "简报",
     "inbox": "收件箱",
+    "search": "全局检索",
+    "vault": "资料库",
+    "sources": "信源",
+    "notifications": "通知",
+    "billing": "账单",
     "settings": "设置",
     "pricing": "定价",
+    "about": "关于",
+    "changelog": "更新日志",
     "landing": "落地页",
     "topic": {
       "llm": "LLM 长上下文",
@@ -1840,20 +1847,62 @@
       "remove": "确认移除该信源？"
     },
     "row": {
-      "1": { "name": "arXiv cs.CL · Computation and Language", "src": "arxiv.org/list/cs.CL" },
-      "2": { "name": "Hugging Face Daily Papers", "src": "huggingface.co/papers" },
-      "3": { "name": "Anthropic Research", "src": "anthropic.com/research" },
-      "4": { "name": "OpenAI Blog", "src": "openai.com/blog" },
-      "5": { "name": "DeepMind Publications", "src": "deepmind.com/research" },
-      "6": { "name": "Simon Willison's Newsletter", "src": "simonwillison.net" },
-      "7": { "name": "The Gradient", "src": "thegradient.pub" },
-      "8": { "name": "AI Snake Oil · Substack", "src": "aisnakeoil.com" },
-      "9": { "name": "Papers With Code · Trending", "src": "paperswithcode.com" },
-      "10": { "name": "ICLR 2026 OpenReview", "src": "openreview.net" },
-      "11": { "name": "Twitter/X · ML 列表", "src": "x.com/i/lists/llm-research" },
-      "12": { "name": "Notion · 我的研究计划", "src": "notion.so · personal" },
-      "13": { "name": "Email Forward · alerts@research.trace", "src": "邮箱转发" },
-      "14": { "name": "Chrome 扩展 · 一键收藏", "src": "researchtrace-ext v0.4" }
+      "1": {
+        "name": "arXiv cs.CL · Computation and Language",
+        "src": "arxiv.org/list/cs.CL"
+      },
+      "2": {
+        "name": "Hugging Face Daily Papers",
+        "src": "huggingface.co/papers"
+      },
+      "3": {
+        "name": "Anthropic Research",
+        "src": "anthropic.com/research"
+      },
+      "4": {
+        "name": "OpenAI Blog",
+        "src": "openai.com/blog"
+      },
+      "5": {
+        "name": "DeepMind Publications",
+        "src": "deepmind.com/research"
+      },
+      "6": {
+        "name": "Simon Willison's Newsletter",
+        "src": "simonwillison.net"
+      },
+      "7": {
+        "name": "The Gradient",
+        "src": "thegradient.pub"
+      },
+      "8": {
+        "name": "AI Snake Oil · Substack",
+        "src": "aisnakeoil.com"
+      },
+      "9": {
+        "name": "Papers With Code · Trending",
+        "src": "paperswithcode.com"
+      },
+      "10": {
+        "name": "ICLR 2026 OpenReview",
+        "src": "openreview.net"
+      },
+      "11": {
+        "name": "Twitter/X · ML 列表",
+        "src": "x.com/i/lists/llm-research"
+      },
+      "12": {
+        "name": "Notion · 我的研究计划",
+        "src": "notion.so · personal"
+      },
+      "13": {
+        "name": "Email Forward · alerts@research.trace",
+        "src": "邮箱转发"
+      },
+      "14": {
+        "name": "Chrome 扩展 · 一键收藏",
+        "src": "researchtrace-ext v0.4"
+      }
     },
     "lastFetch": {
       "now": "刚刚",
@@ -1918,18 +1967,66 @@
       "open": "DEMO · 打开资料卡片"
     },
     "item": {
-      "1": { "title": "Recurrent Memory Transformer v3", "topic": "longctx", "src": "arXiv · 2025-04" },
-      "2": { "title": "Claude 3.5 Long-context Eval Report", "topic": "longctx", "src": "Anthropic · 2025-05" },
-      "3": { "title": "LongMem: Augmenting LLMs with Long-Term Memory", "topic": "longctx", "src": "您于 4/17 收藏" },
-      "4": { "title": "Reflexion: Language Agents with Verbal RL", "topic": "agentic", "src": "arXiv · NeurIPS '24" },
-      "5": { "title": "CRITIC: Self-Correcting LLMs via Tool Use", "topic": "agentic", "src": "arXiv · 2024-05" },
-      "6": { "title": "GraphRAG: Graph-Enhanced Retrieval", "topic": "rag", "src": "Microsoft · 2025-02" },
-      "7": { "title": "MemGPT: Towards LLMs as Operating Systems", "topic": "rag", "src": "UC Berkeley · 2024" },
-      "8": { "title": "LongBench-v2: 长上下文综合评测", "topic": "eval", "src": "THU · 2025-04" },
-      "9": { "title": "AI Product PRD 模板（您的笔记）", "topic": "pm", "src": "Notion · #2204" },
-      "10": { "title": "AI 评测榜单调研笔记", "topic": "eval", "src": "您的笔记 · #1842" },
-      "11": { "title": "Agent Workflow 设计模式综述", "topic": "agentic", "src": "您的笔记 · #1976" },
-      "12": { "title": "Holistic Evaluation of Language Models", "topic": "eval", "src": "Stanford · HELM" }
+      "1": {
+        "title": "Recurrent Memory Transformer v3",
+        "topic": "longctx",
+        "src": "arXiv · 2025-04"
+      },
+      "2": {
+        "title": "Claude 3.5 Long-context Eval Report",
+        "topic": "longctx",
+        "src": "Anthropic · 2025-05"
+      },
+      "3": {
+        "title": "LongMem: Augmenting LLMs with Long-Term Memory",
+        "topic": "longctx",
+        "src": "您于 4/17 收藏"
+      },
+      "4": {
+        "title": "Reflexion: Language Agents with Verbal RL",
+        "topic": "agentic",
+        "src": "arXiv · NeurIPS '24"
+      },
+      "5": {
+        "title": "CRITIC: Self-Correcting LLMs via Tool Use",
+        "topic": "agentic",
+        "src": "arXiv · 2024-05"
+      },
+      "6": {
+        "title": "GraphRAG: Graph-Enhanced Retrieval",
+        "topic": "rag",
+        "src": "Microsoft · 2025-02"
+      },
+      "7": {
+        "title": "MemGPT: Towards LLMs as Operating Systems",
+        "topic": "rag",
+        "src": "UC Berkeley · 2024"
+      },
+      "8": {
+        "title": "LongBench-v2: 长上下文综合评测",
+        "topic": "eval",
+        "src": "THU · 2025-04"
+      },
+      "9": {
+        "title": "AI Product PRD 模板（您的笔记）",
+        "topic": "pm",
+        "src": "Notion · #2204"
+      },
+      "10": {
+        "title": "AI 评测榜单调研笔记",
+        "topic": "eval",
+        "src": "您的笔记 · #1842"
+      },
+      "11": {
+        "title": "Agent Workflow 设计模式综述",
+        "topic": "agentic",
+        "src": "您的笔记 · #1976"
+      },
+      "12": {
+        "title": "Holistic Evaluation of Language Models",
+        "topic": "eval",
+        "src": "Stanford · HELM"
+      }
     },
     "topicLabel": {
       "longctx": "长上下文",
@@ -2150,18 +2247,50 @@
       "headline": "本月用量",
       "lede": "重置于每月 1 日 00:00。当前周期 2026/05/01 – 2026/05/31。",
       "items": {
-        "ingest": { "k": "资料导入", "v": "247 / 无限", "n": 247, "limit": 0 },
-        "claims": { "k": "论断抽取", "v": "684 / 无限", "n": 684, "limit": 0 },
-        "ask": { "k": "ASK 提问", "v": "318 / 1,000", "n": 318, "limit": 1000 },
-        "storage": { "k": "存储占用", "v": "1.4 / 10 GB", "n": 1.4, "limit": 10 }
+        "ingest": {
+          "k": "资料导入",
+          "v": "247 / 无限",
+          "n": 247,
+          "limit": 0
+        },
+        "claims": {
+          "k": "论断抽取",
+          "v": "684 / 无限",
+          "n": 684,
+          "limit": 0
+        },
+        "ask": {
+          "k": "ASK 提问",
+          "v": "318 / 1,000",
+          "n": 318,
+          "limit": 1000
+        },
+        "storage": {
+          "k": "存储占用",
+          "v": "1.4 / 10 GB",
+          "n": 1.4,
+          "limit": 10
+        }
       }
     },
     "compare": {
       "kicker": "PLAN COMPARISON",
       "headline": "比较方案",
-      "free": { "name": "EXPLORER", "price": "¥0", "per": "/月" },
-      "pro": { "name": "PRO", "price": "¥99", "per": "/月" },
-      "team": { "name": "TEAM", "price": "¥299", "per": "/月" },
+      "free": {
+        "name": "EXPLORER",
+        "price": "¥0",
+        "per": "/月"
+      },
+      "pro": {
+        "name": "PRO",
+        "price": "¥99",
+        "per": "/月"
+      },
+      "team": {
+        "name": "TEAM",
+        "price": "¥299",
+        "per": "/月"
+      },
       "row": {
         "topics": "主题数量",
         "ask": "ASK 月度额度",
@@ -2216,12 +2345,42 @@
         "refunded": "已退款"
       },
       "row": {
-        "1": { "date": "2026-05-01", "no": "INV-2026-05-001", "amount": "¥99.00", "status": "paid" },
-        "2": { "date": "2026-04-01", "no": "INV-2026-04-001", "amount": "¥99.00", "status": "paid" },
-        "3": { "date": "2026-03-01", "no": "INV-2026-03-001", "amount": "¥99.00", "status": "paid" },
-        "4": { "date": "2026-02-01", "no": "INV-2026-02-001", "amount": "¥99.00", "status": "paid" },
-        "5": { "date": "2026-01-01", "no": "INV-2026-01-001", "amount": "¥99.00", "status": "paid" },
-        "6": { "date": "2025-12-01", "no": "INV-2025-12-001", "amount": "¥99.00", "status": "paid" }
+        "1": {
+          "date": "2026-05-01",
+          "no": "INV-2026-05-001",
+          "amount": "¥99.00",
+          "status": "paid"
+        },
+        "2": {
+          "date": "2026-04-01",
+          "no": "INV-2026-04-001",
+          "amount": "¥99.00",
+          "status": "paid"
+        },
+        "3": {
+          "date": "2026-03-01",
+          "no": "INV-2026-03-001",
+          "amount": "¥99.00",
+          "status": "paid"
+        },
+        "4": {
+          "date": "2026-02-01",
+          "no": "INV-2026-02-001",
+          "amount": "¥99.00",
+          "status": "paid"
+        },
+        "5": {
+          "date": "2026-01-01",
+          "no": "INV-2026-01-001",
+          "amount": "¥99.00",
+          "status": "paid"
+        },
+        "6": {
+          "date": "2025-12-01",
+          "no": "INV-2025-12-001",
+          "amount": "¥99.00",
+          "status": "paid"
+        }
       }
     },
     "alert": {
@@ -2362,19 +2521,52 @@
       }
     },
     "timeline": {
-      "t1": { "d": "2025-01", "k": "灵感", "v": "Yuwen 意识到「报刊编辑」比「仓库」是更好的隐喻" },
-      "t2": { "d": "2025-04", "k": "第一行代码", "v": "Ingestor + Curator 雏形跑通" },
-      "t3": { "d": "2025-09", "k": "封闭 Beta", "v": "14 位研究者开始接收每日简报" },
-      "t4": { "d": "2025-11", "k": "v0.3 发布", "v": "5 个 Agent 全部就位，覆盖 12 个主题" },
-      "t5": { "d": "2026-05", "k": "v0.4", "v": "全局检索 / 视图切换 / 暗黑模式" },
-      "t6": { "d": "今天", "k": "您在这里", "v": "看到这页 —— 也许，开始一份只为您写的报" }
+      "t1": {
+        "d": "2025-01",
+        "k": "灵感",
+        "v": "Yuwen 意识到「报刊编辑」比「仓库」是更好的隐喻"
+      },
+      "t2": {
+        "d": "2025-04",
+        "k": "第一行代码",
+        "v": "Ingestor + Curator 雏形跑通"
+      },
+      "t3": {
+        "d": "2025-09",
+        "k": "封闭 Beta",
+        "v": "14 位研究者开始接收每日简报"
+      },
+      "t4": {
+        "d": "2025-11",
+        "k": "v0.3 发布",
+        "v": "5 个 Agent 全部就位，覆盖 12 个主题"
+      },
+      "t5": {
+        "d": "2026-05",
+        "k": "v0.4",
+        "v": "全局检索 / 视图切换 / 暗黑模式"
+      },
+      "t6": {
+        "d": "今天",
+        "k": "您在这里",
+        "v": "看到这页 —— 也许，开始一份只为您写的报"
+      }
     },
     "team": {
       "lede": "我们是一个 7 人的小团队，分布在北京 / 旧金山 / 阿姆斯特丹，远程协作。我们都是在自己的研究里被「信息过载」啃过的人。",
       "people": {
-        "1": { "n": "Yuwen", "r": "创始人 · 编辑总监" },
-        "2": { "n": "Maya", "r": "首席架构师 · Agent 系统" },
-        "3": { "n": "Ren", "r": "ML · 检索与记忆" }
+        "1": {
+          "n": "Yuwen",
+          "r": "创始人 · 编辑总监"
+        },
+        "2": {
+          "n": "Maya",
+          "r": "首席架构师 · Agent 系统"
+        },
+        "3": {
+          "n": "Ren",
+          "r": "ML · 检索与记忆"
+        }
       }
     },
     "contact": {
@@ -2424,52 +2616,115 @@
         "v": "v0.4.0",
         "d": "2026-05-05",
         "title": "全局检索与视图切换",
-        "i1": { "tag": "added", "txt": "全新 /search 页面：跨简报、论断、信源、主题统一检索，结果按组分区，关键词高亮。" },
-        "i2": { "tag": "added", "txt": "/vault 资料库支持网格 / 列表双视图，搜索框实时过滤标题与来源。" },
-        "i3": { "tag": "added", "txt": "/notifications 通知中心：6 类过滤、单条已读 / 全部已读，按 today/yesterday/earlier 时间线分组。" },
-        "i4": { "tag": "improved", "txt": "Sidebar 主题分组徽章重新设计，活动主题红色徽章更清晰。" },
-        "i5": { "tag": "improved", "txt": "暗黑模式排版调优：引文行距与水印对比度。" },
-        "i6": { "tag": "fixed", "txt": "修复 ASK 提问页 cite-click 在 Safari 下偶尔不滚动的问题。" }
+        "i1": {
+          "tag": "added",
+          "txt": "全新 /search 页面：跨简报、论断、信源、主题统一检索，结果按组分区，关键词高亮。"
+        },
+        "i2": {
+          "tag": "added",
+          "txt": "/vault 资料库支持网格 / 列表双视图，搜索框实时过滤标题与来源。"
+        },
+        "i3": {
+          "tag": "added",
+          "txt": "/notifications 通知中心：6 类过滤、单条已读 / 全部已读，按 today/yesterday/earlier 时间线分组。"
+        },
+        "i4": {
+          "tag": "improved",
+          "txt": "Sidebar 主题分组徽章重新设计，活动主题红色徽章更清晰。"
+        },
+        "i5": {
+          "tag": "improved",
+          "txt": "暗黑模式排版调优：引文行距与水印对比度。"
+        },
+        "i6": {
+          "tag": "fixed",
+          "txt": "修复 ASK 提问页 cite-click 在 Safari 下偶尔不滚动的问题。"
+        }
       },
       "2": {
         "v": "v0.3.2",
         "d": "2026-04-12",
         "title": "/billing 与套餐对比",
-        "i1": { "tag": "added", "txt": "新增 /billing 页面，含套餐、用量、3 档对比、6 期发票历史。" },
-        "i2": { "tag": "added", "txt": "套餐升降流程，含取消订阅二次确认。" },
-        "i3": { "tag": "improved", "txt": "/pricing 与 /billing 对比表对齐，避免数据不一致。" }
+        "i1": {
+          "tag": "added",
+          "txt": "新增 /billing 页面，含套餐、用量、3 档对比、6 期发票历史。"
+        },
+        "i2": {
+          "tag": "added",
+          "txt": "套餐升降流程，含取消订阅二次确认。"
+        },
+        "i3": {
+          "tag": "improved",
+          "txt": "/pricing 与 /billing 对比表对齐，避免数据不一致。"
+        }
       },
       "3": {
         "v": "v0.3.1",
         "d": "2026-03-08",
         "title": "Brief 详情页与打印优化",
-        "i1": { "tag": "added", "txt": "/briefs/[id] 详情页：6 段式编辑结构，含可点击引用、热度条、动作按钮。" },
-        "i2": { "tag": "improved", "txt": "新增打印样式表，A4 双栏排版，全部引用以脚注形式呈现。" },
-        "i3": { "tag": "fixed", "txt": "修复 next-intl 嵌套 key 在简报标题处偶尔渲染为 key 字符串的问题。" }
+        "i1": {
+          "tag": "added",
+          "txt": "/briefs/[id] 详情页：6 段式编辑结构，含可点击引用、热度条、动作按钮。"
+        },
+        "i2": {
+          "tag": "improved",
+          "txt": "新增打印样式表，A4 双栏排版，全部引用以脚注形式呈现。"
+        },
+        "i3": {
+          "tag": "fixed",
+          "txt": "修复 next-intl 嵌套 key 在简报标题处偶尔渲染为 key 字符串的问题。"
+        }
       },
       "4": {
         "v": "v0.3.0",
         "d": "2026-02-14",
         "title": "5 个 Agent 全部就位",
-        "i1": { "tag": "breaking", "txt": "Curator Agent 重构：claim 抽取由单模型变为投票合议，您历史 claim 的得分会重新计算（一次性）。" },
-        "i2": { "tag": "added", "txt": "Radar Agent：信源监测 + 热度告警。" },
-        "i3": { "tag": "added", "txt": "Reporter Agent：每日 / 每周 / 每月简报自动写作。" },
-        "i4": { "tag": "improved", "txt": "12 个内置主题，覆盖 LLM、Agent、RAG、评测、产品策略等。" }
+        "i1": {
+          "tag": "breaking",
+          "txt": "Curator Agent 重构：claim 抽取由单模型变为投票合议，您历史 claim 的得分会重新计算（一次性）。"
+        },
+        "i2": {
+          "tag": "added",
+          "txt": "Radar Agent：信源监测 + 热度告警。"
+        },
+        "i3": {
+          "tag": "added",
+          "txt": "Reporter Agent：每日 / 每周 / 每月简报自动写作。"
+        },
+        "i4": {
+          "tag": "improved",
+          "txt": "12 个内置主题，覆盖 LLM、Agent、RAG、评测、产品策略等。"
+        }
       },
       "5": {
         "v": "v0.2.0",
         "d": "2025-12-01",
         "title": "提问与资料库",
-        "i1": { "tag": "added", "txt": "/ask 页面：左侧历史 + 中央回答 + 右侧来源，cite-click 跳转。" },
-        "i2": { "tag": "added", "txt": "/vault 资料库基础版：导入 PDF / URL / 视频 / 邮件 / Notion。" },
-        "i3": { "tag": "security", "txt": "全部资料端到端加密；新增「训练免疫」设置项。" }
+        "i1": {
+          "tag": "added",
+          "txt": "/ask 页面：左侧历史 + 中央回答 + 右侧来源，cite-click 跳转。"
+        },
+        "i2": {
+          "tag": "added",
+          "txt": "/vault 资料库基础版：导入 PDF / URL / 视频 / 邮件 / Notion。"
+        },
+        "i3": {
+          "tag": "security",
+          "txt": "全部资料端到端加密；新增「训练免疫」设置项。"
+        }
       },
       "6": {
         "v": "v0.1.0",
         "d": "2025-09-15",
         "title": "封闭 Beta · 第一份报",
-        "i1": { "tag": "added", "txt": "Today / Topics / Briefs 三大基础页面。" },
-        "i2": { "tag": "added", "txt": "Ingestor + Curator 雏形上线；14 位研究者收到第一份每日简报。" }
+        "i1": {
+          "tag": "added",
+          "txt": "Today / Topics / Briefs 三大基础页面。"
+        },
+        "i2": {
+          "tag": "added",
+          "txt": "Ingestor + Curator 雏形上线；14 位研究者收到第一份每日简报。"
+        }
       }
     }
   },
