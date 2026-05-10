@@ -1838,7 +1838,8 @@
       "EXT": "Extension",
       "MANUAL": "Manual",
       "active": "Active",
-      "paused": "Paused"
+      "paused": "Paused",
+      "error": "Error"
     },
     "btn": {
       "add": "+ Add source",
@@ -1857,7 +1858,9 @@
       "pause": "Pause",
       "resume": "Resume",
       "edit": "Edit",
-      "remove": "Remove"
+      "remove": "Remove",
+      "test": "Test",
+      "sync": "Sync"
     },
     "alert": {
       "add": "DEMO · Add-source dialog (B6)",
@@ -1866,7 +1869,19 @@
       "pause": "DEMO · Source paused",
       "resume": "DEMO · Source resumed",
       "edit": "DEMO · Edit source config",
-      "remove": "Remove this source?"
+      "remove": "Remove this source?",
+      "paused": "Source paused",
+      "resumed": "Source resumed",
+      "edited": "Source updated",
+      "removed": "Source removed",
+      "testOk": "Test passed",
+      "testFailed": "Test failed",
+      "synced": "Sync started",
+      "added": "Source added",
+      "exported": "Sources exported",
+      "exportFailed": "Export failed",
+      "imported": "Imported",
+      "importFailed": "Import failed"
     },
     "row": {
       "1": {
@@ -1939,7 +1954,9 @@
       "d2": "2 d ago",
       "d7": "7 d ago",
       "never": "—"
-    }
+    },
+    "loading": "Loading sources…",
+    "empty": "No sources match this filter"
   },
   "vault": {
     "crumb": "RESEARCHTRACE / VAULT · Library",
@@ -2155,7 +2172,9 @@
     "btn": {
       "markAll": "Mark all read",
       "settings": "Notification settings",
-      "openSrc": "Open source →"
+      "openSrc": "Open source →",
+      "markRead": "Mark as read",
+      "delete": "Delete"
     },
     "section": {
       "today": "TODAY",
@@ -2181,7 +2200,9 @@
       "markAllDone": "DEMO · 12 notifications marked as read",
       "markRead": "DEMO · Marked as read",
       "openSrc": "DEMO · Jumping to source",
-      "settings": "DEMO · Jumping to /settings#notifications"
+      "settings": "DEMO · Jumping to /settings#notifications",
+      "deleted": "Notification deleted",
+      "confirmDelete": "Delete this notification?"
     },
     "item": {
       "1": {
@@ -2244,7 +2265,9 @@
         "body": "RESEARCH PRO · ¥99 · May 1. Download PDF at /billing.",
         "time": "May 1"
       }
-    }
+    },
+    "loading": "Loading notifications…",
+    "empty": "No notifications match this filter"
   },
   "billing": {
     "crumb": "RESEARCHTRACE / BILLING · Account & billing",

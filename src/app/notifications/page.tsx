@@ -1,46 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
-import { toast } from "@/components/providers/toast";
-import { api } from "@/lib/api";
-import { invalidate } from "@/lib/queries";
-import { handleApiError } from "@/lib/handle-api-error";
+import {
+  deleteNotification,
+  liveNotifRows,
+  markAllNotificationsRead,
+  markNotificationRead,
+  statsFromNotifs,
+  useNotificationsLive,
+  type LegacyKind,
+  type LegacySection,
+  type LiveNotifRow,
+} from "./notifications-data";
 
-type Section = "today" | "yesterday" | "earlier";
-type Kind = "alert" | "digest" | "mention" | "system" | "ingest";
-type Actor = "radar" | "reporter" | "ingestor" | "curator" | "system" | "billing";
 type FilterKey = "all" | "unread" | "mentions" | "system" | "digest" | "alerts";
 
-type NotifItem = {
-  k: string;
-  section: Section;
-  kind: Kind;
-  actor: Actor;
-  unread: boolean;
-  href: string;
-};
+const SECTIONS: LegacySection[] = ["today", "yesterday", "earlier"];
 
-const ITEMS: NotifItem[] = [
-  { k: "1", section: "today", kind: "alert", actor: "radar", unread: true, href: "/today" },
-  { k: "2", section: "today", kind: "digest", actor: "reporter", unread: true, href: "/briefs/127" },
-  { k: "3", section: "today", kind: "ingest", actor: "ingestor", unread: true, href: "/inbox" },
-  { k: "4", section: "today", kind: "mention", actor: "curator", unread: true, href: "/today" },
-  { k: "5", section: "yesterday", kind: "ingest", actor: "ingestor", unread: false, href: "/vault" },
-  { k: "6", section: "yesterday", kind: "system", actor: "system", unread: false, href: "/sources" },
-  { k: "7", section: "yesterday", kind: "digest", actor: "reporter", unread: true, href: "/briefs" },
-  { k: "8", section: "yesterday", kind: "system", actor: "billing", unread: true, href: "/billing" },
-  { k: "9", section: "earlier", kind: "ingest", actor: "ingestor", unread: false, href: "/inbox" },
-  { k: "10", section: "earlier", kind: "mention", actor: "curator", unread: true, href: "/today" },
-  { k: "11", section: "earlier", kind: "system", actor: "system", unread: false, href: "/" },
-  { k: "12", section: "earlier", kind: "system", actor: "billing", unread: false, href: "/billing" },
-];
-
-const SECTIONS: Section[] = ["today", "yesterday", "earlier"];
-
-const KIND_COLOR: Record<Kind, string> = {
+const KIND_COLOR: Record<LegacyKind, string> = {
   alert: "var(--accent-red)",
   digest: "var(--info-blue)",
   mention: "var(--warning-amber)",
@@ -59,16 +39,19 @@ const FILTERS: { key: FilterKey; labelK: string }[] = [
 
 export default function NotificationsPage() {
   const t = useTranslations();
+  const locale = useLocale();
+  const live = useNotificationsLive({ limit: 50 });
   const [filter, setFilter] = useState<FilterKey>("all");
-  const [readSet, setReadSet] = useState<Set<string>>(
-    () => new Set(ITEMS.filter((i) => !i.unread).map((i) => i.k))
+
+  const rows: LiveNotifRow[] = useMemo(
+    () => liveNotifRows(live.items, locale),
+    [live.items, locale],
   );
+  const stats = useMemo(() => statsFromNotifs(live.items), [live.items]);
 
-  const isUnread = (k: string) => !readSet.has(k);
-
-  const visible = ITEMS.filter((it) => {
+  const visible = rows.filter((it) => {
     if (filter === "all") return true;
-    if (filter === "unread") return isUnread(it.k);
+    if (filter === "unread") return it.unread;
     if (filter === "alerts") return it.kind === "alert";
     if (filter === "digest") return it.kind === "digest";
     if (filter === "mentions") return it.kind === "mention";
@@ -76,42 +59,22 @@ export default function NotificationsPage() {
     return true;
   });
 
-  const unreadCount = ITEMS.filter((it) => isUnread(it.k)).length;
-  const todayCount = ITEMS.filter((it) => it.section === "today").length;
-  const mentionCount = ITEMS.filter((it) => it.kind === "mention").length;
-  const systemCount = ITEMS.filter((it) => it.kind === "system").length;
-  const digestCount = ITEMS.filter((it) => it.kind === "digest").length;
-
-  const markRead = async (k: string) => {
-    // Optimistic local update — the editorial item key `k` is the seed key,
-    // not a backend Notification.id, so we mirror the action against any
-    // matching live notification (mock seed includes ids `n-1..n-12`) but
-    // tolerate 404s gracefully. Either way we mark the local row read.
-    setReadSet((prev) => {
-      const next = new Set(prev);
-      next.add(k);
-      return next;
-    });
-    try {
-      await api.post(`/notifications/n-${k}/read`);
-      invalidate(["notifications"]);
-    } catch (err) {
-      // Don't roll back the local read state — the user has clearly
-      // dismissed this row. But surface the failure so they know
-      // server state may diverge.
-      handleApiError(err, t);
-    }
+  const onRead = async (row: LiveNotifRow) => {
+    if (!row.unread) return;
+    const ok = await markNotificationRead(row.id, t);
+    if (ok) live.refresh();
   };
 
-  const markAll = async () => {
-    setReadSet(new Set(ITEMS.map((i) => i.k)));
-    try {
-      await api.post("/notifications/read-all");
-      invalidate(["notifications"]);
-      toast(t("notifications.alert.markAllDone"));
-    } catch (err) {
-      handleApiError(err, t);
-    }
+  const onMarkAll = async () => {
+    const ok = await markAllNotificationsRead(t);
+    if (ok) live.refresh();
+  };
+
+  const onDelete = async (row: LiveNotifRow) => {
+    if (typeof window === "undefined") return;
+    if (!window.confirm(t("notifications.alert.confirmDelete"))) return;
+    const ok = await deleteNotification(row.id, t);
+    if (ok) live.refresh();
   };
 
   return (
@@ -134,14 +97,14 @@ export default function NotificationsPage() {
             </div>
           </div>
 
-          {/* Stats */}
+          {/* Stats — overlaid from live */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: 12, marginTop: 22, paddingTop: 14, borderTop: "1px solid var(--divider)" }}>
             {([
-              ["notifications.stat.unread", unreadCount, "var(--accent-red)"],
-              ["notifications.stat.today", todayCount, "var(--ink-primary)"],
-              ["notifications.stat.mentions", mentionCount, "var(--warning-amber)"],
-              ["notifications.stat.system", systemCount, "var(--ink-tertiary)"],
-              ["notifications.stat.digest", digestCount, "var(--info-blue)"],
+              ["notifications.stat.unread", stats.unread, "var(--accent-red)"],
+              ["notifications.stat.today", stats.today, "var(--ink-primary)"],
+              ["notifications.stat.mentions", stats.mentions, "var(--warning-amber)"],
+              ["notifications.stat.system", stats.system, "var(--ink-tertiary)"],
+              ["notifications.stat.digest", stats.digest, "var(--info-blue)"],
             ] as const).map(([lk, n, c]) => (
               <div key={lk}>
                 <div className="font-serif" style={{ fontSize: 24, fontWeight: 600, color: c, lineHeight: 1 }}>{n}</div>
@@ -166,7 +129,7 @@ export default function NotificationsPage() {
             <Link href="/settings" className="btn btn-ghost" style={{ textDecoration: "none" }}>
               {t("notifications.btn.settings")}
             </Link>
-            <button className="btn btn-red" onClick={() => void markAll()}>{t("notifications.btn.markAll")}</button>
+            <button className="btn btn-red" onClick={() => void onMarkAll()}>{t("notifications.btn.markAll")}</button>
           </div>
         </div>
       </section>
@@ -174,133 +137,150 @@ export default function NotificationsPage() {
       {/* Timeline */}
       <section>
         <div style={{ maxWidth: 1180, margin: "0 auto", padding: "32px 48px 64px" }}>
-          {SECTIONS.map((sec) => {
-            const rows = visible.filter((it) => it.section === sec);
-            if (rows.length === 0) return null;
-            return (
-              <div key={sec} style={{ marginBottom: 32 }}>
-                <div
-                  className="rule-kicker"
-                  style={{ borderTop: "1px solid var(--divider-strong)", paddingTop: 10, marginBottom: 12 }}
-                >
-                  <span className="kicker-red">{t(`notifications.section.${sec}`)}</span>
-                </div>
-                <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                  {rows.map((it) => {
-                    const unread = isUnread(it.k);
-                    const title = t(`notifications.item.${it.k}.title`);
-                    const body = t(`notifications.item.${it.k}.body`);
-                    const time = t(`notifications.item.${it.k}.time`);
-                    const actor = t(`notifications.actor.${it.actor}`);
-                    const kind = t(`notifications.kind.${it.kind}`);
-                    return (
-                      <article
-                        key={it.k}
-                        className="paper-card"
-                        style={{
-                          padding: "14px 18px",
-                          display: "grid",
-                          gridTemplateColumns: "8px 130px 1fr 90px 130px",
-                          gap: 14,
-                          alignItems: "flex-start",
-                          opacity: unread ? 1 : 0.72,
-                        }}
-                      >
-                        <span
-                          aria-hidden="true"
+          {live.loading && rows.length === 0 ? (
+            <div style={{ textAlign: "center", padding: "60px 20px", color: "var(--ink-tertiary)" }}>
+              <div className="kicker" style={{ marginBottom: 8 }}>{t("notifications.loading")}</div>
+            </div>
+          ) : (
+            SECTIONS.map((sec) => {
+              const sectionRows = visible.filter((it) => it.section === sec);
+              if (sectionRows.length === 0) return null;
+              return (
+                <div key={sec} style={{ marginBottom: 32 }}>
+                  <div
+                    className="rule-kicker"
+                    style={{ borderTop: "1px solid var(--divider-strong)", paddingTop: 10, marginBottom: 12 }}
+                  >
+                    <span className="kicker-red">{t(`notifications.section.${sec}`)}</span>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                    {sectionRows.map((it) => {
+                      const actorLabel = t(`notifications.actor.${it.actor}`);
+                      const kindLabel = t(`notifications.kind.${it.kind}`);
+                      return (
+                        <article
+                          key={it.id}
+                          className="paper-card"
                           style={{
-                            width: 8,
-                            height: 8,
-                            borderRadius: "50%",
-                            background: unread ? "var(--accent-red)" : "transparent",
-                            border: unread ? "none" : "1px solid var(--divider-strong)",
-                            marginTop: 8,
+                            padding: "14px 18px",
+                            display: "grid",
+                            gridTemplateColumns: "8px 130px 1fr 90px 170px",
+                            gap: 14,
+                            alignItems: "flex-start",
+                            opacity: it.unread ? 1 : 0.72,
                           }}
-                        />
-                        <div>
-                          <div className="kicker" style={{ fontSize: 9, color: KIND_COLOR[it.kind] }}>
-                            {actor}
-                          </div>
-                          <div
-                            className="kicker"
+                        >
+                          <span
+                            aria-hidden="true"
                             style={{
-                              fontSize: 9,
-                              marginTop: 2,
-                              color: "var(--ink-tertiary)",
-                              fontStyle: "italic",
-                              fontFamily: "var(--font-serif)",
-                              textTransform: "none",
-                              letterSpacing: 0,
+                              width: 8,
+                              height: 8,
+                              borderRadius: "50%",
+                              background: it.unread ? "var(--accent-red)" : "transparent",
+                              border: it.unread ? "none" : "1px solid var(--divider-strong)",
+                              marginTop: 8,
                             }}
-                          >
-                            {kind}
+                          />
+                          <div>
+                            <div className="kicker" style={{ fontSize: 9, color: KIND_COLOR[it.kind] }}>
+                              {actorLabel}
+                            </div>
+                            <div
+                              className="kicker"
+                              style={{
+                                fontSize: 9,
+                                marginTop: 2,
+                                color: "var(--ink-tertiary)",
+                                fontStyle: "italic",
+                                fontFamily: "var(--font-serif)",
+                                textTransform: "none",
+                                letterSpacing: 0,
+                              }}
+                            >
+                              {kindLabel}
+                            </div>
                           </div>
-                        </div>
-                        <div style={{ minWidth: 0 }}>
-                          <div
-                            className="font-serif"
-                            style={{
-                              fontSize: 15.5,
-                              fontWeight: unread ? 600 : 500,
-                              lineHeight: 1.35,
-                              marginBottom: 4,
-                              color: "var(--ink-primary)",
-                            }}
-                          >
-                            {title}
+                          <div style={{ minWidth: 0 }}>
+                            <div
+                              className="font-serif"
+                              style={{
+                                fontSize: 15.5,
+                                fontWeight: it.unread ? 600 : 500,
+                                lineHeight: 1.35,
+                                marginBottom: 4,
+                                color: "var(--ink-primary)",
+                              }}
+                            >
+                              {it.title}
+                            </div>
+                            <div
+                              className="font-serif"
+                              style={{
+                                fontSize: 13,
+                                lineHeight: 1.5,
+                                color: "var(--ink-secondary)",
+                                fontStyle: "italic",
+                              }}
+                            >
+                              {it.body}
+                            </div>
                           </div>
-                          <div
-                            className="font-serif"
-                            style={{
-                              fontSize: 13,
-                              lineHeight: 1.5,
-                              color: "var(--ink-secondary)",
-                              fontStyle: "italic",
-                            }}
-                          >
-                            {body}
+                          <div className="kicker" style={{ fontSize: 10, textAlign: "right" }}>
+                            {it.time}
                           </div>
-                        </div>
-                        <div className="kicker" style={{ fontSize: 10, textAlign: "right" }}>
-                          {time}
-                        </div>
-                        <div style={{ display: "flex", gap: 4, justifyContent: "flex-end" }}>
-                          {unread && (
+                          <div style={{ display: "flex", gap: 4, justifyContent: "flex-end" }}>
+                            {it.unread && (
+                              <button
+                                className="pill"
+                                style={{ fontSize: 9, padding: "1px 6px" }}
+                                onClick={() => void onRead(it)}
+                                title={t("notifications.btn.markRead")}
+                              >
+                                ✓
+                              </button>
+                            )}
+                            <Link
+                              href={it.href}
+                              className="pill"
+                              style={{
+                                fontSize: 9,
+                                padding: "1px 6px",
+                                textDecoration: "none",
+                                color: "var(--accent-red)",
+                                borderColor: "currentColor",
+                              }}
+                              onClick={() => void onRead(it)}
+                            >
+                              {t("notifications.btn.openSrc")}
+                            </Link>
                             <button
                               className="pill"
-                              style={{ fontSize: 9, padding: "1px 6px" }}
-                              onClick={() => void markRead(it.k)}
+                              style={{ fontSize: 9, padding: "1px 6px", color: "var(--ink-tertiary)" }}
+                              onClick={() => void onDelete(it)}
+                              title={t("notifications.btn.delete")}
                             >
-                              ✓
+                              ✕
                             </button>
-                          )}
-                          <Link
-                            href={it.href}
-                            className="pill"
-                            style={{
-                              fontSize: 9,
-                              padding: "1px 6px",
-                              textDecoration: "none",
-                              color: "var(--accent-red)",
-                              borderColor: "currentColor",
-                            }}
-                            onClick={() => void markRead(it.k)}
-                          >
-                            {t("notifications.btn.openSrc")}
-                          </Link>
-                        </div>
-                      </article>
-                    );
-                  })}
+                          </div>
+                        </article>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })
+          )}
 
-          {visible.length === 0 && (
+          {!live.loading && visible.length === 0 && (
             <div style={{ textAlign: "center", padding: "60px 20px", color: "var(--ink-tertiary)" }}>
-              <div className="kicker" style={{ marginBottom: 8 }}>NO MATCH</div>
+              <div className="kicker" style={{ marginBottom: 8 }}>{t("notifications.empty")}</div>
               <div className="font-serif" style={{ fontSize: 18, fontStyle: "italic" }}>—</div>
+            </div>
+          )}
+
+          {live.error && (
+            <div style={{ marginTop: 16, padding: 12, border: "1px solid var(--accent-red)", color: "var(--accent-red)", fontSize: 12 }}>
+              {live.error}
             </div>
           )}
         </div>

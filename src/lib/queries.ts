@@ -21,17 +21,20 @@ import type {
   AskSession,
   AskSuggestion,
   Brief,
+  CatalogResponse,
   Invoice,
   ListBriefsQuery,
   ListNotificationsQuery,
   ListPlansResponse,
   ListSessionsQuery,
+  ListSourcesQuery,
   ListSuggestionsResponse,
   ListTopicsQuery,
   ListVaultQuery,
   Notification,
   PageResponse,
   PaymentMethod,
+  Source,
   Subscription,
   TagSummary,
   Topic,
@@ -264,5 +267,35 @@ export function invoicesQuery(): Promise<PageResponse<Invoice>> {
 export function paymentMethodsQuery(): Promise<{ items: PaymentMethod[] }> {
   return memo("billing.pm", [], () =>
     api.get<{ items: PaymentMethod[] }>("/billing/payment-methods"),
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Sources
+// ---------------------------------------------------------------------------
+
+export function sourcesQuery(
+  q: ListSourcesQuery = {},
+): Promise<PageResponse<Source>> {
+  return memo("sources.list", [q], () =>
+    api.get<PageResponse<Source>>("/sources", q as QueryParams),
+  );
+}
+
+export function sourcesCatalogQuery(): Promise<CatalogResponse> {
+  return memo("sources.catalog", [], () =>
+    api.get<CatalogResponse>("/sources/catalog"),
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Notifications (full list — augments existing notificationsQuery alias)
+// ---------------------------------------------------------------------------
+
+export function notificationsListQuery(
+  q: ListNotificationsQuery = {},
+): Promise<PageResponse<Notification>> {
+  return memo("notifications.full", [q], () =>
+    api.get<PageResponse<Notification>>("/notifications", q as QueryParams),
   );
 }

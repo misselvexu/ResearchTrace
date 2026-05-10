@@ -1838,7 +1838,8 @@
       "EXT": "扩展",
       "MANUAL": "手动",
       "active": "活跃",
-      "paused": "暂停"
+      "paused": "暂停",
+      "error": "错误"
     },
     "btn": {
       "add": "+ 添加信源",
@@ -1857,7 +1858,9 @@
       "pause": "暂停",
       "resume": "恢复",
       "edit": "编辑",
-      "remove": "移除"
+      "remove": "移除",
+      "test": "测试",
+      "sync": "同步"
     },
     "alert": {
       "add": "DEMO · 添加信源对话框（待 B6 实现）",
@@ -1866,7 +1869,19 @@
       "pause": "DEMO · 已暂停信源",
       "resume": "DEMO · 已恢复抓取",
       "edit": "DEMO · 编辑信源配置",
-      "remove": "确认移除该信源？"
+      "remove": "确认移除该信源？",
+      "paused": "已暂停该来源",
+      "resumed": "已恢复该来源",
+      "edited": "已更新该来源",
+      "removed": "已移除该来源",
+      "testOk": "测试通过",
+      "testFailed": "测试失败",
+      "synced": "已开始同步",
+      "added": "已添加来源",
+      "exported": "已导出来源配置",
+      "exportFailed": "导出失败",
+      "imported": "已导入",
+      "importFailed": "导入失败"
     },
     "row": {
       "1": {
@@ -1939,7 +1954,9 @@
       "d2": "2 天前",
       "d7": "7 天前",
       "never": "—"
-    }
+    },
+    "loading": "正在加载来源…",
+    "empty": "没有匹配此筛选的来源"
   },
   "vault": {
     "crumb": "RESEARCHTRACE / VAULT · 资料库",
@@ -2155,7 +2172,9 @@
     "btn": {
       "markAll": "全部标为已读",
       "settings": "通知设置",
-      "openSrc": "打开来源 →"
+      "openSrc": "打开来源 →",
+      "markRead": "标为已读",
+      "delete": "删除"
     },
     "section": {
       "today": "TODAY · 今日",
@@ -2181,7 +2200,9 @@
       "markAllDone": "DEMO · 已将 12 条通知全部标为已读",
       "markRead": "DEMO · 已标为已读",
       "openSrc": "DEMO · 跳转到来源",
-      "settings": "DEMO · 跳转到 /settings#notifications"
+      "settings": "DEMO · 跳转到 /settings#notifications",
+      "deleted": "已删除该通知",
+      "confirmDelete": "确定要删除该通知吗？"
     },
     "item": {
       "1": {
@@ -2244,7 +2265,9 @@
         "body": "RESEARCH PRO · ¥99 · 5 月 1 日。可在 /billing 下载 PDF。",
         "time": "5 月 1 日"
       }
-    }
+    },
+    "loading": "正在加载通知…",
+    "empty": "没有匹配此筛选的通知"
   },
   "billing": {
     "crumb": "RESEARCHTRACE / BILLING · 账户与计费",
