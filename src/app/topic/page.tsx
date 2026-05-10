@@ -7,6 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
 import { toast } from "@/components/providers/toast";
+import { useTopicLive, HeatSparkline, relativeTime } from "./topic-data";
 
 type TopicId = "llm-longctx" | "agentic" | "eval" | "rag" | "pm" | "alignment";
 type TabId = "overview" | "sources" | "claims" | "evidence" | "radar" | "briefs";
@@ -50,6 +51,11 @@ function TopicPageInner() {
   const tab = ((sp.get("tab") ?? "overview") as TabId);
   const T = TOPIC_DATA[tid];
 
+  // Live overlay: topic + 7-day stats for the matching seed id (positional).
+  const live = useTopicLive(tid);
+  const liveItems = live.topic?.recentItemCount ?? T.items;
+  const liveActivity = relativeTime(live.topic?.lastActivityAt ?? null);
+
   const navId = (T.navId || "topics") as Parameters<typeof AppLayout>[0]["activeId"];
 
   return (
@@ -76,6 +82,17 @@ function TopicPageInner() {
             </div>
             <div style={{ textAlign: "right" }}>
               <div className="watermark-number" style={{ fontSize: 120 }}>{T.n}</div>
+              {live.stats && (
+                <div style={{ marginTop: 6, display: "flex", justifyContent: "flex-end", alignItems: "center", gap: 8 }}>
+                  <span className="kicker" style={{ fontSize: 9 }}>{t("topic.stat.heat7d")}</span>
+                  <HeatSparkline stats={live.stats} />
+                </div>
+              )}
+              {liveActivity && (
+                <div className="font-mono" style={{ fontSize: 10, color: "var(--ink-tertiary)", marginTop: 4, letterSpacing: ".08em" }}>
+                  {t("topic.lastActivity")} {liveActivity}
+                </div>
+              )}
             </div>
           </div>
 
@@ -91,7 +108,7 @@ function TopicPageInner() {
             }}
           >
             {([
-              ["topic.stat.items", T.items],
+              ["topic.stat.items", liveItems],
               ["topic.stat.claims", T.claims],
               ["topic.stat.evidence", T.evidence],
               ["topic.stat.briefs", T.briefs],

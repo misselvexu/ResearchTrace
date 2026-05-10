@@ -436,8 +436,10 @@
       "claims": "CLAIMS",
       "evidence": "EVIDENCE",
       "briefs": "BRIEFS",
-      "sources": "SOURCES"
+      "sources": "SOURCES",
+      "heat7d": "HEAT · 7D"
     },
+    "lastActivity": "ACTIVE",
     "btn": {
       "pinned": "★ PINNED",
       "settings": "SETTINGS"

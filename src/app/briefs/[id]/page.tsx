@@ -55,7 +55,7 @@ export default async function BriefDetailPage({ params }: { params: Promise<Para
               <div className="watermark-number" style={{ fontSize: 108 }}>{id}</div>
             </div>
           </div>
-          <BriefHeaderActions />
+          <BriefHeaderActions rawId={id} />
         </header>
 
         {/* TOC */}
@@ -245,8 +245,8 @@ export default async function BriefDetailPage({ params }: { params: Promise<Para
 
 import { BriefHeaderActionsClient, BriefFollowupsClient } from "./client-actions";
 
-function BriefHeaderActions() {
-  return <BriefHeaderActionsClient PrintButton={<PrintButton />} />;
+function BriefHeaderActions({ rawId }: { rawId: string }) {
+  return <BriefHeaderActionsClient PrintButton={<PrintButton />} rawId={rawId} />;
 }
 
 function BriefFollowups() {
