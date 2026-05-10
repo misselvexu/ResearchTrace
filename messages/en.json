@@ -1784,5 +1784,228 @@
       "weakPassword": "Password must be at least 8 chars with letters and digits",
       "needAgree": "Please agree to the Terms of Service and Privacy Policy first"
     }
+  },
+  "sources": {
+    "crumb": "RESEARCHTRACE / SOURCES · Connected sources",
+    "kicker": "VOL. III · CONNECTED SOURCES",
+    "title": "Your sources",
+    "lede": {
+      "html": "ResearchTrace is currently pulling from <span style=\"color:var(--accent-red);font-weight:600;\">14 sources</span> across RSS, email, API and browser extensions. Each source is supervised by the <em>Ingestor Agent</em>."
+    },
+    "watermark": "14",
+    "stat": {
+      "total": "Total sources",
+      "active": "Active",
+      "paused": "Paused",
+      "error": "Error",
+      "today": "New items today"
+    },
+    "filter": "Filter",
+    "f": {
+      "all": "All",
+      "RSS": "RSS",
+      "EMAIL": "Email",
+      "API": "API",
+      "EXT": "Extension",
+      "MANUAL": "Manual",
+      "active": "Active",
+      "paused": "Paused"
+    },
+    "btn": {
+      "add": "+ Add source",
+      "import": "Import OPML",
+      "export": "Export config"
+    },
+    "col": {
+      "name": "Name",
+      "type": "Type",
+      "status": "Status",
+      "items": "Items",
+      "lastFetch": "Last fetch",
+      "actions": "Actions"
+    },
+    "act": {
+      "pause": "Pause",
+      "resume": "Resume",
+      "edit": "Edit",
+      "remove": "Remove"
+    },
+    "alert": {
+      "add": "DEMO · Add-source dialog (B6)",
+      "import": "DEMO · Pick an OPML file to import",
+      "export": "DEMO · sources.opml exported",
+      "pause": "DEMO · Source paused",
+      "resume": "DEMO · Source resumed",
+      "edit": "DEMO · Edit source config",
+      "remove": "Remove this source?"
+    },
+    "row": {
+      "1": { "name": "arXiv cs.CL · Computation and Language", "src": "arxiv.org/list/cs.CL" },
+      "2": { "name": "Hugging Face Daily Papers", "src": "huggingface.co/papers" },
+      "3": { "name": "Anthropic Research", "src": "anthropic.com/research" },
+      "4": { "name": "OpenAI Blog", "src": "openai.com/blog" },
+      "5": { "name": "DeepMind Publications", "src": "deepmind.com/research" },
+      "6": { "name": "Simon Willison's Newsletter", "src": "simonwillison.net" },
+      "7": { "name": "The Gradient", "src": "thegradient.pub" },
+      "8": { "name": "AI Snake Oil · Substack", "src": "aisnakeoil.com" },
+      "9": { "name": "Papers With Code · Trending", "src": "paperswithcode.com" },
+      "10": { "name": "ICLR 2026 OpenReview", "src": "openreview.net" },
+      "11": { "name": "Twitter/X · ML list", "src": "x.com/i/lists/llm-research" },
+      "12": { "name": "Notion · My research plan", "src": "notion.so · personal" },
+      "13": { "name": "Email Forward · alerts@research.trace", "src": "Email forwarding" },
+      "14": { "name": "Chrome Extension · One-click save", "src": "researchtrace-ext v0.4" }
+    },
+    "lastFetch": {
+      "now": "just now",
+      "min5": "5 min ago",
+      "min12": "12 min ago",
+      "min34": "34 min ago",
+      "h1": "1 hr ago",
+      "h2": "2 hr ago",
+      "h6": "6 hr ago",
+      "today": "today 08:00",
+      "yesterday": "yesterday",
+      "d2": "2 d ago",
+      "d7": "7 d ago",
+      "never": "—"
+    }
+  },
+  "vault": {
+    "crumb": "RESEARCHTRACE / VAULT · Library",
+    "kicker": "VOL. III · YOUR LIBRARY",
+    "title": "Vault",
+    "lede": {
+      "html": "Your full library · <span style=\"color:var(--accent-red);font-weight:600;\">2,438 items</span> archived across 12 topics. Every original is your private data — <em>training-immune</em>, end-to-end encrypted."
+    },
+    "watermark": "2438",
+    "stat": {
+      "total": "Total items",
+      "topics": "Topics",
+      "claims": "Extracted claims",
+      "evidence": "Evidence snippets",
+      "size": "Storage used"
+    },
+    "view": {
+      "_value": "View",
+      "grid": "Grid",
+      "list": "List"
+    },
+    "filter": "Filter by topic",
+    "f": {
+      "all": "All",
+      "longctx": "LLM Long Context",
+      "agentic": "Agentic",
+      "rag": "RAG & Memory",
+      "eval": "AI Evaluation",
+      "pm": "AI Product",
+      "other": "Other"
+    },
+    "search": {
+      "placeholder": "Search across 2,438 items…"
+    },
+    "btn": {
+      "add": "+ Import",
+      "export": "Export all"
+    },
+    "card": {
+      "claims": "claims",
+      "evidence": "evidence",
+      "open": "OPEN →"
+    },
+    "alert": {
+      "add": "DEMO · jumping to /inbox to pick items",
+      "export": "DEMO · vault.zip download link generated",
+      "open": "DEMO · open item card"
+    },
+    "item": {
+      "1": { "title": "Recurrent Memory Transformer v3", "topic": "longctx", "src": "arXiv · 2025-04" },
+      "2": { "title": "Claude 3.5 Long-context Eval Report", "topic": "longctx", "src": "Anthropic · 2025-05" },
+      "3": { "title": "LongMem: Augmenting LLMs with Long-Term Memory", "topic": "longctx", "src": "saved 4/17" },
+      "4": { "title": "Reflexion: Language Agents with Verbal RL", "topic": "agentic", "src": "arXiv · NeurIPS '24" },
+      "5": { "title": "CRITIC: Self-Correcting LLMs via Tool Use", "topic": "agentic", "src": "arXiv · 2024-05" },
+      "6": { "title": "GraphRAG: Graph-Enhanced Retrieval", "topic": "rag", "src": "Microsoft · 2025-02" },
+      "7": { "title": "MemGPT: Towards LLMs as Operating Systems", "topic": "rag", "src": "UC Berkeley · 2024" },
+      "8": { "title": "LongBench-v2: Long-context Eval Suite", "topic": "eval", "src": "THU · 2025-04" },
+      "9": { "title": "AI Product PRD Template (your notes)", "topic": "pm", "src": "Notion · #2204" },
+      "10": { "title": "AI Eval Leaderboards · research notes", "topic": "eval", "src": "your notes · #1842" },
+      "11": { "title": "Agent Workflow Patterns survey", "topic": "agentic", "src": "your notes · #1976" },
+      "12": { "title": "Holistic Evaluation of Language Models", "topic": "eval", "src": "Stanford · HELM" }
+    },
+    "topicLabel": {
+      "longctx": "Long ctx",
+      "agentic": "Agentic",
+      "rag": "RAG",
+      "eval": "Eval",
+      "pm": "Product",
+      "other": "Other"
+    }
+  },
+  "search": {
+    "crumb": "RESEARCHTRACE / SEARCH · Unified search",
+    "kicker": "VOL. III · UNIFIED SEARCH",
+    "title": "Search across all your knowledge",
+    "lede": {
+      "html": "Topics, briefs, claims, sources — one place to query. <em>Citations are clickable.</em> ResearchTrace only searches your library; nothing leaves."
+    },
+    "watermark": "Q",
+    "form": {
+      "placeholder": "Type a keyword, claim, author or DOI…",
+      "submit": "Search"
+    },
+    "tab": {
+      "_value": "Result groups",
+      "all": "All",
+      "briefs": "Briefs",
+      "claims": "Claims",
+      "sources": "Sources",
+      "topics": "Topics"
+    },
+    "empty": {
+      "kicker": "READY",
+      "title": "Start a search",
+      "lede": "Type a keyword above. ResearchTrace will query your briefs, claims, sources and topics in parallel.",
+      "tip": "Try: long context · GraphRAG · self-reflection"
+    },
+    "noResult": {
+      "kicker": "NO MATCH",
+      "title": "No matching results",
+      "lede": "Try broader keywords, or check the spelling."
+    },
+    "group": {
+      "briefs": "§ I · Briefs",
+      "claims": "§ II · Claims",
+      "sources": "§ III · Sources",
+      "topics": "§ IV · Topics"
+    },
+    "count": {
+      "results": "results",
+      "for": "· for"
+    },
+    "result": {
+      "open": "OPEN →",
+      "ask": "ASK"
+    },
+    "demo": {
+      "briefs": [
+        "Issue 127 · Long-context twins: RMT v3 and Claude 3.5",
+        "Issue 124 · GraphRAG · early enterprise field test",
+        "Issue 119 · Engineering paths for self-reflective agents"
+      ],
+      "claims": [
+        "RMT v3 inference cost is only 3.7% of full attention at 2M tokens",
+        "Claude 3.5 needle-in-haystack 99.4% at 200K context",
+        "Reflexion outperforms ReAct by 14.2 pts on multi-step tasks"
+      ],
+      "sources": [
+        "arXiv cs.CL · 38 long-context papers",
+        "Anthropic Research · 6 eval reports",
+        "Hugging Face Daily Papers · long-context thread"
+      ],
+      "topics": [
+        "LLM Long Context · 147 items",
+        "RAG & Memory · 104 items",
+        "AI Evaluation · 62 items"
+      ]
+    }
   }
 }

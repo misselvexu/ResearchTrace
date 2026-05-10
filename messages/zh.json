@@ -1784,5 +1784,228 @@
       "weakPassword": "密码至少 8 位，且需含字母与数字",
       "needAgree": "请先同意服务条款与隐私政策"
     }
+  },
+  "sources": {
+    "crumb": "RESEARCHTRACE / SOURCES · 信源管理",
+    "kicker": "VOL. III · CONNECTED SOURCES",
+    "title": "您的信源",
+    "lede": {
+      "html": "研迹当前从 <span style=\"color:var(--accent-red);font-weight:600;\">14 个信源</span>抓取内容，覆盖 RSS、邮件、API 与浏览器扩展。每条信源由 <em>Ingestor Agent</em> 监管。"
+    },
+    "watermark": "14",
+    "stat": {
+      "total": "信源总数",
+      "active": "活跃",
+      "paused": "已暂停",
+      "error": "异常",
+      "today": "今日新增条目"
+    },
+    "filter": "筛选",
+    "f": {
+      "all": "全部",
+      "RSS": "RSS",
+      "EMAIL": "邮件",
+      "API": "API",
+      "EXT": "扩展",
+      "MANUAL": "手动",
+      "active": "活跃",
+      "paused": "暂停"
+    },
+    "btn": {
+      "add": "+ 添加信源",
+      "import": "批量导入 OPML",
+      "export": "导出配置"
+    },
+    "col": {
+      "name": "名称",
+      "type": "类型",
+      "status": "状态",
+      "items": "条目",
+      "lastFetch": "上次抓取",
+      "actions": "操作"
+    },
+    "act": {
+      "pause": "暂停",
+      "resume": "恢复",
+      "edit": "编辑",
+      "remove": "移除"
+    },
+    "alert": {
+      "add": "DEMO · 添加信源对话框（待 B6 实现）",
+      "import": "DEMO · 选择 OPML 文件并导入",
+      "export": "DEMO · 已导出 sources.opml",
+      "pause": "DEMO · 已暂停信源",
+      "resume": "DEMO · 已恢复抓取",
+      "edit": "DEMO · 编辑信源配置",
+      "remove": "确认移除该信源？"
+    },
+    "row": {
+      "1": { "name": "arXiv cs.CL · Computation and Language", "src": "arxiv.org/list/cs.CL" },
+      "2": { "name": "Hugging Face Daily Papers", "src": "huggingface.co/papers" },
+      "3": { "name": "Anthropic Research", "src": "anthropic.com/research" },
+      "4": { "name": "OpenAI Blog", "src": "openai.com/blog" },
+      "5": { "name": "DeepMind Publications", "src": "deepmind.com/research" },
+      "6": { "name": "Simon Willison's Newsletter", "src": "simonwillison.net" },
+      "7": { "name": "The Gradient", "src": "thegradient.pub" },
+      "8": { "name": "AI Snake Oil · Substack", "src": "aisnakeoil.com" },
+      "9": { "name": "Papers With Code · Trending", "src": "paperswithcode.com" },
+      "10": { "name": "ICLR 2026 OpenReview", "src": "openreview.net" },
+      "11": { "name": "Twitter/X · ML 列表", "src": "x.com/i/lists/llm-research" },
+      "12": { "name": "Notion · 我的研究计划", "src": "notion.so · personal" },
+      "13": { "name": "Email Forward · alerts@research.trace", "src": "邮箱转发" },
+      "14": { "name": "Chrome 扩展 · 一键收藏", "src": "researchtrace-ext v0.4" }
+    },
+    "lastFetch": {
+      "now": "刚刚",
+      "min5": "5 分钟前",
+      "min12": "12 分钟前",
+      "min34": "34 分钟前",
+      "h1": "1 小时前",
+      "h2": "2 小时前",
+      "h6": "6 小时前",
+      "today": "今天 08:00",
+      "yesterday": "昨天",
+      "d2": "2 天前",
+      "d7": "7 天前",
+      "never": "—"
+    }
+  },
+  "vault": {
+    "crumb": "RESEARCHTRACE / VAULT · 资料库",
+    "kicker": "VOL. III · YOUR LIBRARY",
+    "title": "资料库",
+    "lede": {
+      "html": "您的全部资料 · 共 <span style=\"color:var(--accent-red);font-weight:600;\">2,438 项</span>，跨 12 个主题归档。每一份原文都是您的私有数据，<em>训练免疫</em>，端到端加密。"
+    },
+    "watermark": "2438",
+    "stat": {
+      "total": "全部条目",
+      "topics": "主题",
+      "claims": "已抽取论断",
+      "evidence": "证据片段",
+      "size": "存储占用"
+    },
+    "view": {
+      "_value": "视图",
+      "grid": "网格",
+      "list": "列表"
+    },
+    "filter": "筛选主题",
+    "f": {
+      "all": "全部",
+      "longctx": "LLM 长上下文",
+      "agentic": "智能体",
+      "rag": "RAG 与记忆",
+      "eval": "AI 评测",
+      "pm": "AI 产品策略",
+      "other": "其他"
+    },
+    "search": {
+      "placeholder": "在 2,438 项资料中查找…"
+    },
+    "btn": {
+      "add": "+ 导入资料",
+      "export": "导出全部"
+    },
+    "card": {
+      "claims": "论断",
+      "evidence": "证据",
+      "open": "OPEN →"
+    },
+    "alert": {
+      "add": "DEMO · 跳转到 /inbox 选择资料",
+      "export": "DEMO · 已生成 vault.zip 下载链接",
+      "open": "DEMO · 打开资料卡片"
+    },
+    "item": {
+      "1": { "title": "Recurrent Memory Transformer v3", "topic": "longctx", "src": "arXiv · 2025-04" },
+      "2": { "title": "Claude 3.5 Long-context Eval Report", "topic": "longctx", "src": "Anthropic · 2025-05" },
+      "3": { "title": "LongMem: Augmenting LLMs with Long-Term Memory", "topic": "longctx", "src": "您于 4/17 收藏" },
+      "4": { "title": "Reflexion: Language Agents with Verbal RL", "topic": "agentic", "src": "arXiv · NeurIPS '24" },
+      "5": { "title": "CRITIC: Self-Correcting LLMs via Tool Use", "topic": "agentic", "src": "arXiv · 2024-05" },
+      "6": { "title": "GraphRAG: Graph-Enhanced Retrieval", "topic": "rag", "src": "Microsoft · 2025-02" },
+      "7": { "title": "MemGPT: Towards LLMs as Operating Systems", "topic": "rag", "src": "UC Berkeley · 2024" },
+      "8": { "title": "LongBench-v2: 长上下文综合评测", "topic": "eval", "src": "THU · 2025-04" },
+      "9": { "title": "AI Product PRD 模板（您的笔记）", "topic": "pm", "src": "Notion · #2204" },
+      "10": { "title": "AI 评测榜单调研笔记", "topic": "eval", "src": "您的笔记 · #1842" },
+      "11": { "title": "Agent Workflow 设计模式综述", "topic": "agentic", "src": "您的笔记 · #1976" },
+      "12": { "title": "Holistic Evaluation of Language Models", "topic": "eval", "src": "Stanford · HELM" }
+    },
+    "topicLabel": {
+      "longctx": "长上下文",
+      "agentic": "智能体",
+      "rag": "RAG",
+      "eval": "评测",
+      "pm": "产品",
+      "other": "其他"
+    }
+  },
+  "search": {
+    "crumb": "RESEARCHTRACE / SEARCH · 检索",
+    "kicker": "VOL. III · UNIFIED SEARCH",
+    "title": "在您的全部知识中检索",
+    "lede": {
+      "html": "跨主题、简报、论断与信源 —— 一处检索，<em>引用可点</em>。研迹只搜您的资料库，从不外泄。"
+    },
+    "watermark": "Q",
+    "form": {
+      "placeholder": "输入关键词、claim、作者或 DOI…",
+      "submit": "检索"
+    },
+    "tab": {
+      "_value": "结果分组",
+      "all": "全部",
+      "briefs": "简报",
+      "claims": "论断",
+      "sources": "信源",
+      "topics": "主题"
+    },
+    "empty": {
+      "kicker": "READY",
+      "title": "开始一次检索",
+      "lede": "在上方输入关键词。研迹会同时检索您的简报、论断、信源与主题。",
+      "tip": "示例：long context · GraphRAG · self-reflection"
+    },
+    "noResult": {
+      "kicker": "NO MATCH",
+      "title": "未找到匹配项",
+      "lede": "尝试更宽泛的关键词，或检查拼写。"
+    },
+    "group": {
+      "briefs": "§ I · 简报",
+      "claims": "§ II · 论断",
+      "sources": "§ III · 信源",
+      "topics": "§ IV · 主题"
+    },
+    "count": {
+      "results": "项结果",
+      "for": "·关于"
+    },
+    "result": {
+      "open": "打开 →",
+      "ask": "进入 ASK"
+    },
+    "demo": {
+      "briefs": [
+        "Issue 127 · 长上下文双子星：RMT v3 与 Claude 3.5",
+        "Issue 124 · GraphRAG 在企业知识库的早期实测",
+        "Issue 119 · Agent 自反思框架的工程化路径"
+      ],
+      "claims": [
+        "RMT v3 在 2M token 上推理成本仅为标准注意力的 3.7%",
+        "Claude 3.5 在 200K needle-in-haystack 准确率 99.4%",
+        "Reflexion 在多步任务上较 ReAct 提升 14.2 个百分点"
+      ],
+      "sources": [
+        "arXiv cs.CL · 长上下文相关 38 篇",
+        "Anthropic Research · 评测报告 6 篇",
+        "Hugging Face Daily Papers · 长上下文专题"
+      ],
+      "topics": [
+        "LLM 长上下文 · 147 项",
+        "RAG 与记忆 · 104 项",
+        "AI 评测 · 62 项"
+      ]
+    }
   }
 }
