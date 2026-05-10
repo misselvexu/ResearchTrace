@@ -21,19 +21,26 @@ import type {
   AskSession,
   AskSuggestion,
   Brief,
+  Invoice,
   ListBriefsQuery,
   ListNotificationsQuery,
+  ListPlansResponse,
   ListSessionsQuery,
   ListSuggestionsResponse,
   ListTopicsQuery,
   ListVaultQuery,
   Notification,
   PageResponse,
+  PaymentMethod,
+  Subscription,
   TagSummary,
   Topic,
   TopicId,
   TopicStats,
   UnreadCountResponse,
+  UserPlan,
+  UserPreferences,
+  UserProfile,
   VaultItem,
 } from "@/types/api";
 import { api, type QueryParams } from "./api";
@@ -212,4 +219,50 @@ export function federatedSearchQuery(q: string): Promise<FederatedSearchResult> 
       },
     };
   });
+}
+
+// ---------------------------------------------------------------------------
+// User (profile / preferences / plan)
+// ---------------------------------------------------------------------------
+
+export function userMeQuery(): Promise<UserProfile> {
+  return memo("user.me", [], () => api.get<UserProfile>("/user/me"));
+}
+
+export function userPreferencesQuery(): Promise<UserPreferences> {
+  return memo("user.prefs", [], () =>
+    api.get<UserPreferences>("/user/me/preferences"),
+  );
+}
+
+export function userPlanQuery(): Promise<UserPlan> {
+  return memo("user.plan", [], () => api.get<UserPlan>("/user/me/plan"));
+}
+
+// ---------------------------------------------------------------------------
+// Billing
+// ---------------------------------------------------------------------------
+
+export function subscriptionQuery(): Promise<Subscription> {
+  return memo("billing.sub", [], () =>
+    api.get<Subscription>("/billing/subscription"),
+  );
+}
+
+export function plansQuery(): Promise<ListPlansResponse> {
+  return memo("billing.plans", [], () =>
+    api.get<ListPlansResponse>("/billing/plans"),
+  );
+}
+
+export function invoicesQuery(): Promise<PageResponse<Invoice>> {
+  return memo("billing.invoices", [], () =>
+    api.get<PageResponse<Invoice>>("/billing/invoices"),
+  );
+}
+
+export function paymentMethodsQuery(): Promise<{ items: PaymentMethod[] }> {
+  return memo("billing.pm", [], () =>
+    api.get<{ items: PaymentMethod[] }>("/billing/payment-methods"),
+  );
 }

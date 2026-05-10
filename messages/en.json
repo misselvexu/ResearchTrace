@@ -60,7 +60,8 @@
     "confirmLogout": "Sign out?",
     "confirmSkip": "Skip onboarding?",
     "shareSuccess": "Shared with your research group.",
-    "savedAsCard": "Saved as a card · auto-filed under LLM Long Context."
+    "savedAsCard": "Saved as a card · auto-filed under LLM Long Context.",
+    "save": "Save"
   },
   "landing": {
     "title": "ResearchTrace · A Paper for One Reader. You.",
@@ -1399,7 +1400,8 @@
       "data": "Data & Privacy"
     },
     "btn": {
-      "logout": "↩ LOG OUT"
+      "logout": "↩ LOG OUT",
+      "alertLogout": "Signed out."
     },
     "profile": {
       "kicker": "§ 01 · PROFILE",
@@ -1416,7 +1418,14 @@
       "k5": "Language preference",
       "v5": "Simplified Chinese / English",
       "k6": "Forwarding address",
-      "v6": "forward@mail.researchtrace.app"
+      "v6": "forward@mail.researchtrace.app",
+      "alertSaved": "Profile saved.",
+      "alertAvatar": "Avatar updated.",
+      "alertAvatarFailed": "Could not read image.",
+      "alertPassword": "Password changed.",
+      "alertPasswordFailed": "Password change failed.",
+      "promptOldPass": "Current password",
+      "promptNewPass": "New password (min 8 chars)"
     },
     "delivery": {
       "kicker": "§ 02 · DELIVERY",
@@ -1449,7 +1458,9 @@
         "wechat": "WeChat Mini",
         "slack": "Slack DM",
         "tg": "Telegram Bot"
-      }
+      },
+      "alertSaved": "Delivery preferences saved.",
+      "alertChannel": "Channel preference noted (local)."
     },
     "agents": {
       "kicker": "§ 03 · AGENTS",
@@ -1531,7 +1542,10 @@
         "d": "Enable E2EE for your private notes",
         "cta": "Enable"
       },
-      "alertSuffix": " action logged."
+      "alertSuffix": " action logged.",
+      "alertExport": "Export queued — you'll receive an email when ready.",
+      "alertDeleted": "Account scheduled for deletion (30-day grace).",
+      "confirmDelete": "Delete account? This is irreversible after 30 days."
     }
   },
   "pricing": {
@@ -2249,7 +2263,8 @@
       "renew": "Next renewal: May 31, 2026",
       "btnUpgrade": "Upgrade to TEAM",
       "btnCancel": "Cancel subscription",
-      "btnInvoice": "Download this month's invoice"
+      "btnInvoice": "Download this month's invoice",
+      "btnResume": "Resume"
     },
     "usage": {
       "kicker": "THIS MONTH · USAGE",
@@ -2399,7 +2414,9 @@
       "downloadInvoice": "DEMO · Invoice PDF download started",
       "viewInvoice": "DEMO · Opening invoice in new window",
       "updateMethod": "DEMO · Jumping to payment method update form",
-      "addMethod": "DEMO · Add a new payment method"
+      "addMethod": "DEMO · Add a new payment method",
+      "resumed": "Subscription resumed.",
+      "removeMethod": "Payment method removed."
     }
   },
   "share": {

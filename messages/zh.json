@@ -60,7 +60,8 @@
     "confirmLogout": "确定登出？",
     "confirmSkip": "跳过设置？",
     "shareSuccess": "已分享当前问答给您的研究小组",
-    "savedAsCard": "已保存为知识卡片 · 自动归类到 LLM Long Context 主题"
+    "savedAsCard": "已保存为知识卡片 · 自动归类到 LLM Long Context 主题",
+    "save": "保存"
   },
   "landing": {
     "title": "研迹 ResearchTrace · A Paper for One Reader. You.",
@@ -1399,7 +1400,8 @@
       "data": "Data & Privacy · 数据隐私"
     },
     "btn": {
-      "logout": "↩ LOG OUT"
+      "logout": "↩ LOG OUT",
+      "alertLogout": "已退出登录。"
     },
     "profile": {
       "kicker": "§ 01 · PROFILE",
@@ -1416,7 +1418,14 @@
       "k5": "语言偏好",
       "v5": "简体中文 / English",
       "k6": "专属转发邮箱",
-      "v6": "forward@mail.researchtrace.app"
+      "v6": "forward@mail.researchtrace.app",
+      "alertSaved": "资料已保存。",
+      "alertAvatar": "头像已更新。",
+      "alertAvatarFailed": "无法读取图片。",
+      "alertPassword": "密码已修改。",
+      "alertPasswordFailed": "密码修改失败。",
+      "promptOldPass": "当前密码",
+      "promptNewPass": "新密码(至少 8 位)"
     },
     "delivery": {
       "kicker": "§ 02 · DELIVERY",
@@ -1449,7 +1458,9 @@
         "wechat": "微信小程序",
         "slack": "Slack DM",
         "tg": "Telegram Bot"
-      }
+      },
+      "alertSaved": "投递偏好已保存。",
+      "alertChannel": "渠道偏好已暂存(本地)。"
     },
     "agents": {
       "kicker": "§ 03 · AGENTS",
@@ -1531,7 +1542,10 @@
         "d": "为您的私人笔记启用 E2EE",
         "cta": "启用"
       },
-      "alertSuffix": "操作已记录"
+      "alertSuffix": "操作已记录",
+      "alertExport": "已排队导出 — 完成后将通过邮件通知。",
+      "alertDeleted": "账户已排定删除(30 天宽限期)。",
+      "confirmDelete": "确认删除账户?30 天后将不可恢复。"
     }
   },
   "pricing": {
@@ -2249,7 +2263,8 @@
       "renew": "下次续期：2026 年 5 月 31 日",
       "btnUpgrade": "升级到 TEAM",
       "btnCancel": "取消订阅",
-      "btnInvoice": "下载本月发票"
+      "btnInvoice": "下载本月发票",
+      "btnResume": "恢复订阅"
     },
     "usage": {
       "kicker": "THIS MONTH · 用量",
@@ -2399,7 +2414,9 @@
       "downloadInvoice": "DEMO · 已开始下载发票 PDF",
       "viewInvoice": "DEMO · 在新窗口打开发票",
       "updateMethod": "DEMO · 跳转到支付方式更新表单",
-      "addMethod": "DEMO · 添加新支付方式"
+      "addMethod": "DEMO · 添加新支付方式",
+      "resumed": "订阅已恢复。",
+      "removeMethod": "支付方式已删除。"
     }
   },
   "share": {

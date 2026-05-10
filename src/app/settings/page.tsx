@@ -1,12 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
 import { toast } from "@/components/providers/toast";
+import {
+  cadenceFromPrefs,
+  changePassword,
+  deleteAccount,
+  exportUserData,
+  logout as logoutMutation,
+  patchFromCadenceToggle,
+  planStatsFromQuota,
+  profileOverlay,
+  saveProfile,
+  savePreferences,
+  uploadAvatar,
+  useSettingsLive,
+} from "./settings-data";
 
 type SectionId = "profile" | "delivery" | "agents" | "sources" | "plan" | "data";
 
@@ -108,15 +122,87 @@ function Toggle({ on, onChange }: { on: boolean; onChange: (v: boolean) => void 
 
 export default function SettingsPage() {
   const t = useTranslations();
+  const locale = useLocale();
   const router = useRouter();
+  const live = useSettingsLive();
 
   const [cadence, setCadence] = useState<boolean[]>(CADENCE_ROWS.map((r) => r.defaultOn));
   const [channels, setChannels] = useState<Record<(typeof CHANNEL_KEYS)[number], boolean>>({
     ...CHANNEL_DEFAULT_ACTIVE,
   });
+  const [editingName, setEditingName] = useState(false);
+  const [nameDraft, setNameDraft] = useState("");
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  function handleLogout() {
-    if (confirm(t("common.confirmLogout"))) router.push("/landing");
+  // Hydrate cadence toggles from prefs once they arrive.
+  useEffect(() => {
+    if (live.prefs) setCadence(cadenceFromPrefs(live.prefs));
+  }, [live.prefs]);
+
+  // Sync displayed name draft when profile arrives.
+  useEffect(() => {
+    if (live.profile) setNameDraft(live.profile.displayName);
+  }, [live.profile]);
+
+  const profileView = profileOverlay(live.profile, locale);
+  const planStats = planStatsFromQuota(live.plan);
+
+  async function handleCadenceToggle(index: number, next: boolean) {
+    setCadence((arr) => {
+      const out = [...arr];
+      out[index] = next;
+      return out;
+    });
+    const patch = patchFromCadenceToggle(index, next, live.prefs);
+    if (patch) await savePreferences(patch, t, true);
+  }
+
+  async function handleChannelToggle(c: (typeof CHANNEL_KEYS)[number]) {
+    setChannels((prev) => ({ ...prev, [c]: !prev[c] }));
+    // Channel preferences aren't part of the typed UserPreferences shape;
+    // surface a non-blocking confirmation.
+    toast(t("settings.delivery.alertChannel"));
+  }
+
+  async function handleAvatarPick(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const url = await uploadAvatar(file, t);
+    if (url) setAvatarPreview(url);
+    e.target.value = "";
+  }
+
+  async function handleSaveName() {
+    if (!nameDraft.trim()) return;
+    await saveProfile({ displayName: nameDraft.trim() }, t);
+    setEditingName(false);
+    live.refresh();
+  }
+
+  async function handleLogout() {
+    if (!confirm(t("common.confirmLogout"))) return;
+    await logoutMutation(t);
+    router.push("/landing");
+  }
+
+  async function handleChangePassword() {
+    const oldP = window.prompt(t("settings.profile.promptOldPass") || "Current password");
+    if (!oldP) return;
+    const newP = window.prompt(t("settings.profile.promptNewPass") || "New password (min 8 chars)");
+    if (!newP) return;
+    await changePassword(oldP, newP, t);
+  }
+
+  async function handleDataAction(idx: number) {
+    // 0 = export, 1 = delete (danger), 2 = change password, 3 = audit log
+    if (idx === 0) await exportUserData(t);
+    else if (idx === 1) {
+      if (confirm(t("settings.data.confirmDelete"))) {
+        await deleteAccount(t);
+      }
+    } else if (idx === 2) await handleChangePassword();
+    else toast(t("settings.data.alertSuffix"));
   }
 
   return (
@@ -203,48 +289,115 @@ export default function SettingsPage() {
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "140px 1fr", gap: 32 }}>
                 <div style={{ textAlign: "center" }}>
-                  <Image
-                    src="/img/avatar.png"
-                    alt=""
-                    width={120}
-                    height={120}
-                    style={{
-                      width: 120,
-                      height: 120,
-                      borderRadius: "50%",
-                      border: "1px solid var(--divider)",
-                      objectFit: "cover",
-                      background: "var(--bg-paper-warm)",
-                    }}
+                  {avatarPreview || live.profile?.avatarUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={avatarPreview || live.profile?.avatarUrl || "/img/avatar.png"}
+                      alt=""
+                      width={120}
+                      height={120}
+                      style={{
+                        width: 120,
+                        height: 120,
+                        borderRadius: "50%",
+                        border: "1px solid var(--divider)",
+                        objectFit: "cover",
+                        background: "var(--bg-paper-warm)",
+                      }}
+                    />
+                  ) : (
+                    <Image
+                      src="/img/avatar.png"
+                      alt=""
+                      width={120}
+                      height={120}
+                      style={{
+                        width: 120,
+                        height: 120,
+                        borderRadius: "50%",
+                        border: "1px solid var(--divider)",
+                        objectFit: "cover",
+                        background: "var(--bg-paper-warm)",
+                      }}
+                    />
+                  )}
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={handleAvatarPick}
                   />
                   <button
                     type="button"
                     className="pill"
                     style={{ marginTop: 10, fontSize: 9 }}
-                    onClick={() => toast(t("settings.profile.alert"))}
+                    onClick={() => fileInputRef.current?.click()}
                   >
                     {t("settings.profile.change")}
                   </button>
                 </div>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
-                  {PROFILE_FIELDS.map(([kK, vK]) => (
-                    <div key={kK}>
-                      <div className="kicker" style={{ fontSize: 9, marginBottom: 4 }}>
-                        {t(kK)}
+                  {PROFILE_FIELDS.map(([kK, vK], idx) => {
+                    // Overlay positions: 0=name (editable), 1=email, 2=role/status,
+                    // 3=joined, 4=last login, 5=bio. Fall back to editorial copy.
+                    let liveValue: string | null = null;
+                    if (profileView) {
+                      if (idx === 0) liveValue = profileView.name;
+                      else if (idx === 1) liveValue = profileView.email;
+                      else if (idx === 2) liveValue = profileView.status.toUpperCase();
+                      else if (idx === 3) liveValue = profileView.joined;
+                      else if (idx === 4) liveValue = profileView.lastLogin;
+                      else if (idx === 5) liveValue = profileView.bio || t(vK);
+                    }
+                    const editable = idx === 0;
+                    return (
+                      <div key={kK}>
+                        <div className="kicker" style={{ fontSize: 9, marginBottom: 4 }}>
+                          {t(kK)}
+                        </div>
+                        {editable && editingName ? (
+                          <div style={{ display: "flex", gap: 6 }}>
+                            <input
+                              value={nameDraft}
+                              onChange={(e) => setNameDraft(e.target.value)}
+                              autoFocus
+                              style={{
+                                flex: 1,
+                                fontFamily: "var(--font-serif)",
+                                fontSize: 15,
+                                padding: "8px 12px",
+                                border: "1px solid var(--accent-red)",
+                                background: "var(--bg-card)",
+                              }}
+                            />
+                            <button
+                              type="button"
+                              className="pill pill-red"
+                              style={{ fontSize: 9 }}
+                              onClick={handleSaveName}
+                            >
+                              {t("common.save")}
+                            </button>
+                          </div>
+                        ) : (
+                          <div
+                            onClick={editable ? () => setEditingName(true) : undefined}
+                            style={{
+                              fontFamily: "var(--font-serif)",
+                              fontSize: 15,
+                              padding: "8px 12px",
+                              border: "1px solid var(--divider)",
+                              background: "var(--bg-card)",
+                              cursor: editable ? "text" : "default",
+                            }}
+                          >
+                            {liveValue ?? t(vK)}
+                          </div>
+                        )}
                       </div>
-                      <div
-                        style={{
-                          fontFamily: "var(--font-serif)",
-                          fontSize: 15,
-                          padding: "8px 12px",
-                          border: "1px solid var(--divider)",
-                          background: "var(--bg-card)",
-                        }}
-                      >
-                        {t(vK)}
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </section>
@@ -287,13 +440,7 @@ export default function SettingsPage() {
                     </div>
                     <Toggle
                       on={cadence[i]}
-                      onChange={(v) =>
-                        setCadence((arr) => {
-                          const next = [...arr];
-                          next[i] = v;
-                          return next;
-                        })
-                      }
+                      onChange={(v) => handleCadenceToggle(i, v)}
                     />
                   </div>
                 ))}
@@ -309,7 +456,7 @@ export default function SettingsPage() {
                       key={c}
                       type="button"
                       className={`pill ${channels[c] ? "is-active" : ""}`}
-                      onClick={() => setChannels((prev) => ({ ...prev, [c]: !prev[c] }))}
+                      onClick={() => handleChannelToggle(c)}
                     >
                       {t(`settings.delivery.ch.${c}`)}
                     </button>
@@ -433,7 +580,9 @@ export default function SettingsPage() {
               >
                 <div>
                   <span className="pill pill-red" style={{ marginBottom: 8 }}>
-                    {t("settings.plan.current")}
+                    {live.plan
+                      ? `${t("settings.plan.current")} · ${live.plan.tier.toUpperCase()}`
+                      : t("settings.plan.current")}
                   </span>
                   <div
                     className="font-serif"
@@ -450,7 +599,9 @@ export default function SettingsPage() {
                       marginTop: 4,
                     }}
                   >
-                    {t("settings.plan.next")}
+                    {live.plan?.expiresAt
+                      ? `${t("settings.plan.next")} · ${live.plan.expiresAt.slice(0, 10)}`
+                      : t("settings.plan.next")}
                   </div>
                 </div>
                 <div style={{ textAlign: "right" }}>
@@ -475,19 +626,21 @@ export default function SettingsPage() {
                   marginTop: 14,
                 }}
               >
-                {PLAN_STATS.map(([k, v]) => (
-                  <div
-                    key={k}
-                    style={{ padding: "12px 14px", background: "var(--bg-paper-warm)" }}
-                  >
-                    <div className="kicker" style={{ fontSize: 9 }}>
-                      {k}
+                {(planStats.length === 4 ? planStats.map((s) => [s.k, s.v] as [string, string]) : PLAN_STATS).map(
+                  ([k, v]) => (
+                    <div
+                      key={k}
+                      style={{ padding: "12px 14px", background: "var(--bg-paper-warm)" }}
+                    >
+                      <div className="kicker" style={{ fontSize: 9 }}>
+                        {k}
+                      </div>
+                      <div className="font-mono" style={{ fontSize: 13, marginTop: 4 }}>
+                        {v}
+                      </div>
                     </div>
-                    <div className="font-mono" style={{ fontSize: 13, marginTop: 4 }}>
-                      {v}
-                    </div>
-                  </div>
-                ))}
+                  ),
+                )}
               </div>
             </section>
 
@@ -508,7 +661,7 @@ export default function SettingsPage() {
                 {t("settings.data.lede")}
               </p>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
-                {DATA_ROWS.map((r) => (
+                {DATA_ROWS.map((r, idx) => (
                   <article key={r.kK} className="paper-card" style={{ padding: "16px 18px" }}>
                     <div className="font-serif" style={{ fontSize: 15, fontWeight: 600 }}>
                       {t(r.kK)}
@@ -528,7 +681,7 @@ export default function SettingsPage() {
                       type="button"
                       className={r.danger ? "pill pill-red" : "pill"}
                       style={{ fontSize: 10 }}
-                      onClick={() => toast(t(r.ctaK) + t("settings.data.alertSuffix"))}
+                      onClick={() => handleDataAction(idx)}
                     >
                       {t(r.ctaK)} →
                     </button>
