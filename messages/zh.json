@@ -2007,5 +2007,287 @@
         "AI 评测 · 62 项"
       ]
     }
+  },
+  "notifications": {
+    "crumb": "RESEARCHTRACE / NOTIFICATIONS · 通知中心",
+    "kicker": "VOL. III · DESK NOTICES",
+    "title": "通知中心",
+    "lede": {
+      "html": "您的 5 个 AI Agent 在过去 24 小时为您留下 <span style=\"color:var(--accent-red);font-weight:600;\">12 条</span>消息 —— 涵盖资料抓取、热度告警、简报投递与系统提醒。"
+    },
+    "watermark": "12",
+    "stat": {
+      "unread": "未读",
+      "today": "今日",
+      "mentions": "提及",
+      "system": "系统",
+      "digest": "投递"
+    },
+    "filter": "筛选",
+    "f": {
+      "all": "全部",
+      "unread": "未读",
+      "mentions": "提及",
+      "system": "系统",
+      "digest": "投递",
+      "alerts": "告警"
+    },
+    "btn": {
+      "markAll": "全部标为已读",
+      "settings": "通知设置",
+      "openSrc": "打开来源 →"
+    },
+    "section": {
+      "today": "TODAY · 今日",
+      "yesterday": "YESTERDAY · 昨日",
+      "earlier": "EARLIER · 更早"
+    },
+    "actor": {
+      "radar": "RADAR AGENT",
+      "reporter": "REPORTER AGENT",
+      "ingestor": "INGESTOR AGENT",
+      "curator": "CURATOR AGENT",
+      "system": "RESEARCHTRACE",
+      "billing": "BILLING"
+    },
+    "kind": {
+      "alert": "告警",
+      "digest": "投递",
+      "mention": "提及",
+      "system": "系统",
+      "ingest": "抓取"
+    },
+    "alert": {
+      "markAllDone": "DEMO · 已将 12 条通知全部标为已读",
+      "markRead": "DEMO · 已标为已读",
+      "openSrc": "DEMO · 跳转到来源",
+      "settings": "DEMO · 跳转到 /settings#notifications"
+    },
+    "item": {
+      "1": {
+        "title": "RMT v3 引用激增 +23 · 已纳入今日简报",
+        "body": "Radar 检测到 arXiv 2505.10428 在过去 12 小时被引用 23 次（+38%），已升级为 HIGH 告警。",
+        "time": "08:47"
+      },
+      "2": {
+        "title": "Issue 127 已投递",
+        "body": "您的今日简报《长上下文双子星》已生成，11 分钟阅读时长，含 7 项可点击引用。",
+        "time": "08:00"
+      },
+      "3": {
+        "title": "新资料已抓取并归档至 LLM 长上下文",
+        "body": "PDF · 24 页 · DeepMind 团队论文。Curator 已抽取 8 项 claim 与 23 处证据。",
+        "time": "07:14"
+      },
+      "4": {
+        "title": "您 4 月 17 日收藏的 LongMem 与本周 RMT v3 形成显性对话",
+        "body": "Curator 在两份资料间发现 4 处概念对应，建议在简报 §1 优先阅读。",
+        "time": "06:32"
+      },
+      "5": {
+        "title": "本周资料库新增 47 项 · 1.2 GB",
+        "body": "覆盖 5 个主题。其中 LLM 长上下文 +18，AI 评测 +9，Agentic +7。",
+        "time": "昨天 22:14"
+      },
+      "6": {
+        "title": "Anthropic Research 信源响应缓慢",
+        "body": "上次抓取耗时 38s（基线 6s）。Ingestor 已切换至备用端点。无需操作。",
+        "time": "昨天 18:02"
+      },
+      "7": {
+        "title": "您的本周回顾已生成草稿",
+        "body": "Issue 126·W19 草稿已就绪，预计阅读 9 分钟。点击可在投递前预览。",
+        "time": "昨天 16:48"
+      },
+      "8": {
+        "title": "支付方式将于 7 天后到期",
+        "body": "Visa 卡尾号 4242 将于 5 月 17 日过期。请前往 /billing 更新。",
+        "time": "昨天 09:30"
+      },
+      "9": {
+        "title": "ICLR 2026 OpenReview 抓取完成",
+        "body": "新增 142 篇评审讨论，已按主题归类，3 篇高度相关已置顶到 Inbox。",
+        "time": "5 月 7 日"
+      },
+      "10": {
+        "title": "GraphRAG 论文与您的 #1976 笔记冲突",
+        "body": "Curator 检测到论断 \"图增强检索优于稠密检索\" 与您 4/8 笔记的反例存在冲突，待您仲裁。",
+        "time": "5 月 6 日"
+      },
+      "11": {
+        "title": "研迹 v0.4 上线",
+        "body": "本次更新包含全局检索、视图切换与暗黑模式优化。详见 /changelog。",
+        "time": "5 月 5 日"
+      },
+      "12": {
+        "title": "您的本月发票已生成",
+        "body": "RESEARCH PRO · ¥99 · 5 月 1 日。可在 /billing 下载 PDF。",
+        "time": "5 月 1 日"
+      }
+    }
+  },
+  "billing": {
+    "crumb": "RESEARCHTRACE / BILLING · 账户与计费",
+    "kicker": "VOL. III · ACCOUNT & BILLING",
+    "title": "账户与计费",
+    "lede": {
+      "html": "您订阅的是 <span style=\"color:var(--accent-red);font-weight:600;\">RESEARCH PRO</span>。订阅至 2026 年 5 月 31 日自动续期。本月已使用额度详见下方。"
+    },
+    "watermark": "PRO",
+    "plan": {
+      "kicker": "CURRENT PLAN",
+      "name": "RESEARCH PRO",
+      "price": "¥99",
+      "per": "/月",
+      "since": "订阅自 2025 年 11 月 · 已 6 个月",
+      "renew": "下次续期：2026 年 5 月 31 日",
+      "btnUpgrade": "升级到 TEAM",
+      "btnCancel": "取消订阅",
+      "btnInvoice": "下载本月发票"
+    },
+    "usage": {
+      "kicker": "THIS MONTH · 用量",
+      "headline": "本月用量",
+      "lede": "重置于每月 1 日 00:00。当前周期 2026/05/01 – 2026/05/31。",
+      "items": {
+        "ingest": { "k": "资料导入", "v": "247 / 无限", "n": 247, "limit": 0 },
+        "claims": { "k": "论断抽取", "v": "684 / 无限", "n": 684, "limit": 0 },
+        "ask": { "k": "ASK 提问", "v": "318 / 1,000", "n": 318, "limit": 1000 },
+        "storage": { "k": "存储占用", "v": "1.4 / 10 GB", "n": 1.4, "limit": 10 }
+      }
+    },
+    "compare": {
+      "kicker": "PLAN COMPARISON",
+      "headline": "比较方案",
+      "free": { "name": "EXPLORER", "price": "¥0", "per": "/月" },
+      "pro": { "name": "PRO", "price": "¥99", "per": "/月" },
+      "team": { "name": "TEAM", "price": "¥299", "per": "/月" },
+      "row": {
+        "topics": "主题数量",
+        "ask": "ASK 月度额度",
+        "storage": "存储",
+        "agents": "AI Agent",
+        "support": "支持响应"
+      },
+      "v": {
+        "topicsFree": "3 个",
+        "topicsPro": "12 个",
+        "topicsTeam": "无限",
+        "askFree": "30 / 月",
+        "askPro": "1,000 / 月",
+        "askTeam": "无限",
+        "storageFree": "500 MB",
+        "storagePro": "10 GB",
+        "storageTeam": "100 GB",
+        "agentsFree": "Reporter",
+        "agentsPro": "全 5 个",
+        "agentsTeam": "全 5 个 + 协作",
+        "supportFree": "社区",
+        "supportPro": "邮件 24h",
+        "supportTeam": "专属 Slack"
+      }
+    },
+    "method": {
+      "kicker": "PAYMENT METHOD",
+      "headline": "支付方式",
+      "card": "Visa · 卡号末四位 4242",
+      "expires": "有效期至 05/26",
+      "warn": "您的卡将于 7 天后到期，请尽快更新",
+      "btnUpdate": "更新支付方式",
+      "btnAdd": "+ 添加"
+    },
+    "invoice": {
+      "kicker": "INVOICES · 发票历史",
+      "headline": "发票历史",
+      "col": {
+        "date": "日期",
+        "no": "编号",
+        "amount": "金额",
+        "status": "状态",
+        "action": "操作"
+      },
+      "act": {
+        "download": "下载 PDF",
+        "view": "查看"
+      },
+      "status": {
+        "paid": "已支付",
+        "pending": "待支付",
+        "refunded": "已退款"
+      },
+      "row": {
+        "1": { "date": "2026-05-01", "no": "INV-2026-05-001", "amount": "¥99.00", "status": "paid" },
+        "2": { "date": "2026-04-01", "no": "INV-2026-04-001", "amount": "¥99.00", "status": "paid" },
+        "3": { "date": "2026-03-01", "no": "INV-2026-03-001", "amount": "¥99.00", "status": "paid" },
+        "4": { "date": "2026-02-01", "no": "INV-2026-02-001", "amount": "¥99.00", "status": "paid" },
+        "5": { "date": "2026-01-01", "no": "INV-2026-01-001", "amount": "¥99.00", "status": "paid" },
+        "6": { "date": "2025-12-01", "no": "INV-2025-12-001", "amount": "¥99.00", "status": "paid" }
+      }
+    },
+    "alert": {
+      "upgrade": "DEMO · 跳转到 /pricing 升级到 TEAM",
+      "cancel": "确定取消订阅？您的服务将持续至本周期结束。",
+      "cancelConfirmed": "DEMO · 已记录取消请求，您将在 5 月 31 日后降为 EXPLORER",
+      "downloadInvoice": "DEMO · 已开始下载发票 PDF",
+      "viewInvoice": "DEMO · 在新窗口打开发票",
+      "updateMethod": "DEMO · 跳转到支付方式更新表单",
+      "addMethod": "DEMO · 添加新支付方式"
+    }
+  },
+  "share": {
+    "crumb": "RESEARCHTRACE / SHARED · 公开分享",
+    "kicker": "VOL. III · SHARED EXCERPT",
+    "title": "长上下文双子星：RMT v3 与 Claude 3.5",
+    "subtitle": "本周 LLM 长上下文领域的两项重要工作 —— 一份编辑节选",
+    "byline": "由 郁文 / Yuwen 通过研迹 ResearchTrace 分享",
+    "issue": "ISSUE 127 · DELIVERED 2026-05-09",
+    "watermark": "127",
+    "lede": {
+      "html": "DeepMind 公布的 <em>Recurrent Memory Transformer v3</em> 与 Anthropic 的 <em>Claude 3.5 Long-context Eval</em> 同周到达，构成长上下文研究的两条对偶路径 —— 一边是显式记忆压缩，一边是端到端注意力扩展。"
+    },
+    "section": {
+      "s1": "§ I · 上下文长度的两条路径",
+      "s2": "§ II · 主要论断（含证据）",
+      "s3": "§ III · 与该读者过往工作的对话"
+    },
+    "p1": "RMT v3 在 2,097,152 token 上保持线性复杂度，推理成本仅为标准注意力的 3.7%。其核心机制是一个 256-token 的循环压缩槽，每 4,096 token 折叠一次。",
+    "p2": "Claude 3.5 在 200K needle-in-haystack 上达成 99.4% 准确率，但在 needle-多跳推理子集上准确率降至 73% —— 揭示了长上下文系统在「检索」与「推理」之间的能力鸿沟。",
+    "claim": {
+      "1": "RMT v3 在 2M token 上推理成本仅为标准注意力的 3.7%",
+      "2": "Claude 3.5 在 200K needle-in-haystack 上准确率 99.4%",
+      "3": "在 needle-多跳子集上准确率降至 73%，揭示检索与推理的鸿沟",
+      "4": "您 4 月 17 日收藏的 LongMem 论文与 RMT v3 共享显式记忆思路"
+    },
+    "evidence": {
+      "label": "证据",
+      "src1": "arXiv:2505.10428 · §3.2 · Table 1",
+      "src2": "Anthropic Long-context Report · Figure 4",
+      "src3": "Anthropic Long-context Report · §5.1",
+      "src4": "您的笔记 #2204 · 4 月 17 日"
+    },
+    "cta": {
+      "kicker": "FROM A PAPER FOR ONE READER",
+      "headline": "您也想要一份只为您写的报？",
+      "lede": "研迹 ResearchTrace 为每位读者编辑一份个人研究报。每天一期，证据齐备，引用可点。14 天免费试用。",
+      "btnTrial": "开始 14 天免费试用 →",
+      "btnSample": "查看完整简报样例"
+    },
+    "actions": {
+      "copy": "复制链接",
+      "save": "保存到我的资料库",
+      "open": "在研迹中打开",
+      "openOrigin": "查看原文 →",
+      "copied": "✓ 已复制链接"
+    },
+    "alert": {
+      "save": "DEMO · 已保存到您的资料库（试用账号需登录）",
+      "open": "DEMO · 跳转到 /briefs/127"
+    },
+    "footer": {
+      "tagline": "「Find what matters before you ask for it.」",
+      "by": "由 研迹 ResearchTrace 编辑出品",
+      "viewBriefs": "查看更多简报样例",
+      "homepage": "前往主页"
+    }
   }
 }

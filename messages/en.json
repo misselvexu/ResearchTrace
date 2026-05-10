@@ -2007,5 +2007,287 @@
         "AI Evaluation · 62 items"
       ]
     }
+  },
+  "notifications": {
+    "crumb": "RESEARCHTRACE / NOTIFICATIONS · Desk notices",
+    "kicker": "VOL. III · DESK NOTICES",
+    "title": "Notifications",
+    "lede": {
+      "html": "Your 5 AI Agents have left <span style=\"color:var(--accent-red);font-weight:600;\">12 messages</span> in the past 24 hours — covering ingestion, heat alerts, brief delivery and system notices."
+    },
+    "watermark": "12",
+    "stat": {
+      "unread": "Unread",
+      "today": "Today",
+      "mentions": "Mentions",
+      "system": "System",
+      "digest": "Delivery"
+    },
+    "filter": "Filter",
+    "f": {
+      "all": "All",
+      "unread": "Unread",
+      "mentions": "Mentions",
+      "system": "System",
+      "digest": "Delivery",
+      "alerts": "Alerts"
+    },
+    "btn": {
+      "markAll": "Mark all read",
+      "settings": "Notification settings",
+      "openSrc": "Open source →"
+    },
+    "section": {
+      "today": "TODAY",
+      "yesterday": "YESTERDAY",
+      "earlier": "EARLIER"
+    },
+    "actor": {
+      "radar": "RADAR AGENT",
+      "reporter": "REPORTER AGENT",
+      "ingestor": "INGESTOR AGENT",
+      "curator": "CURATOR AGENT",
+      "system": "RESEARCHTRACE",
+      "billing": "BILLING"
+    },
+    "kind": {
+      "alert": "Alert",
+      "digest": "Digest",
+      "mention": "Mention",
+      "system": "System",
+      "ingest": "Ingest"
+    },
+    "alert": {
+      "markAllDone": "DEMO · 12 notifications marked as read",
+      "markRead": "DEMO · Marked as read",
+      "openSrc": "DEMO · Jumping to source",
+      "settings": "DEMO · Jumping to /settings#notifications"
+    },
+    "item": {
+      "1": {
+        "title": "RMT v3 citations spiked +23 · Folded into today's brief",
+        "body": "Radar detected arXiv 2505.10428 cited 23 times in 12 hrs (+38%) and escalated to HIGH alert.",
+        "time": "08:47"
+      },
+      "2": {
+        "title": "Issue 127 delivered",
+        "body": "Your daily brief 'Long-context twins' is ready · 11-min read · 7 clickable citations.",
+        "time": "08:00"
+      },
+      "3": {
+        "title": "New item ingested into LLM Long Context",
+        "body": "PDF · 24 pp · DeepMind paper. Curator extracted 8 claims and 23 evidence snippets.",
+        "time": "07:14"
+      },
+      "4": {
+        "title": "Your 4/17 LongMem ↔ this week's RMT v3 form an explicit dialogue",
+        "body": "Curator found 4 conceptual mappings between the two — read §1 of today's brief first.",
+        "time": "06:32"
+      },
+      "5": {
+        "title": "Vault grew by 47 items · 1.2 GB this week",
+        "body": "Across 5 topics. LLM long-context +18, AI Eval +9, Agentic +7.",
+        "time": "yest. 22:14"
+      },
+      "6": {
+        "title": "Anthropic Research source slow",
+        "body": "Last fetch took 38s (baseline 6s). Ingestor switched to fallback endpoint. No action needed.",
+        "time": "yest. 18:02"
+      },
+      "7": {
+        "title": "Your weekly recap draft is ready",
+        "body": "Issue 126·W19 draft prepared, ~9 min read. Click to preview before delivery.",
+        "time": "yest. 16:48"
+      },
+      "8": {
+        "title": "Your payment method expires in 7 days",
+        "body": "Visa ending 4242 expires on May 17. Please update at /billing.",
+        "time": "yest. 09:30"
+      },
+      "9": {
+        "title": "ICLR 2026 OpenReview ingest complete",
+        "body": "142 review threads added, classified by topic; 3 high-relevance pinned to Inbox.",
+        "time": "May 7"
+      },
+      "10": {
+        "title": "GraphRAG paper conflicts with your note #1976",
+        "body": "Curator detected a contradiction between 'graph beats dense retrieval' and your 4/8 counter-example. Awaiting your call.",
+        "time": "May 6"
+      },
+      "11": {
+        "title": "ResearchTrace v0.4 is live",
+        "body": "Adds unified search, view toggle and dark-mode polish. See /changelog.",
+        "time": "May 5"
+      },
+      "12": {
+        "title": "Your monthly invoice is ready",
+        "body": "RESEARCH PRO · ¥99 · May 1. Download PDF at /billing.",
+        "time": "May 1"
+      }
+    }
+  },
+  "billing": {
+    "crumb": "RESEARCHTRACE / BILLING · Account & billing",
+    "kicker": "VOL. III · ACCOUNT & BILLING",
+    "title": "Account & billing",
+    "lede": {
+      "html": "You are subscribed to <span style=\"color:var(--accent-red);font-weight:600;\">RESEARCH PRO</span>. Auto-renews on May 31, 2026. This month's usage is shown below."
+    },
+    "watermark": "PRO",
+    "plan": {
+      "kicker": "CURRENT PLAN",
+      "name": "RESEARCH PRO",
+      "price": "¥99",
+      "per": "/mo",
+      "since": "Subscribed since Nov 2025 · 6 months",
+      "renew": "Next renewal: May 31, 2026",
+      "btnUpgrade": "Upgrade to TEAM",
+      "btnCancel": "Cancel subscription",
+      "btnInvoice": "Download this month's invoice"
+    },
+    "usage": {
+      "kicker": "THIS MONTH · USAGE",
+      "headline": "Usage this month",
+      "lede": "Resets at 00:00 on the 1st of each month. Current cycle 2026/05/01 – 2026/05/31.",
+      "items": {
+        "ingest": { "k": "Items ingested", "v": "247 / unlimited", "n": 247, "limit": 0 },
+        "claims": { "k": "Claims extracted", "v": "684 / unlimited", "n": 684, "limit": 0 },
+        "ask": { "k": "ASK queries", "v": "318 / 1,000", "n": 318, "limit": 1000 },
+        "storage": { "k": "Storage used", "v": "1.4 / 10 GB", "n": 1.4, "limit": 10 }
+      }
+    },
+    "compare": {
+      "kicker": "PLAN COMPARISON",
+      "headline": "Compare plans",
+      "free": { "name": "EXPLORER", "price": "¥0", "per": "/mo" },
+      "pro": { "name": "PRO", "price": "¥99", "per": "/mo" },
+      "team": { "name": "TEAM", "price": "¥299", "per": "/mo" },
+      "row": {
+        "topics": "Topics",
+        "ask": "ASK monthly quota",
+        "storage": "Storage",
+        "agents": "AI Agents",
+        "support": "Support SLA"
+      },
+      "v": {
+        "topicsFree": "3",
+        "topicsPro": "12",
+        "topicsTeam": "Unlimited",
+        "askFree": "30 / mo",
+        "askPro": "1,000 / mo",
+        "askTeam": "Unlimited",
+        "storageFree": "500 MB",
+        "storagePro": "10 GB",
+        "storageTeam": "100 GB",
+        "agentsFree": "Reporter",
+        "agentsPro": "All 5",
+        "agentsTeam": "All 5 + collab",
+        "supportFree": "Community",
+        "supportPro": "Email · 24h",
+        "supportTeam": "Dedicated Slack"
+      }
+    },
+    "method": {
+      "kicker": "PAYMENT METHOD",
+      "headline": "Payment method",
+      "card": "Visa · ending 4242",
+      "expires": "Expires 05/26",
+      "warn": "Your card expires in 7 days — please update soon",
+      "btnUpdate": "Update payment method",
+      "btnAdd": "+ Add"
+    },
+    "invoice": {
+      "kicker": "INVOICES · history",
+      "headline": "Invoices",
+      "col": {
+        "date": "Date",
+        "no": "Number",
+        "amount": "Amount",
+        "status": "Status",
+        "action": "Action"
+      },
+      "act": {
+        "download": "Download PDF",
+        "view": "View"
+      },
+      "status": {
+        "paid": "Paid",
+        "pending": "Pending",
+        "refunded": "Refunded"
+      },
+      "row": {
+        "1": { "date": "2026-05-01", "no": "INV-2026-05-001", "amount": "¥99.00", "status": "paid" },
+        "2": { "date": "2026-04-01", "no": "INV-2026-04-001", "amount": "¥99.00", "status": "paid" },
+        "3": { "date": "2026-03-01", "no": "INV-2026-03-001", "amount": "¥99.00", "status": "paid" },
+        "4": { "date": "2026-02-01", "no": "INV-2026-02-001", "amount": "¥99.00", "status": "paid" },
+        "5": { "date": "2026-01-01", "no": "INV-2026-01-001", "amount": "¥99.00", "status": "paid" },
+        "6": { "date": "2025-12-01", "no": "INV-2025-12-001", "amount": "¥99.00", "status": "paid" }
+      }
+    },
+    "alert": {
+      "upgrade": "DEMO · Jumping to /pricing to upgrade to TEAM",
+      "cancel": "Cancel subscription? Your service continues until the end of the current cycle.",
+      "cancelConfirmed": "DEMO · Cancellation recorded. You'll be downgraded to EXPLORER after May 31",
+      "downloadInvoice": "DEMO · Invoice PDF download started",
+      "viewInvoice": "DEMO · Opening invoice in new window",
+      "updateMethod": "DEMO · Jumping to payment method update form",
+      "addMethod": "DEMO · Add a new payment method"
+    }
+  },
+  "share": {
+    "crumb": "RESEARCHTRACE / SHARED · Public excerpt",
+    "kicker": "VOL. III · SHARED EXCERPT",
+    "title": "Long-context twins: RMT v3 and Claude 3.5",
+    "subtitle": "Two important works in LLM long-context this week — an editor's excerpt",
+    "byline": "Shared by Yuwen via ResearchTrace",
+    "issue": "ISSUE 127 · DELIVERED 2026-05-09",
+    "watermark": "127",
+    "lede": {
+      "html": "DeepMind's <em>Recurrent Memory Transformer v3</em> and Anthropic's <em>Claude 3.5 Long-context Eval</em> arrived in the same week, framing two dual paths for long-context research — explicit memory compression on one side, end-to-end attention scaling on the other."
+    },
+    "section": {
+      "s1": "§ I · Two paths to longer context",
+      "s2": "§ II · Main claims (with evidence)",
+      "s3": "§ III · Dialogue with this reader's prior work"
+    },
+    "p1": "RMT v3 maintains linear complexity at 2,097,152 tokens with inference cost just 3.7% of standard attention. Its core mechanism is a 256-token recurrent compression slot folded once every 4,096 tokens.",
+    "p2": "Claude 3.5 hits 99.4% on 200K needle-in-haystack but drops to 73% on the needle-multi-hop subset — exposing the gap between retrieval and reasoning at long context.",
+    "claim": {
+      "1": "RMT v3 inference cost is only 3.7% of full attention at 2M tokens",
+      "2": "Claude 3.5 needle-in-haystack 99.4% at 200K context",
+      "3": "Multi-hop accuracy drops to 73%, exposing retrieval-vs-reasoning gap",
+      "4": "Your 4/17 LongMem note shares the explicit-memory thesis with RMT v3"
+    },
+    "evidence": {
+      "label": "Evidence",
+      "src1": "arXiv:2505.10428 · §3.2 · Table 1",
+      "src2": "Anthropic Long-context Report · Figure 4",
+      "src3": "Anthropic Long-context Report · §5.1",
+      "src4": "Your note #2204 · 4/17"
+    },
+    "cta": {
+      "kicker": "FROM A PAPER FOR ONE READER",
+      "headline": "Want a paper written just for you?",
+      "lede": "ResearchTrace edits a personal research digest for every reader. Daily, evidence-rich, citations clickable. 14-day free trial.",
+      "btnTrial": "Start 14-day free trial →",
+      "btnSample": "View full sample brief"
+    },
+    "actions": {
+      "copy": "Copy link",
+      "save": "Save to my vault",
+      "open": "Open in ResearchTrace",
+      "openOrigin": "View original →",
+      "copied": "✓ Link copied"
+    },
+    "alert": {
+      "save": "DEMO · Saved to your vault (trial accounts must sign in)",
+      "open": "DEMO · Jumping to /briefs/127"
+    },
+    "footer": {
+      "tagline": "“Find what matters before you ask for it.”",
+      "by": "Edited by ResearchTrace",
+      "viewBriefs": "More sample briefs",
+      "homepage": "Go to homepage"
+    }
   }
 }
