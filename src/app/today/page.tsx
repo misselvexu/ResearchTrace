@@ -20,6 +20,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
+import { TopStoriesSection, TrendingColumn } from "./today-data-sections";
 
 // ---------- HEAT BARS ----------------------------------------------------
 
@@ -46,13 +47,10 @@ export default function TodayPage() {
     { n: "3", tk: "today.radar.s4.t", sk: "today.radar.s4.s", color: "var(--accent-red)" },
   ];
 
-  const TRENDING = [
-    { rank: "01", topic: "LLM Long Context", titleKey: "today.radar.r1", heat: 5, href: "/topic?t=llm-longctx" },
-    { rank: "02", topic: "Agentic Workflows", titleKey: "today.radar.r2", heat: 4, href: "/topic?t=agentic" },
-    { rank: "03", topic: "AI Evaluation", titleKey: "today.radar.r3", heat: 4, href: "/topic?t=eval" },
-    { rank: "04", topic: "RAG & Memory", titleKey: "today.radar.r4", heat: 3, href: "/topic?t=rag" },
-    { rank: "05", topic: "AI Product Strategy", titleKey: "today.radar.r5", heat: 3, href: "/topic?t=pm" },
-  ];
+  // TRENDING column is now driven by the live `topicsQuery({ sort: "heat" })`
+  // through <TrendingColumn />, so the inline array no longer lives here.
+  // i18n keys today.radar.r1..r5 are therefore unreferenced by this file
+  // (kept in messages for backward-compat until B9 removes them).
 
   const CITED = [
     { n: "23×", t: "Recurrent Memory Transformer v3", a: "Bulatov et al., 2025", href: "/topic?t=llm-longctx" },
@@ -200,183 +198,8 @@ export default function TodayPage() {
         </div>
       </section>
 
-      {/* ============ TOP STORIES ============ */}
-      <section style={{ borderBottom: "1px solid var(--divider)" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "42px 48px", position: "relative" }}>
-          <div className="rule-kicker">
-            <span className="kicker-red">{t("today.section1")}</span>
-          </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr", gap: 32 }}>
-            {/* Lead story */}
-            <article className="clickable">
-              <Link href="/topic?t=llm-longctx&claim=rmt-v3" style={{ textDecoration: "none", color: "inherit" }}>
-                <div style={{ position: "relative", marginBottom: 18 }}>
-                  <Image
-                    src="/img/thumb-longctx.png"
-                    alt=""
-                    width={800}
-                    height={600}
-                    style={{
-                      width: "100%",
-                      aspectRatio: "4 / 3",
-                      objectFit: "cover",
-                      background: "var(--bg-paper-warm)",
-                      height: "auto",
-                    }}
-                  />
-                  <span
-                    className="watermark-number"
-                    style={{
-                      position: "absolute",
-                      top: -18,
-                      left: -12,
-                      fontSize: 84,
-                      textShadow: "1px 1px 0 var(--bg-paper)",
-                    }}
-                  >
-                    01
-                  </span>
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-                  <span className="pill pill-red">LLM · LONG CONTEXT</span>
-                  <span className="kicker">arXiv 2505.04127 · 23 May</span>
-                </div>
-                <h2 className="headline" style={{ fontSize: 30, margin: "6px 0 10px" }}>
-                  {t("today.story1.title")}
-                </h2>
-                <p
-                  className="font-serif"
-                  style={{
-                    fontSize: 15,
-                    lineHeight: 1.6,
-                    color: "var(--ink-secondary)",
-                    margin: "0 0 14px",
-                  }}
-                  dangerouslySetInnerHTML={{ __html: t.raw("today.story1.body.html") as string }}
-                />
-                <div className="heat">
-                  HEAT
-                  <HeatBars filled={5} />
-                  <span style={{ marginLeft: 10 }}>{t("today.story1.heatNote")}</span>
-                </div>
-              </Link>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 14 }}>
-                <Link href="/ask?q=RMT v3 vs MemGPT" className="pill pill-red">
-                  {t("today.action.findSimilar")}
-                </Link>
-                <Link href="/topic?t=llm-longctx&tab=evidence" className="pill">
-                  {t("today.action.seeEvidence")}
-                </Link>
-                <Link href="/ask?q=How to reproduce RMT v3" className="pill">
-                  {t("today.action.reproduce")}
-                </Link>
-                <Link href="/ask?q=Diagram RMT v3 architecture" className="pill">
-                  {t("today.action.diagram")}
-                </Link>
-              </div>
-            </article>
-
-            {/* Story 02 */}
-            <article className="clickable">
-              <Link href="/topic?t=llm-longctx&claim=claude-needle" style={{ textDecoration: "none", color: "inherit" }}>
-                <div style={{ position: "relative", marginBottom: 14 }}>
-                  <Image
-                    src="/img/thumb-bench.png"
-                    alt=""
-                    width={600}
-                    height={450}
-                    style={{
-                      width: "100%",
-                      aspectRatio: "4 / 3",
-                      objectFit: "cover",
-                      background: "var(--bg-paper-warm)",
-                      height: "auto",
-                    }}
-                  />
-                  <span
-                    className="watermark-number"
-                    style={{ position: "absolute", top: -14, left: -8, fontSize: 64 }}
-                  >
-                    02
-                  </span>
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-                  <span className="pill">EVAL · NEEDLE-IN-HAYSTACK</span>
-                </div>
-                <h3 className="headline" style={{ fontSize: 20, margin: "4px 0 8px", lineHeight: 1.25 }}>
-                  {t("today.story2.title")}
-                </h3>
-                <p
-                  className="font-serif"
-                  style={{
-                    fontSize: 13.5,
-                    lineHeight: 1.55,
-                    color: "var(--ink-secondary)",
-                    margin: "0 0 10px",
-                  }}
-                >
-                  {t("today.story2.body")}
-                </p>
-                <div className="heat">
-                  HEAT
-                  <HeatBars filled={4} />
-                  <span style={{ marginLeft: 8 }}>4/5</span>
-                </div>
-              </Link>
-            </article>
-
-            {/* Story 03 */}
-            <article className="clickable">
-              <Link href="/topic?t=agentic&claim=swe-bench" style={{ textDecoration: "none", color: "inherit" }}>
-                <div style={{ position: "relative", marginBottom: 14 }}>
-                  <Image
-                    src="/img/thumb-agentic.png"
-                    alt=""
-                    width={600}
-                    height={450}
-                    style={{
-                      width: "100%",
-                      aspectRatio: "4 / 3",
-                      objectFit: "cover",
-                      background: "var(--bg-paper-warm)",
-                      height: "auto",
-                    }}
-                  />
-                  <span
-                    className="watermark-number"
-                    style={{ position: "absolute", top: -14, left: -8, fontSize: 64 }}
-                  >
-                    03
-                  </span>
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-                  <span className="pill">AGENT · SWE-BENCH</span>
-                </div>
-                <h3 className="headline" style={{ fontSize: 20, margin: "4px 0 8px", lineHeight: 1.25 }}>
-                  {t("today.story3.title")}
-                </h3>
-                <p
-                  className="font-serif"
-                  style={{
-                    fontSize: 13.5,
-                    lineHeight: 1.55,
-                    color: "var(--ink-secondary)",
-                    margin: "0 0 10px",
-                  }}
-                >
-                  {t("today.story3.body")}
-                </p>
-                <div className="heat">
-                  HEAT
-                  <HeatBars filled={4} />
-                  <span style={{ marginLeft: 8 }}>4/5</span>
-                </div>
-              </Link>
-            </article>
-          </div>
-        </div>
-      </section>
+      {/* ============ TOP STORIES (B8: live data via topicsQuery + briefsQuery) ============ */}
+      <TopStoriesSection />
 
       {/* ============ RADAR PULSE ============ */}
       <section style={{ background: "var(--bg-paper-warm)", borderBottom: "1px solid var(--divider)" }}>
@@ -421,41 +244,8 @@ export default function TodayPage() {
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
-            <div>
-              <div className="kicker-red" style={{ marginBottom: 12 }}>
-                {t("today.radar.col1")}
-              </div>
-              {TRENDING.map((s) => (
-                <Link
-                  key={s.rank}
-                  href={s.href}
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "36px 100px 1fr auto",
-                    gap: 14,
-                    alignItems: "center",
-                    padding: "13px 0",
-                    borderBottom: "1px solid var(--divider)",
-                    textDecoration: "none",
-                    color: "var(--ink-primary)",
-                  }}
-                >
-                  <span
-                    className="font-serif"
-                    style={{ fontSize: 22, fontWeight: 600, color: "var(--accent-red)" }}
-                  >
-                    {s.rank}
-                  </span>
-                  <span className="pill" style={{ justifySelf: "start", fontSize: 10 }}>
-                    {s.topic}
-                  </span>
-                  <span style={{ fontSize: 14, fontFamily: "var(--font-serif)" }}>
-                    {t(s.titleKey)}
-                  </span>
-                  <HeatBars filled={s.heat} />
-                </Link>
-              ))}
-            </div>
+            {/* TRENDING (B8: live data via topicsQuery sort=heat) */}
+            <TrendingColumn />
 
             <div>
               <div className="kicker-red" style={{ marginBottom: 12 }}>

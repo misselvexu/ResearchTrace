@@ -5,6 +5,7 @@ import { getLocale, getMessages } from "next-intl/server";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { LangThemeBridge } from "@/components/providers/lang-theme-bridge";
 import { ToastHost } from "@/components/providers/toast";
+import { MswProvider } from "@/components/providers/msw-provider";
 import "./globals.css";
 
 const sourceSerif = Source_Serif_4({
@@ -70,7 +71,7 @@ export default async function RootLayout({
         >
           <NextIntlClientProvider locale={locale} messages={messages}>
             <LangThemeBridge />
-            {children}
+            <MswProvider>{children}</MswProvider>
             <ToastHost />
           </NextIntlClientProvider>
         </ThemeProvider>
