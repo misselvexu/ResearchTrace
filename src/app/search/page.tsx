@@ -3,8 +3,9 @@
 import { Suspense, useState, useEffect, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
+import { useFederatedSearch, deriveLiveLines } from "./search-data";
 
 type GroupKey = "briefs" | "claims" | "sources" | "topics";
 type TabKey = "all" | GroupKey;
@@ -27,6 +28,7 @@ const GROUP_COLOR: Record<GroupKey, string> = {
 
 function SearchInner() {
   const t = useTranslations();
+  const locale = useLocale();
   const router = useRouter();
   const searchParams = useSearchParams();
   const initialQ = searchParams.get("q") ?? "";
@@ -34,6 +36,9 @@ function SearchInner() {
   const [query, setQuery] = useState(initialQ);
   const [submitted, setSubmitted] = useState(initialQ);
   const [tab, setTab] = useState<TabKey>("all");
+
+  // Live federated overlay — fans out to topics + briefs + vault.
+  const live = useFederatedSearch(submitted);
 
   // keep state in sync if URL changes externally
   useEffect(() => {
@@ -52,14 +57,22 @@ function SearchInner() {
   };
 
   // Demo result data — pulled from i18n. Each group is a string[] from t.raw().
+  // Live federated results (when present) are *prepended* so they take rank
+  // priority over the editorial scaffold.
   const allResults = useMemo(() => {
     const out: Record<GroupKey, string[]> = { briefs: [], claims: [], sources: [], topics: [] };
     for (const g of GROUPS) {
       const raw = t.raw(`search.demo.${g}`);
       if (Array.isArray(raw)) out[g] = raw as string[];
     }
-    return out;
-  }, [t]);
+    const liveLines = deriveLiveLines(live.result, locale);
+    return {
+      briefs: [...liveLines.briefs, ...out.briefs],
+      claims: out.claims,
+      sources: out.sources,
+      topics: [...liveLines.topics, ...out.topics],
+    };
+  }, [t, live.result, locale]);
 
   // Filter by query (case-insensitive substring match against the demo strings).
   const filtered = useMemo(() => {

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
 import { toast } from "@/components/providers/toast";
+import { addQuickNote, exportVault, useVaultLive } from "./vault-data";
 
 type TopicKey = "longctx" | "agentic" | "rag" | "eval" | "pm" | "other";
 type FilterKey = "all" | TopicKey;
@@ -58,6 +59,9 @@ export default function VaultPage() {
   const [view, setView] = useState<ViewMode>("grid");
   const [query, setQuery] = useState("");
 
+  // Live overlay — items + total + tags from /vault.
+  const live = useVaultLive(query);
+
   const visible = ITEMS.filter((it) => {
     if (filter !== "all" && it.topic !== filter) return false;
     if (query.trim()) {
@@ -89,10 +93,10 @@ export default function VaultPage() {
             </div>
           </div>
 
-          {/* Stats row */}
+          {/* Stats row — live total overlays the editorial 2,438 when API responds */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: 12, marginTop: 22, paddingTop: 14, borderTop: "1px solid var(--divider)" }}>
             {([
-              ["vault.stat.total", "2,438", "var(--ink-primary)"],
+              ["vault.stat.total", live.total > 0 ? live.total.toLocaleString() : "2,438", "var(--ink-primary)"],
               ["vault.stat.topics", "12", "var(--accent-red)"],
               ["vault.stat.claims", "684", "var(--info-blue)"],
               ["vault.stat.evidence", "2,196", "var(--success-green)"],
@@ -140,8 +144,25 @@ export default function VaultPage() {
                 {t("vault.view.list")}
               </button>
             </div>
-            <button className="btn btn-ghost" onClick={() => toast(t("vault.alert.export"))}>{t("vault.btn.export")}</button>
-            <button className="btn btn-red" onClick={() => toast(t("vault.alert.add"))}>{t("vault.btn.add")}</button>
+            <button
+              className="btn btn-ghost"
+              onClick={async () => {
+                const res = await exportVault("zip_markdown", t);
+                if (res) toast(t("vault.alert.export") + " · " + res.jobId);
+              }}
+            >
+              {t("vault.btn.export")}
+            </button>
+            <button
+              className="btn btn-red"
+              onClick={async () => {
+                const title = query.trim() || t("vault.btn.add");
+                const created = await addQuickNote(title, t);
+                if (created) toast(t("vault.alert.add"));
+              }}
+            >
+              {t("vault.btn.add")}
+            </button>
           </div>
 
           {/* Topic filter */}
@@ -157,6 +178,29 @@ export default function VaultPage() {
               </button>
             ))}
           </div>
+
+          {/* Live tags directory — only renders when /vault/tags returned data */}
+          {live.tags.length > 0 && (
+            <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: 10, flexWrap: "wrap" }}>
+              <span className="kicker" style={{ fontSize: 9, color: "var(--ink-tertiary)" }}>
+                {t("vault.tags")}
+              </span>
+              {live.tags.slice(0, 12).map((tag) => (
+                <button
+                  key={tag.tag}
+                  type="button"
+                  className="pill"
+                  style={{ fontSize: 10, padding: "1px 8px" }}
+                  onClick={() => setQuery(tag.tag)}
+                >
+                  #{tag.tag}
+                  <span className="font-mono" style={{ marginLeft: 6, opacity: 0.65, fontSize: 9 }}>
+                    {tag.count}
+                  </span>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

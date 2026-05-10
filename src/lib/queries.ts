@@ -18,16 +18,23 @@
  */
 
 import type {
+  AskSession,
+  AskSuggestion,
   Brief,
   ListBriefsQuery,
   ListNotificationsQuery,
+  ListSessionsQuery,
+  ListSuggestionsResponse,
   ListTopicsQuery,
+  ListVaultQuery,
   Notification,
   PageResponse,
+  TagSummary,
   Topic,
   TopicId,
   TopicStats,
   UnreadCountResponse,
+  VaultItem,
 } from "@/types/api";
 import { api, type QueryParams } from "./api";
 
@@ -132,4 +139,77 @@ export function unreadCountQuery(): Promise<UnreadCountResponse> {
   return memo("notifications.unread", [], () =>
     api.get<UnreadCountResponse>("/notifications/unread-count"),
   );
+}
+
+// ---------------------------------------------------------------------------
+// Vault
+// ---------------------------------------------------------------------------
+
+export function vaultQuery(q: ListVaultQuery = {}): Promise<PageResponse<VaultItem>> {
+  return memo("vault.list", [q], () =>
+    api.get<PageResponse<VaultItem>>("/vault", q as QueryParams),
+  );
+}
+
+export function vaultTagsQuery(): Promise<{ tags: TagSummary[] }> {
+  return memo("vault.tags", [], () =>
+    api.get<{ tags: TagSummary[] }>("/vault/tags"),
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Ask
+// ---------------------------------------------------------------------------
+
+export function askSessionsQuery(
+  q: ListSessionsQuery = {},
+): Promise<PageResponse<AskSession>> {
+  return memo("ask.sessions", [q], () =>
+    api.get<PageResponse<AskSession>>("/ask/sessions", q as QueryParams),
+  );
+}
+
+export function askSuggestionsQuery(): Promise<ListSuggestionsResponse> {
+  return memo("ask.suggestions", [], () =>
+    api.get<ListSuggestionsResponse>("/ask/suggestions"),
+  );
+}
+
+/** Federated free-text search — fans out to topics + briefs + vault. */
+export interface FederatedSearchResult {
+  topics: Topic[];
+  briefs: Brief[];
+  vault: VaultItem[];
+  totals: { topics: number; briefs: number; vault: number };
+}
+
+export function federatedSearchQuery(q: string): Promise<FederatedSearchResult> {
+  return memo("search.federated", [q], async () => {
+    if (!q.trim()) {
+      return {
+        topics: [],
+        briefs: [],
+        vault: [],
+        totals: { topics: 0, briefs: 0, vault: 0 },
+      };
+    }
+    const [topicsR, briefsR, vaultR] = await Promise.allSettled([
+      topicsQuery({ q, limit: 12 }),
+      briefsQuery({ q, limit: 12 }),
+      vaultQuery({ q, limit: 12 }),
+    ]);
+    const topics = topicsR.status === "fulfilled" ? topicsR.value : null;
+    const briefs = briefsR.status === "fulfilled" ? briefsR.value : null;
+    const vault = vaultR.status === "fulfilled" ? vaultR.value : null;
+    return {
+      topics: topics?.items ?? [],
+      briefs: briefs?.items ?? [],
+      vault: vault?.items ?? [],
+      totals: {
+        topics: topics?.totalEstimate ?? 0,
+        briefs: briefs?.totalEstimate ?? 0,
+        vault: vault?.totalEstimate ?? 0,
+      },
+    };
+  });
 }

@@ -771,6 +771,10 @@
   "ask": {
     "crumb": "RESEARCHTRACE / ASK · Q&A WITH CITATIONS",
     "history": "ASK · HISTORY",
+    "recent": "RECENT SESSIONS",
+    "suggestions": "SUGGESTED PROMPTS",
+    "streaming": "STREAMING ANSWER · LIVE",
+    "liveAnswer": "LIVE ANSWER",
     "newQuestion": "+ NEW QUESTION",
     "meta": "ASKED · 09:14 · 6 SOURCES · 2.4s",
     "confidence": "ANSWER CONFIDENCE",
@@ -854,7 +858,8 @@
       "openItem": "Open ",
       "openPdf": "Open PDF p. ",
       "openPdfTail": "",
-      "trace": "View full retrieval trace: 5 candidate chunks, rerank scores, prompt templates…"
+      "trace": "View full retrieval trace: 5 candidate chunks, rerank scores, prompt templates…",
+      "streamError": "Streaming answer failed; please try again."
     },
     "pill": {
       "openPage": "OPEN PAGE",
@@ -1943,6 +1948,7 @@
       "list": "List"
     },
     "filter": "Filter by topic",
+    "tags": "TAGS",
     "f": {
       "all": "All",
       "longctx": "LLM Long Context",

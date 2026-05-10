@@ -771,6 +771,10 @@
   "ask": {
     "crumb": "RESEARCHTRACE / ASK · 提问 · 答案附引用",
     "history": "ASK · HISTORY",
+    "recent": "近期会话",
+    "suggestions": "推荐提示词",
+    "streaming": "流式回答 · 正在生成",
+    "liveAnswer": "实时回答",
     "newQuestion": "+ 新问题",
     "meta": "已问 · 09:14 · 6 SOURCES · 2.4s",
     "confidence": "ANSWER CONFIDENCE",
@@ -854,7 +858,8 @@
       "openItem": "打开 ",
       "openPdf": "打开 PDF 第 ",
       "openPdfTail": " 页",
-      "trace": "查看检索全过程：5 个候选片段、rerank 分数、prompt 模板…"
+      "trace": "查看检索全过程：5 个候选片段、rerank 分数、prompt 模板…",
+      "streamError": "流式回答失败,请重试。"
     },
     "pill": {
       "openPage": "OPEN PAGE",
@@ -1943,6 +1948,7 @@
       "list": "列表"
     },
     "filter": "筛选主题",
+    "tags": "标签",
     "f": {
       "all": "全部",
       "longctx": "LLM 长上下文",

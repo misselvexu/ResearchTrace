@@ -3,9 +3,18 @@
 import { Suspense, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
 import { toast } from "@/components/providers/toast";
+import { handleApiError } from "@/lib/handle-api-error";
+import {
+  ensureAskSession,
+  pickLocale,
+  relativeTime,
+  streamAskAnswer,
+  useAskOverlay,
+} from "./ask-data";
+import type { AskCitation } from "@/types/api";
 
 type HistoryItem = { qK: string; tK: string };
 type SourceItem = {
@@ -73,6 +82,7 @@ const RELATED_KEYS = ["ask.related.note", "ask.related.streaming", "ask.related.
 
 function AskPageInner() {
   const t = useTranslations();
+  const locale = useLocale();
   const router = useRouter();
   const searchParams = useSearchParams();
   const initialQ = searchParams.get("q") ?? "";
@@ -80,6 +90,38 @@ function AskPageInner() {
   const [composer, setComposer] = useState("");
   const [activeSourceN, setActiveSourceN] = useState<string | null>(null);
   const sourceRefs = useRef<Record<string, HTMLElement | null>>({});
+
+  // Live overlay: real session list + suggestion chips.
+  const overlay = useAskOverlay();
+
+  // Live answer state (filled by SSE stream when the user submits).
+  const [liveAnswer, setLiveAnswer] = useState("");
+  const [liveCitations, setLiveCitations] = useState<AskCitation[]>([]);
+  const [streaming, setStreaming] = useState(false);
+  const [sessionId, setSessionId] = useState<string | null>(null);
+
+  async function runStream(prompt: string) {
+    if (streaming) return;
+    setStreaming(true);
+    setLiveAnswer("");
+    setLiveCitations([]);
+    try {
+      const sid = await ensureAskSession(prompt, sessionId ?? undefined);
+      setSessionId(sid);
+      await streamAskAnswer(sid, prompt, {
+        onDelta: (text) => setLiveAnswer((cur) => cur + text),
+        onCitation: (c) => setLiveCitations((cur) => [...cur, c]),
+        onError: (err) => {
+          const msg = typeof err === "string" ? err : pickLocale(err, locale);
+          toast.error(msg || t("ask.alert.streamError"));
+        },
+      });
+    } catch (e) {
+      handleApiError(e, t);
+    } finally {
+      setStreaming(false);
+    }
+  }
 
   // Click on a citation marker
   useEffect(() => {
@@ -105,8 +147,19 @@ function AskPageInner() {
   function submitFollowup() {
     const v = composer.trim();
     if (!v) return;
+    setComposer("");
     router.push(`/ask?q=${encodeURIComponent(v)}`);
+    void runStream(v);
   }
+
+  // When initialQ arrives via the URL (`?q=...`), stream a fresh answer.
+  useEffect(() => {
+    if (!initialQ.trim()) return;
+    void runStream(initialQ);
+    // We deliberately depend only on initialQ — re-running on locale changes
+    // etc. would double-trigger streams.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialQ]);
 
   function newAsk() {
     router.push("/ask");
@@ -149,6 +202,44 @@ function AskPageInner() {
             </button>
           </div>
           <div style={{ padding: "10px 8px" }}>
+            {/* Live sessions (when API has any) — rendered above editorial scaffold */}
+            {overlay.sessions.length > 0 && (
+              <div style={{ marginBottom: 8, paddingBottom: 6, borderBottom: "1px dotted var(--divider)" }}>
+                <div className="kicker" style={{ fontSize: 9, padding: "4px 12px 6px", color: "var(--ink-tertiary)" }}>
+                  {t("ask.recent")}
+                </div>
+                {overlay.sessions.map((s) => {
+                  const title = pickLocale(s.title, locale);
+                  return (
+                    <a
+                      key={s.id}
+                      href="#"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setSessionId(s.id);
+                        router.push(`/ask?q=${encodeURIComponent(title)}`);
+                      }}
+                      style={{
+                        display: "block",
+                        padding: "8px 12px",
+                        textDecoration: "none",
+                        color: "var(--ink-primary)",
+                        borderLeft: `2px solid ${s.pinned ? "var(--accent-red)" : "transparent"}`,
+                        marginBottom: 2,
+                      }}
+                    >
+                      <div className="font-serif" style={{ fontSize: 13, lineHeight: 1.35, fontWeight: s.pinned ? 600 : 400 }}>
+                        {title}
+                      </div>
+                      <div className="kicker" style={{ fontSize: 9, marginTop: 3, letterSpacing: ".08em" }}>
+                        {relativeTime(s.lastMessageAt)} · {s.messageCount}
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
+            )}
+
             {HISTORY.map((h, i) => {
               const active = i === 0 && !initialQ;
               return (
@@ -186,6 +277,37 @@ function AskPageInner() {
                 </a>
               );
             })}
+
+            {/* Live suggestion chips */}
+            {overlay.suggestions.length > 0 && (
+              <div style={{ marginTop: 12, padding: "8px 12px", borderTop: "1px dotted var(--divider)" }}>
+                <div className="kicker" style={{ fontSize: 9, marginBottom: 6, color: "var(--ink-tertiary)" }}>
+                  {t("ask.suggestions")}
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                  {overlay.suggestions.map((s) => (
+                    <button
+                      key={s.id}
+                      type="button"
+                      onClick={() => router.push(`/ask?q=${encodeURIComponent(s.prompt)}`)}
+                      style={{
+                        textAlign: "left",
+                        background: "transparent",
+                        border: "none",
+                        padding: "4px 0",
+                        fontFamily: "var(--font-serif)",
+                        fontSize: 12,
+                        fontStyle: "italic",
+                        color: "var(--ink-secondary)",
+                        cursor: "pointer",
+                      }}
+                    >
+                      → {pickLocale(s.label, locale)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </aside>
 
@@ -255,6 +377,46 @@ function AskPageInner() {
               {t("ask.showTrace")}
             </button>
           </div>
+
+          {/* Live streaming answer — appears when SSE stream is active or has populated */}
+          {(streaming || liveAnswer) && (
+            <article
+              style={{
+                marginBottom: 28,
+                padding: "20px 22px",
+                background: "var(--bg-card)",
+                border: "1px solid var(--accent-red)",
+                borderLeft: "3px solid var(--accent-red)",
+              }}
+            >
+              <div className="kicker-red" style={{ marginBottom: 8 }}>
+                {streaming ? t("ask.streaming") : t("ask.liveAnswer")}
+              </div>
+              <p
+                className="font-serif"
+                style={{ fontSize: 16, lineHeight: 1.75, margin: 0, whiteSpace: "pre-wrap" }}
+              >
+                {liveAnswer}
+                {streaming && (
+                  <span style={{ display: "inline-block", marginLeft: 4, color: "var(--accent-red)" }}>▍</span>
+                )}
+              </p>
+              {liveCitations.length > 0 && (
+                <div style={{ marginTop: 12, display: "flex", flexWrap: "wrap", gap: 6 }}>
+                  {liveCitations.map((c) => (
+                    <span
+                      key={c.index}
+                      className="pill"
+                      style={{ fontSize: 9, padding: "1px 8px" }}
+                      title={pickLocale(c.title, locale)}
+                    >
+                      [{c.index}] {pickLocale(c.title, locale).slice(0, 40)}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </article>
+          )}
 
           <article id="answerBody">
             <p className="font-serif" style={{ fontSize: 17, lineHeight: 1.85 }}>
