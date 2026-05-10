@@ -2289,5 +2289,335 @@
       "viewBriefs": "More sample briefs",
       "homepage": "Go to homepage"
     }
+  },
+  "publicShell": {
+    "nav": {
+      "about": "About",
+      "changelog": "Changelog",
+      "pricing": "Pricing",
+      "briefs": "Sample briefs",
+      "signin": "Sign in",
+      "trial": "Start trial →"
+    },
+    "footer": {
+      "tagline": "“Find what matters before you ask for it.”",
+      "by": "© 2026 ResearchTrace",
+      "links": {
+        "about": "About",
+        "changelog": "Changelog",
+        "pricing": "Pricing",
+        "terms": "Terms of Service",
+        "privacy": "Privacy Policy",
+        "homepage": "Homepage"
+      }
+    }
+  },
+  "about": {
+    "crumb": "RESEARCHTRACE / ABOUT · About ResearchTrace",
+    "kicker": "VOL. III · ABOUT THIS PAPER",
+    "title": "A paper edited for one reader.",
+    "subtitle": "Why we built ResearchTrace — and who it's for.",
+    "watermark": "RT",
+    "lede": {
+      "html": "ResearchTrace is a <em>proactively-written</em> research paper. It continuously reads what you read, tracks what you track, and every morning before you open it, edits 'what you should know this week' into a paper that is actually readable — evidence-rich, citations clickable."
+    },
+    "section": {
+      "mission": "§ I · Our mission",
+      "story": "§ II · Origin story",
+      "principles": "§ III · Four things we hold to",
+      "timeline": "§ IV · Timeline",
+      "team": "§ V · Team",
+      "contact": "§ VI · Contact"
+    },
+    "mission": {
+      "headline": "Tools should work for you, not the other way around.",
+      "p1": "Existing notes apps act like warehouses — the more you stack, the further you drift from your library. ResearchTrace inverts this: it <em>actively reads your library</em> and <em>delivers what matters</em> to your desk.",
+      "p2": "ChatGPT gives you 'plausible-sounding sentences'. ResearchTrace gives you <strong>sourced claims</strong>. Every conclusion has clickable ① ② ③ — three seconds back to the original.",
+      "p3": "Research is a periodic activity. We deliver on a daily / weekly / monthly cadence so you can keep up <em>without thinking</em> — that's the real labour-saving."
+    },
+    "story": {
+      "p1": "In early 2025, founder Yuwen saved 3,247 links over six months and read just 9% of them. She realised: the problem isn't that she reads too slowly — it's that her tools treat her as a 'warehouse manager' when what she actually needs is a 'newsroom editor'.",
+      "p2": "And so the core idea of ResearchTrace was born: have 5 AI Agents read your library every day, and write a paper for one person — you. The first version went out privately to 14 researchers in September 2025. We've polished the product against their feedback ever since — this paper is, to this day, edited for one reader: you."
+    },
+    "principles": {
+      "p1": {
+        "n": "01",
+        "k": "Citations are clickable",
+        "v": "Every conclusion ships with a clickable citation, three seconds back to the source. No black-box answers."
+      },
+      "p2": {
+        "n": "02",
+        "k": "Every AI call is auditable",
+        "v": "You can see what each Agent did, what it read, and which model it called."
+      },
+      "p3": {
+        "n": "03",
+        "k": "Your data is yours",
+        "v": "End-to-end encrypted, training-immune. Export anytime, no strings."
+      },
+      "p4": {
+        "n": "04",
+        "k": "Designed for deep reading",
+        "v": "Not a feed — a paper. We respect your attention and only deliver what you need to read today."
+      }
+    },
+    "timeline": {
+      "t1": { "d": "2025-01", "k": "The spark", "v": "Yuwen realises 'newsroom editor' beats 'warehouse' as a metaphor" },
+      "t2": { "d": "2025-04", "k": "First line of code", "v": "Ingestor + Curator prototype works end-to-end" },
+      "t3": { "d": "2025-09", "k": "Closed beta", "v": "14 researchers begin receiving the daily brief" },
+      "t4": { "d": "2025-11", "k": "v0.3 launch", "v": "All 5 Agents are in place; 12 topics covered" },
+      "t5": { "d": "2026-05", "k": "v0.4", "v": "Unified search / view toggle / dark-mode polish" },
+      "t6": { "d": "Today", "k": "You are here", "v": "On this page — perhaps about to start a paper edited for you" }
+    },
+    "team": {
+      "lede": "We're a 7-person team across Beijing / San Francisco / Amsterdam, working remote. We've all been chewed up by 'information overload' in our own research.",
+      "people": {
+        "1": { "n": "Yuwen", "r": "Founder · Editor-in-chief" },
+        "2": { "n": "Maya", "r": "Principal architect · Agent systems" },
+        "3": { "n": "Ren", "r": "ML · Retrieval & memory" }
+      }
+    },
+    "contact": {
+      "lede": "We don't run a PR account — you can write to the editor directly.",
+      "email": "yuwen@research.trace",
+      "hint": "We usually reply within 24 hours."
+    },
+    "cta": {
+      "kicker": "START READING",
+      "headline": "Want a research paper edited just for you?",
+      "lede": "14-day free trial, no credit card. Tomorrow at 8 a.m. your first brief lands.",
+      "btnTrial": "Start 14-day free trial →",
+      "btnSample": "View a sample brief first"
+    }
+  },
+  "changelog": {
+    "crumb": "RESEARCHTRACE / CHANGELOG · Release notes",
+    "kicker": "VOL. III · CHANGELOG",
+    "title": "ResearchTrace changelog",
+    "subtitle": "What we shipped, when we shipped it — kept honest.",
+    "watermark": "v0.4",
+    "lede": {
+      "html": "We ship on a '<em>small steps daily</em>, one release a month' cadence. Major features land at version bumps. All updates roll out to every user immediately — no manual upgrade required."
+    },
+    "btn": {
+      "rss": "Subscribe RSS",
+      "feedback": "Send feedback"
+    },
+    "tag": {
+      "added": "Added",
+      "improved": "Improved",
+      "fixed": "Fixed",
+      "breaking": "Breaking",
+      "security": "Security"
+    },
+    "filter": "Filter",
+    "f": {
+      "all": "All",
+      "added": "Added",
+      "improved": "Improved",
+      "fixed": "Fixed",
+      "breaking": "Breaking",
+      "security": "Security"
+    },
+    "release": {
+      "1": {
+        "v": "v0.4.0",
+        "d": "2026-05-05",
+        "title": "Unified search & view toggle",
+        "i1": { "tag": "added", "txt": "Brand-new /search page: query across briefs / claims / sources / topics in parallel; results grouped, keyword-highlighted." },
+        "i2": { "tag": "added", "txt": "/vault now supports grid / list dual views; instant filter by title and source." },
+        "i3": { "tag": "added", "txt": "/notifications: 6 filter pills, mark-read & mark-all-read, timeline grouped by today/yesterday/earlier." },
+        "i4": { "tag": "improved", "txt": "Sidebar topic-group badges redesigned; active red badges read more clearly." },
+        "i5": { "tag": "improved", "txt": "Dark-mode typography polish: blockquote leading and watermark contrast." },
+        "i6": { "tag": "fixed", "txt": "Fixed: ASK page cite-click occasionally not scrolling under Safari." }
+      },
+      "2": {
+        "v": "v0.3.2",
+        "d": "2026-04-12",
+        "title": "/billing & plan compare",
+        "i1": { "tag": "added", "txt": "New /billing page with plan card, usage bars, 3-tier comparison and 6-month invoice history." },
+        "i2": { "tag": "added", "txt": "Plan upgrade / downgrade flows including cancellation confirm dialog." },
+        "i3": { "tag": "improved", "txt": "/pricing and /billing comparison tables aligned to prevent data drift." }
+      },
+      "3": {
+        "v": "v0.3.1",
+        "d": "2026-03-08",
+        "title": "Brief detail page & print polish",
+        "i1": { "tag": "added", "txt": "/briefs/[id] detail page: 6-section editorial layout with clickable citations, heat bars and action buttons." },
+        "i2": { "tag": "improved", "txt": "Added print stylesheet — A4 two-column layout, citations as footnotes." },
+        "i3": { "tag": "fixed", "txt": "Fixed next-intl nested-key bug rendering raw key strings in brief titles." }
+      },
+      "4": {
+        "v": "v0.3.0",
+        "d": "2026-02-14",
+        "title": "All 5 Agents in place",
+        "i1": { "tag": "breaking", "txt": "Curator Agent rewritten: claim extraction moved from single-model to ensemble voting; historic claim scores will be recomputed once." },
+        "i2": { "tag": "added", "txt": "Radar Agent: source monitoring + heat alerts." },
+        "i3": { "tag": "added", "txt": "Reporter Agent: automated daily / weekly / monthly briefs." },
+        "i4": { "tag": "improved", "txt": "12 built-in topics covering LLMs, agents, RAG, evaluation, product strategy and more." }
+      },
+      "5": {
+        "v": "v0.2.0",
+        "d": "2025-12-01",
+        "title": "Ask & vault",
+        "i1": { "tag": "added", "txt": "/ask page: history left, answer center, sources right, cite-click jumps." },
+        "i2": { "tag": "added", "txt": "/vault baseline: import PDF / URL / video / email / Notion." },
+        "i3": { "tag": "security", "txt": "All user data is end-to-end encrypted; new 'training-immune' setting added." }
+      },
+      "6": {
+        "v": "v0.1.0",
+        "d": "2025-09-15",
+        "title": "Closed beta · the first paper",
+        "i1": { "tag": "added", "txt": "Today / Topics / Briefs — three core pages." },
+        "i2": { "tag": "added", "txt": "Ingestor + Curator prototype live; 14 researchers receive their first daily brief." }
+      }
+    }
+  },
+  "legal": {
+    "common": {
+      "footer": {
+        "lastUpdated": "Last updated",
+        "contact": "Questions? Write to",
+        "email": "legal@research.trace"
+      },
+      "toc": "Contents"
+    },
+    "terms": {
+      "crumb": "RESEARCHTRACE / LEGAL · Terms of Service",
+      "kicker": "VOL. III · TERMS OF SERVICE",
+      "title": "Terms of Service",
+      "subtitle": "By using ResearchTrace you agree to the terms below.",
+      "lastUpdated": "2026-05-01",
+      "watermark": "TOS",
+      "intro": {
+        "html": "These Terms of Service form a legal agreement between you and <strong>ResearchTrace, Inc.</strong> regarding all products offered at researchtrace.com and its subdomains (collectively, the 'Service'). Please read them carefully. If you do not agree, please do not use the Service."
+      },
+      "s": {
+        "1": {
+          "id": "accept",
+          "title": "1. Acceptance",
+          "p1": "By accessing or using the Service you represent that (a) you are at least 14 years old, (b) you have legal capacity to enter into a binding contract, and (c) you agree to these Terms and to our Privacy Policy.",
+          "p2": "We may revise these Terms from time to time. Material changes will be announced by email at least 14 days in advance. Continued use of the Service constitutes acceptance of the revised Terms."
+        },
+        "2": {
+          "id": "account",
+          "title": "2. Account & security",
+          "p1": "You need a valid email to create an account. You are responsible for all activity under your account.",
+          "p2": "Keep your credentials safe. If you suspect unauthorized access, write immediately to legal@research.trace."
+        },
+        "3": {
+          "id": "content",
+          "title": "3. Your content",
+          "p1": "All material you import into ResearchTrace (PDFs, URLs, emails, Notion content, etc.) <strong>remains yours</strong>. We do not use your content to train any model, and we do not share it with third parties.",
+          "p2": "You grant us a limited, non-exclusive licence solely to provide the Service to you (parsing, extraction, brief writing). The licence terminates the moment you delete the content or close your account."
+        },
+        "4": {
+          "id": "use",
+          "title": "4. Acceptable use",
+          "p1": "You agree not to (a) use the Service for any unlawful purpose, (b) attempt to bypass billing, access controls or rate limits, or (c) bulk-scrape or resell Service output.",
+          "p2": "We reserve the right to refuse, suspend or terminate accounts that violate these rules."
+        },
+        "5": {
+          "id": "billing",
+          "title": "5. Subscription & billing",
+          "p1": "Paid plans renew monthly or annually by default. You may cancel anytime at /billing; service continues through the end of the current cycle.",
+          "p2": "We do not offer prorated refunds, but will consider reasonable refund requests for service-level failures."
+        },
+        "6": {
+          "id": "ip",
+          "title": "6. Our intellectual property",
+          "p1": "The code, designs and trademarks of the Service (including the words '研迹' and 'ResearchTrace' and the 研 mark) are owned by ResearchTrace, Inc. or its licensors and protected by copyright and trademark law.",
+          "p2": "You may share excerpts that ResearchTrace generates (e.g. via /share/[id]) but may not remove the 'Edited by ResearchTrace' attribution or the clickable citations."
+        },
+        "7": {
+          "id": "warranty",
+          "title": "7. Disclaimer",
+          "p1": "The Service is provided 'as is'. We do not guarantee the <strong>factual correctness</strong> of any AI Agent output — please verify against the cited source before making research decisions.",
+          "p2": "To the maximum extent permitted by law, ResearchTrace is not liable for any indirect, incidental or consequential damages."
+        },
+        "8": {
+          "id": "termination",
+          "title": "8. Termination",
+          "p1": "You may delete your account at any time. We will erase your data within 30 days (except where retention is required by law).",
+          "p2": "We may also terminate the Service for material breach, giving you 7 days to export your data first."
+        },
+        "9": {
+          "id": "law",
+          "title": "9. Governing law",
+          "p1": "These Terms are governed by the laws of the People's Republic of China. Any dispute will first be resolved by good-faith negotiation; failing that, by arbitration at the Beijing Arbitration Commission per its rules."
+        },
+        "10": {
+          "id": "contact",
+          "title": "10. Contact us",
+          "p1": "If you have questions about these Terms, write to legal@research.trace. We typically reply within 5 business days."
+        }
+      }
+    },
+    "privacy": {
+      "crumb": "RESEARCHTRACE / LEGAL · Privacy Policy",
+      "kicker": "VOL. III · PRIVACY POLICY",
+      "title": "Privacy Policy",
+      "subtitle": "Your data is yours. This policy explains how we treat it.",
+      "lastUpdated": "2026-05-01",
+      "watermark": "P",
+      "intro": {
+        "html": "Our promise is simple: <strong>your data is yours</strong>. We do not use your content to train any model, do not share it with third parties, and do not use it for purposes you didn't agree to. This policy explains the specifics."
+      },
+      "s": {
+        "1": {
+          "id": "collect",
+          "title": "1. What we collect",
+          "p1": "<strong>Account information</strong>: your email, optional display name, and a hashed password.",
+          "p2": "<strong>Your content</strong>: PDFs, URLs, emails, Notion items you import — used solely to deliver the Service to you.",
+          "p3": "<strong>Usage logs</strong>: sign-in time and Agent invocation counts (for billing and ops monitoring) — never any fragment of your content."
+        },
+        "2": {
+          "id": "use",
+          "title": "2. How we use it",
+          "p1": "Your content is used only to (a) parse and extract claims and evidence, (b) write your daily / weekly briefs, (c) answer your ASK queries.",
+          "p2": "We do <strong>not</strong>: use your content to train any model; share your content with any third party; use it for any purpose not enumerated in this policy without telling you first."
+        },
+        "3": {
+          "id": "store",
+          "title": "3. How we store it",
+          "p1": "Your data is end-to-end encrypted. Storage region: Aliyun Beijing for users in mainland China; AWS us-east-1 for everyone else. Only you hold the decryption key.",
+          "p2": "We snapshot encrypted backups daily on a 30-day rolling window."
+        },
+        "4": {
+          "id": "share",
+          "title": "4. Sharing & disclosure",
+          "p1": "We will not proactively share your data with any third party. Disclosure may occur only when (a) compelled by law, (b) needed to prevent serious bodily harm, or (c) you explicitly authorise it (e.g. by publishing via /share/[id]).",
+          "p2": "Where lawful, we will give you 14 days' notice before any compelled disclosure."
+        },
+        "5": {
+          "id": "rights",
+          "title": "5. Your rights",
+          "p1": "You can at any time (a) view and export all your data at /vault, (b) edit account info at /settings, (c) delete your account at /settings (full erasure within 30 days).",
+          "p2": "If your jurisdiction grants additional rights (GDPR, CCPA, etc.), please write to privacy@research.trace to exercise them."
+        },
+        "6": {
+          "id": "cookies",
+          "title": "6. Cookies & local storage",
+          "p1": "We use the minimum cookies needed to keep you signed in and to remember your language / theme preferences.",
+          "p2": "We do not use third-party tracking cookies. We do not integrate Google Analytics, Facebook Pixel, or any other third-party analytics."
+        },
+        "7": {
+          "id": "children",
+          "title": "7. Minors",
+          "p1": "The Service is intended for users aged 14 and above. We do not knowingly collect data from minors. If you become aware of any such collection, please write to us — we will erase it within 7 days."
+        },
+        "8": {
+          "id": "changes",
+          "title": "8. Changes to this policy",
+          "p1": "We may update this policy. Material changes will be announced by email at least 14 days in advance, and the date at the top of this page will be updated.",
+          "p2": "Continued use of the Service constitutes acceptance of the revised policy."
+        },
+        "9": {
+          "id": "contact",
+          "title": "9. Contact us",
+          "p1": "For privacy questions, data-rights requests, or complaints, write to privacy@research.trace. We typically reply within 5 business days."
+        }
+      }
+    }
   }
 }
