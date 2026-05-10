@@ -229,7 +229,7 @@ function OverviewPanel({ tid, T }: { tid: TopicId; T: TopicEntry }) {
         </div>
 
         <div style={{ border: "1px solid var(--divider)", background: "var(--bg-card)", padding: 18, marginTop: 14 }}>
-          <div className="kicker-red" style={{ marginBottom: 14 }}>{t("topic.ov.radar")}</div>
+          <div className="kicker-red" style={{ marginBottom: 14 }}>{t("topic.ov.radar._value")}</div>
           {RADAR.map(([s, n]) => (
             <div key={s} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
               <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--accent-red)" }} />

@@ -7,13 +7,14 @@ import { useTranslations } from "next-intl";
 import { PrefSwitcher } from "@/components/providers/pref-switcher";
 import { toast } from "@/components/providers/toast";
 import { signIn } from "@/lib/auth";
+import { RedirectIfAuthed } from "@/components/auth/redirect-if-authed";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PASSWORD_RE = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
 
 const PERKS = ["p1", "p2", "p3", "p4"] as const;
 
-export default function SignupPage() {
+function SignupInner() {
   const t = useTranslations();
   const router = useRouter();
 
@@ -449,5 +450,13 @@ export default function SignupPage() {
         </div>
       </aside>
     </main>
+  );
+}
+
+export default function SignupPage() {
+  return (
+    <RedirectIfAuthed>
+      <SignupInner />
+    </RedirectIfAuthed>
   );
 }

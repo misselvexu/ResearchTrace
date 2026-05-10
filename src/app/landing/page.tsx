@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { PrefSwitcher } from "@/components/providers/pref-switcher";
+import { RedirectIfAuthed } from "@/components/auth/redirect-if-authed";
 
 const HOW_TIMELINE = [
   { time: "23:14", actor: "YOU", solid: true, ink: true, tK: "landing.how.t1.title", bK: "landing.how.t1.body" },
@@ -25,6 +26,7 @@ export default async function LandingPage() {
   const t = await getTranslations();
 
   return (
+    <RedirectIfAuthed>
     <>
       {/* Top nav */}
       <header
@@ -83,11 +85,11 @@ export default async function LandingPage() {
             <Link href="/briefs" style={{ fontSize: 13, textDecoration: "none", color: "var(--ink-secondary)" }}>{t("landing.nav.briefs")}</Link>
           </nav>
           <PrefSwitcher />
-          <Link href="/onboarding" style={{ fontSize: 13, textDecoration: "none", color: "var(--ink-secondary)" }}>
+          <Link href="/login" style={{ fontSize: 13, textDecoration: "none", color: "var(--ink-secondary)" }}>
             {t("landing.nav.signin")}
           </Link>
-          <Link href="/onboarding" className="btn btn-red" style={{ textDecoration: "none" }}>
-            {t("landing.cta.trial")}
+          <Link href="/signup" className="btn btn-red" style={{ textDecoration: "none" }}>
+            {t("landing.cta.trial._value")}
           </Link>
         </div>
       </header>
@@ -124,10 +126,10 @@ export default async function LandingPage() {
                 dangerouslySetInnerHTML={{ __html: t.raw("landing.hero.lede.html") as string }}
               />
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-                <Link href="/onboarding" className="btn btn-red" style={{ fontSize: 13, padding: "12px 22px", textDecoration: "none" }}>
-                  {t("landing.cta.trial")}
+                <Link href="/signup" className="btn btn-red" style={{ fontSize: 13, padding: "12px 22px", textDecoration: "none" }}>
+                  {t("landing.cta.trial._value")}
                 </Link>
-                <Link href="/today" className="btn btn-ghost" style={{ fontSize: 13, padding: "12px 22px", textDecoration: "none" }}>
+                <Link href="/share/demo-brief" className="btn btn-ghost" style={{ fontSize: 13, padding: "12px 22px", textDecoration: "none" }}>
                   {t("landing.cta.demo")}
                 </Link>
               </div>
@@ -324,7 +326,7 @@ export default async function LandingPage() {
               <p className="font-serif" style={{ fontStyle: "italic", fontSize: 16, color: "var(--ink-secondary)", margin: "0 0 18px" }}>
                 {t("landing.agents.lede")}
               </p>
-              <Link href="/settings#agents" className="btn btn-ghost" style={{ textDecoration: "none" }}>
+              <Link href="/about" className="btn btn-ghost" style={{ textDecoration: "none" }}>
                 {t("landing.agents.cta")}
               </Link>
             </div>
@@ -405,12 +407,12 @@ export default async function LandingPage() {
               style={{ fontSize: 16, color: "var(--ink-mute-on-dark)", lineHeight: 1.7, margin: "0 0 22px" }}
               dangerouslySetInnerHTML={{ __html: t.raw("landing.sample.body.html") as string }}
             />
-            <Link href="/briefs/127" className="btn btn-red" style={{ textDecoration: "none" }}>
+            <Link href="/share/demo-brief" className="btn btn-red" style={{ textDecoration: "none" }}>
               {t("landing.sample.cta")}
             </Link>
           </div>
           <figure style={{ margin: 0, position: "relative" }}>
-            <Link href="/briefs/127" style={{ display: "block", textDecoration: "none" }}>
+            <Link href="/share/demo-brief" style={{ display: "block", textDecoration: "none" }}>
               <div
                 style={{
                   position: "relative",
@@ -455,7 +457,7 @@ export default async function LandingPage() {
             {t("landing.cta.body")}
           </p>
           <div style={{ display: "flex", justifyContent: "center", gap: 10 }}>
-            <Link href="/onboarding" className="btn btn-red" style={{ fontSize: 14, padding: "14px 28px", textDecoration: "none" }}>
+            <Link href="/signup" className="btn btn-red" style={{ fontSize: 14, padding: "14px 28px", textDecoration: "none" }}>
               {t("landing.cta.trial.short")}
             </Link>
             <Link href="/pricing" className="btn btn-ghost" style={{ fontSize: 14, padding: "14px 28px", textDecoration: "none" }}>
@@ -507,10 +509,10 @@ export default async function LandingPage() {
           <div>
             <div className="kicker" style={{ marginBottom: 10 }}>{t("landing.footer.col1")}</div>
             {[
-              ["/today", "Today"],
-              ["/topics", "Topics"],
-              ["/ask", "Ask"],
-              ["/briefs", "Briefs"],
+              ["/share/demo-brief", t("landing.footer.sample") as string],
+              ["/pricing", t("landing.nav.pricing") as string],
+              ["/changelog", t("publicShell.nav.changelog") as string],
+              ["/about", t("publicShell.nav.about") as string],
             ].map(([href, label]) => (
               <Link
                 key={href}
@@ -524,9 +526,8 @@ export default async function LandingPage() {
           <div>
             <div className="kicker" style={{ marginBottom: 10 }}>{t("landing.footer.col2")}</div>
             {[
-              ["/inbox", "Inbox"],
-              ["/onboarding", "Onboarding"],
-              ["/settings", "Settings"],
+              ["/signup", t("publicShell.nav.trial") as string],
+              ["/login", t("publicShell.nav.signin") as string],
             ].map(([href, label]) => (
               <Link
                 key={href}
@@ -554,15 +555,18 @@ export default async function LandingPage() {
           </div>
           <div>
             <div className="kicker" style={{ marginBottom: 10 }}>{t("landing.footer.col4")}</div>
-            {(["about", "blog", "privacy", "terms"] as const).map((k) => (
-              <a
-                key={k}
-                href="#"
-                style={{ display: "block", fontSize: 13, textDecoration: "none", color: "var(--ink-secondary)", marginBottom: 4 }}
-              >
-                {t(`landing.footer.${k}`)}
-              </a>
-            ))}
+            <Link href="/about" style={{ display: "block", fontSize: 13, textDecoration: "none", color: "var(--ink-secondary)", marginBottom: 4 }}>
+              {t("landing.footer.about")}
+            </Link>
+            <Link href="/changelog" style={{ display: "block", fontSize: 13, textDecoration: "none", color: "var(--ink-secondary)", marginBottom: 4 }}>
+              {t("landing.footer.blog")}
+            </Link>
+            <Link href="/legal/privacy" style={{ display: "block", fontSize: 13, textDecoration: "none", color: "var(--ink-secondary)", marginBottom: 4 }}>
+              {t("landing.footer.privacy")}
+            </Link>
+            <Link href="/legal/terms" style={{ display: "block", fontSize: 13, textDecoration: "none", color: "var(--ink-secondary)", marginBottom: 4 }}>
+              {t("landing.footer.terms")}
+            </Link>
           </div>
         </div>
         <div
@@ -583,5 +587,6 @@ export default async function LandingPage() {
         </div>
       </footer>
     </>
+    </RedirectIfAuthed>
   );
 }

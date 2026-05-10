@@ -22,6 +22,9 @@ export type NavItemId =
   | "notifications"
   | "billing"
   | "settings"
+  // Public/marketing routes — kept in the type for legacy `activeId` props,
+  // but intentionally NOT rendered in the workspace sidebar (they live in
+  // the user-menu and PublicShell instead).
   | "pricing"
   | "about"
   | "changelog"
@@ -88,8 +91,4 @@ export const NAV: NavEntry[] = [
   { kind: "item", id: "notifications", key: "nav.notifications", href: "/notifications", badge: "5" },
   { kind: "item", id: "billing", key: "nav.billing", href: "/billing" },
   { kind: "item", id: "settings", key: "nav.settings", href: "/settings" },
-  { kind: "item", id: "pricing", key: "nav.pricing", href: "/pricing" },
-  { kind: "item", id: "about", key: "nav.about", href: "/about" },
-  { kind: "item", id: "changelog", key: "nav.changelog", href: "/changelog" },
-  { kind: "item", id: "landing", key: "nav.landing", href: "/landing" },
 ];

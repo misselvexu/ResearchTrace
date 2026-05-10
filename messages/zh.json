@@ -228,7 +228,8 @@
       "about": "关于",
       "blog": "Blog",
       "privacy": "隐私",
-      "terms": "条款"
+      "terms": "条款",
+      "sample": "样例简报"
     }
   },
   "today": {
@@ -2454,9 +2455,9 @@
       "about": "关于",
       "changelog": "更新日志",
       "pricing": "定价",
-      "briefs": "简报样例",
       "signin": "登录",
-      "trial": "开始试用 →"
+      "trial": "开始试用 →",
+      "sample": "样例简报"
     },
     "footer": {
       "tagline": "「Find what matters before you ask for it.」",
@@ -2874,5 +2875,15 @@
         }
       }
     }
+  },
+  "userMenu": {
+    "settings": "账户设置",
+    "billing": "账单与订阅",
+    "notifications": "通知中心",
+    "pricing": "定价方案",
+    "about": "关于我们",
+    "changelog": "更新日志",
+    "signOut": "退出登录",
+    "signedOut": "已退出登录"
   }
 }

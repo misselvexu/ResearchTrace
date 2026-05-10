@@ -67,7 +67,7 @@ export default async function BriefDetailPage({ params }: { params: Promise<Para
             border: "1px solid var(--divider)",
           }}
         >
-          <div className="kicker-red" style={{ marginBottom: 12 }}>{t("brief.toc")}</div>
+          <div className="kicker-red" style={{ marginBottom: 12 }}>{t("brief.toc._value")}</div>
           {TOC.map((i) => (
             <a
               key={i}
@@ -167,7 +167,7 @@ export default async function BriefDetailPage({ params }: { params: Promise<Para
               borderLeft: "3px solid var(--success-green)",
             }}
           >
-            <div className="kicker" style={{ color: "var(--success-green)", marginBottom: 6 }}>{t("brief.s4.callout")}</div>
+            <div className="kicker" style={{ color: "var(--success-green)", marginBottom: 6 }}>{t("brief.s4.callout._value")}</div>
             <div className="font-serif" style={{ fontStyle: "italic", fontSize: 15 }}>{t("brief.s4.callout.body")}</div>
           </div>
         </section>

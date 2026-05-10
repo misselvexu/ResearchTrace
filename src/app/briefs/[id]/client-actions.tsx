@@ -46,14 +46,14 @@ export function BriefFollowupsClient() {
         className="pill pill-red"
         style={{ textDecoration: "none" }}
       >
-        {t("brief.fu.diagram")}
+        {t("brief.fu.diagram._value")}
       </Link>
       <Link
         href={`/ask?q=${encodeURIComponent(t("brief.fu.reproduce.q"))}`}
         className="pill"
         style={{ textDecoration: "none" }}
       >
-        {t("brief.fu.reproduce")}
+        {t("brief.fu.reproduce._value")}
       </Link>
       <Link
         href="/topic?t=llm-longctx&tab=evidence"
@@ -67,7 +67,7 @@ export function BriefFollowupsClient() {
         className="pill"
         style={{ textDecoration: "none" }}
       >
-        {t("brief.fu.challenge")}
+        {t("brief.fu.challenge._value")}
       </Link>
       <button className="pill" onClick={() => toast(t("brief.fu.alert.subscribe"))}>
         {t("brief.fu.subscribe")}

@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { PrefSwitcher } from "@/components/providers/pref-switcher";
 
-type ActiveNav = "about" | "changelog" | "pricing" | "briefs" | null;
+type ActiveNav = "about" | "changelog" | "pricing" | "sample" | null;
 
 export function PublicShell({
   children,
@@ -22,7 +22,7 @@ export function PublicShell({
     { id: "about", href: "/about", label: t("publicShell.nav.about") },
     { id: "changelog", href: "/changelog", label: t("publicShell.nav.changelog") },
     { id: "pricing", href: "/pricing", label: t("publicShell.nav.pricing") },
-    { id: "briefs", href: "/briefs", label: t("publicShell.nav.briefs") },
+    { id: "sample", href: "/share/demo-brief", label: t("publicShell.nav.sample") },
   ];
 
   return (

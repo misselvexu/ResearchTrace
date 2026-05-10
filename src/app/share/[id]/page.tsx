@@ -3,7 +3,7 @@
 import { use, useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { PrefSwitcher } from "@/components/providers/pref-switcher";
+import { PublicShell } from "@/components/shell/public-shell";
 import { toast } from "@/components/providers/toast";
 
 type Params = { id: string };
@@ -29,52 +29,9 @@ export default function SharePage({ params }: { params: Promise<Params> }) {
   };
 
   return (
-    <div style={{ minHeight: "100vh", background: "var(--bg-paper)", color: "var(--ink-primary)" }}>
-      {/* Branded header — same shape as login/signup but neutral content */}
-      <header
-        style={{
-          borderBottom: "1px solid var(--divider)",
-          padding: "20px 48px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          background: "var(--bg-paper)",
-        }}
-      >
-        <Link
-          href="/"
-          style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", color: "var(--ink-primary)" }}
-        >
-          <span
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 30,
-              height: 30,
-              border: "1.5px solid var(--accent-red)",
-              color: "var(--accent-red)",
-              fontFamily: "var(--font-serif)",
-              fontWeight: 700,
-              fontSize: 15,
-            }}
-          >
-            研
-          </span>
-          <span style={{ fontFamily: "var(--font-serif)", fontSize: 18, fontWeight: 600 }}>
-            研迹 ResearchTrace
-          </span>
-        </Link>
-        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-          <span className="kicker" style={{ color: "var(--ink-tertiary)" }}>
-            #{id}
-          </span>
-          <PrefSwitcher />
-        </div>
-      </header>
-
+    <PublicShell crumb={`SHARED · #${id}`}>
       {/* Main excerpt */}
-      <main style={{ maxWidth: 820, margin: "0 auto", padding: "56px 48px 40px" }}>
+      <article style={{ maxWidth: 820, margin: "0 auto", padding: "32px 48px 40px" }}>
         {/* Masthead-like brief header */}
         <div style={{ position: "relative", borderBottom: "3px double var(--divider-strong)", paddingBottom: 28, marginBottom: 36 }}>
           <div className="kicker-red" style={{ marginBottom: 12 }}>{t("share.kicker")}</div>
@@ -282,7 +239,7 @@ export default function SharePage({ params }: { params: Promise<Params> }) {
             {t("share.actions.openOrigin")}
           </Link>
         </div>
-      </main>
+      </article>
 
       {/* CTA strip */}
       <section
@@ -323,7 +280,7 @@ export default function SharePage({ params }: { params: Promise<Params> }) {
               {t("share.cta.btnTrial")}
             </Link>
             <Link
-              href="/briefs"
+              href="/pricing"
               className="btn btn-ghost"
               style={{ textDecoration: "none", borderColor: "var(--rule-on-dark)", color: "#fff" }}
             >
@@ -350,45 +307,6 @@ export default function SharePage({ params }: { params: Promise<Params> }) {
           {t("share.watermark")}
         </div>
       </section>
-
-      {/* Footer */}
-      <footer
-        style={{
-          padding: "26px 48px",
-          background: "var(--bg-paper)",
-          borderTop: "1px solid var(--divider)",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: 820,
-            margin: "0 auto",
-            display: "flex",
-            justifyContent: "space-between",
-            gap: 14,
-            flexWrap: "wrap",
-            alignItems: "center",
-          }}
-        >
-          <div
-            className="font-serif"
-            style={{ fontSize: 13, fontStyle: "italic", color: "var(--ink-secondary)" }}
-          >
-            {t("share.footer.tagline")}
-            <div className="kicker" style={{ marginTop: 4, color: "var(--ink-tertiary)" }}>
-              {t("share.footer.by")}
-            </div>
-          </div>
-          <div style={{ display: "flex", gap: 16 }}>
-            <Link href="/briefs" className="link-red" style={{ textDecoration: "none", fontSize: 13 }}>
-              {t("share.footer.viewBriefs")}
-            </Link>
-            <Link href="/" className="link-red" style={{ textDecoration: "none", fontSize: 13 }}>
-              {t("share.footer.homepage")}
-            </Link>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </PublicShell>
   );
 }

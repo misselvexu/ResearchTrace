@@ -139,7 +139,7 @@ export default function BriefsPage() {
       {/* Featured */}
       <section style={{ background: "var(--bg-paper-warm)", borderBottom: "1px solid var(--divider)" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: "42px 48px" }}>
-          <div className="kicker-red" style={{ marginBottom: 16 }}>{t("briefs.featured")}</div>
+          <div className="kicker-red" style={{ marginBottom: 16 }}>{t("briefs.featured._value")}</div>
           <Link
             href={`/briefs/${FEATURED.n}`}
             style={{

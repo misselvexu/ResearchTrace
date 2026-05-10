@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { AppLayout } from "@/components/shell/app-layout";
+import { PublicShell } from "@/components/shell/public-shell";
 import { toast } from "@/components/providers/toast";
+import { isAuthed } from "@/lib/auth";
 
 type BillingCycle = "monthly" | "yearly";
 
@@ -69,7 +71,7 @@ const PLANS: Plan[] = [
     periodK: "pricing.p3.period",
     color: "var(--accent-red)",
     pitchK: "pricing.p3.pitch",
-    current: true,
+    current: false,
     highlight: true,
     features: [
       ["pricing.feat.topics", "pricing.v.p3.topics"],
@@ -114,7 +116,6 @@ const FAQS: [string, string][] = [
 ];
 
 function ctaLabelKey(p: Plan) {
-  if (p.current) return "pricing.btn.current";
   if (p.tier === "01") return "pricing.btn.free";
   if (p.tier === "04") return "pricing.btn.contact";
   return "pricing.btn.trial";
@@ -122,10 +123,24 @@ function ctaLabelKey(p: Plan) {
 
 export default function PricingPage() {
   const t = useTranslations();
+  const router = useRouter();
   const [cycle, setCycle] = useState<BillingCycle>("monthly");
 
+  function handleCta(p: Plan) {
+    if (p.tier === "04") {
+      toast(t("pricing.alert.trial"));
+      return;
+    }
+    // Already signed-in users go straight to billing; visitors register first.
+    if (isAuthed()) {
+      router.push("/billing");
+    } else {
+      router.push("/signup");
+    }
+  }
+
   return (
-    <AppLayout activeId="pricing" crumbKey="pricing.crumb">
+    <PublicShell activeNav="pricing" crumb={t("pricing.crumb")}>
       {/* Hero */}
       <section style={{ borderBottom: "1px solid var(--divider)" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", padding: "48px 48px 28px", textAlign: "center", position: "relative" }}>
@@ -152,7 +167,7 @@ export default function PricingPage() {
                 toast(t("pricing.yearly.alert"));
               }}
             >
-              {t("pricing.yearly")}
+              {t("pricing.yearly._value")}
             </button>
           </div>
         </div>
@@ -197,14 +212,7 @@ export default function PricingPage() {
                     {t("pricing.popular")}
                   </span>
                 )}
-                {p.current && (
-                  <span
-                    className="pill pill-solid"
-                    style={{ position: "absolute", top: -13, right: 14, fontSize: 9 }}
-                  >
-                    {t("pricing.your")}
-                  </span>
-                )}
+                {/* "Your plan" badge intentionally omitted on public pricing page */}
                 <div
                   className="watermark-number"
                   style={{ fontSize: 48, color: p.color, opacity: 0.85, marginBottom: 8 }}
@@ -270,8 +278,8 @@ export default function PricingPage() {
                 </div>
 
                 <button
-                  className={p.current ? "btn btn-ghost" : "btn btn-red"}
-                  onClick={() => toast(p.current ? t("pricing.alert.current") : t("pricing.alert.trial"))}
+                  className="btn btn-red"
+                  onClick={() => handleCta(p)}
                   style={{ width: "100%", justifyContent: "center" }}
                 >
                   {t(ctaLabelKey(p))}
@@ -304,14 +312,14 @@ export default function PricingPage() {
               </div>
             </div>
             <button className="btn btn-ghost" onClick={() => toast(t("pricing.eduCta.alert"))}>
-              {t("pricing.eduCta")}
+              {t("pricing.eduCta._value")}
             </button>
           </div>
 
           {/* FAQ */}
           <div style={{ marginTop: 60 }}>
             <div className="rule-kicker">
-              <span className="kicker-red">{t("pricing.faq")}</span>
+              <span className="kicker-red">{t("pricing.faq._value")}</span>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px 36px" }}>
               {FAQS.map(([qK, aK]) => (
@@ -329,6 +337,6 @@ export default function PricingPage() {
           </div>
         </div>
       </section>
-    </AppLayout>
+    </PublicShell>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -8,6 +8,7 @@ import { useTranslations } from "next-intl";
 import { PrefSwitcher } from "@/components/providers/pref-switcher";
 import { signIn } from "@/lib/auth";
 import { toast } from "@/components/providers/toast";
+import { AuthGate } from "@/components/auth/auth-gate";
 
 type RoleId = "pm" | "founder" | "researcher" | "engineer" | "writer" | "other";
 
@@ -61,7 +62,7 @@ type OnboardingPersist = {
   depth: string;
 };
 
-export default function OnboardingPage() {
+function OnboardingInner() {
   const t = useTranslations();
   const router = useRouter();
   const [hydrated, setHydrated] = useState(false);
@@ -677,5 +678,15 @@ export default function OnboardingPage() {
         </div>
       </main>
     </>
+  );
+}
+
+export default function OnboardingPage() {
+  return (
+    <Suspense fallback={null}>
+      <AuthGate>
+        <OnboardingInner />
+      </AuthGate>
+    </Suspense>
   );
 }

@@ -1,23 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { PrefSwitcher } from "@/components/providers/pref-switcher";
 import { toast } from "@/components/providers/toast";
 import { signIn } from "@/lib/auth";
+import { RedirectIfAuthed } from "@/components/auth/redirect-if-authed";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export default function LoginPage() {
+function LoginInner() {
   const t = useTranslations();
   const router = useRouter();
+  const search = useSearchParams();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(true);
   const [submitting, setSubmitting] = useState(false);
+
+  function safeNext(): string {
+    const raw = search?.get("next") || "/today";
+    // only allow same-origin paths to prevent open-redirect
+    if (raw.startsWith("/") && !raw.startsWith("//")) return raw;
+    return "/today";
+  }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -31,11 +40,11 @@ export default function LoginPage() {
       return;
     }
     setSubmitting(true);
-    // DEMO: simulate latency, persist session, redirect to /today
+    // DEMO: simulate latency, persist session, redirect to ?next= or /today
     setTimeout(() => {
       signIn({ email: email.trim() });
       toast.success(t("login.alert.demo"));
-      router.push("/today");
+      router.push(safeNext());
     }, 600);
   }
 
@@ -398,5 +407,15 @@ export default function LoginPage() {
         </div>
       </aside>
     </main>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <RedirectIfAuthed>
+      <Suspense fallback={null}>
+        <LoginInner />
+      </Suspense>
+    </RedirectIfAuthed>
   );
 }

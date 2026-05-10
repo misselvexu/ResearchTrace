@@ -228,7 +228,8 @@
       "about": "About",
       "blog": "Blog",
       "privacy": "Privacy",
-      "terms": "Terms"
+      "terms": "Terms",
+      "sample": "Sample Brief"
     }
   },
   "today": {
@@ -2454,9 +2455,9 @@
       "about": "About",
       "changelog": "Changelog",
       "pricing": "Pricing",
-      "briefs": "Sample briefs",
       "signin": "Sign in",
-      "trial": "Start trial →"
+      "trial": "Start trial →",
+      "sample": "Sample"
     },
     "footer": {
       "tagline": "“Find what matters before you ask for it.”",
@@ -2874,5 +2875,15 @@
         }
       }
     }
+  },
+  "userMenu": {
+    "settings": "Account settings",
+    "billing": "Billing",
+    "notifications": "Notifications",
+    "pricing": "Pricing",
+    "about": "About",
+    "changelog": "Changelog",
+    "signOut": "Sign out",
+    "signedOut": "Signed out"
   }
 }

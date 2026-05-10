@@ -11,9 +11,9 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { PrefSwitcher } from "@/components/providers/pref-switcher";
+import { UserMenu } from "./user-menu";
 
 interface TopBarProps {
   /** Crumb i18n key (preferred). E.g. "today.crumb". */
@@ -163,36 +163,8 @@ export function TopBar({ crumbKey, crumb }: TopBarProps) {
           </span>
         </Link>
 
-        {/* Avatar pill */}
-        <Link
-          href="/settings"
-          className="clickable"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-            padding: "4px 10px 4px 4px",
-            border: "1px solid var(--divider)",
-            borderRadius: 20,
-            textDecoration: "none",
-            color: "var(--ink-primary)",
-          }}
-        >
-          <Image
-            src="/img/avatar.png"
-            alt=""
-            width={24}
-            height={24}
-            style={{
-              width: 24,
-              height: 24,
-              borderRadius: "50%",
-              objectFit: "cover",
-              background: "var(--bg-paper-deep)",
-            }}
-          />
-          <span style={{ fontSize: 12 }}>{t("shell.userName")}</span>
-        </Link>
+        {/* User menu (avatar pill → dropdown with sign-out) */}
+        <UserMenu />
     </header>
   );
 }

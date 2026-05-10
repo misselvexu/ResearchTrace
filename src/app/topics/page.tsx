@@ -196,7 +196,7 @@ export default function TopicsPage() {
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <span className="kicker">
-                      {t("topics.lastBrief")}{t(`topics.lastBrief.${row.lastBriefK}`)}
+                      {t("topics.lastBrief._value")}{t(`topics.lastBrief.${row.lastBriefK}`)}
                     </span>
                     <span className="font-mono" style={{ fontSize: 11, color: "var(--accent-red)" }}>{t("topics.open")}</span>
                   </div>

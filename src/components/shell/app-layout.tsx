@@ -15,10 +15,11 @@
  * supports it on both the server and client).
  */
 
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 import { Sidebar } from "./sidebar";
 import { TopBar } from "./topbar";
 import type { NavItemId } from "./nav-config";
+import { AuthGate } from "@/components/auth/auth-gate";
 
 interface AppLayoutProps {
   activeId?: NavItemId;
@@ -29,31 +30,33 @@ interface AppLayoutProps {
 
 export function AppLayout({ activeId, crumbKey, crumb, children }: AppLayoutProps) {
   return (
-    <>
-      <a href="#rt-main" className="skip-link">Skip to content</a>
-      <div data-responsive="app" style={{ display: "block", minHeight: "100vh" }}>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "248px 1fr",
-            minHeight: "100vh",
-          }}
-        >
-          <Sidebar activeId={activeId} />
+    <Suspense fallback={null}>
+      <AuthGate>
+        <a href="#rt-main" className="skip-link">Skip to content</a>
+        <div data-responsive="app" style={{ display: "block", minHeight: "100vh" }}>
           <div
             style={{
-              display: "flex",
-              flexDirection: "column",
-              minWidth: 0,
+              display: "grid",
+              gridTemplateColumns: "248px 1fr",
+              minHeight: "100vh",
             }}
           >
-            <TopBar crumbKey={crumbKey} crumb={crumb} />
-            <main id="rt-main" className="rt-main" data-rt-main style={{ flex: 1 }}>
-              {children}
-            </main>
+            <Sidebar activeId={activeId} />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                minWidth: 0,
+              }}
+            >
+              <TopBar crumbKey={crumbKey} crumb={crumb} />
+              <main id="rt-main" className="rt-main" data-rt-main style={{ flex: 1 }}>
+                {children}
+              </main>
+            </div>
           </div>
         </div>
-      </div>
-    </>
+      </AuthGate>
+    </Suspense>
   );
 }
