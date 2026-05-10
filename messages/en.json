@@ -1650,5 +1650,139 @@
         "cs": "✓"
       }
     }
+  },
+  "notFound": {
+    "crumb": "RESEARCHTRACE / 404 · NOT FOUND",
+    "kicker": "ERR · 404 · NOT FOUND",
+    "title": "The page you sought isn't in this issue.",
+    "lede": "Maybe it was never indexed by the Curator. Maybe it's been filed elsewhere. Either way — let us return you to your research stream.",
+    "watermark": "404",
+    "suggestion": {
+      "_value": "You might be looking for:",
+      "today": "Today —— this issue's headlines",
+      "briefs": "Brief Library —— 36 archived issues",
+      "topics": "Topics —— radar across 12 topics",
+      "ask": "Ask —— search your entire knowledge"
+    },
+    "btn": {
+      "back": "← Back to previous",
+      "today": "GO TO TODAY →",
+      "report": "Report this link"
+    },
+    "report": {
+      "alert": "404 recorded. The Curator will review within 24 hours."
+    },
+    "colophon": "VOL. III · ERR-404 · Filed by the ResearchTrace editorial desk"
+  },
+  "login": {
+    "crumb": "RESEARCHTRACE / SIGN IN",
+    "kicker": "VOL. III · SIGN IN",
+    "title": "Welcome back.",
+    "lede": "Your Agents have been working — 47 items wait in your Inbox, 3 new briefs are ready.",
+    "form": {
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@research.trace",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "••••••••••",
+      "remember": "Stay signed in for 30 days",
+      "forgot": "Forgot password?",
+      "submit": "SIGN IN →",
+      "submitting": "Verifying…"
+    },
+    "oauth": {
+      "_value": "Or continue with",
+      "google": "Google account",
+      "github": "GitHub",
+      "apple": "Apple ID"
+    },
+    "footer": {
+      "noAccount": "Don't have an account?",
+      "signupCta": "Start 14-day free trial →",
+      "terms": "By signing in, you agree to our",
+      "termsLink": "Terms of Service",
+      "and": "and",
+      "privacyLink": "Privacy Policy"
+    },
+    "side": {
+      "kicker": "TODAY · May 9",
+      "headline": "\"In the past 24 hours, your Radar caught 3 inflection signals in the long-context space.\"",
+      "byline": "—— Curator's Take, Issue 127",
+      "stats": {
+        "k1": "Items today",
+        "v1": "47",
+        "k2": "New briefs this week",
+        "v2": "3",
+        "k3": "Your vault",
+        "v3": "2,438"
+      }
+    },
+    "alert": {
+      "demo": "DEMO · This is a static prototype, redirecting to /today",
+      "missing": "Please fill in email and password",
+      "invalidEmail": "Please use a valid email address"
+    }
+  },
+  "signup": {
+    "crumb": "RESEARCHTRACE / SIGN UP",
+    "kicker": "VOL. III · BEGIN A SUBSCRIPTION",
+    "title": "A paper edited for one reader —— you.",
+    "lede": "First 14 days free. No credit card. A daily brief curated for you by 5 AI agents.",
+    "form": {
+      "nameLabel": "Display name",
+      "namePlaceholder": "e.g., Yuwen",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@research.trace",
+      "passwordLabel": "Set a password",
+      "passwordPlaceholder": "At least 8 chars, mixed letters & digits",
+      "passwordHint": "We use your email to deliver briefs and reset passwords. Nothing more.",
+      "agree": "I have read and agree to the",
+      "termsLink": "Terms of Service",
+      "and": "and",
+      "privacyLink": "Privacy Policy",
+      "submit": "START 14-DAY TRIAL →",
+      "submitting": "Creating account…"
+    },
+    "oauth": {
+      "_value": "Or sign up quickly with",
+      "google": "Google account",
+      "github": "GitHub",
+      "apple": "Apple ID"
+    },
+    "perks": {
+      "_value": "TRIAL includes the full feature set",
+      "p1": {
+        "k": "All 12 topics",
+        "v": "Daily scan by Radar Agent"
+      },
+      "p2": {
+        "k": "Unlimited imports",
+        "v": "PDF / URL / video / email / Notion"
+      },
+      "p3": {
+        "k": "5 AI Agents",
+        "v": "Ingestor · Curator · Retriever · Radar · Reporter"
+      },
+      "p4": {
+        "k": "Daily + Weekly + Monthly briefs",
+        "v": "Auto-archived to Brief Library"
+      }
+    },
+    "footer": {
+      "haveAccount": "Already have an account?",
+      "loginCta": "Sign in →"
+    },
+    "side": {
+      "kicker": "ISSUE 127 · PREVIEW",
+      "headline": "\"Your first brief will be delivered within 24 hours.\"",
+      "byline": "—— Reporter Agent",
+      "watermark": "001"
+    },
+    "alert": {
+      "demo": "DEMO · This is a static prototype, redirecting to /onboarding",
+      "missing": "Please fill in all fields",
+      "invalidEmail": "Please use a valid email address",
+      "weakPassword": "Password must be at least 8 chars with letters and digits",
+      "needAgree": "Please agree to the Terms of Service and Privacy Policy first"
+    }
   }
 }

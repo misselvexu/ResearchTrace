@@ -1650,5 +1650,139 @@
         "cs": "✓"
       }
     }
+  },
+  "notFound": {
+    "crumb": "RESEARCHTRACE / 404 · 页面未找到",
+    "kicker": "ERR · 404 · NOT FOUND",
+    "title": "您要找的页面不在这一期。",
+    "lede": "可能它从未被 Curator 收录，也可能它被归档到了别处。无论如何 —— 让我们带您回到您的研究流。",
+    "watermark": "404",
+    "suggestion": {
+      "_value": "您可能想去：",
+      "today": "今日 Today —— 当前期次的头条",
+      "briefs": "简报库 —— 已归档的 36 期",
+      "topics": "主题 —— 12 个主题的雷达",
+      "ask": "提问 —— 在您的全部知识中检索"
+    },
+    "btn": {
+      "back": "← 返回上一页",
+      "today": "GO TO TODAY →",
+      "report": "报告这个链接"
+    },
+    "report": {
+      "alert": "已记录此 404，Curator 将在 24 小时内复查。"
+    },
+    "colophon": "VOL. III · ERR-404 · 此页面由 ResearchTrace 编辑部记录"
+  },
+  "login": {
+    "crumb": "RESEARCHTRACE / SIGN IN · 登录",
+    "kicker": "VOL. III · SIGN IN",
+    "title": "欢迎回来。",
+    "lede": "您的 Agents 一直在工作 —— 共 47 项资料正在 Inbox 等候，3 期新简报已就绪。",
+    "form": {
+      "emailLabel": "邮箱",
+      "emailPlaceholder": "you@research.trace",
+      "passwordLabel": "密码",
+      "passwordPlaceholder": "••••••••••",
+      "remember": "保持登录 30 天",
+      "forgot": "忘记密码？",
+      "submit": "登 录 →",
+      "submitting": "正在验证…"
+    },
+    "oauth": {
+      "_value": "或使用以下方式继续",
+      "google": "Google 账户",
+      "github": "GitHub",
+      "apple": "Apple ID"
+    },
+    "footer": {
+      "noAccount": "还没有账号？",
+      "signupCta": "免费试用 14 天 →",
+      "terms": "登录即表示您同意我们的",
+      "termsLink": "服务条款",
+      "and": "与",
+      "privacyLink": "隐私政策"
+    },
+    "side": {
+      "kicker": "TODAY · 5月9日",
+      "headline": "「过去 24 小时，您的 Radar 捕获了 3 个长上下文领域的转折信号。」",
+      "byline": "—— Curator's Take, Issue 127",
+      "stats": {
+        "k1": "今日资料流入",
+        "v1": "47 项",
+        "k2": "本周新简报",
+        "v2": "3 期",
+        "k3": "您的资料库",
+        "v3": "2,438 项"
+      }
+    },
+    "alert": {
+      "demo": "DEMO · 此为静态原型，将跳转到 /today",
+      "missing": "请填写邮箱与密码",
+      "invalidEmail": "请使用有效的邮箱地址"
+    }
+  },
+  "signup": {
+    "crumb": "RESEARCHTRACE / SIGN UP · 注册",
+    "kicker": "VOL. III · BEGIN A SUBSCRIPTION",
+    "title": "为一个读者编辑的报纸 —— 您。",
+    "lede": "前 14 天免费。无需信用卡。每天一份由 5 个 AI Agent 为您整理的简报。",
+    "form": {
+      "nameLabel": "显示名",
+      "namePlaceholder": "如：郁文 / Yuwen",
+      "emailLabel": "邮箱",
+      "emailPlaceholder": "you@research.trace",
+      "passwordLabel": "设置密码",
+      "passwordPlaceholder": "至少 8 位，含字母与数字",
+      "passwordHint": "我们用您的邮箱发送投递与忘记密码邮件，仅此而已。",
+      "agree": "我已阅读并同意",
+      "termsLink": "服务条款",
+      "and": "与",
+      "privacyLink": "隐私政策",
+      "submit": "开 始 14 天 试 用 →",
+      "submitting": "正在创建账号…"
+    },
+    "oauth": {
+      "_value": "或快速注册",
+      "google": "Google 账户",
+      "github": "GitHub",
+      "apple": "Apple ID"
+    },
+    "perks": {
+      "_value": "TRIAL 含完整功能",
+      "p1": {
+        "k": "全部 12 个主题",
+        "v": "Radar Agent 每日扫描"
+      },
+      "p2": {
+        "k": "无限资料导入",
+        "v": "PDF / URL / 视频 / 邮件 / Notion"
+      },
+      "p3": {
+        "k": "5 个 AI Agent",
+        "v": "Ingestor · Curator · Retriever · Radar · Reporter"
+      },
+      "p4": {
+        "k": "每日 + 每周 + 每月简报",
+        "v": "自动归档至 Brief Library"
+      }
+    },
+    "footer": {
+      "haveAccount": "已经注册过？",
+      "loginCta": "登录 →"
+    },
+    "side": {
+      "kicker": "ISSUE 127 · PREVIEW",
+      "headline": "「您的第一份简报将在 24 小时内投递。」",
+      "byline": "—— Reporter Agent",
+      "watermark": "001"
+    },
+    "alert": {
+      "demo": "DEMO · 此为静态原型，将跳转到 /onboarding",
+      "missing": "请完整填写所有字段",
+      "invalidEmail": "请使用有效的邮箱地址",
+      "weakPassword": "密码至少 8 位，且需含字母与数字",
+      "needAgree": "请先同意服务条款与隐私政策"
+    }
   }
 }
