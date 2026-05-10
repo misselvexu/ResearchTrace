@@ -8,6 +8,9 @@ import { PrefSwitcher } from "@/components/providers/pref-switcher";
 import { toast } from "@/components/providers/toast";
 import { signIn } from "@/lib/auth";
 import { RedirectIfAuthed } from "@/components/auth/redirect-if-authed";
+import { api } from "@/lib/api";
+import { handleApiError } from "@/lib/handle-api-error";
+import type { LoginRequest, LoginResponse } from "@/types/api/auth";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -28,7 +31,7 @@ function LoginInner() {
     return "/today";
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (submitting) return;
     if (!email.trim() || !password.trim()) {
@@ -40,12 +43,22 @@ function LoginInner() {
       return;
     }
     setSubmitting(true);
-    // DEMO: simulate latency, persist session, redirect to ?next= or /today
-    setTimeout(() => {
+    try {
+      // Live call — MSW intercepts in dev/mock mode; real API in prod.
+      await api.post<LoginResponse, LoginRequest>("/auth/login", {
+        email: email.trim(),
+        password,
+        rememberMe: remember,
+      });
+      // Persist client-side session marker for AuthGate.
       signIn({ email: email.trim() });
       toast.success(t("login.alert.demo"));
       router.push(safeNext());
-    }, 600);
+    } catch (err) {
+      handleApiError(err, t);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (

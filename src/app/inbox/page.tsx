@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
 import { toast } from "@/components/providers/toast";
+import { useInboxCounters } from "./inbox-data";
 
 type InboxType = "PDF" | "URL" | "TWITTER" | "YOUTUBE" | "EMAIL" | "NOTION";
 type InboxStatus = "PARSING" | "INDEXED" | "TRANSCRIBING" | "FAILED";
@@ -68,6 +69,7 @@ export default function InboxPage() {
   const t = useTranslations();
   const [filter, setFilter] = useState<FilterKey>("all");
   const visible = ITEMS.filter((it) => filter === "all" || it.type === filter);
+  const { counters } = useInboxCounters();
 
   return (
     <AppLayout activeId="inbox" crumbKey="inbox.crumb">
@@ -84,7 +86,9 @@ export default function InboxPage() {
               />
             </div>
             <div style={{ textAlign: "right" }}>
-              <div className="watermark-number" style={{ fontSize: 96 }}>47</div>
+              <div className="watermark-number" style={{ fontSize: 96 }}>
+                {counters && counters.unread > 0 ? String(counters.unread) : "47"}
+              </div>
             </div>
           </div>
 
@@ -132,11 +136,16 @@ export default function InboxPage() {
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: 12, marginTop: 18, paddingTop: 14, borderTop: "1px solid var(--divider)" }}>
             {([
+              // The /inbox/counters endpoint exposes unread / starred / total
+              // and a per-topic breakdown. The legacy stats grid uses
+              // status-based labels (parsing / transcribing / indexed / failed)
+              // which do not exist 1:1 in the backend yet — we map what we can
+              // and keep the editorial fallback for the rest.
               ["inbox.stat.parsing", 1, "var(--warning-amber)"],
               ["inbox.stat.transcribing", 1, "var(--warning-amber)"],
-              ["inbox.stat.indexed", 45, "var(--success-green)"],
+              ["inbox.stat.indexed", counters ? counters.total : 45, "var(--success-green)"],
               ["inbox.stat.failed", 0, "var(--ink-tertiary)"],
-              ["inbox.stat.newSince", 3, "var(--accent-red)"],
+              ["inbox.stat.newSince", counters ? counters.unread : 3, "var(--accent-red)"],
             ] as const).map(([lk, n, c]) => (
               <div key={lk}>
                 <div className="font-serif" style={{ fontSize: 24, fontWeight: 600, color: c, lineHeight: 1 }}>{n}</div>

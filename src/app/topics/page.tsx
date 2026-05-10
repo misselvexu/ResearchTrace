@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
 import { toast } from "@/components/providers/toast";
+import { useTopicsLive, heatBars } from "./topics-data";
 
 type TopicStatus = "ACTIVE" | "WATCHING" | "PAUSED";
 type FilterKey = "all" | TopicStatus | "pinned";
@@ -62,12 +63,27 @@ function HeatBars({ heat }: { heat: number }) {
 export default function TopicsPage() {
   const t = useTranslations();
   const [filter, setFilter] = useState<FilterKey>("all");
+  const live = useTopicsLive(12);
 
   const visible = TOPIC_ROWS.filter((row) => {
     if (filter === "all") return true;
     if (filter === "pinned") return row.pinned;
     return row.status === filter;
   });
+
+  // Position-based overlay: i-th editorial row borrows the i-th live topic's
+  // heat / recentItemCount. Editorial copy (name + descriptions) is preserved.
+  const liveByIndex = live.topics;
+  const liveHeatFor = (idx: number, fallback: number): number => {
+    const lt = liveByIndex[idx];
+    if (!lt) return fallback;
+    return heatBars(lt.heat);
+  };
+  const liveItemsFor = (idx: number, fallback: number): number => {
+    const lt = liveByIndex[idx];
+    if (!lt) return fallback;
+    return lt.recentItemCount;
+  };
 
   const FILTERS: { key: FilterKey; labelK: string }[] = [
     { key: "all", labelK: "topics.f.all" },
@@ -93,7 +109,9 @@ export default function TopicsPage() {
               />
             </div>
             <div style={{ textAlign: "right" }}>
-              <div className="watermark-number" style={{ fontSize: 96 }}>02</div>
+              <div className="watermark-number" style={{ fontSize: 96 }}>
+                {live.total > 0 ? String(live.total).padStart(2, "0") : "02"}
+              </div>
             </div>
           </div>
 
@@ -120,7 +138,13 @@ export default function TopicsPage() {
       <section>
         <div style={{ maxWidth: 1240, margin: "0 auto", padding: "32px 48px 64px" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
-            {visible.map((row) => (
+            {visible.map((row) => {
+              // Find this row's index inside the unfiltered TOPIC_ROWS so the
+              // live overlay stays positionally stable across filter changes.
+              const baseIdx = TOPIC_ROWS.indexOf(row);
+              const liveHeat = liveHeatFor(baseIdx, row.heat);
+              const liveItems = liveItemsFor(baseIdx, row.items);
+              return (
               <Link
                 key={row.id}
                 href={`/topic?t=${row.id}`}
@@ -158,7 +182,7 @@ export default function TopicsPage() {
                 <div style={{ padding: "18px 20px", display: "flex", flexDirection: "column", flex: 1 }}>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
                     <span className="kicker-red">{t(statusKey(row.status))}</span>
-                    <HeatBars heat={row.heat} />
+                    <HeatBars heat={liveHeat} />
                   </div>
                   <h3 className="font-serif" style={{ fontSize: 21, fontWeight: 600, margin: "2px 0 4px", lineHeight: 1.2 }}>
                     {row.name}
@@ -183,7 +207,7 @@ export default function TopicsPage() {
 
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 8, borderTop: "1px dotted var(--divider-strong)", paddingTop: 12, marginBottom: 12 }}>
                     {([
-                      ["ITEMS", row.items],
+                      ["ITEMS", liveItems],
                       ["CLAIMS", row.claims],
                       ["EVIDENCE", row.evidence],
                       ["BRIEFS", row.briefs],
@@ -202,7 +226,8 @@ export default function TopicsPage() {
                   </div>
                 </div>
               </Link>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

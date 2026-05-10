@@ -8,6 +8,10 @@ import { PrefSwitcher } from "@/components/providers/pref-switcher";
 import { toast } from "@/components/providers/toast";
 import { signIn } from "@/lib/auth";
 import { RedirectIfAuthed } from "@/components/auth/redirect-if-authed";
+import { api } from "@/lib/api";
+import { handleApiError } from "@/lib/handle-api-error";
+import type { SignupRequest, SignupResponse } from "@/types/api/auth";
+import { useLocale } from "next-intl";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PASSWORD_RE = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/;
@@ -16,6 +20,7 @@ const PERKS = ["p1", "p2", "p3", "p4"] as const;
 
 function SignupInner() {
   const t = useTranslations();
+  const locale = useLocale();
   const router = useRouter();
 
   const [name, setName] = useState("");
@@ -24,7 +29,7 @@ function SignupInner() {
   const [agree, setAgree] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (submitting) return;
     if (!name.trim() || !email.trim() || !password.trim()) {
@@ -44,11 +49,24 @@ function SignupInner() {
       return;
     }
     setSubmitting(true);
-    setTimeout(() => {
+    try {
+      const reqLocale: "zh" | "en" = locale === "en" ? "en" : "zh";
+      await api.post<SignupResponse, SignupRequest>("/auth/signup", {
+        email: email.trim(),
+        password,
+        displayName: name.trim() || undefined,
+        locale: reqLocale,
+        marketingOptIn: false,
+      });
+      // Persist client-side session marker for AuthGate.
       signIn({ email: email.trim(), name: name.trim() || undefined });
       toast.success(t("signup.alert.demo"));
       router.push("/onboarding");
-    }, 600);
+    } catch (err) {
+      handleApiError(err, t);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (

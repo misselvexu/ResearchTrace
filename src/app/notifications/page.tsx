@@ -5,6 +5,9 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
 import { toast } from "@/components/providers/toast";
+import { api } from "@/lib/api";
+import { invalidate } from "@/lib/queries";
+import { handleApiError } from "@/lib/handle-api-error";
 
 type Section = "today" | "yesterday" | "earlier";
 type Kind = "alert" | "digest" | "mention" | "system" | "ingest";
@@ -79,17 +82,36 @@ export default function NotificationsPage() {
   const systemCount = ITEMS.filter((it) => it.kind === "system").length;
   const digestCount = ITEMS.filter((it) => it.kind === "digest").length;
 
-  const markRead = (k: string) => {
+  const markRead = async (k: string) => {
+    // Optimistic local update — the editorial item key `k` is the seed key,
+    // not a backend Notification.id, so we mirror the action against any
+    // matching live notification (mock seed includes ids `n-1..n-12`) but
+    // tolerate 404s gracefully. Either way we mark the local row read.
     setReadSet((prev) => {
       const next = new Set(prev);
       next.add(k);
       return next;
     });
+    try {
+      await api.post(`/notifications/n-${k}/read`);
+      invalidate(["notifications"]);
+    } catch (err) {
+      // Don't roll back the local read state — the user has clearly
+      // dismissed this row. But surface the failure so they know
+      // server state may diverge.
+      handleApiError(err, t);
+    }
   };
 
-  const markAll = () => {
+  const markAll = async () => {
     setReadSet(new Set(ITEMS.map((i) => i.k)));
-    toast(t("notifications.alert.markAllDone"));
+    try {
+      await api.post("/notifications/read-all");
+      invalidate(["notifications"]);
+      toast(t("notifications.alert.markAllDone"));
+    } catch (err) {
+      handleApiError(err, t);
+    }
   };
 
   return (
@@ -144,7 +166,7 @@ export default function NotificationsPage() {
             <Link href="/settings" className="btn btn-ghost" style={{ textDecoration: "none" }}>
               {t("notifications.btn.settings")}
             </Link>
-            <button className="btn btn-red" onClick={markAll}>{t("notifications.btn.markAll")}</button>
+            <button className="btn btn-red" onClick={() => void markAll()}>{t("notifications.btn.markAll")}</button>
           </div>
         </div>
       </section>
@@ -247,7 +269,7 @@ export default function NotificationsPage() {
                             <button
                               className="pill"
                               style={{ fontSize: 9, padding: "1px 6px" }}
-                              onClick={() => markRead(it.k)}
+                              onClick={() => void markRead(it.k)}
                             >
                               ✓
                             </button>
@@ -262,7 +284,7 @@ export default function NotificationsPage() {
                               color: "var(--accent-red)",
                               borderColor: "currentColor",
                             }}
-                            onClick={() => markRead(it.k)}
+                            onClick={() => void markRead(it.k)}
                           >
                             {t("notifications.btn.openSrc")}
                           </Link>

@@ -14,6 +14,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { PrefSwitcher } from "@/components/providers/pref-switcher";
 import { UserMenu } from "./user-menu";
+import { UnreadBadge } from "./unread-badge";
 
 interface TopBarProps {
   /** Crumb i18n key (preferred). E.g. "today.crumb". */
@@ -146,21 +147,7 @@ export function TopBar({ crumbKey, crumb }: TopBarProps) {
             <path d="M22 12h-6l-2 3h-4l-2-3H2" />
             <path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" />
           </svg>
-          <span
-            style={{
-              position: "absolute",
-              top: -4,
-              right: -4,
-              background: "var(--accent-red)",
-              color: "#fff",
-              fontFamily: "var(--font-mono)",
-              fontSize: 9,
-              padding: "1px 4px",
-              borderRadius: 8,
-            }}
-          >
-            47
-          </span>
+          <UnreadBadge />
         </Link>
 
         {/* User menu (avatar pill → dropdown with sign-out) */}

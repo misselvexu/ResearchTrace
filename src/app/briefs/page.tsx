@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { AppLayout } from "@/components/shell/app-layout";
 import { toast } from "@/components/providers/toast";
+import { useBriefsLive, requestNewBrief } from "./briefs-data";
 
 type FormatFilter = "all" | "weekly" | "monthly" | "deepdive" | "initial";
 type TopicFilter = "all" | "long" | "agentic" | "eval" | "rag" | "product";
@@ -64,6 +65,7 @@ export default function BriefsPage() {
   const t = useTranslations();
   const [formatF, setFormatF] = useState<FormatFilter>("all");
   const [topicF, setTopicF] = useState<TopicFilter | null>(null);
+  const live = useBriefsLive();
 
   const visible = BRIEFS.filter((b) => {
     // Topic filter (single-select; null = no constraint)
@@ -91,7 +93,9 @@ export default function BriefsPage() {
               </p>
             </div>
             <div style={{ textAlign: "right" }}>
-              <div className="watermark-number" style={{ fontSize: 96 }}>36</div>
+              <div className="watermark-number" style={{ fontSize: 96 }}>
+                {live.total > 0 ? String(live.total).padStart(2, "0") : "36"}
+              </div>
             </div>
           </div>
 
@@ -129,7 +133,16 @@ export default function BriefsPage() {
               </button>
             ))}
             <span style={{ flex: 1 }} />
-            <button className="btn btn-red" onClick={() => toast(t("briefs.alert.newBrief"))}>
+            <button
+              className="btn btn-red"
+              onClick={() => {
+                // Pick the first live topic id for the new-brief request, or
+                // fall back to a stable placeholder id so the request shape
+                // is still well-formed (mock/handler may 404 — handled).
+                const firstLive = live.briefs[0]?.topicId;
+                void requestNewBrief(firstLive ?? "t_001", t);
+              }}
+            >
               {t("briefs.btn.newBrief")}
             </button>
           </div>
