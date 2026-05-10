@@ -6,20 +6,28 @@
  *   ┌──────────┬───────────────────────────────────────┐
  *   │          │  TopBar (sticky)                      │
  *   │ Sidebar  ├───────────────────────────────────────┤
- *   │ (248px)  │  <main> children                       │
+ *   │ 64/248px │  <main> children                       │
  *   │ sticky   │                                         │
  *   └──────────┴───────────────────────────────────────┘
  *
- * Server component by default — children may freely include client/server
- * components. The Sidebar + TopBar both call `useTranslations` (next-intl
- * supports it on both the server and client).
+ * The sidebar can be collapsed to 64px (icon-only) via the toggle button
+ * anchored at the bottom of the rail, or via the `[` / `]` keyboard
+ * shortcuts. State is persisted to `localStorage` and hydrated pre-paint by
+ * the boot script in src/app/layout.tsx to avoid flicker.
+ *
+ * Children may freely include client/server components — this wrapper is
+ * marked `"use client"` only because it owns the collapsed state, but
+ * children are passed through transparently.
  */
+
+"use client";
 
 import { Suspense, type ReactNode } from "react";
 import { Sidebar } from "./sidebar";
 import { TopBar } from "./topbar";
 import type { NavItemId } from "./nav-config";
 import { AuthGate } from "@/components/auth/auth-gate";
+import { useSidebarCollapsed } from "@/lib/use-sidebar-collapsed";
 
 interface AppLayoutProps {
   activeId?: NavItemId;
@@ -29,6 +37,9 @@ interface AppLayoutProps {
 }
 
 export function AppLayout({ activeId, crumbKey, crumb, children }: AppLayoutProps) {
+  const { collapsed, toggle } = useSidebarCollapsed();
+  const railWidth = collapsed ? 64 : 248;
+
   return (
     <Suspense fallback={null}>
       <AuthGate>
@@ -37,11 +48,16 @@ export function AppLayout({ activeId, crumbKey, crumb, children }: AppLayoutProp
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "248px 1fr",
+              gridTemplateColumns: `${railWidth}px 1fr`,
               minHeight: "100vh",
+              transition: "grid-template-columns 180ms ease",
             }}
           >
-            <Sidebar activeId={activeId} />
+            <Sidebar
+              activeId={activeId}
+              collapsed={collapsed}
+              onToggle={toggle}
+            />
             <div
               style={{
                 display: "flex",

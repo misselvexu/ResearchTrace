@@ -42,7 +42,9 @@
       "eval": "AI 评测",
       "rag": "RAG 与记忆",
       "pm": "AI 产品策略"
-    }
+    },
+    "collapse": "收起侧栏",
+    "expand": "展开侧栏"
   },
   "switcher": {
     "lang": {

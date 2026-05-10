@@ -62,6 +62,18 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={`${sourceSerif.variable} ${inter.variable} ${jetbrainsMono.variable} ${notoSerifSC.variable}`}
     >
+      <head>
+        {/* Pre-paint: hydrate sidebar collapsed state from localStorage so the
+            workspace shell does not flicker between expanded/collapsed on
+            first render. */}
+        <script
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var v=localStorage.getItem('rt.sidebar.collapsed');if(v==='1'||v==='0'){document.documentElement.setAttribute('data-sidebar-collapsed',v);}}catch(_){}",
+          }}
+        />
+      </head>
       <body className="min-h-screen bg-bg-paper text-ink-primary antialiased">
         <ThemeProvider
           attribute="data-theme"

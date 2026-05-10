@@ -42,7 +42,9 @@
       "eval": "AI Evaluation",
       "rag": "RAG & Memory",
       "pm": "AI Product Strategy"
-    }
+    },
+    "collapse": "Collapse sidebar",
+    "expand": "Expand sidebar"
   },
   "switcher": {
     "lang": {

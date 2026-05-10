@@ -598,7 +598,27 @@ a.link-red:hover { color: var(--accent-red-deep); }
   [data-responsive="app"] > div {
     grid-template-columns: 220px 1fr !important;
   }
+  /* Honor user-driven collapse even at 1280px breakpoint. */
+  [data-responsive="app"] aside.rt-sidebar.is-collapsed ~ div,
+  [data-responsive="app"]:has(aside.rt-sidebar.is-collapsed) > div {
+    grid-template-columns: 64px 1fr !important;
+  }
 }
+
+/* Collapsed sidebar — icon-only mode (>=1024px desktop). */
+.sidebar.is-collapsed .nav-item {
+  padding: 10px 0 !important;
+  justify-content: center;
+  border-left-color: transparent;
+}
+.sidebar.is-collapsed .nav-item.is-active {
+  background: var(--bg-sidebar-2);
+  border-left: 3px solid var(--accent-red);
+}
+.sidebar.is-collapsed .nav-item:hover {
+  background: var(--bg-sidebar-2);
+}
+
 @media (max-width: 1024px) {
   [data-responsive="app"] > div {
     grid-template-columns: 1fr !important;
@@ -607,6 +627,7 @@ a.link-red:hover { color: var(--accent-red-deep); }
     position: static !important;
     height: auto !important;
     width: 100% !important;
+    min-width: 0 !important;
     max-height: 56px;
     overflow-x: auto;
     overflow-y: hidden;
@@ -630,6 +651,10 @@ a.link-red:hover { color: var(--accent-red-deep); }
   [data-responsive="app"] aside.rt-sidebar .nav-item {
     display: inline-flex !important;
     flex: 0 0 auto;
+  }
+  /* On mobile, never show the collapse toggle — it would just confuse. */
+  [data-responsive="app"] aside.rt-sidebar > div:last-child:has(button[aria-pressed]) {
+    display: none !important;
   }
 }
 
